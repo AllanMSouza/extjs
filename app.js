@@ -1,0 +1,151 @@
+var contentPanel = {
+         id: 'content-panel',
+         region: 'center', // this is what makes this panel into a region within the containing layout
+         layout: 'card',
+         //margins: '5 5 5 0',
+         split:true,
+         activeItem: 0,
+         border: false
+        // items: layoutExamples
+    };
+
+var store = Ext.create('Ext.data.TreeStore', {
+//    root: {
+//        expanded: true,
+//        children: [
+//            { text: "Usuarios", expanded: true, iconCls: 'user',children:[
+//                    {text: 'Listar Usuarios', leaf: true, id: 'winUserList'},
+//                    {text: 'Adicionar Usuario', leaf: true, id:'useredit', iconCls: 'add'},
+//                    {text: 'Vincular Usuario', leaf: true, id:'userredes'}
+//            ]},
+//            { text: "Redes", expanded: true, iconCls: 'bluetooth',children: [
+//                { text: "Listar Redes", id: 'winListaRede',leaf: true },
+//                { text: "Adicionar Redes", id:'redeedit', leaf: true}
+//            ] },
+//            { text: "Configurações", iconCls: 'configuracoes',expanded: true, children: [
+//                { text: "Listar Redes Configuradas", id: 'winlistaconf',leaf: true },
+//                { text: "Configurar uma Rede", id:'rede_config', iconCls: 'config',leaf: true},
+//                {text: 'Wizard', id:'Wizard', leaf: true}
+//            ] },
+//            { text: "Logout", id: 'Logout',iconCls: 'cancel',leaf: true }
+//        ]
+//    }
+});
+
+var treePanel = Ext.create('Ext.tree.Panel', {
+        id: 'tree-panel',
+        title: 'Painel de Controle',
+        region:'center',
+        layout: "fit",
+        //split: true,
+        //height: 360,
+        //minSize: 150,
+        rootVisible: false,
+        //store: store
+        
+    });
+    
+    treePanel.getSelectionModel().on('select', function(selModel, record) {
+        if (record.get('leaf')) {
+            var aux = record.get('id')
+            if(aux == 'Logout'){
+                Ext.Msg.show({
+                        title: 'Confirmação',
+                        msg: 'Tem certeza que deseja sair desta aplicação ?',
+                        buttons: Ext.Msg.YESNO,
+                        icon: Ext.MessageBox.WARNING,
+                        escope: this,
+                        width: 450,
+                        fn : function(btn, ev){
+                            if(btn == 'yes'){
+                                viewRedir('Logout','telaprincipal');   
+                            }
+                        }
+                        
+                    })
+              
+            }else{
+            Ext.widget(aux)
+            }
+            
+        }
+    });
+
+Ext.Loader.setConfig({enabled: true});
+
+Ext.application({
+    
+    name: 'AppName',
+    appFolder: 'app',
+    
+    controllers: [
+        
+       ],
+    
+    launch: function(){
+        Ext.create('Ext.container.Viewport',{
+           layout: 'border',
+           
+           items:[
+               {xtype: 'panel', id: 'header',region: 'north', layout:'border', height: 40,
+               bodyStyle: 'background:#00a604; border-color:#00a604;',
+               items:[
+                 {xtype: 'box', region: 'west', width: 300, html: '<h1><b>Nome do Sistema<b></h1>'},
+                 {xtype: 'field', region:'west', width: 300, margins: '0 5 0 5'},
+                 {xtype: 'button', region:'west', text: 'Pesquisar',width: 80, margins: '6 5 5 5'},
+                 {xtype: 'button', region: 'east', text: 'F1', width: 50, margins: '2 2 2 2'},
+                 {xtype: 'button', region: 'east', text: 'F2', width: 50, margins: '2 2 2 2'},
+                 {xtype: 'button', region: 'east', text: 'F3', width: 50, margins: '2 2 2 2'},
+                 {xtype: 'button', region: 'east', text: 'F4', width: 50, margins: '2 2 2 2'}
+                 
+               ]},
+           {xtype: 'panel', region: 'north', height:50, bodyPadding:'4 4', layout:'border',
+           items:[
+                 {xtype: 'button', text: 'Categoria 1', region:'west', width: 100, height: 40, margins: '2 2 2 2'},
+                 {xtype: 'button', text: 'Categoria 2', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
+                 {xtype: 'button', text: 'Categoria 3', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
+                 {xtype: 'button', text: 'Categoria 4', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
+                 {xtype: 'button', text: 'Categoria 5', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
+                 {xtype: 'button', text: 'Categoria 6', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
+                 {xtype: 'button', text: 'Categoria 7', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
+                 {xtype: 'button', text: 'Categoria 8', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
+                 {xtype: 'button', text: 'Categoria 9', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
+                 {xtype: 'button', text: 'Categoria 10', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
+                 {xtype: 'button', text: 'Categoria 11', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
+                 {xtype: 'button', text: 'Categoria 12', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
+                 {xtype: 'button', text: 'Outras', region: 'west', width: 100, height: 40, margins: '2 2 2 2'}
+           ]},
+               contentPanel,
+               
+               {xtype: 'panel', title:'Categorias', region: 'west', split:true, collapsible:true, width:300, 
+               items:[
+                   
+                   
+               ]},
+               {xtype: 'panel', title:'Produtos', region: 'west', split:true, collapsible:true, width:400, 
+               items:[
+                   
+                   
+               ]},
+               
+               {xtype: 'panel', title:'Lista', region: 'east', collapseDirection: 'right',split:true, collapsible:true, width:300, 
+               items:[
+                   
+                   
+               ]},
+           
+            {xtype: 'panel', title:'Descrição', region: 'east', collapsed: true, split:true, collapsible:true, width:300, 
+               items:[
+                   
+                   
+               ]}
+           
+           ]
+            
+        });
+    }
+   
+    
+});
+
+
