@@ -1,0 +1,43 @@
+.bebidas {
+    background-image: url('../imagens/bebidas.png') !important;
+}
+
+.bazar-limpeza {
+    background-image: url('../imagens/bazar-limpeza.png') !important;
+}
+
+.carnes {
+    background-image: url('../imagens/carnes.png') !important;
+}
+
+.congelados {
+    background-image: url('../imagens/congelados.png') !important;
+}
+
+.favoritos {
+    background-image: url('../imagens/favoritos.png') !important;
+}
+
+.frios {
+    background-image: url('../imagens/frios.png') !important;
+}
+
+.frutas {
+    background-image: url('../imagens/frutas.png') !important;
+}
+
+.higiene-pessoal {
+    background-image: url('../imagens/higiene-pessoal.png') !important;
+}
+
+.mercearia {
+    background-image: url('../imagens/mercearia.png') !important;
+}
+
+.saude-beleza {
+    background-image: url('../imagens/saude-beleza.png') !important;
+}
+
+.padaria {
+    background-image: url('../imagens/padaria.png') !important;
+}

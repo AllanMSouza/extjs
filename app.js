@@ -99,21 +99,19 @@ Ext.application({
                  {xtype: 'button', region: 'east', text: 'F4', width: 50, margins: '2 2 2 2'}
                  
                ]},
-           {xtype: 'panel', region: 'north', height:50, bodyPadding:'4 4', layout:'border',
+           {xtype: 'panel', region: 'north', height:80, frameHeader:false, bodyPadding:'4 4', layout:'border',
            items:[
-                 {xtype: 'button', text: 'Categoria 1', region:'west', width: 100, height: 40, margins: '2 2 2 2'},
-                 {xtype: 'button', text: 'Categoria 2', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
-                 {xtype: 'button', text: 'Categoria 3', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
-                 {xtype: 'button', text: 'Categoria 4', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
-                 {xtype: 'button', text: 'Categoria 5', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
-                 {xtype: 'button', text: 'Categoria 6', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
-                 {xtype: 'button', text: 'Categoria 7', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
-                 {xtype: 'button', text: 'Categoria 8', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
-                 {xtype: 'button', text: 'Categoria 9', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
-                 {xtype: 'button', text: 'Categoria 10', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
-                 {xtype: 'button', text: 'Categoria 11', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
-                 {xtype: 'button', text: 'Categoria 12', region: 'west', width: 100, height: 40, margins: '2 2 2 2'},
-                 {xtype: 'button', text: 'Outras', region: 'west', width: 100, height: 40, margins: '2 2 2 2'}
+                 {xtype: 'button', iconCls:'favoritos', region:'west', width: 100, height: 50, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Favoritos'},
+                 {xtype: 'button', iconCls: 'carnes', region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Carnes'},
+                 {xtype: 'button', iconCls: 'mercearia', region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Mercearia'},
+                 {xtype: 'button', iconCls: 'frios', region: 'west', width: 100, height: 40, margins: '2 2 2 2',scale:'large', iconAlign: 'top', text:'Frios'},
+                 {xtype: 'button', iconCls: 'frutas', region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Frutas'},
+                 {xtype: 'button', iconCls: 'Congelados', region: 'west', width: 120, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Congelados'},
+                 {xtype: 'button', iconCls: 'bebidas', region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Bebidas'},
+                 {xtype: 'button', iconCls: 'higiene-pessoal',  region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Higiene'},
+                 {xtype: 'button', iconCls:  'saude-beleza', region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Beleza'},
+                 {xtype: 'button', iconCls: 'bazar-limpeza', region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Limpeza'},
+                 {xtype: 'button', text: 'Outras', region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Outros'}
            ]},
                contentPanel,
                
