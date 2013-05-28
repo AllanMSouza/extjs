@@ -99,9 +99,13 @@ Ext.application({
                  {xtype: 'button', region: 'east', text: 'F4', width: 50, margins: '2 2 2 2'}
                  
                ]},
-           {xtype: 'panel', region: 'north', height:80, frameHeader:false, bodyPadding:'4 4', layout:'border',
+           {xtype: 'panel', region: 'north', height:80, frameHeader:false, bodyPadding:'4 4', layout:'border', bodyStyle: 'background:#fff; border-color:#c0c0c0;',
            items:[
-                 {xtype: 'button', iconCls:'favoritos', region:'west', width: 100, height: 50, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Favoritos'},
+                 {xtype: 'button', iconCls:'favoritos', region:'west', width: 100, height: 50, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Favoritos',
+                 style:{
+                        //border-color: '#9d9d9d;' background-color: '#dfdfdf;'
+                    }
+                   },
                  {xtype: 'button', iconCls: 'carnes', region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Carnes'},
                  {xtype: 'button', iconCls: 'mercearia', region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Mercearia'},
                  {xtype: 'button', iconCls: 'frios', region: 'west', width: 100, height: 40, margins: '2 2 2 2',scale:'large', iconAlign: 'top', text:'Frios'},
@@ -115,7 +119,7 @@ Ext.application({
            ]},
                contentPanel,
                
-               {xtype: 'panel', title:'Categorias', region: 'west', split:true, collapsible:true, width:300, 
+               {xtype: 'panel', title:'Categorias', region: 'west', split:true, collapsible:true, width:300,
                items:[
                    
                    
