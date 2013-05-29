@@ -87,54 +87,48 @@ Ext.application({
            layout: 'border',
            
            items:[
-               {xtype: 'panel', id: 'header',region: 'north', layout:'border', height: 40,
-               bodyStyle: 'background:#00a604; border-color:#00a604;',
-               items:[
-                 {xtype: 'box', region: 'west', width: 300, html: '<h1><b>Nome do Sistema<b></h1>'},
-                 {xtype: 'field', region:'west', width: 300, margins: '0 5 0 5'},
-                 {xtype: 'button', region:'west', text: 'Pesquisar',width: 80, margins: '6 5 5 5'},
-                 {xtype: 'button', region: 'east', text: 'F1', width: 50, margins: '2 2 2 2'},
-                 {xtype: 'button', region: 'east', text: 'F2', width: 50, margins: '2 2 2 2'},
-                 {xtype: 'button', region: 'east', text: 'F3', width: 50, margins: '2 2 2 2'},
-                 {xtype: 'button', region: 'east', text: 'F4', width: 50, margins: '2 2 2 2'}
-                 
-               ]},
-           {xtype: 'panel', region: 'north', height:80, frameHeader:false, bodyPadding:'4 4', layout:'border', bodyStyle: 'background:#fff; border-color:#c0c0c0;',
+//               {xtype: 'panel', id: 'header',region: 'north', layout:'border', height: 40,
+//               bodyStyle: 'background:#00a604; border-color:#00a604;',
+//               items:[
+//                 {xtype: 'box', region: 'west', width: 300, html: '<h1><b>Nome do Sistema<b></h1>'},
+//                 {xtype: 'field', region:'west', width: 300, margins: '0 5 0 5'},
+//                 {xtype: 'button', region:'west', text: 'Pesquisar',width: 80, margins: '6 5 5 5'},
+//                 {xtype: 'button', region: 'east', text: 'F1', width: 50, margins: '2 2 2 2'},
+//                 {xtype: 'button', region: 'east', text: 'F2', width: 50, margins: '2 2 2 2'},
+//                 {xtype: 'button', region: 'east', text: 'F3', width: 50, margins: '2 2 2 2'},
+//                 {xtype: 'button', region: 'east', text: 'F4', width: 50, margins: '2 2 2 2'}
+//                 
+//               ]},
+           {xtype: 'panel', region: 'north', height:60, frameHeader:false, bodyPadding:'4 4', layout:'border', bodyStyle: 'background:#fff; border-color:#c0c0c0;',
            items:[
-                 {xtype: 'button', iconCls:'favoritos', region:'west', width: 100, height: 50, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Favoritos',
-                 style:{
-                        //border-color: '#9d9d9d;' background-color: '#dfdfdf;'
-                    }
-                   },
-                 {xtype: 'button', iconCls: 'carnes', region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Carnes'},
-                 {xtype: 'button', iconCls: 'mercearia', region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Mercearia'},
-                 {xtype: 'button', iconCls: 'frios', region: 'west', width: 100, height: 40, margins: '2 2 2 2',scale:'large', iconAlign: 'top', text:'Frios'},
-                 {xtype: 'button', iconCls: 'frutas', region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Frutas'},
-                 {xtype: 'button', iconCls: 'Congelados', region: 'west', width: 120, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Congelados'},
-                 {xtype: 'button', iconCls: 'bebidas', region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Bebidas'},
-                 {xtype: 'button', iconCls: 'higiene-pessoal',  region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Higiene'},
-                 {xtype: 'button', iconCls:  'saude-beleza', region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Beleza'},
-                 {xtype: 'button', iconCls: 'bazar-limpeza', region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Limpeza'},
-                 {xtype: 'button', text: 'Outras', region: 'west', width: 100, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Outros'}
+                 {xtype: 'button', iconCls:'favoritos', shadow: true, region:'west', width: 50, height: 60, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:' ',
+                 handler:function(){
+                     if(Ext.getCmp('panel-categorias').collapsed == 'left'){
+                        Ext.getCmp('panel-categorias').expand()
+                     }
+                 }
+                 },                 
+                 {xtype: 'button', iconCls: 'mercearia', region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top'},
+                 {xtype: 'button', iconCls: 'carnes', region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text: ' '},
+                 {xtype: 'button', iconCls: 'frios', region: 'west', width: 50, height: 40, margins: '2 2 2 2',scale:'large', iconAlign: 'top' },
+                 {xtype: 'button', iconCls: 'frutas', region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top'},
+                 {xtype: 'button', iconCls: 'Congelados', region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:' '},
+                 {xtype: 'button', iconCls: 'bebidas', region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:' '},
+                 {xtype: 'button', iconCls: 'higiene-pessoal',  region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:' '},
+                 {xtype: 'button', iconCls:  'saude-beleza', region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:' '},
+                 {xtype: 'button', iconCls: 'bazar-limpeza', region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:' '},
+//                 {xtype: 'button', text: 'Outras', region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Outros'}
            ]},
                contentPanel,
                
-               {xtype: 'panel', title:'Categorias', region: 'west', split:true, collapsible:true, width:300,
-               items:[
-                   
-                   
-               ]},
-               {xtype: 'panel', title:'Produtos', region: 'west', split:true, collapsible:true, width:400, 
+               {xtype: 'panel', id: 'panel-categorias',title:'Categorias', region: 'west', split:true, collapsible:true, width:300, collapsed:true,
+               
+               
                items:[
                    
                    
                ]},
                
-               {xtype: 'panel', title:'Lista', region: 'east', collapseDirection: 'right',split:true, collapsible:true, width:300, 
-               items:[
-                   
-                   
-               ]},
            
             {xtype: 'panel', title:'Descrição', region: 'east', collapsed: true, split:true, collapsible:true, width:300, 
                items:[
@@ -149,5 +143,3 @@ Ext.application({
    
     
 });
-
-

@@ -40,4 +40,26 @@
 
 .padaria {
     background-image: url('../imagens/padaria.png') !important;
+   
+    }
+    
+.panel1{
+        
+    background-color: #ff3333;
+        
+    }
+.panel2{
+
+    background-color: #33ffff;
+
+}
+.panel3{
+
+    background-color: #ffff33;
+
+}
+.panel4{
+
+    background-color: #000000;
+
 }
