@@ -10,26 +10,26 @@ var contentPanel = {
     };
 
 var store = Ext.create('Ext.data.TreeStore', {
-//    root: {
-//        expanded: true,
-//        children: [
-//            { text: "Usuarios", expanded: true, iconCls: 'user',children:[
-//                    {text: 'Listar Usuarios', leaf: true, id: 'winUserList'},
-//                    {text: 'Adicionar Usuario', leaf: true, id:'useredit', iconCls: 'add'},
-//                    {text: 'Vincular Usuario', leaf: true, id:'userredes'}
-//            ]},
-//            { text: "Redes", expanded: true, iconCls: 'bluetooth',children: [
-//                { text: "Listar Redes", id: 'winListaRede',leaf: true },
-//                { text: "Adicionar Redes", id:'redeedit', leaf: true}
-//            ] },
-//            { text: "Configurações", iconCls: 'configuracoes',expanded: true, children: [
-//                { text: "Listar Redes Configuradas", id: 'winlistaconf',leaf: true },
-//                { text: "Configurar uma Rede", id:'rede_config', iconCls: 'config',leaf: true},
-//                {text: 'Wizard', id:'Wizard', leaf: true}
-//            ] },
-//            { text: "Logout", id: 'Logout',iconCls: 'cancel',leaf: true }
-//        ]
-//    }
+    root: {
+        expanded: true,
+        children: [
+            { text: "Usuarios", expanded: true, iconCls: 'user',children:[
+                    {text: 'Listar Usuarios', leaf: true, id: 'winUserList'},
+                    {text: 'Adicionar Usuario', leaf: true, id:'useredit', iconCls: 'add'},
+                    {text: 'Vincular Usuario', leaf: true, id:'userredes'}
+            ]},
+            { text: "Redes", expanded: true, iconCls: 'bluetooth',children: [
+                { text: "Listar Redes", id: 'winListaRede',leaf: true },
+                { text: "Adicionar Redes", id:'redeedit', leaf: true}
+            ] },
+            { text: "Configurações", iconCls: 'configuracoes',expanded: true, children: [
+                { text: "Listar Redes Configuradas", id: 'winlistaconf',leaf: true },
+                { text: "Configurar uma Rede", id:'rede_config', iconCls: 'config',leaf: true},
+                {text: 'Wizard', id:'Wizard', leaf: true}
+            ] },
+            { text: "Logout", id: 'Logout',iconCls: 'cancel',leaf: true }
+        ]
+    }
 });
 
 var treePanel = Ext.create('Ext.tree.Panel', {
@@ -79,7 +79,7 @@ Ext.application({
     appFolder: 'app',
     
     controllers: [
-        
+        'conProdutos'
        ],
     
     launch: function(){
@@ -101,14 +101,19 @@ Ext.application({
 //               ]},
            {xtype: 'panel', region: 'north', height:60, frameHeader:false, bodyPadding:'4 4', layout:'border', bodyStyle: 'background:#fff; border-color:#c0c0c0;',
            items:[
-                 {xtype: 'button', iconCls:'favoritos', shadow: true, region:'west', width: 50, height: 60, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:' ',
+                 {xtype: 'button', iconCls:'favoritos', shadow: true, region:'west', width: 50, height: 60, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:' ', tooltip: 'Favoritos',
+                     tooltipType: 'title',
                  handler:function(){
                      if(Ext.getCmp('panel-categorias').collapsed == 'left'){
                         Ext.getCmp('panel-categorias').expand()
                      }
                  }
                  },                 
-                 {xtype: 'button', iconCls: 'mercearia', region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top'},
+                 {xtype: 'button', iconCls: 'mercearia', region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top',
+                 handler:function(){
+                        Ext.widget('winProdutos')
+                     }
+                     },
                  {xtype: 'button', iconCls: 'carnes', region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text: ' '},
                  {xtype: 'button', iconCls: 'frios', region: 'west', width: 50, height: 40, margins: '2 2 2 2',scale:'large', iconAlign: 'top' },
                  {xtype: 'button', iconCls: 'frutas', region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top'},
@@ -121,7 +126,7 @@ Ext.application({
            ]},
                contentPanel,
                
-               {xtype: 'panel', id: 'panel-categorias',title:'Categorias', region: 'west', split:true, collapsible:true, width:300, collapsed:true,
+               {xtype: 'treepanel', rootVisible: false, useArrows: true, id: 'panel-categorias',title:'Categorias', region: 'west', split:true, collapsible:true, width:300, collapsed:true, store: store,
                
                
                items:[
