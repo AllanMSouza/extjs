@@ -123,7 +123,20 @@ Ext.application({
                  {xtype: 'button', iconCls:  'saude-beleza', region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:' '},
                  {xtype: 'button', iconCls: 'bazar-limpeza', region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:' '},
 //                 {xtype: 'button', text: 'Outras', region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text:'Outros'}
-           ]},
+                   {xtype:'panel', bodyPadding: '10 5',layout: 'border', region: 'center', width: 500, bodyStyle: 'background:#fff; border-color:#fff;', items:[
+                                        {xtype: 'textfield', region: 'west', width: 400, margins: '2 2 2 2'},
+                                        {xtype: 'button', width: 80, region:'west', text:'pesquisar', margins:'2 2 2 2'}
+                                ]},
+                                    
+                 {xtype: 'button', region: 'east', text: 'F1', width: 50, margins: '2 2 2 2'},
+                 {xtype: 'button', region: 'east', text: 'F2', width: 50, margins: '2 2 2 2'},
+                 {xtype: 'button', region: 'east', text: 'F3', width: 50, margins: '2 2 2 2'},
+                 {xtype: 'button', region: 'east', text: 'F4', width: 50, margins: '2 2 2 2'},
+                 {xtype: 'button', region: 'east', text: 'F5', width: 50, margins: '2 2 2 2'},
+                 {xtype: 'button', region: 'east', text: 'F6', width: 50, margins: '2 2 2 2'},
+                 {xtype: 'button', region: 'east', text: 'F7', width: 50, margins: '2 2 2 2'}
+                         ]},
+           
                contentPanel,
                
                {xtype: 'treepanel', rootVisible: false, useArrows: true, id: 'panel-categorias',title:'Categorias', region: 'west', split:true, collapsible:true, width:300, collapsed:true, store: store,

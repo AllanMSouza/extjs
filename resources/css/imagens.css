@@ -44,8 +44,9 @@
     }
     
 .panel1{
-        
-    background-color: #ff3333;
+    border-color: #fff;
+    border-top-color: #fff;
+    background-color: #fff;
         
     }
 .panel2{
