@@ -6,7 +6,7 @@ Ext.define('AppName.view.winProdutos',{
     width: 500,
     height: 450,
     autoShow: true,
-    autoScroll: true,
+   // autoScroll: true,
     layout: 'border',
     minimizable: true,
     //minimizeWin(win)

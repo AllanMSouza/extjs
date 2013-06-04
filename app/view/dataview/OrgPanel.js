@@ -11,17 +11,8 @@ Ext.define('AppName.view.dataview.OrgPanel', {
     //autoShow:true,
     // height: 490,
     // width : 700,
-    
-    initComponent: function() {
-        this.items = [
-//            {
-//                xtype: 'albumtree',
-//                region: 'west',
-//                padding: 5,
-//                width: 200
-//            },
-            {
-                xtype: 'panel',
+    autoScroll: true,
+  
                 title: 'My Images',
                 layout: 'fit',
                 region: 'center',
@@ -45,9 +36,8 @@ Ext.define('AppName.view.dataview.OrgPanel', {
                     },/**/
                     trackOver: true
                 }
-            }
-        ];
         
-        this.callParent(arguments);
-    }
+        
+        //this.callParent(arguments);
+    
 });
