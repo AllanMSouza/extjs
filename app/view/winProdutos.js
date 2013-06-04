@@ -3,8 +3,21 @@ Ext.define('AppName.view.winProdutos',{
     alias: 'widget.winProdutos',
             
     title: 'Produtos',
-    width: 300,
+    width: 500,
     height: 450,
-    autoShow: true
+    autoShow: true,
+    autoScroll: true,
+    layout: 'border',
+    minimizable: true,
+    //minimizeWin(win)
+    //renderTo: 'content-panel',
+    
+    items:[
+        {
+            xtype: 'orgPanel',
+            region: 'center'
+            
+        }
+    ]
     
 });

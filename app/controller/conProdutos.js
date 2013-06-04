@@ -4,6 +4,11 @@ Ext.define('AppName.controller.conProdutos',{
     stores: [],
     models: [],
     views: [
-       'winProdutos'
+       'winProdutos',
+       'DataViewProdutos',
+       //'dataview.AlbumTree',
+       'dataview.ImageView',
+       'dataview.OrgPanel',
+       //'dataview.organizer'
     ]
 })

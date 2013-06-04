@@ -13,21 +13,33 @@ var store = Ext.create('Ext.data.TreeStore', {
     root: {
         expanded: true,
         children: [
-            { text: "Usuarios", expanded: true, iconCls: 'user',children:[
-                    {text: 'Listar Usuarios', leaf: true, id: 'winUserList'},
-                    {text: 'Adicionar Usuario', leaf: true, id:'useredit', iconCls: 'add'},
-                    {text: 'Vincular Usuario', leaf: true, id:'userredes'}
+            { text: "Subcategoria", expanded: true, iconCls: 'user',children:[
+                    {text: 'Produtos', leaf: true, id: 'winUserList'},
+                    {text: 'Produtos', leaf: true, id:'useredit', iconCls: 'add'},
+                    {text: 'Produtos', leaf: true},
+                    {text: 'Produtos', leaf: true},
+                    {text: 'Produtos', leaf: true},
+                    {text: 'Produtos', leaf: true},
+                    {text: 'Produtos', leaf: true},
+                    
+                    
             ]},
-            { text: "Redes", expanded: true, iconCls: 'bluetooth',children: [
-                { text: "Listar Redes", id: 'winListaRede',leaf: true },
-                { text: "Adicionar Redes", id:'redeedit', leaf: true}
+            { text: "subcategoria", expanded: true, iconCls: 'bluetooth',children: [
+                { text: "Produtos", id: 'winListaRede',leaf: true },
+                { text: "Produtos", id:'redeedit', leaf: true},
+                {text: 'Produtos', leaf: true},
+                {text: 'Produtos', leaf: true},
+                {text: 'Produtos', leaf: true},
+                {text: 'Produtos', leaf: true},{text: 'Produtos', leaf: true},
+                
+                
             ] },
-            { text: "Configurações", iconCls: 'configuracoes',expanded: true, children: [
-                { text: "Listar Redes Configuradas", id: 'winlistaconf',leaf: true },
-                { text: "Configurar uma Rede", id:'rede_config', iconCls: 'config',leaf: true},
-                {text: 'Wizard', id:'Wizard', leaf: true}
+            { text: "Subcategoria", iconCls: 'configuracoes',expanded: true, children: [
+                { text: "Produtos", id: 'winlistaconf',leaf: true },
+                { text: "Produtos", id:'rede_config', iconCls: 'config',leaf: true},
+                {text: 'Produtos', id:'Wizard', leaf: true}
             ] },
-            { text: "Logout", id: 'Logout',iconCls: 'cancel',leaf: true }
+            //{ text: "Logout", id: 'Logout',iconCls: 'cancel',leaf: true }
         ]
     }
 });
@@ -106,12 +118,17 @@ Ext.application({
                  handler:function(){
                      if(Ext.getCmp('panel-categorias').collapsed == 'left'){
                         Ext.getCmp('panel-categorias').expand()
+                        
                      }
+                 
+                     //console.log(Ext.getCmp('panel-descricao').collapsed )
+                     
                  }
                  },                 
                  {xtype: 'button', iconCls: 'mercearia', region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top',
                  handler:function(){
                         Ext.widget('winProdutos')
+                        
                      }
                      },
                  {xtype: 'button', iconCls: 'carnes', region: 'west', width: 50, height: 40, margins: '2 2 2 2', scale:'large', iconAlign: 'top', text: ' '},
@@ -132,9 +149,7 @@ Ext.application({
                  {xtype: 'button', region: 'east', text: 'F2', width: 50, margins: '2 2 2 2'},
                  {xtype: 'button', region: 'east', text: 'F3', width: 50, margins: '2 2 2 2'},
                  {xtype: 'button', region: 'east', text: 'F4', width: 50, margins: '2 2 2 2'},
-                 {xtype: 'button', region: 'east', text: 'F5', width: 50, margins: '2 2 2 2'},
-                 {xtype: 'button', region: 'east', text: 'F6', width: 50, margins: '2 2 2 2'},
-                 {xtype: 'button', region: 'east', text: 'F7', width: 50, margins: '2 2 2 2'}
+                 
                          ]},
            
                contentPanel,
@@ -145,10 +160,24 @@ Ext.application({
                items:[
                    
                    
-               ]},
+               ],
+               listeners: {
+                   selectionchange: function(model, records) {
+                    if (records[0]) {
+                        Ext.widget('winProdutos')
+                        if(!Ext.getCmp('panel-descricao').collapsed){
+                         Ext.getCmp('panel-descricao').collapse()
+                         //console.log(!Ext.getCmp('panel-descricao').collapsed )
+                                               
+                        }
+                        
+                    }
+                }
+               }
+            },
                
            
-            {xtype: 'panel', title:'Descrição', region: 'east', collapsed: true, split:true, collapsible:true, width:300, 
+            {xtype: 'panel', id:'panel-descricao',title:'Descrição', region: 'east', collapsed: true, split:true, collapsible:true, width:300, 
                items:[
                    
                    

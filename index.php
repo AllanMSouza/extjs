@@ -12,6 +12,7 @@
           <!--<link rel="stylesheet" href="resources/themes/clifton/css/clifton-blue.css">-->
           <link rel="stylesheet" type="text/css" href="resources/css/imagens.css">
           <link rel="stylesheet" type="text/css" href="extjs/examples/layout-browser/layout-browser.css">
+          <link rel="stylesheet" type="text/css" href="app/view/dataview/organizer.css">
           <!--<link rel="stylesheet" type="text/css" href="extjs/examples/shared/example.css">-->
          
             
