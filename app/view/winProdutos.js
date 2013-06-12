@@ -15,7 +15,8 @@ Ext.define('AppName.view.winProdutos',{
     items:[
         {
             xtype: 'orgPanel',
-            region: 'center'
+            region: 'center',
+            ui: 'light'
             
         }
     ]

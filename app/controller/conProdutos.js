@@ -1,14 +1,19 @@
 Ext.define('AppName.controller.conProdutos',{
     extend: 'Ext.app.Controller',
     
-    stores: [],
-    models: [],
+    stores: [
+        'storeMinhasListas',
+        
+    ],
+    models: [
+        'modelMinhasListas'
+    ],
     views: [
        'winProdutos',
+       'gridpanelMinhasListas',
        'DataViewProdutos',
-       //'dataview.AlbumTree',
        'dataview.ImageView',
        'dataview.OrgPanel',
-       //'dataview.organizer'
+       
     ]
 })

@@ -1,0 +1,34 @@
+{
+    "data": [
+        {
+            "nomeProduto": "Produto 1",
+            "quantidade" : 1,
+            "valor": "1,50"
+            
+        },
+        {
+            "nomeProduto": "Produto 2",
+            "quantidade" : 3,
+            "valor": "6,50"
+            
+        },
+        {
+            "nomeProduto": "Produto 3",
+            "quantidade" : 10,
+            "valor": "18,50"
+            
+        },
+        {
+            "nomeProduto": "Produto 4",
+            "quantidade" : 2,
+            "valor": "100,00"
+            
+        },
+        {
+            "nomeProduto": "Produto 5",
+            "quantidade" : 5,
+            "valor": "35,80"
+            
+        }
+    ]
+}

@@ -14,8 +14,8 @@ var store = Ext.create('Ext.data.TreeStore', {
         expanded: true,
         children: [
             { text: "Subcategoria", expanded: true, iconCls: 'user',children:[
-                    {text: 'Produtos', leaf: true, id: 'winUserList'},
-                    {text: 'Produtos', leaf: true, id:'useredit', iconCls: 'add'},
+                    {text: 'Produtos', leaf: true},
+                    {text: 'Produtos', leaf: true},
                     {text: 'Produtos', leaf: true},
                     {text: 'Produtos', leaf: true},
                     {text: 'Produtos', leaf: true},
@@ -154,7 +154,7 @@ Ext.application({
            
                contentPanel,
                
-               {xtype: 'treepanel', rootVisible: false, useArrows: true, id: 'panel-categorias',title:'Categorias', region: 'west', split:true, collapsible:true, width:300, collapsed:true, store: store,
+               {xtype: 'treepanel', rootVisible: false, useArrows: true, id: 'panel-categorias',title:'Categorias', region: 'west', split:true, collapsible:true, width:200, collapsed:true, store: store,
                
                
                items:[
@@ -177,9 +177,13 @@ Ext.application({
             },
                
            
-            {xtype: 'panel', id:'panel-descricao',title:'Descrição', region: 'east', collapsed: true, split:true, collapsible:true, width:300, 
+            {xtype: 'panel', id:'panel-descricao',title:'Informações & Minhas Listas', layout: 'border', region: 'east', collapsed: true, split:true, collapsible:true, width:400, 
                items:[
+                   {xtype: 'panel', title: 'Descrição',region: 'north', height: 200, split:true, 
+                    ui:'light', collapsible:true                    
                    
+                    },
+                   {xtype: 'minhaslistas'}
                    
                ]}
            

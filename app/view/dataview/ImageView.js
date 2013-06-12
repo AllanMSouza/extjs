@@ -68,12 +68,14 @@ selectionchange: function(model, records) {
                     //console.log(model, records[0].data)
                     if(Ext.getCmp('panel-descricao').collapsed == 'right'){
                         Ext.getCmp('panel-descricao').expand()
-                        
+                        console.log(records[0].data.name)
                         Ext.getCmp('panel-descricao').update('Descrição icone: ' + records[0].data.name)
                      }
                      
-                     else
+                     else{
+                         console.log(records[0].data.name)
                          Ext.getCmp('panel-descricao').update('Descrição icone: ' + records[0].data.name)
+                     }
     }
     }
 });
