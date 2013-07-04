@@ -1,4 +1,4 @@
-Ext.define('AppName.view.gridpanelMinhasListas',{
+Ext.define('AppName.view.produtos.gridpanelMinhasListas',{
     extend: 'Ext.panel.Panel',
     alias: 'widget.minhaslistas',
     

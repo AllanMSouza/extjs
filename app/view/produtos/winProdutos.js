@@ -1,4 +1,4 @@
-Ext.define('AppName.view.winProdutos',{
+Ext.define('AppName.view.produtos.winProdutos',{
     extend: 'Ext.window.Window',
     alias: 'widget.winProdutos',
             

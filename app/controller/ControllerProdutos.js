@@ -1,4 +1,4 @@
-Ext.define('AppName.controller.conProdutos',{
+Ext.define('AppName.controller.ControllerProdutos',{
     extend: 'Ext.app.Controller',
     
     stores: [
@@ -9,9 +9,9 @@ Ext.define('AppName.controller.conProdutos',{
         'modelMinhasListas'
     ],
     views: [
-       'winProdutos',
-       'gridpanelMinhasListas',
-       'DataViewProdutos',
+       'produtos.winProdutos',
+       'produtos.gridpanelMinhasListas',
+       'produtos.DataViewProdutos',
        'dataview.ImageView',
        'dataview.OrgPanel',
        
