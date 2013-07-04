@@ -15,5 +15,8 @@ Ext.define('AppName.controller.ControllerProdutos',{
        'dataview.ImageView',
        'dataview.OrgPanel',
        
+       'usuarios.FormMercado',
+       'usuarios.WindowCadMercado'
+       
     ]
 })
