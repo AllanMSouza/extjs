@@ -179,7 +179,8 @@ Ext.define('AppName.view.layout.HeaderPanel',{
                     region: 'east', 
                     text: 'F2', 
                     width: 50, 
-                    margins: '2 2 2 2'
+                    margins: '2 2 2 2',
+                    action: 'showWindowCadCliente'
                 },
                  {
                     xtype: 'button', 
