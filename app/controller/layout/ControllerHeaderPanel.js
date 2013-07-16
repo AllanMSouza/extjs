@@ -1,4 +1,4 @@
-Ext.define('AppName.controller.ControllerHeaderPanel',{
+Ext.define('AppName.controller.layout.ControllerHeaderPanel',{
     extend: 'Ext.app.Controller',
     
     stores: [

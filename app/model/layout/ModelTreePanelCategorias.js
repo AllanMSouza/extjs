@@ -1,4 +1,4 @@
-Ext.define('AppName.model.ModelTreePanelCategorias',{
+Ext.define('AppName.model.layout.ModelTreePanelCategorias',{
      extend: 'Ext.data.Model',
      
      idProperty: 'id_categorias',

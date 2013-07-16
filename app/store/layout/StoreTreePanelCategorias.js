@@ -1,7 +1,7 @@
-Ext.define('AppName.store.StoreTreePanelCategorias',{
+Ext.define('AppName.store.layout.StoreTreePanelCategorias',{
     extend: 'Ext.data.TreeStore',
     
-    model: 'AppName.model.ModelTreePanelCategorias',
+    model: 'AppName.model.layout.ModelTreePanelCategorias',
     storeId: 'storeTreePanelCategorias', 
     autoLoad: true,
     remoteSort: true,

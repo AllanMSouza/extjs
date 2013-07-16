@@ -52,5 +52,13 @@ Ext.define('AppName.view.produtos.gridpanelMinhasListas',{
     }
             
         }
+    ],
+    tbar:[
+        {
+            text:'Nova Lista'
+        },
+        {
+            text: 'Remover Lista'
+        }
     ]
 })

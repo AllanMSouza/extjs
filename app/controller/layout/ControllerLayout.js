@@ -1,12 +1,12 @@
-Ext.define('AppName.controller.ControllerLayout',{
+Ext.define('AppName.controller.layout.ControllerLayout',{
     extend: 'Ext.app.Controller',
     
     stores: [
-        'StoreTreePanelCategorias'
+        //'StoreTreePanelCategorias'
         
     ],
     models: [
-        'ModelTreePanelCategorias'
+        //'ModelTreePanelCategorias'
     ],
     views: [
        'layout.ContentPanel',

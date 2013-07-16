@@ -1,4 +1,4 @@
-Ext.define('AppName.controller.ControllerProdutos',{
+Ext.define('AppName.controller.layout.ControllerProdutos',{
     extend: 'Ext.app.Controller',
     
     stores: [

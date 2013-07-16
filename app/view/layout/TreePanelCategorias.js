@@ -11,27 +11,8 @@ Ext.define('AppName.view.layout.TreePanelCategorias',{
     collapsible:true, 
     width:300, 
     collapsed:true, 
-    store: 'StoreTreePanelCategorias',
+    store: 'layout.StoreTreePanelCategorias',
     items:[
         
-    ],
-    
-    listeners: {
-        
-        selectionchange: function(model, records) {
-            if (records[0]) {
-                Ext.widget('winProdutos');
-                if(!Ext.getCmp('panel-descricao').collapsed){
-                    Ext.getCmp('panel-descricao').collapse();
-                }
-            }
-        },
-                
-
-                 
-        
-    }
-    
-    
-    
+    ],   
 });

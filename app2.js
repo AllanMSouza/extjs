@@ -6,10 +6,10 @@ Ext.application({
     appFolder: 'app',
     
     controllers: [
-        'ControllerProdutos',
-        'ControllerLayout',
-        'ControllerHeaderPanel',
-        'ControllerTreePanelCategorias'
+        'layout.ControllerProdutos',
+        'layout.ControllerLayout',
+        'layout.ControllerHeaderPanel',
+        'layout.ControllerTreePanelCategorias'
        ],
     
     launch: function(){
