@@ -31,7 +31,7 @@ Ext.define('AppName.view.layout.HeaderPanel',{
        },
         {
              xtype: 'button', 
-             id:'mercearia',
+             id:'Mercearia',
              iconCls: 'mercearia',
             action: 'getCategorias',
              region: 'west', 
@@ -50,7 +50,7 @@ Ext.define('AppName.view.layout.HeaderPanel',{
         },
                 {
                     xtype: 'button', 
-                    id: 'carnes',
+                    id: 'Carnes',
                     action: 'getCategorias',
                     iconCls: 'carnes', 
                     region: 'west', 
@@ -66,7 +66,7 @@ Ext.define('AppName.view.layout.HeaderPanel',{
                 {
                     xtype: 'button', 
                     action: 'getCategorias',
-                    id: 'frios',
+                    id: 'Frios Leites e Derivados',
                     iconCls: 'frios', 
                     region: 'west', 
                     width: 50, 
@@ -80,7 +80,7 @@ Ext.define('AppName.view.layout.HeaderPanel',{
                  {
                     xtype: 'button',
                     action: 'getCategorias',
-                    id: 'frutas',
+                    id: 'Frutas Ovos e Verduras',
                     iconCls: 'frutas', 
                     region: 'west', 
                     width: 50, 
@@ -94,7 +94,7 @@ Ext.define('AppName.view.layout.HeaderPanel',{
                  {
                     xtype: 'button', 
                     action: 'getCategorias',
-                    id: 'congelados',
+                    id: 'Comidas Prontas e Congeladas',
                     iconCls: 'Congelados', 
                     region: 'west', 
                     width: 50, 
@@ -109,7 +109,7 @@ Ext.define('AppName.view.layout.HeaderPanel',{
                  {
                     xtype: 'button', 
                     action: 'getCategorias',
-                    id: 'bebidas',
+                    id: 'Bebidas',
                     iconCls: 'bebidas', 
                     region: 'west', 
                     width: 50, 
@@ -124,7 +124,7 @@ Ext.define('AppName.view.layout.HeaderPanel',{
                  {
                     xtype: 'button',
                     action: 'getCategorias',
-                    id: 'higiene_pessoal',
+                    id: 'Higiene Pessoal',
                     iconCls: 'higiene-pessoal',  
                     region: 'west', 
                     width: 50, 
@@ -139,7 +139,7 @@ Ext.define('AppName.view.layout.HeaderPanel',{
                  {
                     xtype: 'button', 
                     action: 'getCategorias',
-                    id:  'saude_beleza', 
+                    id:  'Saude e Beleza', 
                     iconCls:  'saude-beleza', 
                     region: 'west', 
                     width: 50, 
@@ -155,7 +155,7 @@ Ext.define('AppName.view.layout.HeaderPanel',{
                     xtype: 'button',
                     action: 'getCategorias',
                     iconCls: 'bazar-limpeza',
-                    id: 'bazar_limpeza',
+                    id: 'Bazar e Limpeza',
                     region: 'west', 
                     width: 50, 
                     height: 40, 

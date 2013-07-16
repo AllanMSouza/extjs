@@ -8,7 +8,8 @@ Ext.application({
     controllers: [
         'ControllerProdutos',
         'ControllerLayout',
-        'ControllerHeaderPanel'
+        'ControllerHeaderPanel',
+        'ControllerTreePanelCategorias'
        ],
     
     launch: function(){
