@@ -34,6 +34,8 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanel',{
            
         }       
         
+        Ext.getCmp('panel-categorias').setTitle('Categoria - '+ nomeCategoria);
+        
         var store = Ext.getCmp('panel-categorias').store.getProxy()
         store.url = 'app/data/php/Categorias.php?action=getCategorias&nomeCategoria=' + nomeCategoria;
         Ext.getCmp('panel-categorias').store.setProxy(store)
@@ -49,22 +51,4 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanel',{
     showWindowCadCliente: function(){
       Ext.widget('windowCadCliente')  
     },
-            
-//    getListaCategorias: function(bt){
-//        var nome_categoria = bt.id;
-//        
-//    }
-
-    teste: function(node){
-        //console.log(node)
-        if(Ext.getCmp('panel-categorias')){
-            //console.log(Ext.getCmp('panel-categorias').store)
-              var proxy = Ext.getCmp('panel-categorias').store.getProxy(),
-                nomeCategoria = node.data.nome_categoria;
-                proxy.api.read = 'app/data/php/Categorias.php?action=getCategorias&nomeCategoria=' + nomeCategoria;
-            
-                Ext.getCmp('panel-categorias').store.setProxy(proxy)
-                Ext.getCmp('panel-categorias').store.load()
-        }
-    }
 })

@@ -43,6 +43,8 @@ class Categorias extends Base {
                 
         for($i = 0; $i < count($listaCategorias); $i++){
             $listaCategorias[$i]['text'] = $listaCategorias[$i]['nome_categoria'];
+            //$iconCls = explode(" ", $nomeCategoria);
+            //$listaCategorias[$i]['iconCls'] = $iconCls[0].'-small'; 
             
             if($this->getListaCategorias($listaCategorias[$i]['id_categorias']) == false){
                 $listaCategorias[$i]['leaf'] = true;

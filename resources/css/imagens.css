@@ -2,7 +2,7 @@
     background-image: url('../imagens/bebidas.png') !important;
 }
 
-.bazar-limpeza {
+.bazar {
     background-image: url('../imagens/bazar-limpeza.png') !important;
 }
 
@@ -26,7 +26,7 @@
     background-image: url('../imagens/frutas.png') !important;
 }
 
-.higiene-pessoal {
+.higiene {
     background-image: url('../imagens/higiene-pessoal.png') !important;
 }
 
@@ -34,12 +34,60 @@
     background-image: url('../imagens/mercearia.png') !important;
 }
 
-.saude-beleza {
+.saude {
     background-image: url('../imagens/saude-beleza.png') !important;
 }
 
 .padaria {
     background-image: url('../imagens/padaria.png') !important;
+   
+    }
+
+    
+.bebidas-small {
+    background-image: url('../imagens/small/bebidas-small.png') !important;
+}
+
+.bazar-small {
+    background-image: url('../imagens/small/bazar-limpeza-small.png') !important;
+}
+
+.carnes-small {
+    background-image: url('../imagens/small/carnes-small.png') !important;
+}
+
+.congelados-small {
+    background-image: url('../imagens/small/congelados-small.png') !important;
+}
+
+.favoritos-small {
+    background-image: url('../imagens/small/favoritos-small.png') !important;
+}
+
+.frios-small {
+    background-image: url('../imagens/small/frios-small.png') !important;
+}
+
+.frutas-small {
+    background-image: url('../imagens/small/frutas-small.png') !important;
+}
+
+.higiene-small {
+    background-image: url('../imagens/small/higiene-pessoal-small.png') !important;
+    height: 16px;
+    width: 16px;
+}
+
+.mercearia-small {
+    background-image: url('../imagens/small/mercearia-small.png') !important;
+}
+
+.saude-small {
+    background-image: url('../imagens/small/saude-beleza-small.png') !important;
+}
+
+.padaria-small {
+    background-image: url('../imagens/small/padaria-small.png') !important;
    
     }
     
