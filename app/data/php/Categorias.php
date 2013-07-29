@@ -30,15 +30,21 @@ class Categorias extends Base {
     }
     
     public function getCategorias(){
-        $nomeCategoria = $_GET['nomeCategoria'];
-        $node = $_GET['node'];
+                
+        if(isset($_GET['node']))
+            $node = $_GET['node'];
         
         if($node != NaN)
             $idCategoria = $node;
         
-        else                           
-            $idCategoria = $this->getIdCategoria($nomeCategoria);
-        
+        else {
+            if(isset($_GET['nomeCategoria'])) {
+                $nomeCategoria = $_GET['nomeCategoria'];
+                $idCategoria = $this->getIdCategoria($nomeCategoria);
+            }
+            else
+                $idCategoria = 0;
+        }
         $listaCategorias = $this->getListaCategorias($idCategoria);
                 
         for($i = 0; $i < count($listaCategorias); $i++){

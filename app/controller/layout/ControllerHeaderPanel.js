@@ -21,6 +21,7 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanel',{
          'headerPanel button[action=getCategorias]': {click: this.getCategorias},
          'headerPanel button[action=showWindowCadMercado]': {click: this.showWindowCadMercado},
          'headerPanel button[action=showWindowCadCliente]': {click: this.showWindowCadCliente},
+         'headerPanel button[action=showWindowCadProduto]': {click: this.showWindowCadProduto},
         // 'treePanelCategorias': {beforeitemexpand: this.teste}
           
         })
@@ -51,4 +52,8 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanel',{
     showWindowCadCliente: function(){
       Ext.widget('windowCadCliente')  
     },
+    
+    showWindowCadProduto: function(){
+        Ext.widget('windowCadProduto')
+    }
 })

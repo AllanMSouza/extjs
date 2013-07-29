@@ -9,7 +9,9 @@ Ext.application({
         'layout.ControllerProdutos',
         'layout.ControllerLayout',
         'layout.ControllerHeaderPanel',
-        'layout.ControllerTreePanelCategorias'
+        'layout.ControllerTreePanelCategorias',
+        
+        'produtos.ControllerCadProduto'
        ],
     
     launch: function(){
