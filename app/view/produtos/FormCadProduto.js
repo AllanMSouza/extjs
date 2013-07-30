@@ -61,7 +61,7 @@ Ext.define('AppName.view.produtos.FormCadProduto',{
                                     items:[
                                         {
                                             xtype: 'textfield',
-                                            name: 'codigo',
+                                            name: 'codigo_produto',
                                             fieldLabel: 'Codigo',
                                             labelWidth: 47,
                                             width: 130,
@@ -71,10 +71,17 @@ Ext.define('AppName.view.produtos.FormCadProduto',{
                                         },
                                         {
                                             xtype: 'textfield',
+                                            name: 'nome_categoria',
                                             fieldLabel: 'Categoria',
                                             id: 'fieldCategoria',
                                             labelWidth: 55,
                                             width: 220
+                                        },
+                                        {
+                                            xtype: 'textfield',
+                                            name: 'id_categoria',
+                                            id: 'fieldIdCategoria',
+                                            hidden: true
                                         }
                                     ]
                                 },                               
@@ -82,6 +89,7 @@ Ext.define('AppName.view.produtos.FormCadProduto',{
                                 {
                                     xtype: 'textfield',
                                     fieldLabel: 'Nome',
+                                    name: 'nome_produto',
                                     labelWidth: 40,
                                     margins: '0 0 0 5',
                                     width: 350
@@ -156,13 +164,13 @@ Ext.define('AppName.view.produtos.FormCadProduto',{
                         xtype: 'fieldset',
                         title: 'Descrição do Produto',
                         //layout: 'border',
-                        width: 365,
+                        width: 382,
                         items:[
                             {
                                  xtype: 'textarea',
                                  region: 'center',
-                                 width: 342
-       //                          fieldLabel: 'Descrição',
+                                 width: 360,
+                                 name: 'descricao',
 
                              }
                         ]

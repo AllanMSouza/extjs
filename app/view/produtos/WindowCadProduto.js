@@ -23,7 +23,10 @@ Ext.define('AppName.view.produtos.WindowCadProduto',{
             text: 'Save',
             action: 'save'
         },
-        {text: 'Cancel'}
+        {
+            text: 'Cancel',
+            action: 'cancel'
+        }
     ]
     
 });
