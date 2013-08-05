@@ -46,7 +46,7 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanel',{
     },
     
     showWindowCadMercado: function(){
-      Ext.widget('windowCadMercado')  
+      Ext.widget('windowGerenciarClientes')  
     },
             
     showWindowCadCliente: function(){

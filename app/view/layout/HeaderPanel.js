@@ -169,8 +169,8 @@ Ext.define('AppName.view.layout.HeaderPanel',{
                 {
                     xtype: 'button', 
                     region: 'east', 
-                    text: 'F1', 
-                    width: 50, 
+                    text: 'Gerenciar Clientes', 
+                    width: 120, 
                     margins: '2 2 2 2',
                     action : 'showWindowCadMercado'
                },

@@ -15,10 +15,10 @@ Ext.define('AppName.controller.layout.ControllerProdutos',{
        'dataview.ImageView',
        'dataview.OrgPanel',
        
-       'usuarios.FormMercado',
-       'usuarios.WindowCadMercado',
-       'usuarios.WindowCadCliente',
-       'usuarios.FormCliente'
+//       'usuarios.FormMercado',
+//       'usuarios.WindowCadMercado',
+//       'usuarios.WindowCadCliente',
+//       'usuarios.FormCliente'
        
     ]
 })
