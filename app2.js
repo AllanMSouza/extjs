@@ -14,7 +14,8 @@ Ext.application({
         
         'produtos.ControllerCadProduto',
         
-        'usuarios.ControllerCrudClientes'
+        'usuarios.ControllerCrudClientes',
+        'usuarios.ControllerCrudMercado'
        ],
     
     launch: function(){

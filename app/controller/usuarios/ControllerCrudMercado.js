@@ -1,38 +1,37 @@
-Ext.define('AppName.controller.usuarios.ControllerCrudClientes',{
+Ext.define('AppName.controller.usuarios.ControllerCrudMercado',{
     extend: 'Ext.app.Controller',
     
     stores: [
-        'usuarios.StoreCrudCliente'        
+        'usuarios.StoreCrudMercado'        
     ],
     models: [
-        'usuarios.ModelCadCliente'
+        'usuarios.ModelCadMercado'
     ],
     views: [
             
-       'usuarios.WindowGerenciarClientes',
-       'usuarios.GridListaClientes',
-       'usuarios.WindowCadCliente',
-       'usuarios.FormCliente'
+       'usuarios.WindowGerenciarMercado',
+       'usuarios.GridListaMercados',
+       'usuarios.WindowCadMercado',
+       'usuarios.FormMercado'
        
     ],
     
     init: function(){
         this.control({
-            
-        'gridListaClientes button[action=insert]': {click: this.showWindowCadCliente},
-        'gridListaClientes button[action=edit]': {click: this.editCliente},
-        'gridListaClientes button[action=destroy]': {click: this.destroy},
-        'formCliente button[action=saveCliente]' : {click: this.saveCliente},
-        'formCliente button[action=cancel]' : {click: this.cancel}
+             'gridListaMercados button[action=insert]': {click: this.showWindowCadMercado},
+             'gridListaMercados button[action=edit]': {click: this.editMercado},
+             'gridListaMercados button[action=destroy]': {click: this.destroy},
+             'formMercado button[action=save]' : {click: this.saveMercado},
+             'formMercado button[action=cancel]' : {click: this.cancel},
+       
           
         })
     },
-    
-    showWindowCadCliente: function(){
-        Ext.widget('windowCadCliente')
+    showWindowCadMercado: function(){
+        Ext.widget('windowCadMercado')
     },
     
-    saveCliente: function(button){
+     saveMercado: function(button){
         var win = button.up('window'),
                form = win.down('form').getForm(),
                IDUSUARIOS = form.getRecord() ? form.getRecord().get('id_usuarios') : 0;
@@ -46,12 +45,12 @@ Ext.define('AppName.controller.usuarios.ControllerCrudClientes',{
                 }
             }
             else{
-                var record = Ext.create('AppName.model.usuarios.ModelCadCliente');
+                var record = Ext.create('AppName.model.usuarios.ModelCadMercado');
                 record.set(values);
-                Ext.getCmp('gridListaClientes').store.add(record);
+                Ext.getCmp('gridListaMercados').store.add(record);
             }
             win.close();
-            Ext.getCmp('gridListaClientes').store.sync();
+            Ext.getCmp('gridListaMercados').store.sync();
             
            }
            else{
@@ -62,11 +61,11 @@ Ext.define('AppName.controller.usuarios.ControllerCrudClientes',{
            }
     },
     
-      editCliente: function(){
-             var records = Ext.getCmp('gridListaClientes').getSelectionModel().getSelection();
+      editMercado: function(){
+             var records = Ext.getCmp('gridListaMercados').getSelectionModel().getSelection();
                 
         if(records.length === 1){
-             var editWindow = Ext.widget('windowCadCliente');
+             var editWindow = Ext.widget('windowCadMercado');
              var editForm = editWindow.down('form');
              var record = records[0];
             editForm.loadRecord(record);
@@ -76,8 +75,8 @@ Ext.define('AppName.controller.usuarios.ControllerCrudClientes',{
         
     },
     
-    destroy: function() {
-      var grid = Ext.getCmp('gridListaClientes'),
+     destroy: function() {
+      var grid = Ext.getCmp('gridListaMercados'),
                records = grid.getSelectionModel().getSelection();
                
                if(records.length === 0){
@@ -109,4 +108,5 @@ Ext.define('AppName.controller.usuarios.ControllerCrudClientes',{
         var win = button.up('window');
         win.close();
     }
+  
 })

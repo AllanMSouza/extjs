@@ -1,4 +1,4 @@
-Ext.define('AppName.model.usuarios.ModelCadCliente',{
+Ext.define('AppName.model.usuarios.ModelCadMercado',{
     extend: 'Ext.data.Model',
     
      idProperty: 'id_usuarios',

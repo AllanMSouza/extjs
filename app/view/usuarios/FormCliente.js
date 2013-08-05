@@ -237,7 +237,8 @@ Ext.define('AppName.view.usuarios.FormCliente',{
             action: 'saveCliente'
         },
         {
-            text: 'Cancel'
+            text: 'Cancel',
+            action: 'cancel'
         }
     ]
     

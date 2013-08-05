@@ -1,14 +1,14 @@
-Ext.define('AppName.view.usuarios.GridListaClientes',{
+Ext.define('AppName.view.usuarios.GridListaMercados',{
     extend: 'Ext.grid.Panel',
-    alias: 'widget.gridListaClientes',
+    alias: 'widget.gridListaMercados',
     
     autShow: true,
-    id: 'gridListaClientes',
+    id: 'gridListaMercados',
     //region: 'center',
     //layout: 'fit',
     selModel: Ext.create('Ext.selection.CheckboxModel'),
     columnLines: true,
-    store: 'usuarios.StoreCrudCliente',
+    store: 'usuarios.StoreCrudMercado',
     
     tbar: [{
             text: 'Incluir',
@@ -35,9 +35,9 @@ Ext.define('AppName.view.usuarios.GridListaClientes',{
            ],
     
     columns: [
-        {header: 'CPF', dataIndex: 'cpf',flex:1},
+        {header: 'CNPJ', dataIndex: 'cnpj',flex:1.5},
         {header: 'Nome', dataIndex: 'nome', flex: 2},
-        {header: 'E-mail', dataIndex: 'email', flex: 1.5},
+        {header: 'E-mail', dataIndex: 'email', flex: 1.8},
         {header: 'Cidade', dataIndex: 'cidade', flex: 1},
         {header: 'UF', dataIndex: 'estado', flex: 0.5},
         {header: 'Telefone', dataIndex: 'telefone', flex: 1.5},

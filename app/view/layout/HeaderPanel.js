@@ -172,15 +172,15 @@ Ext.define('AppName.view.layout.HeaderPanel',{
                     text: 'Gerenciar Clientes', 
                     width: 120, 
                     margins: '2 2 2 2',
-                    action : 'showWindowCadMercado'
+                    action : 'showWindowGerenciarClientes'
                },
                  {
                     xtype: 'button', 
                     region: 'east', 
-                    text: 'F2', 
-                    width: 50, 
+                    text: 'Gerenciar Mercados', 
+                    width: 130, 
                     margins: '2 2 2 2',
-                    action: 'showWindowCadCliente'
+                    action: 'showWindowGerenciarMercado'
                 },
                  {
                     xtype: 'button', 
@@ -197,8 +197,8 @@ Ext.define('AppName.view.layout.HeaderPanel',{
                     width: 50, 
                     margins: '2 2 2 2'
                 },
-                {
-                    xtype:'searchPanel'
-                }
+                //{
+                   // xtype:'searchPanel'
+                //}
     ]
 });

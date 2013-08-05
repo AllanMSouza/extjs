@@ -3,10 +3,10 @@
 require_once 'DB/Base.php';
 //require_once 'Categorias.php';
 
-class Clientes extends Base {
+class Mercados extends Base {
     
     public function insert(){
-      $data = json_decode($_POST['data']);
+         $data = json_decode($_POST['data']);
       
       //var_dump($data);
       
@@ -34,63 +34,28 @@ class Clientes extends Base {
       $newdata = $data;
       $newdata->id_usuarios = $insert;
       
-      $stm = $db->prepare('insert into cliente (cpf, rg, data_nascimento, usuarios_id_usuarios)
-          values (:cpf, :rg, :data_nascimento, :usuarios_id_usuarios)');
-      $stm->bindValue(':cpf', $data->cpf);
-      $stm->bindValue(':rg', $data->rg);
-      $stm->bindValue(':data_nascimento', implode(preg_match("~\/~", $data->data_nascimento) == 0 ? "/" : "-", 
-                                       array_reverse(explode(preg_match("~\/~", $data->data_nascimento) == 0 ? "-" : "/", 
-                                       $data->data_nascimento))));
-      $stm->bindValue(':usuarios_id_usuarios',$newdata->id_usuarios);
+      $stm = $db->prepare('insert into mercado
+          (cnpj, razao_social, nome_fantasia, inscricao_social, usuarios_id_usuarios)
+          values (:cnpj, :razao_social, :nome_fantasia, :inscricao_social, :usuarios_id_usuarios)');
+      $stm->bindValue(':cnpj', $data->cnpj);
+      $stm->bindValue(':razao_social', $data->razao_social);
+      $stm->bindValue(':nome_fantasia', $data->nome_fantasia);
+      $stm->bindValue(':inscricao_social', $data->inscricao_social);
+      $stm->bindValue(':usuarios_id_usuarios', $newdata->id_usuarios);
       $success = $stm->execute();
+      
+      $msg = $success ? 'Registro(s) inserido(s) com Sucesso' : 'Erro ao inserir Registro(s).' ;
       
        echo json_encode(array(
              "success" => $success,
              "msg" => $msg,
              "data" => $newdata
          ));
-      
-    }
-    
-    public function select(){
-      $db = $this->getDb();
-      $stm = $db->prepare('select * from usuarios inner join cliente on
-          (usuarios.id_usuarios = cliente.usuarios_id_usuarios)');
-      $stm->execute();
-        
-      $result = $stm->fetchAll( PDO::FETCH_ASSOC);
-      echo json_encode(array(
-           "success" => true,
-           "data" => $result
-      ));
-
-        
         
     }
-    
-    public function destroy(){
-        $data = json_decode($_POST['data']);
-        
-        $db= $this->getDb();
-        $stm = $db->prepare('delete from cliente where id_cliente = :id_cliente');
-        $stm->bindValue(':id_cliente', $data->id_cliente);
-        $result = $stm->execute();
-        $msg = $result ? 'Registro(s) destruido(s) com Sucesso' : 'Erro ao destruir Registro(s).' ;
-        
-        $stm = $db->prepare('delete from usuarios where id_usuarios = :id_usuarios');
-        $stm->bindValue(':id_usuarios', $data->id_usuarios);
-        $result = $stm->execute();
-        $msg = $result ? 'Registro(s) destruido(s) com Sucesso' : 'Erro ao destruir Registro(s).' ;
-        echo json_encode(array(
-           "success" => $result,
-           "msg" =>$msg,
-           //"data" => $data
-      )); 
-        
-    }
-    
-    public function update(){
-        $data = json_decode($_POST['data']);
+            
+   public function update(){
+         $data = json_decode($_POST['data']);
         
         $db = $this->getDb();
         #update Tabela usuarios
@@ -126,20 +91,20 @@ class Clientes extends Base {
       $result = $stm->execute();
       
       $msg = $result ? 'Registro(s) atualizado(s) com Sucesso' : 'Erro ao atualizar Registro(s).' ;
-      #update tabela cliente
-      $stm = $db->prepare('update cliente set
-          cpf = :cpf, 
-          rg = :rg, 
-          data_nascimento = :data_nascimento, 
+      
+      $stm = $db->prepare('update mercado set
+          cnpj = :cnpj, 
+          razao_social = :razao_social, 
+          nome_fantasia = :nome_fantasia, 
+          inscricao_social = :inscricao_social, 
           usuarios_id_usuarios = :usuarios_id_usuarios
-          where id_cliente = :id_cliente');
-      $stm->bindValue(':cpf', $data->cpf);
-      $stm->bindValue(':rg', $data->rg);
-      $stm->bindValue(':data_nascimento', implode(preg_match("~\/~", $data->data_nascimento) == 0 ? "/" : "-", 
-                                       array_reverse(explode(preg_match("~\/~", $data->data_nascimento) == 0 ? "-" : "/", 
-                                       $data->data_nascimento))));
-      $stm->bindValue(':usuarios_id_usuarios',$data->usuarios_id_usuarios);
-      $stm->bindValue(':id_cliente', $data->id_cliente);
+          where id_mercado = :id_mercado');
+      $stm->bindValue(':cnpj', $data->cnpj);
+      $stm->bindValue(':razao_social', $data->razao_social);
+      $stm->bindValue(':nome_fantasia', $data->nome_fantasia);
+      $stm->bindValue(':inscricao_social', $data->inscricao_social);
+      $stm->bindValue(':usuarios_id_usuarios', $data->usuarios_id_usuarios);
+      $stm->bindValue(':id_mercado', $data->id_mercado);
       $result = $stm->execute();
       
       $msg = $result ? 'Registro(s) atualizado(s) com Sucesso' : 'Erro ao atualizar Registro(s).' ;
@@ -148,10 +113,43 @@ class Clientes extends Base {
            "msg" =>$msg,
            "data" => $data
       )); 
+      
+   }
+   
+   public function select(){
+       $db = $this->getDb();
+      $stm = $db->prepare('select * from usuarios inner join mercado on
+          (usuarios.id_usuarios = mercado.usuarios_id_usuarios)');
+      $stm->execute();
         
-    }
+      $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+      echo json_encode(array(
+           "success" => true,
+           "data" => $result
+      ));
+   }
+   
+   public function destroy(){
+        $data = json_decode($_POST['data']);
+        
+        $db= $this->getDb();
+        $stm = $db->prepare('delete from mercado where id_mercado = :id_mercado');
+        $stm->bindValue(':id_mercado', $data->id_mercado);
+        $result = $stm->execute();
+        $msg = $result ? 'Registro(s) destruido(s) com Sucesso' : 'Erro ao destruir Registro(s).' ;
+        
+        $stm = $db->prepare('delete from usuarios where id_usuarios = :id_usuarios');
+        $stm->bindValue(':id_usuarios', $data->id_usuarios);
+        $result = $stm->execute();
+        $msg = $result ? 'Registro(s) destruido(s) com Sucesso' : 'Erro ao destruir Registro(s).' ;
+        echo json_encode(array(
+           "success" => $result,
+           "msg" =>$msg,
+           //"data" => $data
+      )); 
+   }
 
 }
 
-new Clientes();
+new Mercados();
 ?>

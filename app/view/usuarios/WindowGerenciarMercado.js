@@ -1,15 +1,15 @@
-Ext.define('AppName.view.usuarios.WindowGerenciarClientes',{
+Ext.define('AppName.view.usuarios.WindowGerenciarMercado',{
     extend: 'Ext.window.Window',
-    alias: 'widget.windowGerenciarClientes',
+    alias: 'widget.windowGerenciarMercado',
     
     autoShow: true,
     width: 820,
     height: 400,
     layout: 'border',
-    title: 'Gerenciar Clientes',
+    title: 'Gerenciar Supermercados',
     items:[
         {
-            xtype:'gridListaClientes',
+            xtype:'gridListaMercados',
             region: 'center'
         }
     ]
