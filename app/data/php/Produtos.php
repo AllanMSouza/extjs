@@ -28,6 +28,19 @@ class Produtos extends Base {
              "msg" => $msg
          ));
     }
+    
+    public function select(){
+        $db = $this->getDb();
+        $stm = $db->prepare('select * from produtos');
+        $stm->execute();
+        
+        $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+        echo json_encode(array(
+           "success" => true,
+           "data" => $result
+      ));
+        
+    }
 
 }
 

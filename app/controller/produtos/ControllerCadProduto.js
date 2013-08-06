@@ -2,16 +2,22 @@ Ext.define('AppName.controller.produtos.ControllerCadProduto',{
     extend: 'Ext.app.Controller',
     
     stores: [
-        'produtos.StoreTreeCategoriasProdutos'
+        'produtos.StoreTreeCategoriasProdutos',
+        'produtos.StoreTreeCategoriasProdutosListaProdutos',
+        'produtos.StoreCrudProdutos'
         
     ],
     models: [
-        'produtos.ModelTreeCategoriasProdutos'
+        'produtos.ModelTreeCategoriasProdutos',
+        'produtos.ModelCrudProdutos'
     ],
     views: [
        'produtos.FormCadProduto',
        'produtos.WindowCadProduto',
-       'produtos.TreeCategoriasProdutos'
+       'produtos.TreeCategoriasProdutos',
+       'produtos.GridListaProdutos',
+       'produtos.WindowGerenciarProdutos',
+       'produtos.TreeCategoriasProdutosListaProdutos'
        
     ],
     

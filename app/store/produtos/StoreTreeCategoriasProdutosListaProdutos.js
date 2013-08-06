@@ -1,16 +1,16 @@
-Ext.define('AppName.store.produtos.StoreCrudProdutos',{
-    extend: 'Ext.data.Store',
+Ext.define('AppName.store.produtos.StoreTreeCategoriasProdutosListaProdutos',{
+    extend: 'Ext.data.TreeStore',
     
-    model: 'AppName.model.produtos.ModelCrudProdutos',
+    model: 'AppName.model.produtos.ModelTreeCategoriasProdutos',
     autoLoad: true,
     remoteSort: true,
     proxy: {
         //simpleSortMode: true,
         type: 'ajax',
         api:{
-            read: 'app/data/php/Produtos.php?action=select',
-            create: 'app/data/php/Produtos.php?action=insert'
-        },        
+            read: 'app/data/php/Categorias.php?action=getCategorias',
+        },
+        
         
         reader: {
             

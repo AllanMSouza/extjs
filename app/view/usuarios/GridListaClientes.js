@@ -11,13 +11,13 @@ Ext.define('AppName.view.usuarios.GridListaClientes',{
     store: 'usuarios.StoreCrudCliente',
     
     tbar: [{
-            text: 'Incluir',
+            text: 'Cadastrar Cliente',
             action: 'insert'
             //iconCls: 'user_add'
              },
              
              {
-            text: 'Editar',
+            text: 'Editar Cliente',
             action: 'edit',
             //iconCls: 'user_edit',
             disabled: true,
@@ -25,7 +25,7 @@ Ext.define('AppName.view.usuarios.GridListaClientes',{
             
            },        
             {
-            text: 'Excluir',
+            text: 'Excluir Cliente',
             action: 'destroy',
             //iconCls: 'user_delete',
             disabled: true,
