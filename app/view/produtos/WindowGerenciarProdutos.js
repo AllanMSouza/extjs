@@ -4,7 +4,7 @@ Ext.define('AppName.view.produtos.WindowGerenciarProdutos',{
     
     autoShow: true,
     width: 820,
-    height: 400,
+    height: 600,
     layout: 'border',
     title: 'Gerenciar Produtos',
     items:[

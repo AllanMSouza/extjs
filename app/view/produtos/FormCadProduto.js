@@ -13,7 +13,7 @@ Ext.define('AppName.view.produtos.FormCadProduto',{
            xtype: 'form',
            bodyPadding: 10,
            region: 'center',
-//           frame: true,
+           
            border: false,
            items:[
                
@@ -24,6 +24,7 @@ Ext.define('AppName.view.produtos.FormCadProduto',{
                    items: [
                        {
                            xtype: 'image',
+                           id: 'imgProdutos',
                            autoShow: true,
                            width: 100,
                            height: 100,
@@ -33,14 +34,23 @@ Ext.define('AppName.view.produtos.FormCadProduto',{
                            
                            
                        },
-                       {
-                           xtype: 'fileuploadfield',
-                           width: 270,
-                           margins: '35 0 0 5'
-                       }
+//                       {
+//                           xtype: 'fileuploadfield',
+//                           name: 'imagem',
+//                           id: 'fileuploadfieldImagemProdutos',
+//                           width: 270,
+//                           margins: '35 0 0 5'
+//                       }
                       
                    ]
                },
+               {
+                           xtype: 'fileuploadfield',
+                           name: 'imagem',
+                           id: 'fileuploadfieldImagemProdutos',
+                           width: 380,
+                           margins: '35 0 0 5'
+                       },
                 {
                     xtype: 'fieldset',
                     title: 'Informações Produto',
@@ -82,6 +92,12 @@ Ext.define('AppName.view.produtos.FormCadProduto',{
                                             name: 'id_categoria',
                                             id: 'fieldIdCategoria',
                                             hidden: true
+                                        },
+                                        {
+                                            xtype: 'textfield',
+                                            name: 'id_produtos',
+                                            id: 'fieldIdProduto',
+                                            hidden: true
                                         }
                                     ]
                                 },                               
@@ -99,60 +115,60 @@ Ext.define('AppName.view.produtos.FormCadProduto',{
 
                     ]
                   },
-               {
-                 xtype: 'fieldset',
-                 title: 'Informações Mercado',
-                 margins: '0 0 0 5',
-                   layout: 'anchor',
-                   defaults: {
-                      anchor: '100%'
-                   },
-                   items:[
-                       {
-                           xtype: 'fieldcontainer',
-                           combineErros: true,
-                           layout: 'hbox',
-                           items:[
-                               {
-                                   xtype: 'textfield',
-                                   fieldLabel: 'Quantidade',
-                                   flex: 1,
-                                   labelWidth: 70,
-                                   
-                               },
-                               {
-                                   xtype: 'textfield',
-                                   fieldLabel: 'Valor',
-                                   flex: 1,
-                                   labelWidth: 35,
-                                   margins: '0 0 0 5'
-                               }
-                           ]                           
-                       },
-                       {
-                           xtype: 'fieldcontainer',
-                           combineErros: true,
-                           layout: 'hbox',
-                           items:[
-                               {
-                                   xtype: 'datefield',
-                                   fieldLabel: 'Fab',
-                                   flex: 1,
-                                   labelWidth: 25,
-                                   
-                               },
-                               {
-                                   xtype: 'datefield',
-                                   fieldLabel: 'Val',
-                                   flex: 1,
-                                   labelWidth: 25,
-                                   margins: '0 0 0 5'
-                               }
-                           ]                           
-                       }
-                   ]
-                 
-               },
+//               {
+//                 xtype: 'fieldset',
+//                 title: 'Informações Mercado',
+//                 margins: '0 0 0 5',
+//                   layout: 'anchor',
+//                   defaults: {
+//                      anchor: '100%'
+//                   },
+//                   items:[
+//                       {
+//                           xtype: 'fieldcontainer',
+//                           combineErros: true,
+//                           layout: 'hbox',
+//                           items:[
+//                               {
+//                                   xtype: 'textfield',
+//                                   fieldLabel: 'Quantidade',
+//                                   flex: 1,
+//                                   labelWidth: 70,
+//                                   
+//                               },
+//                               {
+//                                   xtype: 'textfield',
+//                                   fieldLabel: 'Valor',
+//                                   flex: 1,
+//                                   labelWidth: 35,
+//                                   margins: '0 0 0 5'
+//                               }
+//                           ]                           
+//                       },
+//                       {
+//                           xtype: 'fieldcontainer',
+//                           combineErros: true,
+//                           layout: 'hbox',
+//                           items:[
+//                               {
+//                                   xtype: 'datefield',
+//                                   fieldLabel: 'Fab',
+//                                   flex: 1,
+//                                   labelWidth: 25,
+//                                   
+//                               },
+//                               {
+//                                   xtype: 'datefield',
+//                                   fieldLabel: 'Val',
+//                                   flex: 1,
+//                                   labelWidth: 25,
+//                                   margins: '0 0 0 5'
+//                               }
+//                           ]                           
+//                       }
+//                   ]
+//                 
+//               },
                {
                  xtype: 'fieldcontainer',
                  layout: 'vbox',

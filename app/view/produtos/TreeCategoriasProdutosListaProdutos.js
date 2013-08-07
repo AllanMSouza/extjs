@@ -6,8 +6,10 @@ Ext.define('AppName.view.produtos.TreeCategoriasProdutosListaProdutos',{
     useArrows: true, 
     singleExpand: true,
     id: 'treeCategoriasProdutosListaProdutos',
-    title:'Categorias Produtos', 
+    title:'Filtar Categorias', 
     region: 'west', 
+    collapsible: true,
+    collapsed: true,
     split:true, 
     width:300, 
     store: 'produtos.StoreTreeCategoriasProdutosListaProdutos'

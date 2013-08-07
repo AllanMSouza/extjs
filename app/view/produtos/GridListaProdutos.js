@@ -8,6 +8,7 @@ Ext.define('AppName.view.produtos.GridListaProdutos',{
     //layout: 'fit',
     //selModel: Ext.create('Ext.selection.CheckboxModel'),
     columnLines: true,
+    enableLocking: true,
     store: 'produtos.StoreCrudProdutos',
     
     tbar: [{
@@ -37,7 +38,7 @@ Ext.define('AppName.view.produtos.GridListaProdutos',{
     plugins: [{
             ptype: 'rowexpander',
             rowBodyTpl : new Ext.XTemplate(
-//                '<img align=top src="extjs/examples/kitchensink/resources/images/touch-icons/{thumb}" />',
+                '<img align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}" style="width: 100px; height: 90px; padding: 5px;/>',               
                 '<span style="padding-left:15px"><label align=top><b>Descrição:</b> {descricao}</label></span><br>',
                 '<span><b>Produto: </b>{nome_produto}</span>',
             {

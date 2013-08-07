@@ -4,7 +4,7 @@ Ext.define('AppName.view.produtos.WindowCadProduto',{
     
     autoShow: true,
     width: 720,
-    height: 520,
+    height: 480,
     closable: true,
     layout: 'border',
     items:[
