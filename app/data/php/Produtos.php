@@ -8,6 +8,8 @@ class Produtos extends Base {
     public function insert(){
         $data = (object)$_POST;
         
+//        var_dump($_FILES['imagem']);
+        
          $arquivo = $_FILES['imagem']['tmp_name']; 
          $tamanho = $_FILES['imagem']['size'];
          $tipo    = $_FILES['imagem']['type'];
@@ -19,7 +21,7 @@ class Produtos extends Base {
             fclose($fp);
             //$conteudo = addslashes($conteudo);
             
-        }
+          }
         
         //$categoria = new Categorias();
                
@@ -29,7 +31,7 @@ class Produtos extends Base {
         $stm->bindValue(':cod_produto', $data->codigo_produto);
         $stm->bindValue(':descricao', $data->descricao);
         $stm->bindValue(':nome_produto', $data->nome_produto);
-        $stm->bindValue(':id_categoria', $data->id_categoria);
+        $stm->bindValue(':id_categoria', $data->categorias_id_categorias);
         $stm->bindValue(':imagem_produto', $conteudo);
         $stm->bindValue(':nome_imagem', $nome);
         
@@ -79,7 +81,7 @@ class Produtos extends Base {
         
         //var_dump($file['tmp_name']);
         if($file['tmp_name'] == ""){
-           // var_dump($data);
+            //var_dump($data->id_categoria);
             $db = $this->getDb();
             $stm = $db->prepare('update produtos set
                 codigo_produto = :cod_produto, 
@@ -90,7 +92,7 @@ class Produtos extends Base {
             $stm->bindValue(':cod_produto', $data->codigo_produto);
             $stm->bindValue(':descricao', $data->descricao);
             $stm->bindValue(':nome_produto', $data->nome_produto);
-            $stm->bindValue(':id_categoria', $data->id_categoria);
+            $stm->bindValue(':id_categoria', $data->categorias_id_categorias);
             $stm->bindValue(':id_produtos', $data->id_produtos);
             $result = $stm->execute();
             if($result == true)
@@ -124,7 +126,7 @@ class Produtos extends Base {
             $stm->bindValue(':cod_produto', $data->codigo_produto);
             $stm->bindValue(':descricao', $data->descricao);
             $stm->bindValue(':nome_produto', $data->nome_produto);
-            $stm->bindValue(':id_categoria', $data->id_categoria);
+            $stm->bindValue(':id_categoria', $data->categorias_id_categorias);
             $stm->bindValue(':imagem_produto', $conteudo);
             $stm->bindValue(':nome_imagem', $nome);
             $stm->bindValue(':id_produtos', $data->id_produtos);
@@ -140,6 +142,22 @@ class Produtos extends Base {
 
            }
            
+    }
+    
+    public function destroy(){
+        $data = json_decode($_POST['data']);
+        //var_dump($data);
+        $db = $this->getDb();
+        $stm = $db->prepare('delete from produtos
+            where id_produtos = :id_produtos');
+        $stm->bindValue(':id_produtos', $data->id_produtos);
+        $result = $stm->execute();
+        $msg = $result ? 'Registro(s) destruido(s) com Sucesso' : 'Erro ao destruir Registro(s).' ;
+        echo json_encode(array(
+           "success" => $result,
+           "msg" =>$msg,
+           //"data" => $data
+      )); 
     }
         
         

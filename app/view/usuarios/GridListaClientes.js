@@ -12,14 +12,14 @@ Ext.define('AppName.view.usuarios.GridListaClientes',{
     
     tbar: [{
             text: 'Cadastrar Cliente',
-            action: 'insert'
-            //iconCls: 'user_add'
+            action: 'insert',
+            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/user_add.gif'
              },
              
              {
             text: 'Editar Cliente',
             action: 'edit',
-            //iconCls: 'user_edit',
+            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/user_edit.png',
             disabled: true,
             itemId: 'edit'
             
@@ -27,7 +27,7 @@ Ext.define('AppName.view.usuarios.GridListaClientes',{
             {
             text: 'Excluir Cliente',
             action: 'destroy',
-            //iconCls: 'user_delete',
+            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/user_delete.gif',
             disabled: true,
             itemId: 'delete'
             

@@ -12,23 +12,23 @@ Ext.define('AppName.view.produtos.GridListaProdutos',{
     store: 'produtos.StoreCrudProdutos',
     
     tbar: [{
-            text: 'Incluir',
-            action: 'insert'
-            //iconCls: 'user_add'
+            text: 'Cadastrar Produto',
+            action: 'insert',
+            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/add.gif'
              },
              
              {
-            text: 'Editar',
+            text: 'Editar Produto',
             action: 'edit',
-            //iconCls: 'user_edit',
+            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/page_white_edit.png',
             disabled: true,
             itemId: 'edit'
             
            },        
             {
-            text: 'Excluir',
+            text: 'Excluir Produto',
             action: 'destroy',
-            //iconCls: 'user_delete',
+            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/delete.gif',
             disabled: true,
             itemId: 'delete'
             
@@ -49,6 +49,44 @@ Ext.define('AppName.view.produtos.GridListaProdutos',{
     columns: [
         {header: 'Código', dataIndex: 'codigo_produto',flex:1},
         {header: 'Nome', dataIndex: 'nome_produto', flex: 2},
+        {
+            xtype: 'actioncolumn',
+            width: 30,
+            sortable: false,
+            menuDisabled: true,
+            items: [{
+                icon: 'extjs/examples/kitchensink/resources/images/icons/fam/cross.gif',
+                tooltip: 'Delete Plant',
+                scope: this,
+                handler: function(){
+                    var grid = Ext.getCmp('gridListaProdutos'),
+               records = grid.getSelectionModel().getSelection();
+               
+               if(records.length === 0){
+                   Ext.Msg.alert('Atenção, nenhum registro selecionado');
+                   return false;
+                }else{
+                    Ext.Msg.show({
+                        title: 'Confirmação',
+                        msg: 'Tem certeza que deseja deletar o (s) registro(s) selecionado(s)?',
+                        buttons: Ext.Msg.YESNO,
+                        icon: Ext.MessageBox.WARNING,
+                        escope: this,
+                        width: 450,
+                        fn : function(btn, ev){
+                            if(btn == 'yes'){
+                                var store = grid.store;
+                                        store.remove(records);
+                                    grid.store.sync();
+                            }
+                        }
+                        
+                    })
+                    
+                }
+                }
+         }]
+        }
         //{header: 'Categoria', dataIndex: 'email', flex: 1.5},
 //        {header: 'Cidade', dataIndex: 'cidade', flex: 1},
 //        {header: 'UF', dataIndex: 'estado', flex: 0.5},

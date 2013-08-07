@@ -89,15 +89,15 @@ Ext.define('AppName.view.produtos.FormCadProduto',{
                                         },
                                         {
                                             xtype: 'textfield',
-                                            name: 'id_categoria',
+                                            name: 'categorias_id_categorias',
                                             id: 'fieldIdCategoria',
-                                            hidden: true
+                                            hidden: false
                                         },
                                         {
                                             xtype: 'textfield',
                                             name: 'id_produtos',
                                             id: 'fieldIdProduto',
-                                            hidden: true
+                                            hidden: false
                                         }
                                     ]
                                 },                               
