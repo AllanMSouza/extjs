@@ -31,6 +31,15 @@ Ext.define('AppName.view.usuarios.GridListaClientes',{
             disabled: true,
             itemId: 'delete'
             
+           },
+           {
+              xtype:'textfield',
+              emptyText: 'Informe sua pesquisa',
+              labelWidth: 40,
+              width: 315
+           },
+           {
+               text: 'Pesquisar'
            }
            ],
     

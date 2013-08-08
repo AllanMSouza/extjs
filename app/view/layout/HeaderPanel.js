@@ -193,8 +193,8 @@ Ext.define('AppName.view.layout.HeaderPanel',{
                  {
                     xtype: 'button', 
                     region: 'east', 
-                    text: 'F4', 
-                    width: 50, 
+                    text: 'Logout', 
+                    width: 80, 
                     margins: '2 2 2 2'
                 },
                 //{
