@@ -21,6 +21,12 @@ Ext.define('AppName.model.usuarios.ModelCadCliente',{
         {name: 'cep', type:'string'},
         {name: 'complemento', type:'string'},
         {name: 'telefone', type:'string'},
+        {name: 'ddd_telefone', type: 'int'},
+        {name: 'telefone_pt1', type: 'int'},
+        {name: 'telefone_pt2', type: 'int'},
+        {name: 'ddd_celular', type: 'int'},
+        {name: 'celular_pt1', type: 'int'},
+        {name: 'celular_pt2', type: 'int'},
         {name: 'celular', type:'string'},
 
         // tabela Cliente
@@ -30,6 +36,7 @@ Ext.define('AppName.model.usuarios.ModelCadCliente',{
         {name: 'rg', type:'string'},
         {name: 'data_nascimento', type:'string'},
         {name: 'usuarios_id_usuarios', type:'int'},
+        {name: 'sexo', type: 'string'}
         
     ]
 })
