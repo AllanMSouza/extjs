@@ -13,8 +13,8 @@ Ext.define('AppName.view.layout.HeaderPanel',{
         {
             xtype: 'button', 
             action: 'getCategorias',
-            id: 'favoritos',
-            iconCls: 'favoritos', 
+            id: 'Padaria e Sobremesas',
+            iconCls: 'padaria', 
             shadow: true, 
             region:'west', 
             width: 50, 

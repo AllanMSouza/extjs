@@ -120,7 +120,10 @@ Ext.define('AppName.controller.produtos.ControllerCadProduto',{
                 }
             }
             
-            else {            
+            else {
+                var record = Ext.create('AppName.model.usuarios.ModelCadCliente');
+                record.set(values);
+                Ext.getCmp('gridListaProdutos').store.add(record);
                 form.submit({
                     url: 'app/data/php/Produtos.php?action=insert',
                     success: function(form, resp){
@@ -128,6 +131,7 @@ Ext.define('AppName.controller.produtos.ControllerCadProduto',{
                             if(resp.result.success == true){
                                 Ext.example.msg('Server Response', resp.result.msg);
                                 win.close()
+                                Ext.getCmp('gridListaProdutos').store.load()
                             }
                     },
                     failure:function(form,resp){

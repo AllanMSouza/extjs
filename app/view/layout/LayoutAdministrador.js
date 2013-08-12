@@ -17,21 +17,21 @@ Ext.application({
         
         'usuarios.ControllerCrudClientes',
         'usuarios.ControllerCrudMercado',
-        'usuarios.ControllerLogin'
+//        'usuarios.ControllerLogin'
        ],
     
     launch: function(){
         Ext.create('Ext.container.Viewport',{
-           layout: 'fit',
+           layout: 'border',
            
            items:[
-//               {xtype: 'contentPanel'},
-//               {xtype: 'treePanelCategorias'},
-//               {xtype: 'headerPanel'},
-//               {xtype: 'descriptionPanel'},
+               {xtype: 'contentPanel'},
+               {xtype: 'treePanelCategorias'},
+               {xtype: 'headerPanel'},
+               {xtype: 'descriptionPanel'},
                
-               {xtype: 'windowLogin',
-               region: 'center'}
+//               {xtype: 'windowLogin',
+//               region: 'center'}
 
            
            ]

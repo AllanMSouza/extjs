@@ -11,8 +11,8 @@ class Clientes extends Base {
       //var_dump($data);
       
       $db = $this->getDb();
-      $stm = $db->prepare('insert into usuarios (login, senha, nome, endereco, email, numero, cidade, estado, bairro, cep, complemento, telefone, celular)
-          values (:login, md5(:senha), :nome, :endereco, :email, :numero, :cidade, :estado, :bairro, :cep, :complemento, :telefone, :celular)');
+      $stm = $db->prepare('insert into usuarios (login, senha, nome, endereco, email, numero, cidade, estado, bairro, cep, complemento, telefone, celular, sexo)
+          values (:login, md5(:senha), :nome, :endereco, :email, :numero, :cidade, :estado, :bairro, :cep, :complemento, :telefone, :celular, :sexo)');
       $stm->bindValue(':login', $data->login);
       $stm->bindValue(':senha', $data->senha);
       $stm->bindValue(':nome', $data->nome);
@@ -26,6 +26,7 @@ class Clientes extends Base {
       $stm->bindValue(':complemento', $data->complemento);
       $stm->bindValue(':telefone', $data->telefone);
       $stm->bindValue(':celular', $data->celular);
+      $stm->bindValue(':sexo', $data->sexo);
       $stm->execute();
       $result = $stm->fetch( PDO::FETCH_ASSOC);
        
@@ -107,7 +108,8 @@ class Clientes extends Base {
             cep = :cep, 
             complemento = :complemento, 
             telefone = :telefone, 
-            celular = :celular
+            celular = :celular,
+            sexo = :sexo
             where id_usuarios = :id_usuarios');
         $stm->bindValue(':login', $data->login);
       $stm->bindValue(':senha', $data->senha);
@@ -122,6 +124,7 @@ class Clientes extends Base {
       $stm->bindValue(':complemento', $data->complemento);
       $stm->bindValue(':telefone', $data->telefone);
       $stm->bindValue(':celular', $data->celular);
+      $stm->bindValue(':sexo', $data->sexo);
       $stm->bindValue(':id_usuarios', $data->id_usuarios);
       $result = $stm->execute();
       

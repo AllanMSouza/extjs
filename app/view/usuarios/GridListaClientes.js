@@ -6,7 +6,7 @@ Ext.define('AppName.view.usuarios.GridListaClientes',{
     id: 'gridListaClientes',
     //region: 'center',
     //layout: 'fit',
-    selModel: Ext.create('Ext.selection.CheckboxModel'),
+    //selModel: Ext.create('Ext.selection.CheckboxModel'),
     columnLines: true,
     store: 'usuarios.StoreCrudCliente',
     
@@ -60,11 +60,11 @@ Ext.define('AppName.view.usuarios.GridListaClientes',{
     },
     
     onRender: function(){
-        this.store.load();
-        this.callParent(arguments);
+        Ext.getCmp('gridListaClientes').store.load();
+        Ext.getCmp('gridListaClientes').callParent(arguments);
     },
     onSelectChange: function(selModel, selections){
-        this.down('#delete').setDisabled(selections.length === 0);
-        this.down('#edit').setDisabled(selections.length !== 1);
+        Ext.getCmp('gridListaClientes').down('#delete').setDisabled(selections.length === 0);
+        Ext.getCmp('gridListaClientes').down('#edit').setDisabled(selections.length !== 1);
     }
 });

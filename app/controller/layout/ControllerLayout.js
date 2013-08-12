@@ -11,9 +11,7 @@ Ext.define('AppName.controller.layout.ControllerLayout',{
     views: [
        'layout.ContentPanel',
        'layout.DescriptionPanel',
-       //'HeaderPanel',
-       //'SearchPanel',
-       //'layout.TreePanelCategorias'
+//       'layout.LayoutAdministrador'
        
     ]
 })

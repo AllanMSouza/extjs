@@ -15,6 +15,7 @@
           <!--<link rel="stylesheet" type="text/css" href="extjs/examples/layout-browser/layout-browser.css">-->
           <link rel="stylesheet" type="text/css" href="app/view/dataview/organizer.css">
           <link rel="stylesheet" type="text/css" href="extjs/examples/shared/example.css">
+          <!--<script type="text/javascript" src="app/view/utils/ViewRedir.js"></script>-->
          
             
             <script type="text/javascript" src="extjs/ext-all-debug.js"></script>
@@ -25,7 +26,7 @@
              
             
             
-        <title>SimpleApp</title>
+        <title>Supermercado</title>
     </head>
     <body>
     <div id="msg-div"></div>
@@ -39,6 +40,18 @@
                 
             </div>
         </div>
-        <script type="text/javascript" src="./app2.js"></script>
+        
+        
+        <?php
+		//echo $_SESSION['login'];
+		if(!isset($_SESSION['id_usuarios'])) { ?>
+                                                       
+			<script type="text/javascript" src="./app2.js"></script>
+    <?php }
+		else { 
+                    include ("./app/data/php/utils/Layout.php");
+                    ?>
+                      <!-- <script type="text/javascript" src ="./app/view/layout.js"></script> ->
+    <?php } ?>
     </body>
 </html>

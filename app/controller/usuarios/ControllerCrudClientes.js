@@ -64,15 +64,28 @@ Ext.define('AppName.controller.usuarios.ControllerCrudClientes',{
     
       editCliente: function(){
              var records = Ext.getCmp('gridListaClientes').getSelectionModel().getSelection();
-                
-        if(records.length === 1){
-             var editWindow = Ext.widget('windowCadCliente');
-             var editForm = editWindow.down('form');
-             var record = records[0];
-            editForm.loadRecord(record);
-        }else{
-            return;
-        }
+             
+             if(records == ''){
+                  Ext.Msg.show({
+                        title: 'Atenção!',
+                        msg: 'Nenhum registro selecionado!',
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.MessageBox.ERROR,
+                        escope: this,
+                        width: 300,
+                        
+                    })
+                 
+             }
+                 
+            if(records.length === 1){
+                 var editWindow = Ext.widget('windowCadCliente');
+                 var editForm = editWindow.down('form');
+                 var record = records[0];
+                editForm.loadRecord(record);
+            }else{
+                return;
+            }
         
     },
     
@@ -81,8 +94,15 @@ Ext.define('AppName.controller.usuarios.ControllerCrudClientes',{
                records = grid.getSelectionModel().getSelection();
                
                if(records.length === 0){
-                   Ext.Msg.alert('Atenção, nenhum registro selecionado');
-                   return false;
+                   Ext.Msg.show({
+                        title: 'Atenção!',
+                        msg: 'Nenhum registro selecionado!',
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.MessageBox.ERROR,
+                        escope: this,
+                        width: 300,
+                        
+                    })
                 }else{
                     Ext.Msg.show({
                         title: 'Confirmação',
