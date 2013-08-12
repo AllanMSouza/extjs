@@ -28,7 +28,7 @@ Ext.application({
                {xtype: 'contentPanel'},
                {xtype: 'treePanelCategorias'},
                {xtype: 'headerPanel'},
-               {xtype: 'descriptionPanel'},
+               //{xtype: 'descriptionPanel'},
                
 //               {xtype: 'windowLogin',
 //               region: 'center'}

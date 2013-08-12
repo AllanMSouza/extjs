@@ -1,7 +1,7 @@
  function viewRedir(arq,container){
     
     Ext.Ajax.request({
-        url:'./app/view/'+arq+'.php',
+        url:'./app/data/php/utils/'+arq+'.php',
         method:'POST',
         success: function(response,obj){
             

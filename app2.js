@@ -30,8 +30,10 @@ Ext.application({
 //               {xtype: 'headerPanel'},
 //               {xtype: 'descriptionPanel'},
                
-               {xtype: 'windowLogin',
-               region: 'center'}
+               {
+                   xtype: 'windowLogin',
+                   region: 'center'
+               }
 
            
            ]

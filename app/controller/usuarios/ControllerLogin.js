@@ -33,12 +33,8 @@ Ext.define('AppName.controller.usuarios.ControllerLogin',{
                     success: function(form, resp){
                         if(resp.result.success == true){
                             Ext.example.msg('Server Response', resp.result.msg);
-                            win.close()
-//                            if(resp.result.data.id_usuarios == 1){
-//                                Ext.widget('layoutAdministrador')
-//                            }
-                            
-                            //Ext.getCmp('gridListaProdutos').store.load()
+                            win.close();
+                            viewRedir('Layout', 'telaprincipal');
                         }
                     },
                     
