@@ -8,8 +8,8 @@
         <?php
         session_start();
                 
-        if($_SESSION['id_usuarios'] == NULL){?>
-            <script type="text/javascript" src="./app/view/layout.js"></script>
+        if($_SESSION['id_usuarios'] > 1 && $_SESSION['acesso'] == 1){?>
+            <script type="text/javascript" src="./app/view/layout/LayoutCliente.js"></script>
         <?php }
         else{
             if($_SESSION['id_usuarios'] == 1){?>
@@ -17,8 +17,8 @@
                
             </script>
         <?php }
-           if($_SESSION['id_usuarios'] != NULL && $_SESSION['id_usuarios'] != 1){?>
-             <script type="text/javascript" src="./app/view/LayoutUserFinal.js"></script>
+          if($_SESSION['id_usuarios'] > 1 && $_SESSION['acesso'] == 2){?>
+              <script type="text/javascript" src="./app/view/layout/LayoutMercado.js"></script>
        <?php } ?>
              <?php } 
        ?>

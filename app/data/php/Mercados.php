@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once 'DB/Base.php';
 //require_once 'Categorias.php';
 
@@ -44,6 +44,10 @@ class Mercados extends Base {
       $stm->bindValue(':usuarios_id_usuarios', $newdata->id_usuarios);
       $success = $stm->execute();
       
+       $stm = $db->prepare('update usuarios set acesso = 2 where id_usuarios = :id_usuarios');
+       $stm->bindValue(':id_usuarios', $newdata->id_usuarios);
+       $stm->execute();
+      
       $msg = $success ? 'Registro(s) inserido(s) com Sucesso' : 'Erro ao inserir Registro(s).' ;
       
        echo json_encode(array(
@@ -61,7 +65,7 @@ class Mercados extends Base {
         #update Tabela usuarios
         $stm = $db->prepare('update usuarios set
             login = :login, 
-            senha = :senha, 
+            senha = md5(:senha), 
             nome = :nome, 
             endereco = :endereco, 
             email = :email, 
@@ -117,16 +121,32 @@ class Mercados extends Base {
    }
    
    public function select(){
-       $db = $this->getDb();
-      $stm = $db->prepare('select * from usuarios inner join mercado on
-          (usuarios.id_usuarios = mercado.usuarios_id_usuarios)');
-      $stm->execute();
-        
-      $result = $stm->fetchAll( PDO::FETCH_ASSOC);
-      echo json_encode(array(
-           "success" => true,
-           "data" => $result
-      ));
+       if($_SESSION['id_usuarios'] == 1){
+         $db = $this->getDb();
+        $stm = $db->prepare('select * from usuarios inner join mercado on
+            (usuarios.id_usuarios = mercado.usuarios_id_usuarios)');
+        $stm->execute();
+
+        $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+        echo json_encode(array(
+             "success" => true,
+             "data" => $result
+        ));  
+       }
+       else {
+           $db = $this->getDb();
+            $stm = $db->prepare('select * from usuarios inner join mercado on
+                (usuarios.id_usuarios = mercado.usuarios_id_usuarios) where usuarios.id_usuarios = :id');
+            $stm->bindValue(':id', $_SESSION['id_usuarios']);
+            $stm->execute();
+
+            $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+            echo json_encode(array(
+                 "success" => true,
+                 "data" => $result
+            ));
+       }
+       
    }
    
    public function destroy(){

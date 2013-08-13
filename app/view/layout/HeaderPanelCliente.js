@@ -1,6 +1,6 @@
-Ext.define('AppName.view.layout.HeaderPanel',{
+Ext.define('AppName.view.layout.HeaderPanelCliente',{
     extend: 'Ext.panel.Panel',
-    alias: 'widget.headerPanel',
+    alias: 'widget.headerPanelCliente',
     
     region: 'north', 
     height:60, 
@@ -169,27 +169,27 @@ Ext.define('AppName.view.layout.HeaderPanel',{
                 {
                     xtype: 'button', 
                     region: 'east', 
-                    text: 'Gerenciar Clientes', 
+                    text: 'Editar Cadastro', 
                     width: 120, 
                     margins: '2 2 2 2',
                     action : 'showWindowGerenciarClientes'
                },
-                 {
-                    xtype: 'button', 
-                    region: 'east', 
-                    text: 'Gerenciar Mercados', 
-                    width: 130, 
-                    margins: '2 2 2 2',
-                    action: 'showWindowGerenciarMercado'
-                },
-                 {
-                    xtype: 'button', 
-                    region: 'east', 
-                    text: 'Gerenciar Produtos', 
-                    width: 130, 
-                    margins: '2 2 2 2',
-                    action: 'showWindowGerenciarProdutos'
-                },
+//                 {
+//                    xtype: 'button', 
+//                    region: 'east', 
+//                    text: 'Gerenciar Mercados', 
+//                    width: 130, 
+//                    margins: '2 2 2 2',
+//                    action: 'showWindowGerenciarMercado'
+//                },
+//                 {
+//                    xtype: 'button', 
+//                    region: 'east', 
+//                    text: 'Gerenciar Produtos', 
+//                    width: 130, 
+//                    margins: '2 2 2 2',
+//                    action: 'showWindowGerenciarProdutos'
+//                },
                  {
                     xtype: 'button', 
                     region: 'east', 

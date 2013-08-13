@@ -8,15 +8,15 @@ Ext.application({
     
     controllers: [
               
-        'layout.ControllerProdutos',
-        'layout.ControllerLayout',
-        'layout.ControllerHeaderPanel',
-        'layout.ControllerTreePanelCategorias',
+//        'layout.ControllerProdutos',
+//        'layout.ControllerLayout',
+//        'layout.ControllerHeaderPanel',
+//        'layout.ControllerTreePanelCategorias',
         
-        'produtos.ControllerCadProduto',
+//        'produtos.ControllerCadProduto',
         
-        'usuarios.ControllerCrudClientes',
-        'usuarios.ControllerCrudMercado',
+//        'usuarios.ControllerCrudClientes',
+//        'usuarios.ControllerCrudMercado',
         'usuarios.ControllerLogin'
        ],
     

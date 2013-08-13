@@ -1,15 +1,15 @@
-Ext.define('AppName.view.produtos.GridListaProdutos',{
+Ext.define('AppName.view.produtos.GridListaProdutosMercado',{
     extend: 'Ext.grid.Panel',
-    alias: 'widget.gridListaProdutos',
+    alias: 'widget.gridListaProdutosMercado',
     
-    autShow: true,
-    id: 'gridListaProdutos',
+    autoShow: true,
+    id: 'gridListaProdutosMercado',
     //region: 'center',
     //layout: 'fit',
     //selModel: Ext.create('Ext.selection.CheckboxModel'),
     columnLines: true,
     enableLocking: true,
-    store: 'produtos.StoreCrudProdutos',
+    store: 'produtos.StoreCrudProdutosMercado',
     
     tbar: [{
             text: 'Cadastrar Produto',
@@ -41,16 +41,18 @@ Ext.define('AppName.view.produtos.GridListaProdutos',{
                 '<img align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}" style="width: 100px; height: 90px; padding: 5px;/>',               
                 '<span style="padding-left:15px"><label align=top><b>Descrição:</b> {descricao}</label></span><br>',
                 '<span><b>Produto: </b>{nome_produto}</span>',
-               // '<span> <table> <tr> <td> aaa </td> <td>aaa</td> </tr> </table></span>',
-                
             {
-                
+//                
             })
      }],
     
     columns: [
         {header: 'Código', dataIndex: 'codigo_produto',flex:1},
         {header: 'Nome', dataIndex: 'nome_produto', flex: 2},
+        {header: 'Quantidade', dataIndex: 'quantidade', flex: 1},
+        {header: 'Fabricação', dataIndex: 'fabricacao', flex: 1},
+        {header: 'Validade', dataIndex: 'validade', flex: 1},
+        {header: 'Valor', dataIndex: 'valor', flex: 1},
         {
             xtype: 'actioncolumn',
             width: 30,
@@ -61,7 +63,7 @@ Ext.define('AppName.view.produtos.GridListaProdutos',{
                 tooltip: 'Delete Plant',
                 scope: this,
                 handler: function(){
-                    var grid = Ext.getCmp('gridListaProdutos'),
+                    var grid = Ext.getCmp('gridListaProdutosMercado'),
                records = grid.getSelectionModel().getSelection();
                
                if(records.length === 0){

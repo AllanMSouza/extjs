@@ -1,4 +1,4 @@
-Ext.define('AppName.controller.layout.ControllerHeaderPanel',{
+Ext.define('AppName.controller.layout.ControllerHeaderPanelCliente',{
     extend: 'Ext.app.Controller',
     
     stores: [
@@ -9,28 +9,24 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanel',{
     ],
     views: [
        
-       'layout.HeaderPanel',
+//       'layout.HeaderPanel',
        'layout.SearchPanel',
-//       'layout.HeaderPanelCliente'
+       'layout.HeaderPanelCliente'
        
        
     ],
     
     init: function(){
         this.control({
-            
-         'headerPanel button[action=getCategorias]': {click: this.getCategorias},
-         'headerPanel button[action=showWindowGerenciarClientes]': {click: this.showWindowGerenciarClientes},
-         'headerPanel button[action=showWindowGerenciarMercado]': {click: this.showWindowGerenciarMercado},
-         'headerPanel button[action=showWindowCadProduto]': {click: this.showWindowCadProduto},
-         'headerPanel button[action=showWindowGerenciarProdutos]': {click: this.showWindowGerenciarProdutos},
-         'headerPanel button[action=logout]': {click: this.logout}
-         
+            'headerPanelCliente button[action=getCategorias]': {click: this.getCategorias},
+            'headerPanelCliente button[action=showWindowGerenciarClientes]': {click: this.showWindowGerenciarClientes},
+            'headerPanelCliente button[action=logout]' : {click: this.logout}
+               
         // 'treePanelCategorias': {beforeitemexpand: this.teste}
           
         })
     },
-            
+    
     getCategorias: function(bt){
         var nomeCategoria = bt.id;
         if(Ext.getCmp('panel-categorias').collapsed == 'left'){
@@ -49,21 +45,6 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanel',{
         
     },
     
-    showWindowGerenciarClientes: function(){
-      Ext.widget('windowGerenciarClientes')  
-    },
-            
-    showWindowGerenciarMercado: function(){
-      Ext.widget('windowGerenciarMercado')  
-    },
-    
-    showWindowCadProduto: function(){
-        Ext.widget('windowCadProduto')
-    },
-    showWindowGerenciarProdutos: function(){
-        Ext.widget('windowGerenciarProdutos')
-    },
-    
     logout: function(){
         Ext.Msg.show({
                         title: 'Confirmação',
@@ -79,5 +60,9 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanel',{
                         }
                         
                     })
-    }
+    },
+    
+    showWindowGerenciarClientes: function(){
+      Ext.widget('windowGerenciarClientes')  
+    },
 })

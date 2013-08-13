@@ -49,7 +49,7 @@ Ext.define('AppName.view.produtos.gridpanelMinhasListas',{
                     ptype  : 'gridviewdragdrop'
                    
                 }]
-    }
+          }
             
         }
     ],

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once 'DB/Base.php';
 //require_once 'Categorias.php';
 
@@ -45,6 +45,10 @@ class Clientes extends Base {
       $stm->bindValue(':usuarios_id_usuarios',$newdata->id_usuarios);
       $success = $stm->execute();
       
+       $stm = $db->prepare('update usuarios set acesso = 1 where id_usuarios = :id_usuarios');
+       $stm->bindValue(':id_usuarios', $newdata->id_usuarios);
+       $stm->execute();
+      
        echo json_encode(array(
              "success" => $success,
              "msg" => $msg,
@@ -54,19 +58,31 @@ class Clientes extends Base {
     }
     
     public function select(){
-      $db = $this->getDb();
-      $stm = $db->prepare('select * from usuarios inner join cliente on
-          (usuarios.id_usuarios = cliente.usuarios_id_usuarios)');
-      $stm->execute();
-        
-      $result = $stm->fetchAll( PDO::FETCH_ASSOC);
-      echo json_encode(array(
-           "success" => true,
-           "data" => $result
-      ));
+        if($_SESSION['id_usuarios']== 1){
+           $db = $this->getDb();
+            $stm = $db->prepare('select * from usuarios inner join cliente on
+                (usuarios.id_usuarios = cliente.usuarios_id_usuarios)');
+            $stm->execute();
 
-        
-        
+            $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+            echo json_encode(array(
+                 "success" => true,
+                 "data" => $result
+            )); 
+        }
+        else{
+            $db = $this->getDb();
+            $stm = $db->prepare('select * from usuarios inner join cliente on
+                (usuarios.id_usuarios = cliente.usuarios_id_usuarios) where usuarios.id_usuarios = :id');
+            $stm->bindValue(':id', $_SESSION['id_usuarios']);
+            $stm->execute();
+
+            $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+            echo json_encode(array(
+                 "success" => true,
+                 "data" => $result
+            ));
+        }
     }
     
     public function destroy(){

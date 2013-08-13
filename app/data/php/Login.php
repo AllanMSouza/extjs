@@ -11,6 +11,7 @@ class Login extends Base {
         
         if($result){
             $_SESSION['id_usuarios'] = $result['id_usuarios'];
+            $_SESSION['acesso'] = $result['acesso'];
             
             $msg = 'Login efetuado com sucesso';
             
