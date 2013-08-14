@@ -46,7 +46,7 @@
 		//echo $_SESSION['login'];
 		if(!isset($_SESSION['id_usuarios'])) { ?>
                                                        
-			<script type="text/javascript" src="./app2.js"></script>
+			<script type="text/javascript" src="./app.js"></script>
     <?php }
 		else { 
                     include ("./app/data/php/utils/Layout.php");

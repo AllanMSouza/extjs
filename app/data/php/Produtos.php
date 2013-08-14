@@ -159,9 +159,46 @@ class Produtos extends Base {
            //"data" => $data
       )); 
     }
-        
-        
     
+    public function getProdutos(){
+        $idCategoria = $_GET['id_categorias'];
+        $leaf = $_GET['leaf'];
+        
+        //var_dump($leaf);
+        if($leaf ==  "false"){
+//            echo 'false';
+            $db = $this->getDb();
+            $stm = $db->prepare('select P.* 
+                from produtos P inner join 
+                    (select C2.id_categorias from 
+                        (select C.id_categorias 
+                            from categorias C where C.id_categorias = :id_categorias or C.categorias_id_categorias = :categorias_id_categorias) sub
+                        left join categorias C2 on (C2.categorias_id_categorias = sub.id_categorias)
+                     group by C2.id_categorias) temp
+                on (P.categorias_id_categorias = temp.id_categorias)');
+            $stm->bindValue(':id_categorias', $idCategoria);
+            $stm->bindValue(':categorias_id_categorias', $idCategoria);
+            $stm->execute();
+            $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+        }
+        
+        else{
+            $db = $this->getDb();
+            $stm = $db->prepare('select P.* 
+                from produtos P where P.categorias_id_categorias = :id_categorias');
+            $stm->bindValue(':id_categorias', $idCategoria);
+            $stm->execute();
+            $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+        }
+        
+        
+         echo json_encode(array(
+           "data" => $result
+           //"msg" =>$msg,
+           //"data" => $data
+      )); 
+    }   
+   
 }
 
 new Produtos();

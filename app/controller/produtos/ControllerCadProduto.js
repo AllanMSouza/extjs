@@ -24,6 +24,7 @@ Ext.define('AppName.controller.produtos.ControllerCadProduto',{
     init: function(){
         this.control({
             'windowCadProduto button[action=save]':{click: this.save},
+            'treeCategoriasProdutosListaProdutos' : {selectionchange: this.getProdutos},
             'windowCadProduto button[action=cancel]':{click: this.cancel},
             'treeCategoriasProdutos':{selectionchange: this.setNomeCategoria},
             'gridListaProdutos button[action=insert]':{click: this.insert},
@@ -146,7 +147,14 @@ Ext.define('AppName.controller.produtos.ControllerCadProduto',{
             }
         }            
     },   
-    
+    getProdutos: function(record, model){
+        //console.log(model[0])
+        var store = Ext.getCmp('gridListaProdutos').store.getProxy()
+        store.api.read = 'app/data/php/Produtos.php?action=getProdutos&id_categorias=' + model[0].data.id_categorias + '&leaf=' + model[0].data.leaf
+        Ext.getCmp('gridListaProdutos').store.setProxy(store)
+        Ext.getCmp('gridListaProdutos').store.load()
+        
+    },
     setNomeCategoria: function(record, model){
        // console.log(Ext.getCmp('fileuploadfieldImagemProdutos').getValue())
        // Ext.getCmp('imgProdutos').setSrc(Ext.getCmp('fileuploadfieldImagemProdutos').getSubmitValue())
