@@ -26,17 +26,6 @@ class ListaProdutosMercado extends Base {
          $stm->bindValue(':fabricacao', $fabricacao);
          $success = $stm->execute();
          
-         $id = $db->lastInsertId();        
-         
-         $stm = $db->prepare('update lista_produtos_mercado set 
-             fabricacao = :fabricacao,
-             validade = :validade
-             where id_lista_produtos_mercado = :id');
-         $stm->bindValue(':fabricacao', $fabricacao);
-         $stm->bindValue(':validade', $validade);
-         $stm->bindValue(':id', $id);
-         $success = $stm->execute();         
-         
          $msg = $success ? 'Produto inserido com Sucesso' : 'Erro ao inserir Produto.' ;
          //echo $validade . "----- ".$fabricacao;
          echo json_encode(array(
@@ -48,7 +37,30 @@ class ListaProdutosMercado extends Base {
     }
             
    public function update(){
-    
+       $data = json_decode($_POST['data']);
+       
+       $db = $this->getDb();
+       $stm = $db->prepare('update lista_produtos_mercado set
+           valor = :valor,
+           quantidade = :quantidade,
+           validade = :validade,
+           fabricacao = :fabricacao
+           where id_lista_produtos_mercado = :id_lista_produtos_mercado');
+       $stm->bindValue(':valor', $data->valor);
+       $stm->bindValue(':quantidade', $data->quantidade);
+       $stm->bindValue(':validade', $data->validade);
+       $stm->bindValue(':fabricacao', $data->fabricacao);
+       $stm->bindValue(':id_lista_produtos_mercado', $data->id_lista_produtos_mercado);
+       $success = $stm->execute();
+         
+         $msg = $success ? 'Produto atualizado com Sucesso' : 'Erro ao atualizar Produto.' ;
+         
+         echo json_encode(array(
+             "success" => $success,
+             "msg" => $msg,
+             "data" => $data
+         ));
+       
    }
    
    public function select(){
@@ -69,7 +81,20 @@ class ListaProdutosMercado extends Base {
    }
    
    public function destroy(){
-   
+        $data = json_decode($_POST['data']);
+        
+        $db= $this->getDb();
+        $stm = $db->prepare('delete from lista_produtos_mercado 
+            where id_lista_produtos_mercado = :id_lista_produtos_mercado');
+        $stm->bindValue(':id_lista_produtos_mercado', $data->id_lista_produtos_mercado);
+        $result = $stm->execute();
+        $msg = $result ? 'Registro(s) destruido(s) com Sucesso' : 'Erro ao destruir Registro(s).' ;
+        
+        echo json_encode(array(
+           "success" => $result,
+           "msg" =>$msg,
+           //"data" => $data
+      )); 
        
    }
    

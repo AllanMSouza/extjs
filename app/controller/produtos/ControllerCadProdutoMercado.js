@@ -15,14 +15,15 @@ Ext.define('AppName.controller.produtos.ControllerCadProdutoMercado',{
        //'produtos.TreeCategoriasProdutos',
        'produtos.GridListaProdutosMercado',
        'produtos.GridListaProdutosGeral',
-       //'produtos.WindowGerenciarProdutos',
-       //'produtos.TreeCategoriasProdutosListaProdutos'
+       
        
     ],
     
     init: function(){
         this.control({
-            'windowCadProdutosMercado button[action=save]' : {click: this.save}
+            'windowCadProdutosMercado button[action=save]' : {click: this.save},
+            'gridListaProdutosMercado button[action=edit]' : {click: this.edit},
+            'gridListaProdutosMercado button[action=destroy]' : {click: this.destroy}
         });
     },
     
@@ -37,6 +38,8 @@ Ext.define('AppName.controller.produtos.ControllerCadProdutoMercado',{
             if(record){
                 if(record.data['id_lista_produtos_mercado']){
                     record.set(values);
+//                    console.log(record)
+                    
                 }
             }
             else{
@@ -55,7 +58,66 @@ Ext.define('AppName.controller.produtos.ControllerCadProdutoMercado',{
                    type: 'error'
                });
            }
-    }
+    },
+    
+    edit: function(){
+        
+         var records = Ext.getCmp('gridListaProdutosMercado').getSelectionModel().getSelection();
+             
+             if(records == ''){
+                  Ext.Msg.show({
+                        title: 'Atenção!',
+                        msg: 'Nenhum registro selecionado!',
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.MessageBox.ERROR,
+                        escope: this,
+                        width: 300,
+                        
+                    })              
+            }
+            if(records.length === 1){
+                 var editWindow = Ext.widget('windowCadProdutosMercado');
+                 var editForm = editWindow.down('form');
+                 var record = records[0];
+                editForm.loadRecord(record);
+            }else{
+                return;
+            }
             
-   
+    },
+    
+    destroy: function(){
+         var grid = Ext.getCmp('gridListaProdutosMercado'),
+               records = grid.getSelectionModel().getSelection();
+               
+               if(records.length === 0){
+                   Ext.Msg.show({
+                        title: 'Atenção!',
+                        msg: 'Nenhum registro selecionado!',
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.MessageBox.ERROR,
+                        escope: this,
+                        width: 300,
+                        
+                    })
+                }else{
+                    Ext.Msg.show({
+                        title: 'Confirmação',
+                        msg: 'Tem certeza que deseja deletar o (s) registro(s) selecionado(s)?',
+                        buttons: Ext.Msg.YESNO,
+                        icon: Ext.MessageBox.WARNING,
+                        escope: this,
+                        width: 450,
+                        fn : function(btn, ev){
+                            if(btn == 'yes'){
+                                var store = grid.store;
+                                        store.remove(records);
+                                    grid.store.sync();
+                            }
+                        }
+                        
+                    })
+                    
+                }
+    }
 })

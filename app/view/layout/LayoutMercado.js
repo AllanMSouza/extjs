@@ -10,15 +10,13 @@ Ext.application({
               
 //        'layout.ControllerProdutos',
         'layout.ControllerLayout',
-//        'layout.ControllerHeaderPanel',
         'layout.ControllerTreePanelCategorias',
         
         'produtos.ControllerCadProduto',
-        'produtos.ControllerCadProdutoMercado',
-        
-//        'usuarios.ControllerCrudClientes',
+        'produtos.ControllerCadProdutoMercado',       
+
         'usuarios.ControllerCrudMercado',
-//        'usuarios.ControllerLogin'
+
         
        ],
     
@@ -67,38 +65,15 @@ Ext.application({
                                         plugins: {
                                            ddGroup: 'gridListaProdutosMercado',
                                            ptype  : 'gridviewdragdrop'
-                                       },                                  
-//                                       listeners: {
-//                                           drop: function(node, data, dropRec, dropPosition) {
-//                                               console.log('drop')
-//                                           }
-//                                      }    
-                                  },
+                                       }
+                                  }
                                   
                                },
                                {
                                    xtype: 'gridListaProdutosMercado', 
-                                   height: 400, 
-                                   region: 'center',
-                                   border: false,
-                                   title: 'Lista Produtos Mercado',
-                                    viewConfig: {
-                                        plugins: {
-                                           ddGroup: 'gridListaProdutosMercado',
-                                           ptype  : 'gridviewdragdrop',
-                                       },                                  
-                                       listeners: {
-                                           drop: function(node, data, dropRec, dropPosition) {
-                                               Ext.widget('windowCadProdutosMercado')
-//                                               console.log(data.records[0].data.categorias_id_categorias, data.records[0].data.codigo_produto )
-                                               Ext.getCmp('fieldIdProdutosCadProdutosMercado').setValue(data.records[0].data.id_produtos);
-//                                               Ext.getCmp('fieldIdCategoriasIdCategoriasWindowCadProdutoMercado').setValue(data.records[0].data.categorias_id_categorias)
-//                                               Ext.getCmp('fieldCodigoProdutoWindowCadProdutoMercado').setValue(data.records[0].data.codigo_produto)
-                                           }
-                                      }    
-                                  },
+                                  
                                }
-                       ]
+                        ]
                        },
                        
                    ]

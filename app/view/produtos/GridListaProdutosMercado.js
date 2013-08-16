@@ -7,7 +7,11 @@ Ext.define('AppName.view.produtos.GridListaProdutosMercado',{
     columnLines: true,
     enableLocking: true,
     store: 'produtos.StoreCrudProdutosMercado',
-    
+    height: 500, 
+    region: 'center',
+    border: false,
+    title: 'Lista Produtos Mercado',
+       
     tbar: [{
             text: 'Cadastrar Produto',
             action: 'insert',
@@ -89,14 +93,23 @@ Ext.define('AppName.view.produtos.GridListaProdutosMercado',{
                 }
          }]
         }
-        //{header: 'Categoria', dataIndex: 'email', flex: 1.5},
-//        {header: 'Cidade', dataIndex: 'cidade', flex: 1},
-//        {header: 'UF', dataIndex: 'estado', flex: 0.5},
-//        {header: 'Telefone', dataIndex: 'telefone', flex: 1.5},
-        //{header: 'Celular', dataIndex: 'celular', flex: 1}
-        
+      
     ],
-    
+     viewConfig: {
+         plugins: {
+            ddGroup: 'gridListaProdutosMercado',
+            ptype  : 'gridviewdragdrop',
+        },                                  
+        listeners: {
+            drop: function(node, data, dropRec, dropPosition) {
+                Ext.widget('windowCadProdutosMercado')
+//                                               console.log(data.records[0].data.categorias_id_categorias, data.records[0].data.codigo_produto )
+                Ext.getCmp('fieldIdProdutosCadProdutosMercado').setValue(data.records[0].data.id_produtos);
+//                                               Ext.getCmp('fieldIdCategoriasIdCategoriasWindowCadProdutoMercado').setValue(data.records[0].data.categorias_id_categorias)
+//                                               Ext.getCmp('fieldCodigoProdutoWindowCadProdutoMercado').setValue(data.records[0].data.codigo_produto)
+            }
+       }    
+   },
     initComponent: function(){
         this.callParent();
         this.getSelectionModel().on('selectionchange', this.onSelectChange, this);
