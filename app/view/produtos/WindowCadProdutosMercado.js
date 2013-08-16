@@ -18,10 +18,12 @@ Ext.define('AppName.view.produtos.WindowCadProdutosMercado',{
     ],
     buttons:[
         {
-            text: 'Save'
+            text: 'Salvar',
+            action: 'save'
         },
         {
-            text: 'Cancel'
+            text: 'Cancelar',
+            action: 'cancel'
         }
     ]
 });

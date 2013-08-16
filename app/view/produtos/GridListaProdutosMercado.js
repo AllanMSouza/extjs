@@ -4,9 +4,6 @@ Ext.define('AppName.view.produtos.GridListaProdutosMercado',{
     
     autoShow: true,
     id: 'gridListaProdutosMercado',
-    //region: 'center',
-    //layout: 'fit',
-    //selModel: Ext.create('Ext.selection.CheckboxModel'),
     columnLines: true,
     enableLocking: true,
     store: 'produtos.StoreCrudProdutosMercado',
@@ -41,8 +38,9 @@ Ext.define('AppName.view.produtos.GridListaProdutosMercado',{
                 '<img align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}" style="width: 100px; height: 90px; padding: 5px;/>',               
                 '<span style="padding-left:15px"><label align=top><b>Descrição:</b> {descricao}</label></span><br>',
                 '<span><b>Produto: </b>{nome_produto}</span>',
+            
             {
-//                
+              
             })
      }],
     
@@ -50,9 +48,9 @@ Ext.define('AppName.view.produtos.GridListaProdutosMercado',{
         {header: 'Código', dataIndex: 'codigo_produto',flex:1},
         {header: 'Nome', dataIndex: 'nome_produto', flex: 2},
         {header: 'Quantidade', dataIndex: 'quantidade', flex: 1},
-        {header: 'Fabricação', dataIndex: 'fabricacao', flex: 1},
-        {header: 'Validade', dataIndex: 'validade', flex: 1},
-        {header: 'Valor', dataIndex: 'valor', flex: 1},
+        {header: 'Fabricação', xtype: 'datecolumn', format: 'd/m/Y',dataIndex: 'fabricacao',flex: 1},
+        {header: 'Validade', xtype: 'datecolumn', format: 'd/m/Y', dataIndex: 'validade', flex: 1},
+        {text: 'Valor', xtype: 'templatecolumn',tpl: 'R$ {valor}',flex: 1},
         {
             xtype: 'actioncolumn',
             width: 30,

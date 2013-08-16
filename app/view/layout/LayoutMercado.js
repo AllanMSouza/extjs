@@ -89,9 +89,11 @@ Ext.application({
                                        },                                  
                                        listeners: {
                                            drop: function(node, data, dropRec, dropPosition) {
-                                               Ext.widget('windowCadProdutosMercado'),
-//                                               console.log(data.records[0].data.id_produtos)
+                                               Ext.widget('windowCadProdutosMercado')
+//                                               console.log(data.records[0].data.categorias_id_categorias, data.records[0].data.codigo_produto )
                                                Ext.getCmp('fieldIdProdutosCadProdutosMercado').setValue(data.records[0].data.id_produtos);
+//                                               Ext.getCmp('fieldIdCategoriasIdCategoriasWindowCadProdutoMercado').setValue(data.records[0].data.categorias_id_categorias)
+//                                               Ext.getCmp('fieldCodigoProdutoWindowCadProdutoMercado').setValue(data.records[0].data.codigo_produto)
                                            }
                                       }    
                                   },

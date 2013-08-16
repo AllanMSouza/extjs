@@ -122,7 +122,7 @@ Ext.define('AppName.controller.produtos.ControllerCadProduto',{
             }
             
             else {
-                var record = Ext.create('AppName.model.usuarios.ModelCadCliente');
+                var record = Ext.create('AppName.model.usuarios.ModelCrudProduto');
                 record.set(values);
                 Ext.getCmp('gridListaProdutos').store.add(record);
                 form.submit({

@@ -24,10 +24,11 @@ Ext.define('AppName.view.produtos.FormCadProdutosMercado',{
                 },
                 {
                     xtype: 'textfield',
+                    name: 'quantidade',
                     fieldLabel: 'Unidades',
                     labelWidth: 55,
                     width: 165
-                }
+                },
               
           ]
         },
@@ -40,6 +41,8 @@ Ext.define('AppName.view.produtos.FormCadProdutosMercado',{
                     fieldLabel: 'Fabricação',
                     name: 'fabricacao',    
                     labelWidth: 65,
+                    format: 'Y-m-d',
+                    maxValue: new Date(),
                     width: 180,
                     margins: '0 5 0 0'
                 },
@@ -47,6 +50,8 @@ Ext.define('AppName.view.produtos.FormCadProdutosMercado',{
                     xtype: 'datefield',
                     fieldLabel: 'Validade',
                     name: 'validade',
+                    format: 'Y-m-d',
+//                    mimValue: new Date(),
                     labelWidth: 55,
                     width: 165
                 },
@@ -55,8 +60,20 @@ Ext.define('AppName.view.produtos.FormCadProdutosMercado',{
                     name: 'id_produtos',
                     hidden: true,
                     id: 'fieldIdProdutosCadProdutosMercado'
-                }
-              
+                },
+//                {
+//                    xtype: 'textfield',
+//                    name: 'categorias_id_categorias',
+//                    hidden: true,
+//                    id: 'fieldIdCategoriasIdCategoriasWindowCadProdutoMercado'
+//                },
+//                {
+//                    xtype: 'textfield',
+//                    name: 'codigo_produto',
+//                    hidden: true,
+//                    id: 'fieldCodigoProdutoWindowCadProdutoMercado'
+//                },
+                
           ]
         },
         

@@ -1,16 +1,17 @@
 Ext.define('AppName.store.produtos.StoreCrudProdutosMercado',{
     extend: 'Ext.data.Store',
     
-    model: 'AppName.model.produtos.ModelCrudProdutos',
+    model: 'AppName.model.produtos.ModelProdutosListaMercado',
     autoLoad: true,
     remoteSort: true,
     proxy: {
         //simpleSortMode: true,
         type: 'ajax',
         api:{
-            read: 'app/data/php/Produtos.php?action=select',
-            create: 'app/data/php/Produtos.php?action=insert',
-            destroy: 'app/data/php/Produtos.php?action=destroy'
+            read: 'app/data/php/ListaProdutosMercado.php?action=select',
+            create: 'app/data/php/ListaProdutosMercado.php?action=insert',
+            update: 'app/data/php/ListaProdutosMercado.php?action=update',
+            destroy: 'app/data/php/ListaProdutosMercado.php?action=destroy'
         },        
         
         reader: {
