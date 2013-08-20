@@ -113,7 +113,7 @@ class Clientes extends Base {
         #update Tabela usuarios
         $stm = $db->prepare('update usuarios set
             login = :login, 
-            senha = :senha, 
+            senha = md5(:senha), 
             nome = :nome, 
             endereco = :endereco, 
             email = :email, 
