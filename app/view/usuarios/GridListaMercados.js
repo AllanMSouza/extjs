@@ -6,28 +6,28 @@ Ext.define('AppName.view.usuarios.GridListaMercados',{
     id: 'gridListaMercados',
     //region: 'center',
     //layout: 'fit',
-    selModel: Ext.create('Ext.selection.CheckboxModel'),
+    //selModel: Ext.create('Ext.selection.CheckboxModel'),
     columnLines: true,
     store: 'usuarios.StoreCrudMercado',
     
     tbar: [{
-            text: 'Incluir',
-            action: 'insert'
-            //iconCls: 'user_add'
+            text: 'Cadastrar Mercado',
+            action: 'insert',
+             icon: 'extjs/examples/kitchensink/resources/images/icons/fam/add.gif'
              },
              
              {
-            text: 'Editar',
+            text: 'Editar Mercado',
             action: 'edit',
-            //iconCls: 'user_edit',
+             icon: 'extjs/examples/kitchensink/resources/images/icons/fam/page_white_edit.png',
             disabled: true,
             itemId: 'edit'
             
            },        
             {
-            text: 'Excluir',
+            text: 'Excluir Mercado',
             action: 'destroy',
-            //iconCls: 'user_delete',
+            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/delete.gif',
             disabled: true,
             itemId: 'delete'
             

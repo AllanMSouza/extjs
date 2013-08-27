@@ -4,8 +4,8 @@ Ext.define('AppName.view.usuarios.WindowCadMercado',{
     
     title: 'Cadastro Supermercado',
     autoShow: true,
-    height: 400,
-    width: 700,
+    height: 250,
+    width: 480,
     layout: 'border',
     
     items:[

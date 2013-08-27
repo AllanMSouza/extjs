@@ -25,7 +25,7 @@ Ext.define('AppName.view.usuarios.FormCliente',{
                     },
                     items:[
                         {
-                            title: 'Informações Geraris',
+                            title: 'Informações Gerais',
                             border: false,
                             plain: true,
                             bodyPadding: '10 50',
@@ -170,7 +170,7 @@ Ext.define('AppName.view.usuarios.FormCliente',{
                                                     name: 'endereco',
                                                     labelWidth:60,
                                                     width: 350,
-                                                    margins: '0 5 0 0',
+                                                    margins: '0 5 0 0'
                                                     //flex: 4
 
                                                 },
@@ -179,7 +179,7 @@ Ext.define('AppName.view.usuarios.FormCliente',{
                                                     fieldLabel: 'No.',
                                                     name: 'numero',
                                                     width: 70,
-                                                    labelWidth: 20,
+                                                    labelWidth: 20
                                                     //flex: 1/2
 
                                                 },                              
@@ -203,7 +203,7 @@ Ext.define('AppName.view.usuarios.FormCliente',{
                                                    name: 'bairro',
                                                    width: 200,
                                                    labelWidth: 60,
-                                                   margins: '0 5 0 0',
+                                                   margins: '0 5 0 0'
                                              //flex: 2
                                                 },
                                                 {
@@ -234,7 +234,7 @@ Ext.define('AppName.view.usuarios.FormCliente',{
                                                    name: 'cidade',
                                                    labelWidth: 60,
                                                    width: 230,
-                                                   margins: '0 5 0 0',
+                                                   margins: '0 5 0 0'
                                                    //flex: 2
                                                },                                               
                                                {
@@ -252,7 +252,7 @@ Ext.define('AppName.view.usuarios.FormCliente',{
                                                    name: 'estado',
                                                    labelWidth: 20,
                                                    width: 70,
-                                                   margins: '0 5 0 0',
+                                                   margins: '0 5 0 0'
                                                    //flex: 2/3
                                                },
                                             ]
@@ -378,72 +378,7 @@ Ext.define('AppName.view.usuarios.FormCliente',{
                         }
                     ]
                 },
-//                {
-//                    xtype: 'fieldset',
-//                    title: 'Informações',
-//                    layout: 'anchor',
-//                    defaults: {
-//                        anchor: '100%'
-//                    },
-//                    items: [
-//                        
-//                        {
-//                          xtype: 'fieldcontainer',
-//                          combineErros: true,
-//                          layout: 'hbox',
-//                          items:[
-//                              
-//                              
-//                          ]
-//                        },
-//                        
-//                        {
-//                          xtype: 'fieldcontainer',
-//                          combineErros: true,
-//                          layout: 'hbox',
-//                          items:[
-//                            
-//                              {
-//                                  xtype: 'textfield',
-//                                  fieldLabel: 'Telefone',
-//                                  name: 'telefone',
-//                                  labelWidth: 50,
-//                                  flex: 2,
-//                                  margins: '0 5 0 0'
-//                                  
-//                              },
-//                              {
-//                                  xtype: 'textfield',
-//                                  fieldLabel: 'Celular',
-//                                  name: 'celular',
-//                                  labelWidth: 47,
-//                                  flex: 2,
-//                                  margins: '0 5 0 0'
-//                                  
-//                              }
-//                          ]
-//                        },
-//                        {
-//                            xtype: 'fieldcontainer',
-//                            combineErrors: true,
-//                            layout: 'hbox',
-//                            items: [
-//                               
-//                            ]
-//                        }
-//                    ]
-//                },
-//                {
-//                    xtype: 'fieldset',
-//                    title: 'Localização',
-//                    layout: 'anchor',
-//                    defaults: {
-//                        anchor: '100%'
-//                    },
-//                    items: [
-//                      
-//                    ]
-//                },
+
             ]
         }
     ],
