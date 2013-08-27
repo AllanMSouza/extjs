@@ -28,7 +28,7 @@ Ext.define('AppName.controller.produtos.ControllerCadProduto',{
             'windowCadProduto button[action=cancel]':{click: this.cancel},
             'treeCategoriasProdutos':{selectionchange: this.setNomeCategoria},
             'gridListaProdutos button[action=insert]':{click: this.insert},
-            'gridListaProdutos button[action=edit]':{click: this.edit},
+            'gridListaProdutos button[action=edit]':{click: this.edit}
         });
     },
             
@@ -155,6 +155,7 @@ Ext.define('AppName.controller.produtos.ControllerCadProduto',{
         Ext.getCmp('gridListaProdutos').store.load()
         
     },
+    
     setNomeCategoria: function(record, model){
        // console.log(Ext.getCmp('fileuploadfieldImagemProdutos').getValue())
        // Ext.getCmp('imgProdutos').setSrc(Ext.getCmp('fileuploadfieldImagemProdutos').getSubmitValue())

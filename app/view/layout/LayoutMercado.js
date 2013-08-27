@@ -12,6 +12,7 @@ Ext.application({
         'layout.ControllerLayout',
         'layout.ControllerTreePanelCategorias',
         
+        
         'produtos.ControllerCadProduto',
         'produtos.ControllerCadProdutoMercado',       
 
@@ -26,7 +27,7 @@ Ext.application({
            
            items:[
                {
-                   xtype: 'headerPanelMercado',
+                   xtype: 'headerPanelMercado'
                    
                },
                {
@@ -34,19 +35,8 @@ Ext.application({
                    layout: 'border',
                    items:[
                        {
-                           xtype: 'treePanelCategorias', 
-                           margins: '5 0 5 5',
-                           collapsed: false,
-                           tbar:[
-                               {
-                                 xtype: 'textfield',
-                                 emptyText: 'Informe sua pesquisa',
-                                 width: 200
-                               },
-                               {
-                                   text: 'Pesquisar'
-                               }
-                           ]
+                           xtype: 'treeCategoriasGeral'
+                           
                        },
                        {
                            xtype: 'panel', 
