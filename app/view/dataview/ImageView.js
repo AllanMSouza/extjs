@@ -1,6 +1,7 @@
 Ext.define('AppName.view.dataview.ImageView', {
     extend: 'Ext.view.View',
     alias : 'widget.imageview',
+    id: 'idImageView',
     //requires: ['Ext.data.Store'],
     mixins: {
         dragSelector: 'Ext.ux.DataView.DragSelector',
@@ -10,34 +11,24 @@ Ext.define('AppName.view.dataview.ImageView', {
     tpl: [
         '<tpl for=".">',
             '<div class="thumb-wrap">',
-                '<div class="thumb">',
-                    (!Ext.isIE6? '<img src="extjs/examples/kitchensink/resources/images/touch-icons/{thumb}" />' : 
-                    '<div style="width:76px;height:76px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'extjs/examples/kitchensink/resources/images/touch-icons/{thumb}\')"></div>'),
+                '<div class="thumb" style= "">',
+                    (!Ext.isIE6? '<img align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}" style="width: 100px; height: 90px; padding: 5px;"/>':               
+                    '<div style="width:76px;height:76px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos} style="width: 100px; height: 90px; padding: 5px;"\')"></div>'),
+                '<span><label style =" width=100px height=10px">{nome_produto}</label></span>',
                 '</div>',
-                '<span>{name}</span>',
+                
             '</div>',
         '</tpl>'
     ],
     
     itemSelector: 'div.thumb-wrap',
-    multiSelect: true,
-    singleSelect: false,
+    multiSelect: false,
+    singleSelect: true,
     cls: 'x-image-view',
     //autoScroll: true,
     
     initComponent: function() {
-        this.store = Ext.create('Ext.data.Store', {
-            autoLoad: true,
-            fields: ['name', 'thumb', {name: 'leaf', defaultValue: true}],
-            proxy: {
-                type: 'ajax',
-                url : 'extjs/examples/kitchensink/resources/data/sencha-touch-examples.json',
-                reader: {
-                    type: 'json',
-                    root: ''
-                }
-            }
-        });
+        this.store = 'produtos.StoreImageView'
         
         this.mixins.dragSelector.init(this);
         this.mixins.draggable.init(this, {
@@ -46,11 +37,11 @@ Ext.define('AppName.view.dataview.ImageView', {
             },
             ghostTpl: [
                 '<tpl for=".">',
-                    '<img src="extjs/examples/kitchensink/resources/images/touch-icons/{thumb}" />',
+                    '<img align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}"/>',               
                     '<tpl if="xindex % 4 == 0"><br /></tpl>',
                 '</tpl>',
                 '<div class="count">',
-                    '{[values.length]} images selected',
+                    '{[nome_produto.length]} images selected',
                 '<div>'
             ]
         });
@@ -62,7 +53,7 @@ Ext.define('AppName.view.dataview.ImageView', {
 //        click: {
 //            element: 'el', //bind to the underlying el property on the panel
 //            fn: function(){ console.log('click el'); }
-//        }
+//        },
 selectionchange: function(model, records) {
                 //console.log(Ext.getCmp('panel-descricao'))
                     //console.log(model, records[0].data)

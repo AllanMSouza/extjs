@@ -1,3 +1,7 @@
+var cellEditing = Ext.create('Ext.grid.plugin.CellEditing', {
+        clicksToEdit: 1
+    });
+    
 Ext.define('AppName.view.produtos.gridpanelMinhasListas',{
     extend: 'Ext.panel.Panel',
     alias: 'widget.minhaslistas',
@@ -10,38 +14,66 @@ Ext.define('AppName.view.produtos.gridpanelMinhasListas',{
     height: 400,
     ui: 'light',
     layout: 'border',
+    
         
     items:[
         {
             xtype: 'gridpanel',
             store: 'storeMinhasListas',
             region: 'center',
-            plugins: [{
+            plugins: [             
+                    cellEditing,
+                
+            {
             ptype: 'rowexpander',
             rowBodyTpl : new Ext.XTemplate(
-                '<img align=top src="extjs/examples/kitchensink/resources/images/touch-icons/{thumb}" />',
-                '<span style="padding-left:15px"><label align=top><b>Descrição:</b> {name}</label></span><br>',
-                '<span><b>Produto: </b>{name}</span>',
+            '<div>',
+            '<div class="imagem-grid" style = "width:100px; height:100px; float:left; position:relative;" >',
+                '<img align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}"/>',
+                '</div>',
+             '<div class="texto-grid" style= "width:220px; float:left; position:relative;">',
+                              
+               '<span><label align=top><b>Descrição:</b></label> {descricao}</span><br>',
+                '<span><label align=top><b>Código:</b></label> {codigo_produto}</span><br>',
+                '<span><b>Produto: </b>{nome_produto}</span>',
+                '</div>',
+            "</div>",
             {
                 
             })
-             }],
+             }
+         ],
             columns: [                     
                      { 
-                         text: 'Produto',  
-                         dataIndex: 'name',
+                         header: 'Código',  
+                         dataIndex: 'codigo_produto',
+                         flex: 1 
+                     },
+                     { 
+                         header: 'Produto', 
+                         dataIndex: 'nome_produto',
                          flex: 1 
                      },
                      {
-                         text: 'Quantidade', 
-                         dataIndex: 'url', 
-                         flex: 1 
+                                                
+                         header: 'Quantidade', 
+                         dataIndex: 'quantidade',
+                         value: 1,
+                         flex: 1, 
+                           summaryType: 'sum',
+                            renderer: function(value, metaData, record, rowIdx, colIdx, store, view){
+                                value = 1;
+                                return value;
+                            },
+                            summaryRenderer: function(value, summaryData, dataIndex) {
+                                value = 1;
+                                return value;
+                            },
+                             field: {
+                                xtype: 'numberfield'
+                        }
                      },
-                     { 
-                         text: 'Valor', 
-                         dataIndex: 'thumb',
-                         flex: 1 
-                     }
+                     
           ],
           viewConfig: {
                  plugins: [{

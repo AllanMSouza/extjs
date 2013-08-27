@@ -3,13 +3,14 @@ Ext.define('AppName.controller.layout.ControllerProdutos',{
     
     stores: [
         'storeMinhasListas',
+        'produtos.StoreImageView'
         
     ],
     models: [
         'modelMinhasListas'
     ],
     views: [
-       'produtos.winProdutos',
+       'produtos.WindowProdutos',
        'produtos.gridpanelMinhasListas',
        'produtos.DataViewProdutos',
        'dataview.ImageView',

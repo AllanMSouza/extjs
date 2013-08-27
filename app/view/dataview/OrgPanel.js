@@ -13,27 +13,13 @@ Ext.define('AppName.view.dataview.OrgPanel', {
     // width : 700,
     autoScroll: true,
   
-                title: 'My Images',
+                //title: 'My Images',
                 layout: 'fit',
                 region: 'center',
                 padding: '5 5 5 0',
                 items: {
                     xtype: 'imageview',
-                    /*  (add a '/' at the front of this line to turn this on)
-                    listeners: {
-                        containermouseout: function (view, e) {
-                            Ext.log('ct', e.type);
-                        },
-                        containermouseover: function (view, e) {
-                            Ext.log('ct', e.type);
-                        },
-                        itemmouseleave: function (view, record, item, index, e) {
-                            Ext.log('item', e.type, ' id=', record.id);
-                        },
-                        itemmouseenter: function (view, record, item, index, e) {
-                            Ext.log('item', e.type, ' id=', record.id);
-                        }
-                    },/**/
+                   
                     trackOver: true
                 }
         

@@ -25,12 +25,14 @@ Ext.define('AppName.controller.layout.ControllerTreePanelCategorias',{
     },
   
 
-    showWindowProdutos: function(model, records) {
-            if (records[0]) {
-                Ext.widget('winProdutos');
-                if(!Ext.getCmp('panel-descricao').collapsed){
-                    Ext.getCmp('panel-descricao').collapse();
-                }
+    showWindowProdutos: function(records, model) {
+            if (model[0]) {
+                var win = Ext.widget('windowProdutos').setTitle('Produtos Categoria: ' + model[0].data.nome_categoria);
+                    //win.setTile('Produtos Categoria: ' + model[0].data.nome_categoria)
+                var store = Ext.getCmp('idImageView').store.getProxy();
+                store.api.read = 'app/data/php/Produtos.php?action=getProdutos&id_categorias=' + model[0].data.id_categorias + '&leaf=' + model[0].data.leaf
+                Ext.getCmp('idImageView').store.setProxy(store)
+                Ext.getCmp('idImageView').store.load()
             }
         },
         

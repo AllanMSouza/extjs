@@ -1,9 +1,9 @@
-Ext.define('AppName.view.produtos.winProdutos',{
+Ext.define('AppName.view.produtos.WindowProdutos',{
     extend: 'Ext.window.Window',
-    alias: 'widget.winProdutos',
+    alias: 'widget.windowProdutos',
             
     title: 'Produtos',
-    width: 500,
+    width: 630,
     height: 450,
     autoShow: true,
    // autoScroll: true,
