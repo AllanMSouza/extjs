@@ -39,5 +39,10 @@ Ext.define('AppName.controller.layout.ControllerTreePanelCategorias',{
             store.api.read = 'app/data/php/Produtos.php?action=getProdutos&id_categorias=' + model[0].data.id_categorias + '&leaf=' + model[0].data.leaf
             Ext.getCmp('gridListaProdutosGeral').store.setProxy(store)
             Ext.getCmp('gridListaProdutosGeral').store.load()
+           
+            store = Ext.getCmp('gridListaProdutosMercado').store.getProxy()
+            store.api.read = 'app/data/php/Produtos.php?action=getProdutosMercado&id_categorias=' + model[0].data.id_categorias + '&leaf=' + model[0].data.leaf
+            Ext.getCmp('gridListaProdutosMercado').store.setProxy(store)
+            Ext.getCmp('gridListaProdutosMercado').store.load();
         }
 })
