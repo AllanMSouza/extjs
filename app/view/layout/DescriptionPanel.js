@@ -3,7 +3,7 @@ Ext.define('AppName.view.layout.DescriptionPanel',{
     alias: 'widget.descriptionPanel',
     
     id:'panel-descricao',
-    title:'Informações & Minhas Listas', 
+    title:'Minhas Listas', 
     layout: 'border', 
     region: 'east', 
     collapsed: true, 
@@ -11,16 +11,7 @@ Ext.define('AppName.view.layout.DescriptionPanel',{
     collapsible:true, 
     width:400,
     items:[
-        {
-            xtype: 'panel', 
-            title: 'Descrição',
-            region: 'north', 
-            height: 200, 
-            split:true, 
-            ui:'light', 
-            collapsible:true                    
-                   
-        },
+       
          {
              xtype: 'minhaslistas'
          }

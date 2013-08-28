@@ -6,7 +6,7 @@ Ext.define('AppName.view.produtos.gridpanelMinhasListas',{
     extend: 'Ext.panel.Panel',
     alias: 'widget.minhaslistas',
     
-    title: 'Minhas Listas',
+    //title: 'Minhas Listas',
     region: 'center',
     autoShow: true,
     autoScroll: true,
@@ -22,7 +22,7 @@ Ext.define('AppName.view.produtos.gridpanelMinhasListas',{
             store: 'storeMinhasListas',
             region: 'center',
             plugins: [             
-                    cellEditing,
+                    //cellEditing,
                 
             {
             ptype: 'rowexpander',
@@ -31,11 +31,22 @@ Ext.define('AppName.view.produtos.gridpanelMinhasListas',{
             '<div class="imagem-grid" style = "width:100px; height:100px; float:left; position:relative;" >',
                 '<img align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}"/>',
                 '</div>',
-             '<div class="texto-grid" style= "width:220px; float:left; position:relative;">',
+             '<div class="texto-grid" style= "width:250px; float:left; position:relative;">',
                               
-               '<span><label align=top><b>Descrição:</b></label> {descricao}</span><br>',
-                '<span><label align=top><b>Código:</b></label> {codigo_produto}</span><br>',
-                '<span><b>Produto: </b>{nome_produto}</span>',
+//               '<span><label align=top><b>Descrição:</b></label> {descricao}</span><br>',
+//                '<span><label align=top><b>Código:</b></label> {codigo_produto}</span><br>',
+//                '<span><b>Produto: </b>{nome_produto}</span>',
+                '<table border=0px>'+
+                '<tr>'+
+                    '<td><b style=" font-size:12"> Produto:</b></td>' +  '<td style=" font-size:12"> {nome_produto} </td>' + 
+                '</tr>'+
+                '<tr>'+
+                    '<td><b style=" font-size:12"> Código:</b></td>' +  '<td style=" font-size:12"> {codigo_produto} </td>' + 
+                '</tr>'+
+                '<tr>'+
+                    '<td> <b style=" font-size:12"> Descrição:</b> </td>' +  '<td style=" font-size:12"> {descricao} </td>' + 
+                '</tr>'+
+            '</table>',
                 '</div>',
             "</div>",
             {
@@ -47,7 +58,7 @@ Ext.define('AppName.view.produtos.gridpanelMinhasListas',{
                      { 
                          header: 'Código',  
                          dataIndex: 'codigo_produto',
-                         flex: 1 
+                         flex: 0.5
                      },
                      { 
                          header: 'Produto', 
@@ -59,7 +70,7 @@ Ext.define('AppName.view.produtos.gridpanelMinhasListas',{
                          header: 'Quantidade', 
                          dataIndex: 'quantidade',
                          value: 1,
-                         flex: 1, 
+                         flex: 0.5, 
                            summaryType: 'sum',
                             renderer: function(value, metaData, record, rowIdx, colIdx, store, view){
                                 value = 1;

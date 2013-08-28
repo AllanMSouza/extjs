@@ -10,6 +10,13 @@ Ext.define('AppName.view.layout.HeaderPanelCliente',{
     bodyStyle: 'background:#fff; border-color:#c0c0c0;',
     
     items:[
+//        {
+//            xtype:'panel',
+//            bodyStyle: 'background:#fff; border-color:#fff;',
+//            region: 'west',
+//            width: 200,
+//            html: '<h1 style =" font-size:35; font-style:inherit;color:#c5c5c5"> <b>Fast Market</b></h1>'
+//        },
         {
             xtype: 'button', 
             action: 'getCategorias',

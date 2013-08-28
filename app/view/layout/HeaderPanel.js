@@ -9,7 +9,7 @@ Ext.define('AppName.view.layout.HeaderPanel',{
     layout:'border', 
     bodyStyle: 'background:#fff; border-color:#c0c0c0;',
     
-    items:[
+    items:[        
         {
             xtype: 'button', 
             action: 'getCategorias',
