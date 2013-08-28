@@ -98,7 +98,7 @@ Ext.define('AppName.view.produtos.GridListaProdutosMercado',{
      viewConfig: {
          plugins: {
             ddGroup: 'gridListaProdutosMercado',
-            ptype  : 'gridviewdragdrop',
+            ptype  : 'gridviewdragdrop'
         },                                  
         listeners: {
             drop: function(node, data, dropRec, dropPosition) {

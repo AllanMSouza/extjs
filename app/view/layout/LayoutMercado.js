@@ -46,10 +46,23 @@ Ext.application({
                            margins: '5 5 5 0',
                            items: [
                                {
+                                   xtype: 'orgPanel',
+                                   layout: 'fit',
+                                   title: 'Listra Produtos Geral',
+                                   id: 'dataViewListaProdutosGeral',
+                                   hidden: true,
+                                   border: false,
+                                   height: 300,
+                                   region: 'north',
+                                   trackOver: true
+                               },
+                               {
                                    xtype: 'gridListaProdutosGeral', 
-                                   region: 'north', 
+                                   region: 'north',
+                                   id: 'gridListaProdutosGeral',
                                    title: 'Lista de Produtos Geral', 
-                                   height: 350, 
+                                   height: 350,
+                                   hidden: false,
                                    border: false,
                                    viewConfig: {
                                         plugins: {
@@ -60,8 +73,21 @@ Ext.application({
                                   
                                },
                                {
-                                   xtype: 'gridListaProdutosMercado', 
+                                   xtype: 'gridListaProdutosMercado',
+                                   id: 'gridListaProdutosMercado'
                                   
+                               },
+                               {
+                                   xtype:'panelImageListaProdutosMercado',
+                                   id: 'panelImageListaProdutosMercado',
+                                   layout: 'fit',
+                                   title: 'Listra Produtos mercado',
+//                                   id: 'panelImageListaProdutosMercado',
+                                   hidden: true,
+                                   border: false,
+                                   //height: 250,
+                                   region: 'center',
+                                   trackOver: true
                                }
                         ]
                        },

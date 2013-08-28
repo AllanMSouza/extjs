@@ -2,19 +2,27 @@ Ext.define('AppName.controller.produtos.ControllerCadProdutoMercado',{
     extend: 'Ext.app.Controller',
     
     stores: [
-        'produtos.StoreCrudProdutosMercado'
+        'produtos.StoreCrudProdutosMercado',
+        'produtos.StoreImageView'
         
     ],
     models: [
         //'produtos.ModelTreeCategoriasProdutos',
-        'produtos.ModelProdutosListaMercado'
+        'produtos.ModelProdutosListaMercado',
+        'produtos.ModelCrudProdutos'
     ],
     views: [
        'produtos.FormCadProdutosMercado',
        'produtos.WindowCadProdutosMercado',
+       'dataview.ImageView',
+       'dataview.OrgPanel',
+       'dataview.PanelImageListaProdutosMercado',
+       'dataview.DataViewListaProdutosMercado',
+       
        //'produtos.TreeCategoriasProdutos',
        'produtos.GridListaProdutosMercado',
        'produtos.GridListaProdutosGeral',
+       //'produtos.DataViewListaProdutosGeral'
        
        
     ],

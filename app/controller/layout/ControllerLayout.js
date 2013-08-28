@@ -18,7 +18,9 @@ Ext.define('AppName.controller.layout.ControllerLayout',{
     
      init: function(){
         this.control({
-         'headerPanelMercado button[action=logout]' : {click: this.logout}
+         'headerPanelMercado button[action=logout]' : {click: this.logout},
+         'headerPanelMercado button[action=showIcons]' : {click: this.showIcons},
+         'headerPanelMercado button[action=showLista]' : {click: this.showLista}
                
         // 'treePanelCategorias': {beforeitemexpand: this.teste}
           
@@ -40,5 +42,20 @@ Ext.define('AppName.controller.layout.ControllerLayout',{
                         }
                         
                     })
+    },
+    
+    showIcons: function(){
+        Ext.getCmp('gridListaProdutosGeral').hide()
+        Ext.getCmp('gridListaProdutosMercado').hide()
+        Ext.getCmp('dataViewListaProdutosGeral').show();        
+        Ext.getCmp('panelImageListaProdutosMercado').show();
+        
+    },
+    
+    showLista: function(){
+        Ext.getCmp('dataViewListaProdutosGeral').hide();
+        Ext.getCmp('panelImageListaProdutosMercado').hide();
+        Ext.getCmp('gridListaProdutosGeral').show()
+        Ext.getCmp('gridListaProdutosMercado').show()
     }
 })

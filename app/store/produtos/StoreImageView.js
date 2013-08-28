@@ -9,7 +9,7 @@ Ext.define('AppName.store.produtos.StoreImageView',{
         //simpleSortMode: true,
         type: 'ajax',
         api:{
-            read: 'app/data/php/Produtos.php?action=getProdutos&id_categorias=',
+            read: 'app/data/php/Produtos.php?action=select',
             create: 'app/data/php/Produtos.php?action=insert',
             destroy: 'app/data/php/Produtos.php?action=destroy'
         },        

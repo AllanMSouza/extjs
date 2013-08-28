@@ -1,9 +1,10 @@
-Ext.define('AppName.view.dataview.ImageView', {
+Ext.define('AppName.view.dataview.DataViewListaProdutosMercado', {
     extend: 'Ext.view.View',
-    alias : 'widget.imageview',
-    id : 'idImageView',
+    
+    alias : 'widget.dataViewListaProdutosMercado',
+    id: 'dataViewListaProdutosMercado',
 //    layout: 'fit',
-    //requires: ['Ext.data.Store'],
+//    requires: ['Ext.ux.DataView.Draggable'],
     mixins: {
         dragSelector: 'Ext.ux.DataView.DragSelector',
         draggable   : 'Ext.ux.DataView.Draggable'
@@ -26,35 +27,16 @@ Ext.define('AppName.view.dataview.ImageView', {
     multiSelect: false,
     singleSelect: true,
     cls: 'x-image-view',
+    store : 'produtos.StoreImageView',
+    
     //autoScroll: true,
     
     initComponent: function() {
-        this.store = 'produtos.StoreImageView'
         
+//        
         this.mixins.dragSelector.init(this);
         console.log(this)
-//        console.log(Ext.getCmp(this.id))
-        this.mixins.draggable.init(this, {
-            ddConfig: {
-                ddGroup: 'organizerDD'
-            },
-            ghostTpl: [
-                '<tpl for=".">',
-                    '<img align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}"/>',               
-                    '<tpl if="xindex % 4 == 0"><br /></tpl>',
-                '</tpl>',
-                '<div class="count">',
-                    '{[nome_produto.length]} images selected',
-                '<div>'
-            ]
-        });
-        
-        this.callParent();
-    },
-    
-//    listeners: {
-//         beforerender: function(){
-//            this.mixins.draggable.init( Ext.getCmp('dataViewListaProdutosMercado'), {
+//        this.mixins.draggable.init( this, {
 //            ddConfig: {
 //                ddGroup: 'organizerDD'
 //            },
@@ -68,8 +50,14 @@ Ext.define('AppName.view.dataview.ImageView', {
 //                '<div>'
 //            ]
 //        });
-//           // console.log(Ext.getCmp('dataViewListaProdutosMercado'))
-//        }
+        
+        this.callParent();
+    },
+    
+    listeners: {
+        beforerender: function(){
+            
+        }
 //        click: {
 //            element: 'el', //bind to the underlying el property on the panel
 //            fn: function(){ console.log('click el'); }
@@ -88,5 +76,5 @@ Ext.define('AppName.view.dataview.ImageView', {
 //                         Ext.getCmp('panel-descricao').update('Descrição icone: ' + records[0].data.name)
 //                     }
 //    }
-//    }
+    }
 });
