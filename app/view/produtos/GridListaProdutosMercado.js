@@ -7,8 +7,9 @@ Ext.define('AppName.view.produtos.GridListaProdutosMercado',{
     columnLines: true,
     enableLocking: true,
     store: 'produtos.StoreCrudProdutosMercado',
-    height: 500, 
-    region: 'center',
+    width: 650,
+    split:true,
+    region: 'east',
     border: false,
     title: 'Lista Produtos Mercado',
        
@@ -97,7 +98,7 @@ Ext.define('AppName.view.produtos.GridListaProdutosMercado',{
     ],
      viewConfig: {
          plugins: {
-            ddGroup: 'gridListaProdutosMercado',
+            ddGroup: 'organizerDD',
             ptype  : 'gridviewdragdrop'
         },                                  
         listeners: {

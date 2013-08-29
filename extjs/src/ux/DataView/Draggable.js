@@ -23,6 +23,7 @@ Ext.create('Ext.view.View', {
 Ext.define('Ext.ux.DataView.Draggable', {
     requires: 'Ext.dd.DragZone',
 
+
     /**
      * @cfg {String} ghostCls The CSS class added to the outermost element of the created ghost proxy
      * (defaults to 'x-dataview-draggable-ghost')

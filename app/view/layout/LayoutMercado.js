@@ -30,6 +30,7 @@ Ext.application({
                    xtype: 'headerPanelMercado'
                    
                },
+               
                {
                    xtype: 'contentPanel',
                    layout: 'border',
@@ -42,55 +43,59 @@ Ext.application({
                            xtype: 'panel', 
                            region: 'center',
                            layout: 'border',
+                           border: false,
                            autoHeight: true, 
-                           margins: '5 5 5 0',
+                           margins: '5 0 5 0',
                            items: [
                                {
                                    xtype: 'orgPanel',
                                    layout: 'fit',
                                    title: 'Listra Produtos Geral',
                                    id: 'dataViewListaProdutosGeral',
-                                   hidden: true,
-                                   border: false,
-                                   height: 300,
-                                   region: 'north',
-                                   trackOver: true
-                               },
-                               {
-                                   xtype: 'gridListaProdutosGeral', 
-                                   region: 'north',
-                                   id: 'gridListaProdutosGeral',
-                                   title: 'Lista de Produtos Geral', 
-                                   height: 350,
                                    hidden: false,
                                    border: false,
-                                   viewConfig: {
-                                        plugins: {
-                                           ddGroup: 'gridListaProdutosMercado',
-                                           ptype  : 'gridviewdragdrop'
-                                       }
-                                  }
-                                  
-                               },
-                               {
-                                   xtype: 'gridListaProdutosMercado',
-                                   id: 'gridListaProdutosMercado'
-                                  
-                               },
-                               {
-                                   xtype:'panelImageListaProdutosMercado',
-                                   id: 'panelImageListaProdutosMercado',
-                                   layout: 'fit',
-                                   title: 'Listra Produtos mercado',
-//                                   id: 'panelImageListaProdutosMercado',
-                                   hidden: true,
-                                   border: false,
-                                   //height: 250,
+//                                   height: 300,
                                    region: 'center',
                                    trackOver: true
-                               }
+                               },
+//                               {
+//                                   xtype: 'gridListaProdutosGeral', 
+//                                   region: 'center',
+//                                   id: 'gridListaProdutosGeral',
+//                                   title: 'Lista de Produtos Geral', 
+//                                   height: 350,
+//                                   hidden: false,
+//                                   border: false,
+//                                   viewConfig: {
+//                                        plugins: {
+//                                           ddGroup: 'gridListaProdutosMercado',
+//                                           ptype  : 'gridviewdragdrop'
+//                                       }
+//                                  }
+//                                  
+//                               },
+                               
+//                               {
+//                                   xtype:'panelImageListaProdutosMercado',
+//                                   id: 'panelImageListaProdutosMercado',
+//                                   layout: 'fit',
+//                                   title: 'Listra Produtos mercado',
+////                                   id: 'panelImageListaProdutosMercado',
+//                                   hidden: true,
+//                                   border: false,
+//                                   //height: 250,
+//                                   region: 'center',
+//                                   trackOver: true
+//                               }
                         ]
                        },
+                       {
+                                    xtype: 'gridListaProdutosMercado',
+                                    id: 'gridListaProdutosMercado',
+                                    region: 'east',
+                                    margins: '5 5 5 0'
+
+                                },
                        
                    ]
                },           

@@ -7,7 +7,7 @@ Ext.define('AppName.view.dataview.DataViewListaProdutosMercado', {
 //    requires: ['Ext.ux.DataView.Draggable'],
     mixins: {
         dragSelector: 'Ext.ux.DataView.DragSelector',
-        draggable   : 'Ext.ux.DataView.Draggable'
+        draggable   : 'Ext.ux.DataView.Draggable2'
     },
     
     tpl: [
@@ -35,21 +35,21 @@ Ext.define('AppName.view.dataview.DataViewListaProdutosMercado', {
         
 //        
         this.mixins.dragSelector.init(this);
-        console.log(this)
-//        this.mixins.draggable.init( this, {
-//            ddConfig: {
-//                ddGroup: 'organizerDD'
-//            },
-//            ghostTpl: [
-//                '<tpl for=".">',
-//                    '<img align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}"/>',               
-//                    '<tpl if="xindex % 4 == 0"><br /></tpl>',
-//                '</tpl>',
-//                '<div class="count">',
-//                    '{[nome_produto.length]} images selected',
-//                '<div>'
-//            ]
-//        });
+        console.log(this.mixins.draggable)
+        this.mixins.draggable.init( this, {
+            ddConfig: {
+                ddGroup: 'organizerDD'
+            },
+            ghostTpl: [
+                '<tpl for=".">',
+                    '<img align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}"/>',               
+                    '<tpl if="xindex % 4 == 0"><br /></tpl>',
+                '</tpl>',
+                '<div class="count">',
+                    '{[nome_produto.length]} images selected',
+                '<div>'
+            ]
+        });
         
         this.callParent();
     },

@@ -218,7 +218,7 @@ Ext.define('Ext.dd.DDProxy', {
     },
 
     toString: function() {
-        return ("DDProxy " + this.id);
+        return ("DDProxy " + this.id );
     }
 
 });

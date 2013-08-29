@@ -18,6 +18,7 @@ Ext.define('AppName.controller.produtos.ControllerCadProdutoMercado',{
        'dataview.OrgPanel',
        'dataview.PanelImageListaProdutosMercado',
        'dataview.DataViewListaProdutosMercado',
+       'dataview.Teste2DataView',
        
        //'produtos.TreeCategoriasProdutos',
        'produtos.GridListaProdutosMercado',
