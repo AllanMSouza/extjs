@@ -14,6 +14,7 @@ Ext.application({
         'layout.ControllerTreePanelCategorias',
         
         'produtos.ControllerCadProduto',
+        'produtos.ControllerListaCliente',
         
         'usuarios.ControllerCrudClientes',
 //        'usuarios.ControllerCrudMercado',

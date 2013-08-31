@@ -98,10 +98,26 @@ Ext.define('AppName.view.produtos.gridpanelMinhasListas',{
     ],
     tbar:[
         {
-            text:'Nova Lista'
+            text:'Nova Lista',
+            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/add.gif'
         },
         {
-            text: 'Remover Lista'
+            text: 'Excluir',
+            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/delete.gif',
+        },
+        {
+            text: 'Editar',
+            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/page_white_edit.png',
+        },
+        {
+            xtype: 'combobox',
+            fieldLabel: 'Listas',
+            labelWidth: 40,
+            width: 150,
+            store: 'produtos.StoreComboboxListaCliente',
+            queryMode: 'local',
+            displayField: 'nome_lista'
+            
         }
     ]
 })

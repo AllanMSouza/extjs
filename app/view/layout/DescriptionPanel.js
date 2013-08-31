@@ -9,7 +9,7 @@ Ext.define('AppName.view.layout.DescriptionPanel',{
     collapsed: true, 
     split:true, 
     collapsible:true, 
-    width:400,
+    width:450,
     items:[
        
          {

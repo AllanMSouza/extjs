@@ -61,7 +61,7 @@ class Login extends Base {
         return $result['id_mercado'];   
     }
     
-    public function selectIdCliente(){
+    public function selectIdCliente($id_usuario){
         $db = $this->getDb();
         $stm =$db->prepare('select id_cliente from cliente 
                             where usuarios_id_usuarios = :id_usuario');
