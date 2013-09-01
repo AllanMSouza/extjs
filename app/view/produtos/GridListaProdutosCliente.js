@@ -2,9 +2,10 @@ var cellEditing = Ext.create('Ext.grid.plugin.CellEditing', {
         clicksToEdit: 1
     });
     
-Ext.define('AppName.view.produtos.gridpanelMinhasListas',{
+Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
     extend: 'Ext.panel.Panel',
-    alias: 'widget.minhaslistas',
+    alias: 'widget.gridListaProdutosCliente',
+    
     
     //title: 'Minhas Listas',
     region: 'center',
@@ -19,8 +20,11 @@ Ext.define('AppName.view.produtos.gridpanelMinhasListas',{
     items:[
         {
             xtype: 'gridpanel',
+            id: 'gridListaProdutosCliente',
             store: 'storeMinhasListas',
             region: 'center',
+            columnLines: true,
+            enableLocking: true,
             plugins: [             
                     //cellEditing,
                 
@@ -91,9 +95,20 @@ Ext.define('AppName.view.produtos.gridpanelMinhasListas',{
                     ddGroup: 'organizerDD',
                     ptype  : 'gridviewdragdrop'
                    
-                }]
-          }
+                }],
             
+              listeners: {
+            drop: function(node, data, dropRec, dropPosition) {
+                console.log(data.records[0].data)
+//                console.log()
+                var proxy = this.store.getProxy();
+                proxy.api.create = 'app/data/php/ListaProdutosCliente.php?action=insert&nome_lista=' + Ext.getCmp('comboboxListaProdutosCliente').getValue()
+                this.store.setProxy(proxy)
+                this.store.sync()
+
+                 }
+            }
+          } 
         }
     ],
     tbar:[
@@ -112,11 +127,21 @@ Ext.define('AppName.view.produtos.gridpanelMinhasListas',{
         {
             xtype: 'combobox',
             fieldLabel: 'Listas',
+            id: 'comboboxListaProdutosCliente',
             labelWidth: 40,
             width: 150,
             store: 'produtos.StoreComboboxListaCliente',
             queryMode: 'local',
-            displayField: 'nome_lista'
+            displayField: 'nome_lista',
+            listeners:{
+                select:function(){
+                    var proxy = Ext.getCmp('gridListaProdutosCliente').store.getProxy()
+//                    console.log(store);
+                    proxy.api.read = 'app/data/php/ListaProdutosCliente.php?action=select&nome_lista=' + Ext.getCmp('comboboxListaProdutosCliente').getValue()
+                    Ext.getCmp('gridListaProdutosCliente').store.setProxy(proxy)
+                    Ext.getCmp('gridListaProdutosCliente').store.load()
+                }
+            }
             
         }
     ]

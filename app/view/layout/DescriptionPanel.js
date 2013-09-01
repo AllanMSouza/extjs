@@ -13,7 +13,7 @@ Ext.define('AppName.view.layout.DescriptionPanel',{
     items:[
        
          {
-             xtype: 'minhaslistas'
+             xtype: 'gridListaProdutosCliente'
          }
                    
    ]

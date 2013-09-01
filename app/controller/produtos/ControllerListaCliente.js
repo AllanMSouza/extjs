@@ -8,13 +8,18 @@ Ext.define('AppName.controller.produtos.ControllerListaCliente',{
        'produtos.ModelComboboxListaCliente'
     ],
     views: [
-              
+              'produtos.GridListaProdutosCliente'
     ],
     
     init: function(){
         this.control({
+        'gridListaProdutosCliente' : {drop: this.drop}
         
         });
+    },
+    
+    drop:function(){
+        console.log('haha')
     }
     
 })

@@ -1,7 +1,7 @@
 Ext.define('AppName.store.storeMinhasListas',{
     extend: 'Ext.data.Store',
     
-    model: 'AppName.model.modelMinhasListas',
+    model: 'AppName.model.produtos.ModelCrudProdutos',
     autoLoad: true,
     remoteSort: true,
     //storeId: 'storeCampanha',
@@ -12,7 +12,7 @@ Ext.define('AppName.store.storeMinhasListas',{
         
         api:{
             //read: 'extjs/examples/kitchensink/resources/data/sencha-touch-examples.json'
-//            create: 'app/data/php/Campanhas.php?action=insert',
+            create: 'app/data/php/ListaProdutosCliente.php?action=insert'
 //            update: 'app/data/php/Campanhas.php?action=update',
 //            destroy: 'app/data/php/Campanhas.php?action=destroy'
          

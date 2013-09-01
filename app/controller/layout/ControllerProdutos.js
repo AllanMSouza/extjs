@@ -11,7 +11,7 @@ Ext.define('AppName.controller.layout.ControllerProdutos',{
     ],
     views: [
        'produtos.WindowProdutos',
-       'produtos.gridpanelMinhasListas',
+//       'produtos.gridpanelMinhasListas',
        'produtos.DataViewProdutos',
        'dataview.ImageView',
        'dataview.OrgPanel',
