@@ -73,6 +73,24 @@ class ListaProdutosCliente extends Base {
         
         return $result['id_lista_cliente'];
     }
+    
+    public function insertNovaLista(){
+        $data = json_decode($_POST['data']);
+        
+        $db = $this->getDb();
+        $stm = $db->prepare('insert into lista_cliente (nome_lista, cliente_id_cliente) 
+            values (:nome_lista, :id_cliente)');
+        $stm->bindValue(':nome_lista', $data->nome_lista);
+        $stm->bindValue(':id_cliente', $_SESSION['id_cliente']);
+        $result = $stm->execute();
+        
+        $msg = $result ? 'Registro Inserido com Sucesso' : 'Erro ao inserir Registro.' ;
+        
+        echo json_encode(array(
+                    "data" => $result,
+                    "message" => $msg
+                ));
+    }
 }
 
 new ListaProdutosCliente();

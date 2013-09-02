@@ -114,7 +114,8 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
     tbar:[
         {
             text:'Nova Lista',
-            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/add.gif'
+            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/add.gif',
+            action: 'novaLista'
         },
         {
             text: 'Excluir',
