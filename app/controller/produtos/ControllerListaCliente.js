@@ -18,6 +18,7 @@ Ext.define('AppName.controller.produtos.ControllerListaCliente',{
         this.control({
 //        'gridListaProdutosCliente' : {drop: this.drop},
         'gridListaProdutosCliente button[action=novaLista]' : {click: this.novaLista},
+        'gridListaProdutosCliente button[action=editarLista]' : {click: this.editarLista},
         'windowNovaListaCliente button[action=save]': {click: this.save},
         'windowNovaListaCliente button[action=cancel]': {click: this.cancel}
         
@@ -34,6 +35,16 @@ Ext.define('AppName.controller.produtos.ControllerListaCliente',{
         
     },
     
+    editarLista: function(){
+        //console.log(Ext.getCmp('comboboxListaProdutosCliente').getValue())
+         Ext.widget('windowNovaListaCliente')
+         
+         Ext.getCmp('isNoBanco').setValue(1)
+         Ext.getCmp('fieldNomeNovaLista').setValue(Ext.getCmp('comboboxListaProdutosCliente').getValue())
+         Ext.getCmp('fieldLastName').setValue(Ext.getCmp('comboboxListaProdutosCliente').getValue())
+//            console.log(Ext.getCmp('comboboxListaProdutosCliente').getStore().getRecords())
+    },
+    
     save: function(button){
         var win = button.up('window'),
                form = win.down('form').getForm();
@@ -47,7 +58,7 @@ Ext.define('AppName.controller.produtos.ControllerListaCliente',{
             var record = form.getRecord(),
             values = form.getValues();
             if(record){
-                if(record.data['id_lista_cliente']){
+                if(Ext.getCmp('isNoBanco').getValue() == 1){
                     record.set(values);
                 }
             }
@@ -59,7 +70,8 @@ Ext.define('AppName.controller.produtos.ControllerListaCliente',{
             win.close();
             Ext.getCmp('gridListaProdutosCliente').store.sync();
             Ext.getCmp('gridListaProdutosCliente').store.load()
-            Ext.getCmp('comboboxListaProdutosCliente').store.load()
+            Ext.getCmp('comboboxListaProdutosCliente').store.reload()
+            Ext.getCmp('comboboxListaProdutosCliente').setValue(' ')
            }
            else{
                Ext.ux.Msg.flash({

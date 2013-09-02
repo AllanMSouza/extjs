@@ -42,18 +42,19 @@ class ListaProdutosCliente extends Base {
     public function insert(){
         $data = json_decode($_POST['data']);
         $nomeLista = $_GET['nome_lista'];
-        $idListaCliente = $this->getIdListaProdutos($nomeLista);
         
-        $db = $this->getDb();
-        $stm = $db->prepare('insert into lista_cliente_has_produtos 
-            (lista_cliente_id_lista_cliente, produtos_id_produtos, quantidade) 
-            values (:lista_cliente_id_lista_cliente, :produtos_id_produtos, :quantidade)');
-        $stm->bindValue(':lista_cliente_id_lista_cliente', $idListaCliente);
-        $stm->bindValue(':produtos_id_produtos', $data->id_produtos);
-        $stm->bindValue(':quantidade', 1);
-        $result = $stm->execute();
-        
-        $msg = $result ? 'Registro Inserido com Sucesso' : 'Erro ao inserir Registro.' ;
+            $idListaCliente = $this->getIdListaProdutos($nomeLista);
+
+            $db = $this->getDb();
+            $stm = $db->prepare('insert into lista_cliente_has_produtos 
+                (lista_cliente_id_lista_cliente, produtos_id_produtos, quantidade) 
+                values (:lista_cliente_id_lista_cliente, :produtos_id_produtos, :quantidade)');
+            $stm->bindValue(':lista_cliente_id_lista_cliente', $idListaCliente);
+            $stm->bindValue(':produtos_id_produtos', $data->id_produtos);
+            $stm->bindValue(':quantidade', 1);
+            $result = $stm->execute();
+
+            $msg = $result ? 'Registro Inserido com Sucesso' : 'Erro ao inserir Registro.' ;
         
         echo json_encode(array(
                     "data" => $result,
@@ -77,19 +78,37 @@ class ListaProdutosCliente extends Base {
     public function insertNovaLista(){
         $data = json_decode($_POST['data']);
         
-        $db = $this->getDb();
-        $stm = $db->prepare('insert into lista_cliente (nome_lista, cliente_id_cliente) 
-            values (:nome_lista, :id_cliente)');
-        $stm->bindValue(':nome_lista', $data->nome_lista);
-        $stm->bindValue(':id_cliente', $_SESSION['id_cliente']);
-        $result = $stm->execute();
-        
-        $msg = $result ? 'Registro Inserido com Sucesso' : 'Erro ao inserir Registro.' ;
-        
+        if($data->isNoBanco > 0){
+            $result = $this->update($data);
+            $msg = $result ? 'Registro alterado com sucesso': 'Erro ao alterar registro';
+            
+        }
+        else{
+            $db = $this->getDb();
+            $stm = $db->prepare('insert into lista_cliente (nome_lista, cliente_id_cliente) 
+                values (:nome_lista, :id_cliente)');
+            $stm->bindValue(':nome_lista', $data->nome_lista);
+            $stm->bindValue(':id_cliente', $_SESSION['id_cliente']);
+            $result = $stm->execute();
+
+            $msg = $result ? 'Registro Inserido com Sucesso' : 'Erro ao inserir Registro.' ;
+        }
         echo json_encode(array(
                     "data" => $result,
                     "message" => $msg
                 ));
+    }
+    
+    public function update($data){
+        $id_lista = $this->getIdListaProdutos($data->last_name);
+        $db = $this->getDb();
+        $stm = $db->prepare('update lista_cliente set nome_lista = :nome_lista 
+            where id_lista_cliente = :id_lista');
+        $stm->bindValue(':nome_lista', $data->nome_lista);
+        $stm->bindValue(':id_lista', $id_lista);
+        $result = $stm->execute();
+        
+        return $result;
     }
 }
 

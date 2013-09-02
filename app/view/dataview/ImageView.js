@@ -32,7 +32,7 @@ Ext.define('AppName.view.dataview.ImageView', {
         this.store = 'produtos.StoreImageView'
         
         this.mixins.dragSelector.init(this);
-        console.log(this)
+//        console.log(this)
 //        console.log(Ext.getCmp(this.id))
         this.mixins.draggable.init(this, {
             ddConfig: {

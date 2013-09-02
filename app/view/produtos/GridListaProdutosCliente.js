@@ -26,7 +26,7 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
             columnLines: true,
             enableLocking: true,
             plugins: [             
-                    //cellEditing,
+//                    cellEditing,
                 
             {
             ptype: 'rowexpander',
@@ -69,25 +69,29 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
                          dataIndex: 'nome_produto',
                          flex: 1 
                      },
-                     {
-                                                
-                         header: 'Quantidade', 
-                         dataIndex: 'quantidade',
-                         value: 1,
-                         flex: 0.5, 
-                           summaryType: 'sum',
-                            renderer: function(value, metaData, record, rowIdx, colIdx, store, view){
-                                value = 1;
-                                return value;
-                            },
-                            summaryRenderer: function(value, summaryData, dataIndex) {
-                                value = 1;
-                                return value;
-                            },
-                             field: {
-                                xtype: 'numberfield'
-                        }
-                     },
+//                     {
+//                                                
+//                         header: 'Quantidade', 
+//                         editor: {
+//                                xtype: 'numberfield',
+//                                allowBlank: false,
+//                                minValue: 0,
+//                                maxValue: 100000
+//                            },
+//                         dataIndex: 'quantidade',
+//                         value: 1,
+//                         flex: 0.5, 
+////                           summaryType: 'sum',
+////                            renderer: function(value, metaData, record, rowIdx, colIdx, store, view){
+//////                                value = 1;
+////                                return value;
+////                            },
+////                            summaryRenderer: function(value, summaryData, dataIndex) {
+//////                                value = 1;
+////                                return value;
+////                            }
+//                             
+//                     },
                      
           ],
           viewConfig: {
@@ -117,20 +121,22 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
             icon: 'extjs/examples/kitchensink/resources/images/icons/fam/add.gif',
             action: 'novaLista'
         },
+//        {
+//            text: 'Excluir',
+//            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/delete.gif',
+//            
+//        },
         {
-            text: 'Excluir',
-            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/delete.gif',
-        },
-        {
-            text: 'Editar',
+            text: 'Editar Lista',
             icon: 'extjs/examples/kitchensink/resources/images/icons/fam/page_white_edit.png',
+            action: 'editarLista'
         },
         {
             xtype: 'combobox',
             fieldLabel: 'Listas',
             id: 'comboboxListaProdutosCliente',
             labelWidth: 40,
-            width: 150,
+            width: 200,
             store: 'produtos.StoreComboboxListaCliente',
             queryMode: 'local',
             displayField: 'nome_lista',
