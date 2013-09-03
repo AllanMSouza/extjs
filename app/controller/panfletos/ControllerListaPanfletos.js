@@ -11,14 +11,21 @@ Ext.define('AppName.controller.panfletos.ControllerListaPanfletos',{
        'panfletos.GridListaPanfletos',
        'panfletos.WindowGerenciarPanfletos',
        'panfletos.WindowCadPanfletos',
-       'panfletos.FormCadPanfletos'
+       'panfletos.FormCadPanfletos',
+       'panfletos.WindowCadPaginaPanfleto',
+       'panfletos.FormCadPaginaPanfleto'
     ],
     
     init: function(){
         this.control({
             'gridListaPanfletos button[action=insertPanfleto]' : {click: this.insertPanfleto},
-            'windowCadPanfletos button[action=save]' : {click: this.save}
+            'windowCadPanfletos button[action=save]' : {click: this.save},
+            'gridListaPanfletos button[action=insertPaginaPanfleto]' : {click: this.insertPaginaPanfleto}
         });
+    },
+    
+    insertPaginaPanfleto: function(){
+      Ext.widget('windowCadPaginaPanfleto')  
     },
 
 insertPanfleto: function(){
