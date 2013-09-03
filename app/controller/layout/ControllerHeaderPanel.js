@@ -24,6 +24,7 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanel',{
          'headerPanel button[action=showWindowGerenciarMercado]': {click: this.showWindowGerenciarMercado},
          'headerPanel button[action=showWindowCadProduto]': {click: this.showWindowCadProduto},
          'headerPanel button[action=showWindowGerenciarProdutos]': {click: this.showWindowGerenciarProdutos},
+         'headerPanel button[action=showWindowGerenciarPanfletos]': {click: this.showWindowGerenciarPanfletos},
          'headerPanel button[action=logout]': {click: this.logout}
          
         // 'treePanelCategorias': {beforeitemexpand: this.teste}
@@ -62,6 +63,10 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanel',{
     },
     showWindowGerenciarProdutos: function(){
         Ext.widget('windowGerenciarProdutos')
+    },
+    
+    showWindowGerenciarPanfletos: function(){
+        Ext.widget('windowGerenciarPanfletos')
     },
     
     logout: function(){

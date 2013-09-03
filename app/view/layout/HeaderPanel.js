@@ -193,6 +193,14 @@ Ext.define('AppName.view.layout.HeaderPanel',{
                  {
                     xtype: 'button', 
                     region: 'east', 
+                    text: 'Gerenciar Panfletos', 
+                    width: 130, 
+                    margins: '2 2 2 2',
+                    action: 'showWindowGerenciarPanfletos'
+                },
+                 {
+                    xtype: 'button', 
+                    region: 'east', 
                     text: 'Logout', 
                     action: 'logout',
                     width: 80, 
