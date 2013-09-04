@@ -24,6 +24,7 @@ Ext.define('AppName.view.panfletos.FormCadPanfletos',{
                   labelWidth: 40,
                   name: 'data_inicio',
                   fieldLabel: 'Inicio',
+                  format: 'Y-m-d',
                   flex: 1
               },
               {
@@ -31,6 +32,7 @@ Ext.define('AppName.view.panfletos.FormCadPanfletos',{
                   labelWidth: 30,
                   name: 'data_fim',
                   fieldLabel: 'Fim',
+                  format: 'Y-m-d',
                   flex: 1,
                   margins: '0 0 0 5'
               }
