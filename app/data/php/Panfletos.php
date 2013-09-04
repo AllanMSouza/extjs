@@ -15,23 +15,19 @@ class Panfletos extends Base {
          values (:titulo, :descricao, :data_inicio, :data_fim, :mercado_id_mercado)');
      $stm->bindValue(':titulo', $data->titulo);
      $stm->bindValue(':descricao', $data->descricao);
-     $stm->bindValue(':data_inicio', implode(preg_match("~\/~", $data->data_inicio) == 0 ? "/" : "-", 
-                                       array_reverse(explode(preg_match("~\/~", $data->data_inicio) == 0 ? "-" : "/", 
-                                       $data->data_inicio))));
-     $stm->bindValue(':data_fim', implode(preg_match("~\/~", $data->data_fim) == 0 ? "/" : "-", 
-                                       array_reverse(explode(preg_match("~\/~", $data->data_fim) == 0 ? "-" : "/", 
-                                       $data->data_fim))));
+     $stm->bindValue(':data_inicio', $data->data_inicio);
+     $stm->bindValue(':data_fim', $data->data_fim);
      $stm->bindValue(':mercado_id_mercado', $idMercado);
      $result = $stm->execute();
      
-     $newdata = $data;
-     $newdata->id_panfleto = $db->lastInsertId();
+//     $newdata = $data;
+//     $newdata->id_panfleto = $db->lastInsertId();
      
      $msg = $result ? 'Registro inserido com sucesso' : 'Erro ao inserir registro';
       echo json_encode(array(
              "success" => $result,
              "msg" => $msg,
-             "data" => $newdata
+             //"data" => $newdata
          ));
    }
    
