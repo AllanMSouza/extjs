@@ -1,5 +1,5 @@
 Ext.define('AppName.store.panfletos.StoreCrudPanfletos',{
-    extend: 'Ext.data.Store',
+    extend: 'Ext.data.TreeStore',
     
     model: 'AppName.model.panfletos.ModelCrudPanfletos',
     autoLoad: true,
@@ -18,7 +18,7 @@ Ext.define('AppName.store.panfletos.StoreCrudPanfletos',{
         },
         
         actionMethods: {
-            read: 'POST',
+//            read: 'POST',
             create: 'POST',
             update: 'POST',
             destroy: 'POST'
@@ -37,15 +37,6 @@ Ext.define('AppName.store.panfletos.StoreCrudPanfletos',{
             allowSingle: true,
             encode: true,
             root: 'data'
-        },
-        
-        extraParams: {
-            start: 'start',
-            limit: 'limit',
-            sort: 'name',
-            dir: 'ASC',
-            total: 'total'
-            
         },
         listeners:{
             exception: function(proxy, response, operation){

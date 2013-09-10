@@ -22,6 +22,7 @@ Ext.define('AppName.view.panfletos.FormCadPaginaPanfleto',{
                 },
                 {
                     xtype: 'textfield',
+                    name: 'numero_pagina',
                     fieldLabel: 'Nº',
                     labelWidth: 20,
                     width: 60,
@@ -37,6 +38,12 @@ Ext.define('AppName.view.panfletos.FormCadPaginaPanfleto',{
             fieldLabel: 'Imagem do Panfleto',
             margins: '0 0 0 0'
         },
+        {
+            xtype: 'textfield',
+            hidden: true,
+            name: 'id_panfleto',
+            id: 'fieldIdPanfleto'
+        }
         
         
     ]

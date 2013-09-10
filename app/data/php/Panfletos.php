@@ -32,21 +32,41 @@ class Panfletos extends Base {
    }
    
    public function select(){
-       $nomeMercado = $_GET['nome_mercado'];
-       $idMercado = $this->getIdMercado($nomeMercado);
-       
-       $db = $this->getDb();
-       $stm = $db->prepare('select * from panfleto 
-           where mercado_id_mercado = :id_mercado');
-       
-       $stm->bindValue(':id_mercado', $idMercado);
-       $stm->execute();
-       $result = $stm->fetchAll(PDO::FETCH_ASSOC);
-       echo json_encode(array(
-//             "success" => $result,
-//             "msg" => $msg,
-             "data" => $result
-         ));
+      $data=  (object)$_POST;
+      if($data->node == NaN){
+          $db = $this->getDb();
+        $stm = $db->prepare('select * from panfleto 
+            where mercado_id_mercado = :id_mercado');
+
+        $stm->bindValue(':id_mercado', 1);
+        $stm->execute();
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode(array(
+ //             "success" => $result,
+ //             "msg" => $msg,
+              "data" => $result
+          ));
+      }
+      else {
+          $db = $this->getDb();
+                $stm = $db->prepare('select PP.* from panfleto P inner join pagina_panfleto PP
+                    on(P.id_panfleto = PP.panfleto_id_panfleto)
+                    where P.id_panfleto = :id_panfleto
+                    ');
+
+                $stm->bindValue(':id_panfleto', $data->node);
+                $stm->execute();
+                $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+                for($i=0; $i<count($result); $i++){
+                    $result[$i]['titulo'] = 'Página Nº: ' . $result[$i]['numero_pagina'];
+                }
+                echo json_encode(array(
+         //             "success" => $result,
+         //             "msg" => $msg,
+                      "data" => $result
+                  ));
+          
+      }
        
    }
    

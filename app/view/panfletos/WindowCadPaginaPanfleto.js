@@ -16,7 +16,8 @@ Ext.define('AppName.view.panfletos.WindowCadPaginaPanfleto',{
     
     buttons:[
         {
-            text: 'Salvar'
+            text: 'Salvar',
+            action: 'savePagina'
         },
         
         {

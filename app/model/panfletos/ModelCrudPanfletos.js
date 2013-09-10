@@ -8,6 +8,8 @@ Ext.define('AppName.model.panfletos.ModelCrudPanfletos',{
         {name: 'descricao', type: 'string'},
         {name: 'data_inicio', type: 'string'},
         {name: 'data_fim', type: 'string'},
-        {name: 'nome_mercado', type: 'string'}
+        {name: 'nome_mercado', type: 'string'},
+        {name: 'id_pagina_panfleto', type: 'int'},
+        {name: 'numero_pagina', type: 'int'}
     ]
 });
