@@ -71,6 +71,34 @@ class Panfletos extends Base {
    }
    
    public function update(){
+       $data = json_decode($_POST['data']);
+       
+       $db = $this->getDb();
+       $stm = $db->prepare('update panfleto set 
+           titulo = :titulo, 
+           descricao = :descricao, 
+           data_inicio = :data_inicio, 
+           data_fim = :data_fim, 
+           mercado_id_mercado = :mercado_id_mercado 
+           where id_panfleto = :id_panfleto');
+        $stm->bindValue(':titulo', $data->titulo);
+     $stm->bindValue(':descricao', $data->descricao);
+     $stm->bindValue(':data_inicio', $data->data_inicio);
+     $stm->bindValue(':data_fim', $data->data_fim);
+     $stm->bindValue(':mercado_id_mercado',  $_SESSION['id_mercado']);
+     $stm->bindValue(':id_panfleto',  $data->id_panfleto);
+     $result = $stm->execute();
+     
+//     $newdata = $data;
+//     $newdata->id_panfleto = $db->lastInsertId();
+     
+     $msg = $result ? 'Registro atualizado com sucesso' : 'Erro ao atualizar registro';
+      echo json_encode(array(
+             "success" => $result,
+             "msg" => $msg,
+             //"data" => $newdata
+         ));
+     
        
    }
    public function destroy(){
