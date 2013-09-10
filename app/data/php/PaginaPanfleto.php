@@ -46,7 +46,60 @@ class PagnaPanfleto extends Base {
    }
    
    public function update(){
+       $data = (object)$_POST;
+       $db = $this->getDb();
        
+       if($_FILES['imagem_panfleto']['tmp_name']== ""){
+           $stm = $db->prepare('update pagina_panfleto set 
+               numero_pagina = :numero_pagina 
+               where id_pagina_panfleto = :id');
+           $stm->bindValue(':numero_pagina', $data->numero_pagina);
+           $stm->bindValue(':id', $data->id_pagina_panfleto);
+           $result = $stm->execute();
+     
+            if($result == true)
+               $msg = "Pagina atualizada com Sucesso!";
+           else
+               $msg = "Erro ao Atualizar Pagina!";
+            echo json_encode(array(
+                "success" => $result,
+                "msg" => $msg
+            ));
+       }
+       else {
+//           echo 'update img';
+           $arquivo = $_FILES['imagem_panfleto']['tmp_name']; 
+            $tamanho = $_FILES['imagem_panfleto']['size'];
+            $tipo    = $_FILES['imagem_panfleto']['type'];
+            $nome    = $_FILES['imagem_panfleto']['name'];
+
+            if ( $arquivo != "none" ){
+              $fp = fopen($arquivo, "rb");
+              $conteudo = fread($fp, $tamanho);
+              fclose($fp);
+              //$conteudo = addslashes($conteudo);
+
+            }
+           
+            $stm = $db->prepare('update pagina_panfleto set 
+               numero_pagina = :numero_pagina,
+               imagem_pagina = :imagem
+               where id_pagina_panfleto = :id');
+           $stm->bindValue(':numero_pagina', $data->numero_pagina);
+           $stm->bindValue(':imagem', $conteudo);
+           $stm->bindValue(':id', $data->id_pagina_panfleto);
+           $result = $stm->execute();
+     
+            if($result == true)
+               $msg = "Pagina atualizada com Sucesso!";
+           else
+               $msg = "Erro ao Atualizar Pagina!";
+            echo json_encode(array(
+                "success" => $result,
+                "msg" => $msg
+            ));
+           
+       }
    }
    public function destroy(){
        

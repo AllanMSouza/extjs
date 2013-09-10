@@ -34,6 +34,7 @@ Ext.define('AppName.controller.panfletos.ControllerListaPanfletos',{
       
       //console.log(records[0].data)
       Ext.getCmp('fieldIdPanfleto').setValue(records[0].data.id_panfleto)
+      Ext.getCmp('fieldIdPaginaPanfleto').setValue(0)
     },
 
 insertPanfleto: function(){
@@ -87,39 +88,72 @@ save: function(button){
 savePagina:function(button){
     var win = button.up('window'),
                form = win.down('form').getForm();
-               
-        if(form.isValid()){
-            form.submit({
-                url: 'app/data/php/PaginaPanfleto.php?action=insert',
-                 success: function(form, resp){
-                                //console.log(form,resp)
-                                if(resp.result.success == true){
-                                    Ext.example.msg('Server Response', resp.result.msg);
-                                    win.close()
-                                    Ext.getCmp('gridListaPanfletos').store.load()
-                                }
-                        },
-                        failure:function(form,resp){
-                            //postFailure(form, resp);
-                            Ext.example.msg('Server Response', resp.result.msg);
+        
+        if(Ext.getCmp('fieldIdPaginaPanfleto').getValue() == 0){
+            if(form.isValid()){
+                form.submit({
+                    url: 'app/data/php/PaginaPanfleto.php?action=insert',
+                     success: function(form, resp){
+                                    //console.log(form,resp)
+                                    if(resp.result.success == true){
+                                        Ext.example.msg('Server Response', resp.result.msg);
+                                        win.close()
+                                        Ext.getCmp('gridListaPanfletos').store.load()
+                                    }
+                            },
+                            failure:function(form,resp){
+                                //postFailure(form, resp);
+                                Ext.example.msg('Server Response', resp.result.msg);
 
-                        }
-            });
+                            }
+                });
+
+               }
+               else{
+                   Ext.ux.Msg.flash({
+                       msg: 'Ha campos preenchidos incorretamente',
+                       type: 'error'
+                   });
+               }
+        }
+        else{
+             if(form.isValid()){
+                form.submit({
+                    url: 'app/data/php/PaginaPanfleto.php?action=update',
+                     success: function(form, resp){
+                                    //console.log(form,resp)
+                                    if(resp.result.success == true){
+                                        Ext.example.msg('Server Response', resp.result.msg);
+                                        win.close()
+                                        Ext.getCmp('gridListaPanfletos').store.load()
+                                    }
+                            },
+                            failure:function(form,resp){
+                                //postFailure(form, resp);
+                                Ext.example.msg('Server Response', resp.result.msg);
+
+                            }
+                });
+
+               }
+               else{
+                   Ext.ux.Msg.flash({
+                       msg: 'Ha campos preenchidos incorretamente',
+                       type: 'error'
+                   });
+               }
             
-           }
-           else{
-               Ext.ux.Msg.flash({
-                   msg: 'Ha campos preenchidos incorretamente',
-                   type: 'error'
-               });
-           }
-    
+        }
+            
 },
 editarPagina: function(){
      var records = Ext.getCmp('gridListaPanfletos').getSelectionModel().getSelection();
+//     
+//     console.log(records[0].data.id_pagina_panfleto)
                 //console.log(records)
         if(records.length === 1){
              var editWindow = Ext.widget('windowCadPaginaPanfleto');
+             Ext.getCmp('fieldIdPaginaPanfleto').setValue(records[0].data.id_pagina_panfleto)
              var editForm = editWindow.down('form');
              var record = records[0];
             editForm.loadRecord(record);

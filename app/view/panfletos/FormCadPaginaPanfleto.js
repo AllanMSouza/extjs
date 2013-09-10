@@ -43,6 +43,12 @@ Ext.define('AppName.view.panfletos.FormCadPaginaPanfleto',{
             hidden: true,
             name: 'id_panfleto',
             id: 'fieldIdPanfleto'
+        },
+        {
+            xtype:'textfield',
+            hidden: true,
+            name:'id_pagina_panfleto',
+            id: 'fieldIdPaginaPanfleto'
         }
         
         
