@@ -7,7 +7,7 @@ class Panfletos extends Base {
     
    public function insert(){
      $data = json_decode($_POST['data']);
-     $idMercado = $this->getIdMercado($data->nome_mercado);
+//     $idMercado = $this->getIdMercado($data->nome_mercado);
      
      $db = $this->getDb();
      $stm = $db->prepare('insert into panfleto 
@@ -17,7 +17,7 @@ class Panfletos extends Base {
      $stm->bindValue(':descricao', $data->descricao);
      $stm->bindValue(':data_inicio', $data->data_inicio);
      $stm->bindValue(':data_fim', $data->data_fim);
-     $stm->bindValue(':mercado_id_mercado', $idMercado);
+     $stm->bindValue(':mercado_id_mercado',  $_SESSION['id_mercado']);
      $result = $stm->execute();
      
 //     $newdata = $data;
@@ -38,7 +38,7 @@ class Panfletos extends Base {
         $stm = $db->prepare('select * from panfleto 
             where mercado_id_mercado = :id_mercado');
 
-        $stm->bindValue(':id_mercado', 1);
+        $stm->bindValue(':id_mercado', $_SESSION['id_mercado']);
         $stm->execute();
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode(array(

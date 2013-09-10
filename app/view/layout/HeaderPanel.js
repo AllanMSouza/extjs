@@ -190,14 +190,7 @@ Ext.define('AppName.view.layout.HeaderPanel',{
                     margins: '2 2 2 2',
                     action: 'showWindowGerenciarProdutos'
                 },
-                 {
-                    xtype: 'button', 
-                    region: 'east', 
-                    text: 'Gerenciar Panfletos', 
-                    width: 130, 
-                    margins: '2 2 2 2',
-                    action: 'showWindowGerenciarPanfletos'
-                },
+                 
                  {
                     xtype: 'button', 
                     region: 'east', 

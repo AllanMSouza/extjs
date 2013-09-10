@@ -38,18 +38,18 @@ Ext.define('AppName.controller.panfletos.ControllerListaPanfletos',{
 
 insertPanfleto: function(){
 //    console.log(Ext.getCmp('comboboxListaPanfletosNomeMercado').getValue())
-    if(Ext.getCmp('comboboxListaPanfletosNomeMercado').getValue() != null){
+//    if(Ext.getCmp('comboboxListaPanfletosNomeMercado').getValue() != null){
         Ext.widget('windowCadPanfletos')
-        Ext.getCmp('fieldNomeMercado').setValue(Ext.getCmp('comboboxListaPanfletosNomeMercado').getValue())
-    }
-    else {
-         Ext.MessageBox.show({
-                    title: 'Erro',
-                    msg: 'Nenhum Mercado Selecionado!',
-                    icon: Ext.MessageBox.ERROR,
-                    buttons: Ext.Msg.OK
-                });
-    }
+//        Ext.getCmp('fieldNomeMercado').setValue(Ext.getCmp('comboboxListaPanfletosNomeMercado').getValue())
+//    }
+//    else {
+//         Ext.MessageBox.show({
+//                    title: 'Erro',
+//                    msg: 'Nenhum Mercado Selecionado!',
+//                    icon: Ext.MessageBox.ERROR,
+//                    buttons: Ext.Msg.OK
+//                });
+//    }
     
 },
 
@@ -72,7 +72,7 @@ save: function(button){
                     
             }
             win.close();
-            c.store.sync();
+            Ext.getCmp('gridListaPanfletos').store.sync();
             Ext.getCmp('gridListaPanfletos').store.load();
             
            }

@@ -10,36 +10,36 @@ Ext.define('AppName.view.layout.HeaderPanelMercado',{
     bodyStyle: 'background:#fff; border-color:#c0c0c0;',
     
     items:[
-            {
-                xtype: 'button',
-                region: 'west',
-                text: '',
-                width: 50, 
-                height: 60,
-                margins: '2 2 2 2', 
-                scale:'large', 
-                iconAlign: 'top', 
-                action: 'showIcons'
-            },
-            {
-                xtype: 'button',
-                region: 'west',
-                text: '',
-                width: 50, 
-                height: 60, 
-                margins: '2 2 2 2', 
-                scale:'large', 
-                iconAlign: 'top', 
-                action: 'showLista'
-            },
+//            {
+//                xtype: 'button',
+//                region: 'west',
+//                text: '',
+//                width: 50, 
+//                height: 60,
+//                margins: '2 2 2 2', 
+//                scale:'large', 
+//                iconAlign: 'top', 
+//                action: 'showIcons'
+//            },
+//            {
+//                xtype: 'button',
+//                region: 'west',
+//                text: '',
+//                width: 50, 
+//                height: 60, 
+//                margins: '2 2 2 2', 
+//                scale:'large', 
+//                iconAlign: 'top', 
+//                action: 'showLista'
+//            },
        
                  {
                     xtype: 'button', 
                     region: 'east', 
-                    text: 'Gerenciar Produtos', 
+                    text: 'Gerenciar Panfletos', 
                     width: 130, 
                     margins: '2 2 2 2',
-                    action: 'showWindowGerenciarProdutos'
+                    action: 'showWindowGerenciarPanfletos'
                 },
                  {
                     xtype: 'button', 

@@ -17,6 +17,7 @@ Ext.application({
         'produtos.ControllerCadProdutoMercado',       
 
         'usuarios.ControllerCrudMercado',
+        'panfletos.ControllerListaPanfletos',
 
         
        ],
@@ -35,10 +36,10 @@ Ext.application({
                    xtype: 'contentPanel',
                    layout: 'border',
                    items:[
-                       {
-                           xtype: 'treeCategoriasGeral'
-                           
-                       },
+//                       {
+//                           xtype: 'treeCategoriasGeral'
+//                           
+//                       },
 //                       {
 //                           xtype: 'panel', 
 //                           region: 'center',
