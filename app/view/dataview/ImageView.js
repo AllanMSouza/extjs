@@ -11,7 +11,7 @@ Ext.define('AppName.view.dataview.ImageView', {
     
     tpl: [
         '<tpl for=".">',
-            '<div class="thumb-wrap">',
+            '<div class="thumb-wrap" style="width: 115px; height: 170px; padding: 5px;">',
                 '<div class="thumb" style= "">',
                     (!Ext.isIE6? '<img align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}" style="width: 100px; height: 90px; padding: 5px;"/>':               
                     '<div style="width:76px;height:76px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos} style="width: 100px; height: 90px; padding: 5px;"\')"></div>'),
