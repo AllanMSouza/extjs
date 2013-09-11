@@ -7,6 +7,8 @@ Ext.define('AppName.view.panfletos.WindowCadProdutosPanfleto',{
     width: 1350,
     height: 500,
     layout: 'border',
+    maximizable: true,
+    minimizable: true,
     items: [
         {
             xtype: 'treeCategoriasGeral',
