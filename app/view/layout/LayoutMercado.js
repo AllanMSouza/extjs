@@ -18,6 +18,7 @@ Ext.application({
 
         'usuarios.ControllerCrudMercado',
         'panfletos.ControllerListaPanfletos',
+        'panfletos.ControllerListaProdutosPanfletos'
 
         
        ],

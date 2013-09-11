@@ -1,0 +1,64 @@
+<?php
+session_start();
+require_once 'DB/Base.php';
+//require_once 'Categorias.php';
+
+class PagnaPanfletoHasProdutos extends Base {
+   
+    public function select(){
+        $idPagina = $_GET['id_pagina_panfleto'];
+        $db = $this->getDb();
+        $stm = $db->prepare('select *, P.*
+            from pagina_panfleto PP inner join pagina_panfleto_has_produtos PFHP 
+            on (PP.id_pagina_panfleto = PFHP.pagina_panfleto_id_pagina_panfleto) 
+             inner join produtos P on(P.id_produtos = PFHP.produtos_id_produtos) 
+             where PP.id_pagina_panfleto = :id');
+        $stm->bindValue(':id', $idPagina);
+//        $stm->execute();
+        $r = $stm->execute();
+
+        $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+        echo json_encode(array(
+             "success" => $r,
+             "data" => $result
+        ));  
+    }
+    
+    public function insert(){
+        $data = json_decode($_POST['data']);
+        if($data->valor == NULL){
+            return;
+        }
+        else {
+           $db = $this->getDb();
+           $stm = $db->prepare('insert into pagina_panfleto_has_produtos 
+            (pagina_panfleto_id_pagina_panfleto, produtos_id_produtos, valor) 
+            values (:pagina_panfleto_id_pagina_panfleto, :produtos_id_produtos, :valor)');
+            $stm->bindValue(':pagina_panfleto_id_pagina_panfleto', $data->pagina_panfleto_id_pagina_panfleto);
+            $stm->bindValue(':produtos_id_produtos', $data->produtos_id_produtos);
+            $stm->bindValue(':valor', $data->valor);
+            $result = $stm->execute();
+            $msg = $result ? 'Registro inserido com sucesso' : 'Erro ao inserir registro';
+            
+            echo json_encode(array(
+                   "success" => $result,
+                   "msg" => $msg,
+                   //"data" => $newdata
+               ));
+            
+        }
+
+
+    }
+    
+    public function update(){
+        
+    }
+    
+    public function destroy(){
+        
+    }
+}
+
+new PagnaPanfletoHasProdutos();
+?>

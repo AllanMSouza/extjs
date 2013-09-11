@@ -47,6 +47,11 @@ Ext.define('AppName.view.panfletos.GridListaPanfletos',{
             xtype: 'button', 
             text: 'Editar Página',
             action: 'editarPagina'
+        },
+        {
+            xtype:'button',
+            text: 'Adicionar Produtos',
+            action: 'addProdutos'
         }
     ],
     

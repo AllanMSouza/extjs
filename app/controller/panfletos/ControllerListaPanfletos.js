@@ -13,7 +13,9 @@ Ext.define('AppName.controller.panfletos.ControllerListaPanfletos',{
        'panfletos.WindowCadPanfletos',
        'panfletos.FormCadPanfletos',
        'panfletos.WindowCadPaginaPanfleto',
-       'panfletos.FormCadPaginaPanfleto'
+       'panfletos.FormCadPaginaPanfleto',
+       'panfletos.WindowCadProdutosPanfleto',
+//       'panfletos.GridListaProdutosPanfleto'
     ],
     
     init: function(){
@@ -21,6 +23,7 @@ Ext.define('AppName.controller.panfletos.ControllerListaPanfletos',{
             'gridListaPanfletos button[action=insertPanfleto]' : {click: this.insertPanfleto},
             'gridListaPanfletos button[action=editarPagina]' : {click: this.editarPagina},
             'gridListaPanfletos button[action=editarPanfleto]' : {click: this.editarPanfleto},
+            'gridListaPanfletos button[action=addProdutos]' : {click: this.addProdutos},
             'windowCadPanfletos button[action=save]' : {click: this.save},
             'gridListaPanfletos button[action=insertPaginaPanfleto]' : {click: this.insertPaginaPanfleto},
             'windowCadPaginaPanfleto button[action=savePagina]' : {click: this.savePagina},
@@ -177,6 +180,16 @@ editarPanfleto: function(){
         }else{
             return;
         }
+},
+
+addProdutos:function(){
+    Ext.widget('windowCadProdutosPanfleto')
+    var records = Ext.getCmp('gridListaPanfletos').getSelectionModel().getSelection();
+//    console.log()
+    var proxy = Ext.getCmp('gridListaProdutosPanfleto').store.getProxy()
+    proxy.api.read = 'app/data/php/PaginaPanfletoHasProdutos.php?action=select&id_pagina_panfleto=' + records[0].data.id_pagina_panfleto
+    Ext.getCmp('gridListaProdutosPanfleto').store.setProxy(proxy)
+    Ext.getCmp('gridListaProdutosPanfleto').store.load()
 }
     
 });
