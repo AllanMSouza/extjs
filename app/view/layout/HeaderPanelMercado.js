@@ -41,6 +41,22 @@ Ext.define('AppName.view.layout.HeaderPanelMercado',{
                     margins: '2 2 2 2',
                     action: 'showWindowGerenciarPanfletos'
                 },
+                {
+                    xtype: 'button', 
+                    region: 'east', 
+                    text: 'Gerenciar Cadastro', 
+                    width: 130, 
+                    margins: '2 2 2 2',
+                    action: 'showWindowGerenciarCadastro'
+                },
+                {
+                    xtype: 'button', 
+                    region: 'east', 
+                    text: 'Cadastrar Produtos', 
+                    width: 130, 
+                    margins: '2 2 2 2',
+                    action: 'showWindowCadastrarProdutos'
+                },
                  {
                     xtype: 'button', 
                     region: 'east', 

@@ -22,6 +22,8 @@ Ext.define('AppName.controller.layout.ControllerLayout',{
          'headerPanelMercado button[action=showIcons]' : {click: this.showIcons},
          'headerPanelMercado button[action=showLista]' : {click: this.showLista},
          'headerPanelMercado button[action=showWindowGerenciarPanfletos]': {click: this.showWindowGerenciarPanfletos},
+         'headerPanelMercado button[action=showWindowCadastrarProdutos]': {click: this.showWindowCadastrarProdutos},
+         'headerPanelMercado button[action=showWindowGerenciarCadastro]': {click: this.showWindowGerenciarCadastro},
                
         // 'treePanelCategorias': {beforeitemexpand: this.teste}
           
@@ -62,5 +64,16 @@ Ext.define('AppName.controller.layout.ControllerLayout',{
         Ext.getCmp('panelImageListaProdutosMercado').hide();
         Ext.getCmp('gridListaProdutosGeral').show()
         Ext.getCmp('gridListaProdutosMercado').show()
+    },
+    
+    showWindowCadastrarProdutos:function(){
+        Ext.widget('windowCadProduto')
+        var grid = Ext.widget('gridListaProdutos')
+        grid.hide()
+    },
+    
+    showWindowGerenciarCadastro:function(){
+        Ext.widget('windowGerenciarMercado')
+        
     }
 })
