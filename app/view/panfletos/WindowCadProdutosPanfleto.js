@@ -18,8 +18,27 @@ Ext.define('AppName.view.panfletos.WindowCadProdutosPanfleto',{
             title: 'Listra Produtos Geral',
             id: 'dataViewListaProdutosGeral',
             border: false,
-            region: 'center'
-//            trackOver: true
+            region: 'center',
+            trackOver: true,
+            tbar:[
+                {
+                    text: 'atualizar',
+                    icon: 'resources/icons/refresh.png',
+                    handler: function(){
+                        Ext.getCmp('idImageView').store.load()
+                    }
+                    
+                },
+                {
+                    xtype: 'textfield',
+                    width: 410
+                },
+                {
+                    xtype: 'button',
+                    text: 'Pesquisar',
+                     icon: 'resources/icons/search-icon.png'
+                }
+            ]
         },
         {
             xtype: 'gridListaProdutosPanfleto',
