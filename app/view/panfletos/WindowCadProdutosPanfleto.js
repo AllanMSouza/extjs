@@ -1,6 +1,7 @@
 Ext.define('AppName.view.panfletos.WindowCadProdutosPanfleto',{
     extend: 'Ext.window.Window',
     alias: 'widget.windowCadProdutosPanfleto',
+    id:'windowCadProdutosPanfleto',
     
     autoShow: true,
     width: 1350,

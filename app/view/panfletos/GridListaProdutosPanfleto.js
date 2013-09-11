@@ -13,7 +13,7 @@ Ext.define('AppName.view.panfletos.GridListaProdutosPanfleto',{
     columnLines: true,
             enableLocking: true,
     store: 'panfletos.StoreListaProdutosPanfletos',
-    tbar:[
+    /*tbar:[
         {
             xtype: 'button',
             text: 'Novo Produto',
@@ -24,7 +24,7 @@ Ext.define('AppName.view.panfletos.GridListaProdutosPanfleto',{
             text: 'Editar',
             
         }
-    ],
+    ],*/
     plugins: [             
 //                    cellEditing,
                 

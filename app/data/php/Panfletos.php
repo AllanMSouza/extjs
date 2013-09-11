@@ -33,6 +33,7 @@ class Panfletos extends Base {
    
    public function select(){
       $data=  (object)$_POST;
+      
       if($data->node == NaN){
           $db = $this->getDb();
         $stm = $db->prepare('select * from panfleto 
@@ -41,6 +42,15 @@ class Panfletos extends Base {
         $stm->bindValue(':id_mercado', $_SESSION['id_mercado']);
         $stm->execute();
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        
+//        for($i =0; $i < count($result); $i++){
+//            if($this->getListaPaginas($result[$i]['id_panfleto'])){
+//                $result[$i]['leaf'] = false;
+//            }
+//            else
+//                $result[$i]['leaf'] = true;
+//        }
+        
         echo json_encode(array(
  //             "success" => $result,
  //             "msg" => $msg,
@@ -59,6 +69,8 @@ class Panfletos extends Base {
                 $result = $stm->fetchAll(PDO::FETCH_ASSOC);
                 for($i=0; $i<count($result); $i++){
                     $result[$i]['titulo'] = 'Página Nº: ' . $result[$i]['numero_pagina'];
+                    $result[$i]['descricao'] = 'Página';
+                    $result[$i]['leaf'] = true;
                 }
                 echo json_encode(array(
          //             "success" => $result,
@@ -116,6 +128,22 @@ class Panfletos extends Base {
        $result = $stm->fetch(PDO::FETCH_ASSOC);
        
        return $result['id_mercado'];
+   }
+   
+   public function getListaPaginas($idPanfleto){
+       $db = $this->getDb();
+       $stm = $db->prepare('select * from pagina_panfleto where panfleto_id_panfleto = :id');
+       $stm->bindValue(':id', $idPanfleto);
+       $stm->execute();
+       
+        $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+        
+        if($result == NULL)
+            return false;
+        
+        else 
+            return true;
+               
    }
      
 }

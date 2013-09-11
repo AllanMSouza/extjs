@@ -4,6 +4,7 @@ Ext.define('AppName.view.panfletos.GridListaPanfletos',{
     id: 'gridListaPanfletos',
     
     autoShow: true,
+    useArrows: true,
     rootVisible: false,
     region: 'center',
     store: 'panfletos.StoreCrudPanfletos',
@@ -30,28 +31,43 @@ Ext.define('AppName.view.panfletos.GridListaPanfletos',{
         {
             xtype: 'button',
             text: 'Adicionar Panfleto',
-            action: 'insertPanfleto'
+            action: 'insertPanfleto',
+//            disabled: true,
+            id: 'btAddPanfleto',
+            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/add.gif'
         },
         {
             xtype: 'button',
             text: 'Editar Panfleto',
-            action: 'editarPanfleto'
+            action: 'editarPanfleto',
+            disabled: true,
+            id: 'btEditarPanfleto',
+            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/page_white_edit.png',
         },
         {
             xtype: 'button',
             text: 'Adicionar Pagina',
-            action: 'insertPaginaPanfleto'
+            action: 'insertPaginaPanfleto',
+            disabled: true,
+            id: 'btAddPagina',
+            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/add.gif'
         },
         
         {
             xtype: 'button', 
             text: 'Editar Página',
-            action: 'editarPagina'
+            action: 'editarPagina',
+            disabled: true,
+            id: 'btEditarPagina',
+            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/page_white_edit.png',
         },
         {
             xtype:'button',
             text: 'Adicionar Produtos',
-            action: 'addProdutos'
+            action: 'addProdutos',
+            disabled: true,
+            id: 'btAddProduto',
+            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/add.gif'
         }
     ],
     

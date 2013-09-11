@@ -27,11 +27,13 @@ Ext.define('AppName.controller.panfletos.ControllerListaPanfletos',{
             'windowCadPanfletos button[action=save]' : {click: this.save},
             'gridListaPanfletos button[action=insertPaginaPanfleto]' : {click: this.insertPaginaPanfleto},
             'windowCadPaginaPanfleto button[action=savePagina]' : {click: this.savePagina},
-//            'gridListaPanfletos' : {beforeitemexpand: this.beforeitemexpand}
+            'gridListaPanfletos' : {selectionchange: this.selectionchange}
         });
     },
     
     insertPaginaPanfleto: function(){
+        
+        
       Ext.widget('windowCadPaginaPanfleto')
       var records = Ext.getCmp('gridListaPanfletos').getSelectionModel().getSelection();
       
@@ -41,9 +43,21 @@ Ext.define('AppName.controller.panfletos.ControllerListaPanfletos',{
     },
 
 insertPanfleto: function(){
+    
+    if(Ext.getCmp('gridListaPanfletos').getSelectionModel().getSelection()!=null){
+            Ext.widget('windowCadPanfletos')
+        }
+        else {
+            Ext.MessageBox.show({
+                    title: 'Erro',
+                    msg: 'Nenhum Panfleto Selecionado!',
+                    icon: Ext.MessageBox.ERROR,
+                    buttons: Ext.Msg.OK
+                });
+        }
 //    console.log(Ext.getCmp('comboboxListaPanfletosNomeMercado').getValue())
 //    if(Ext.getCmp('comboboxListaPanfletosNomeMercado').getValue() != null){
-        Ext.widget('windowCadPanfletos')
+        
 //        Ext.getCmp('fieldNomeMercado').setValue(Ext.getCmp('comboboxListaPanfletosNomeMercado').getValue())
 //    }
 //    else {
@@ -101,7 +115,7 @@ savePagina:function(button){
                                     if(resp.result.success == true){
                                         Ext.example.msg('Server Response', resp.result.msg);
                                         win.close()
-                                        Ext.getCmp('gridListaPanfletos').store.load()
+                                        Ext.getCmp('gridListaPanfletos').store.reload()
                                     }
                             },
                             failure:function(form,resp){
@@ -184,12 +198,33 @@ editarPanfleto: function(){
 
 addProdutos:function(){
     Ext.widget('windowCadProdutosPanfleto')
+    
     var records = Ext.getCmp('gridListaPanfletos').getSelectionModel().getSelection();
 //    console.log()
     var proxy = Ext.getCmp('gridListaProdutosPanfleto').store.getProxy()
     proxy.api.read = 'app/data/php/PaginaPanfletoHasProdutos.php?action=select&id_pagina_panfleto=' + records[0].data.id_pagina_panfleto
     Ext.getCmp('gridListaProdutosPanfleto').store.setProxy(proxy)
     Ext.getCmp('gridListaProdutosPanfleto').store.load()
-}
     
+//    Ext.getCmp('windowCadProdutosPanfleto').setTitle(records[0])
+},
+
+selectionchange:function(){
+    var records = Ext.getCmp('gridListaPanfletos').getSelectionModel().getSelection();
+  if(records[0].data.descricao == 'Página'){
+      Ext.getCmp('btEditarPagina').enable()
+      Ext.getCmp('btAddProduto').enable()
+      Ext.getCmp('btAddPagina').disable()
+      Ext.getCmp('btEditarPanfleto').disable()
+//      Ext.getCmp('btAddPanfleto').disable()
+  }
+  else{
+      Ext.getCmp('btEditarPagina').disable()
+      Ext.getCmp('btAddProduto').disable()
+      Ext.getCmp('btAddPagina').enable()
+      Ext.getCmp('btEditarPanfleto').enable()
+//      Ext.getCmp('btAddPanfleto').enable()
+  }
+      
+}
 });
