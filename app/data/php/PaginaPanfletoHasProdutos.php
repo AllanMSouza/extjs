@@ -56,7 +56,18 @@ class PagnaPanfletoHasProdutos extends Base {
     }
     
     public function destroy(){
-        
+        $data = json_decode($_POST['data']);
+        $db = $this->getDb();
+        $stm = $db->prepare('delete from pagina_panfleto_has_produtos 
+            where id_pagina_panfleto_has_produtos = :id');
+        $stm->bindValue(':id', $data->id_pagina_panfleto_has_produtos);
+        $result = $stm->execute();
+        $msg = $result ? 'Registro(s) destruido(s) com Sucesso' : 'Erro ao destruir Registro(s).' ;
+        echo json_encode(array(
+           "success" => $result,
+           "msg" =>$msg,
+           //"data" => $data
+      )); 
     }
 }
 

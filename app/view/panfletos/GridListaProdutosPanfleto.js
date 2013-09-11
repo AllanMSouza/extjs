@@ -63,9 +63,59 @@ Ext.define('AppName.view.panfletos.GridListaProdutosPanfleto',{
          ],
     
     columns:[
-        { header: 'Código', dataIndex: 'codigo_produto', flex:0.5},
-        { header: 'Nome Produto', dataIndex: 'nome_produto', flex:1},
-        { header: 'Valor', dataIndex: 'valor', flex: 0.5}
+        { 
+            header: 'Código', 
+            dataIndex: 'codigo_produto', 
+            flex:0.5
+        },
+        { 
+            header: 'Nome Produto', 
+            dataIndex: 'nome_produto', 
+            flex:1
+        },
+        { 
+            header: 'Valor', 
+            dataIndex: 'valor', 
+            flex: 0.5
+        },
+        {
+            xtype: 'actioncolumn',
+            width: 30,
+            sortable: false,
+            menuDisabled: true,
+            items: [{
+                icon: 'extjs/examples/kitchensink/resources/images/icons/fam/cross.gif',
+                tooltip: 'Delete Plant',
+                scope: this,
+                handler: function(){
+                    var grid = Ext.getCmp('gridListaProdutosPanfleto'),
+               records = grid.getSelectionModel().getSelection();
+               
+               if(records.length === 0){
+                   Ext.Msg.alert('Atenção, nenhum registro selecionado');
+                   return false;
+                }else{
+                    Ext.Msg.show({
+                        title: 'Confirmação',
+                        msg: 'Tem certeza que deseja deletar o (s) registro(s) selecionado(s)?',
+                        buttons: Ext.Msg.YESNO,
+                        icon: Ext.MessageBox.WARNING,
+                        escope: this,
+                        width: 450,
+                        fn : function(btn, ev){
+                            if(btn == 'yes'){
+                                var store = grid.store;
+                                        store.remove(records);
+                                    grid.store.sync();
+                            }
+                        }
+                        
+                    })
+                    
+                }
+                }
+         }]
+        }
     ],
     
      viewConfig: {

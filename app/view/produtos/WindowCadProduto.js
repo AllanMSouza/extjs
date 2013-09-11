@@ -7,6 +7,7 @@ Ext.define('AppName.view.produtos.WindowCadProduto',{
     height: 480,
     closable: true,
     layout: 'border',
+    modal: true,
     items:[
         {
             xtype: 'formCadProduto',
