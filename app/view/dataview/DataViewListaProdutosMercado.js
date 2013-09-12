@@ -12,13 +12,15 @@ Ext.define('AppName.view.dataview.DataViewListaProdutosMercado', {
     
     tpl: [
         '<tpl for=".">',
-            '<div class="thumb-wrap">',
+            '<div class="thumb-wrap" style="">',
                 '<div class="thumb" style= "">',
-                    (!Ext.isIE6? '<img align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}" style="width: 100px; height: 90px; padding: 5px;"/>':               
-                    '<div style="width:76px;height:76px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos} style="width: 100px; height: 90px; padding: 5px;"\')"></div>'),
-                '<span><label style =" width=100px height=10px">{nome_produto}</label></span>',
-                '</div>',
+                    (!Ext.isIE6? '<img align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}" style="width: 116px; height: 106px; padding: 5px;"/>':               
+                    '<div style="width:76px;height:76px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos} style="width: 100px; height: 90px; padding: 5px;"\')"></div>'
+            ),
                 
+               '<span style=" font-size:30; color:#55F"><b> {valor} </b></span>',
+                '</div>',
+                  '<span><label style =" width:300px">{nome_produto}</label></span>',
             '</div>',
         '</tpl>'
     ],
@@ -27,7 +29,7 @@ Ext.define('AppName.view.dataview.DataViewListaProdutosMercado', {
     multiSelect: false,
     singleSelect: true,
     cls: 'x-image-view',
-    store : 'produtos.StoreImageView',
+    store : 'produtos.StoreCrudProdutosMercado',
     
     //autoScroll: true,
     

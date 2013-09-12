@@ -1,18 +1,17 @@
-Ext.define('AppName.view.panfletos.WindowCadProdutosPanfleto',{
+Ext.define('AppName.view.produtos.WindowGerenciarProdutosMercado',{
     extend: 'Ext.window.Window',
-    alias: 'widget.windowCadProdutosPanfleto',
-    id:'windowCadProdutosPanfleto',
+    alias: 'widget.windowGerenciarProdutosMercado',
     
     autoShow: true,
+    closable: true,
+    layout: 'border',
     width: 1350,
     height: 500,
-    layout: 'border',
-    maximizable: true,
-    minimizable: true,
-    items: [
+    items:[
         {
-            xtype: 'treeCategoriasGeral',
-            margins: '0 0 0 0'
+             xtype: 'treeCategoriasGeral',
+             margins: '0 0 0 0',
+             width: 250
         },
         {
             xtype: 'orgPanel',
@@ -25,9 +24,11 @@ Ext.define('AppName.view.panfletos.WindowCadProdutosPanfleto',{
            
         },
         {
-            xtype: 'gridListaProdutosPanfleto',
+            xtype: 'gridListaProdutosMercado',
+            id: 'gridListaProdutosMercado',
             region: 'east',
-//            layout: 'fit'
-        }
+//            margins: '5 5 5 0'
+
+        },
     ]
 });

@@ -7,9 +7,12 @@ class ListaProdutosMercado extends Base {
     
     public function insert(){
          $data = json_decode($_POST['data']);
-         $id_mercado = $this->getIdMercado();
+         //$id_mercado = $this->getIdMercado();
 //         var_dump($data);
-         
+          if($data->valor == NULL){
+            return;
+        }
+        else{
          $validade = $data->validade;
          $fabricacao =$data->fabricacao;
          
@@ -19,7 +22,7 @@ class ListaProdutosMercado extends Base {
              (produtos_id_produtos, mercado_id_mercado, valor, quantidade, validade, fabricacao)
              values (:produtos_id_produtos, :mercado_id_mercado, :valor, :quantidade, :validade, :fabricacao)');
          $stm->bindValue(':produtos_id_produtos', $data->id_produtos);
-         $stm->bindValue(':mercado_id_mercado', $id_mercado);
+         $stm->bindValue(':mercado_id_mercado', $_SESSION['id_mercado']);
          $stm->bindValue(':valor', $data->valor);
          $stm->bindValue(':quantidade', $data->quantidade);
          $stm->bindValue(':validade', $validade);
@@ -33,7 +36,7 @@ class ListaProdutosMercado extends Base {
              "msg" => $msg,
 //             "data" => $data
          ));
-         
+        }  
     }
             
    public function update(){

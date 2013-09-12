@@ -11,6 +11,6 @@ Ext.define('AppName.model.panfletos.ModelListaProdutosPanfleto',{
         {name: 'codigo_produto', type:'int'},
         {name: 'nome_produto', type:'string'},
         {name: 'descricao', type: 'string'},
-        {name: 'valor', type: 'float'}
+        {name: 'valor', type: 'double'}
     ]
 });

@@ -51,7 +51,7 @@ Ext.define('AppName.view.panfletos.GridListaProdutosPanfleto',{
                     '<td> <b style=" font-size:12"> Descrição:</b> </td>' +  '<td style=" font-size:12"> {descricao} </td>' + 
                 '</tr>'+
                 '<tr>'+
-                    '<td> <b style=" font-size:12"> por:</b> </td>' +  '<td style=" font-size:30; color:#55F"><b> {valor} </b></td>' + 
+                    '<td> <b style=" font-size:12"> por:</b> </td>' +  '<td style=" font-size:30; color:#55F"><b> R$: {valor} </b></td>' + 
                 '</tr>'+
             '</table>',
                 '</div>',
@@ -134,6 +134,7 @@ Ext.define('AppName.view.panfletos.GridListaProdutosPanfleto',{
 //           console.log(data.records[0].data.id_produtos)
            Ext.getCmp('fieldProdutosIdProdutos').setValue(data.records[0].data.id_produtos)
            this.store.sync()
+           this.store.load()
 ////                console.log()
 //           var proxy = this.store.getProxy();
 //           proxy.api.create = 'app/data/php/ListaProdutosCliente.php?action=insert&nome_lista=' + Ext.getCmp('comboboxListaProdutosCliente').getValue()

@@ -1,16 +1,16 @@
-Ext.define('AppName.view.panfletos.WindowCadProdutosPanfleto',{
+Ext.define('AppName.view.kits.WindowCadKitsProdutos',{
     extend: 'Ext.window.Window',
-    alias: 'widget.windowCadProdutosPanfleto',
-    id:'windowCadProdutosPanfleto',
+    alias: 'widget.windowCadKitsProdutos',
     
     autoShow: true,
-    width: 1350,
+    width: 1000,
     height: 500,
-    layout: 'border',
+    closable: true,
     maximizable: true,
-    minimizable: true,
-    items: [
+    layout: 'border',
+    items:[
         {
+            
             xtype: 'treeCategoriasGeral',
             margins: '0 0 0 0'
         },
@@ -24,10 +24,6 @@ Ext.define('AppName.view.panfletos.WindowCadProdutosPanfleto',{
             trackOver: true,
            
         },
-        {
-            xtype: 'gridListaProdutosPanfleto',
-            region: 'east',
-//            layout: 'fit'
-        }
+        
     ]
 });

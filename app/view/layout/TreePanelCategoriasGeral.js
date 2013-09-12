@@ -15,14 +15,14 @@ Ext.define('AppName.view.layout.TreePanelCategoriasGeral',{
     width:300, 
     store: 'produtos.StoreTreeCategoriasProdutos',
     
-    tbar:[
-        {
-          xtype: 'textfield',
-          emptyText: 'Informe sua pesquisa',
-          width: 200
-        },
-        {
-            text: 'Pesquisar'
-        }
-    ]
+//    tbar:[
+//        {
+//          xtype: 'textfield',
+//          emptyText: 'Informe sua pesquisa',
+//          width: 200
+//        },
+//        {
+//            text: 'Pesquisar'
+//        }
+//    ]
 });

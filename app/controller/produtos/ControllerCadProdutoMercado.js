@@ -23,6 +23,7 @@ Ext.define('AppName.controller.produtos.ControllerCadProdutoMercado',{
        //'produtos.TreeCategoriasProdutos',
        'produtos.GridListaProdutosMercado',
        'produtos.GridListaProdutosGeral',
+       'produtos.WindowGerenciarProdutosMercado'
        //'produtos.DataViewListaProdutosGeral'
        
        

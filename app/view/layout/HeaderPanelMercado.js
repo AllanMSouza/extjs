@@ -36,6 +36,14 @@ Ext.define('AppName.view.layout.HeaderPanelMercado',{
                  {
                     xtype: 'button', 
                     region: 'east', 
+                    text: 'Meus Produtos', 
+                    width: 130, 
+                    margins: '2 2 2 2',
+                    action: 'showWindowGerenciarProdutosMercado'
+                },
+                 {
+                    xtype: 'button', 
+                    region: 'east', 
                     text: 'Gerenciar Panfletos', 
                     width: 130, 
                     margins: '2 2 2 2',
