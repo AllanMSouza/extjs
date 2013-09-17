@@ -12,17 +12,6 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
         'Ext.window.MessageBox',
 
         'AppName.view.desktop.config.ShortcutModel',
-
-//        'AppName.view.desktop.view.SystemStatus',
-//        'AppName.view.desktop.view.VideoWindow',
-//        'AppName.view.desktop.view.GridWindow',
-//        'AppName.view.desktop.view.TabWindow',
-//        'AppName.view.desktop.view.view.AccordionWindow',
-//        'AppName.view.desktop.view.Notepad',
-//        'AppName.view.desktop.view.BogusMenuModule',
-//        'AppName.view.desktop.view.BogusModule',
-
-//        'MyDesktop.Blockalanche',
         'AppName.view.desktop.config.Settings'
     ],
 
@@ -36,17 +25,11 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
 
     getModules : function(){
         return [
-//            new AppName.VideoWindow(),
-            //new MyDesktop.Blockalanche(),
-//            new AppName.SystemStatus(),
-//            new AppName.GridWindow(),
-//            new AppName.TabWindow(),
-//            new AppName.view.AccordionWindow(),
-//            new AppName.Notepad(),
-//            new AppName.BogusMenuModule(),
-//            new AppName.BogusModule(),
-//            new AppName.view.teste.testeWindow()
-              new AppName.view.panfletos.WindowGerenciarPanfletos()
+
+              new AppName.view.panfletos.WindowGerenciarPanfletos(),
+              new AppName.view.produtos.WindowGerenciarProdutosMercado(),
+              new AppName.view.produtos.WindowGerenciarProdutos(),
+              new AppName.view.usuarios.WindowGerenciarMercado()
         ];
     },
 
@@ -63,10 +46,10 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
             shortcuts: Ext.create('Ext.data.Store', {
                 model: 'AppName.view.desktop.config.ShortcutModel',
                 data: [
-//                    { name: 'Grid Window', iconCls: 'grid-shortcut', module: 'grid-win' },
-//                    { name: 'Accordion Window', iconCls: 'accordion-shortcut', module: 'acc-win' },
-//                    { name: 'Notepad', iconCls: 'notepad-shortcut', module: 'notepad' },
-//                    { name: 'System Status', iconCls: 'cpu-shortcut', module: 'systemstatus'}
+                    { name: 'Gerenciar Panfletos', iconCls: 'grid-shortcut', module: 'windowGerenciarPanfletos' },
+                    { name: 'Accordion Window', iconCls: 'accordion-shortcut', module: 'acc-win' },
+                    { name: 'Notepad', iconCls: 'notepad-shortcut', module: 'notepad' },
+                    { name: 'System Status', iconCls: 'cpu-shortcut', module: 'systemstatus'}
                 ]
             }),
 
@@ -80,7 +63,7 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
         var me = this, ret = me.callParent();
 
         return Ext.apply(ret, {
-            title: 'Don Griffin',
+            title: 'Menu',
             iconCls: 'user',
             height: 300,
             toolConfig: {
@@ -119,7 +102,20 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
     },
 
     onLogout: function () {
-        Ext.Msg.confirm('Logout', 'Are you sure you want to logout?');
+         Ext.Msg.show({
+                        title: 'Confirmação',
+                        msg: 'Tem certeza que deseja sair desta aplicação ?',
+                        buttons: Ext.Msg.YESNO,
+                        icon: Ext.MessageBox.WARNING,
+                        escope: this,
+                        width: 450,
+                        fn : function(btn, ev){
+                            if(btn == 'yes'){
+                                viewRedir('Logout','telaprincipal');   
+                            }
+                        }
+                        
+                    })
     },
 
     onSettings: function () {

@@ -18,7 +18,7 @@ Ext.define('AppName.view.desktop.TaskBar', {
      * @cfg {String} startBtnText
      * The text for the Start Button.
      */
-    startBtnText: 'Start',
+    startBtnText: 'Iniciar',
 
     initComponent: function () {
         var me = this;

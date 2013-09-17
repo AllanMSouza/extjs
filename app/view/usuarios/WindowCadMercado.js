@@ -7,6 +7,7 @@ Ext.define('AppName.view.usuarios.WindowCadMercado',{
     height: 250,
     width: 480,
     layout: 'border',
+    modal: true,
     
     items:[
         {

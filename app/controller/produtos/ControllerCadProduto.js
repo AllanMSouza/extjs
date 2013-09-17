@@ -57,6 +57,7 @@ Ext.define('AppName.controller.produtos.ControllerCadProduto',{
     cancel:function(button){
         var win = button.up('windowCadProduto');
         win.close()
+        Ext.getCmp('windowGerenciarProdutos').destroy()
     },
             
    saveProduto: function(button){

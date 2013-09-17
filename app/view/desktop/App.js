@@ -106,8 +106,31 @@ Ext.define('AppName.view.desktop.App', {
     },
 
     createWindow: function(module) {
-        var window = module.createWindow();
-        window.show();
+//        console.log(module.launcher.text)
+        if(module.launcher.text == 'Cadastrar Produtos' ){
+            var window = Ext.widget('gridListaProdutos')
+            window.hide();
+            Ext.widget('windowCadProduto')
+        }
+        
+        else if(module.launcher.text == 'Meu Perfil'){
+//            var window = module.createWindow();
+            var grid = Ext.widget('gridListaMercados')
+            grid.hide();
+            var record = Ext.getCmp('gridListaMercados').store.data.items[0]
+//            console.log(record)
+            var editWindow = Ext.widget('windowCadMercado');
+            var editForm = editWindow.down('form');
+            editForm.loadRecord(record);
+            
+            
+//            Ext.widget('windowCadProduto')
+        }
+        else {
+            var window = module.createWindow();
+            window.show();
+        }
+        
     },
 
     /**

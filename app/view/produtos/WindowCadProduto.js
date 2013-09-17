@@ -1,6 +1,7 @@
 Ext.define('AppName.view.produtos.WindowCadProduto',{
     extend: 'Ext.window.Window',
     alias: 'widget.windowCadProduto',
+    id: 'windowCadProduto',
     
     autoShow: true,
     width: 720,

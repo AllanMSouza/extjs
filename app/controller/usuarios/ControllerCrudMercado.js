@@ -63,7 +63,7 @@ Ext.define('AppName.controller.usuarios.ControllerCrudMercado',{
     
       editMercado: function(){
              var records = Ext.getCmp('gridListaMercados').getSelectionModel().getSelection();
-                
+//                console.log(records[0])
         if(records.length === 1){
              var editWindow = Ext.widget('windowCadMercado');
              var editForm = editWindow.down('form');
