@@ -1,6 +1,6 @@
-Ext.define('AppName.view.kits.WindowCadKitsProdutos',{
+Ext.define('AppName.view.kits.WindowCadKitsProdutosMercado',{
     extend: 'Ext.window.Window',
-    alias: 'widget.windowCadKitsProdutos',
+    alias: 'widget.windowCadKitsProdutosMercado',
     
     autoShow: true,
     width: 1000,
@@ -24,6 +24,9 @@ Ext.define('AppName.view.kits.WindowCadKitsProdutos',{
             trackOver: true,
            
         },
+        {
+            xtype: 'gridListaKitsProdutosMercado'
+        }
         
     ]
 });

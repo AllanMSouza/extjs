@@ -20,14 +20,15 @@ class Panfletos extends Base {
      $stm->bindValue(':mercado_id_mercado',  $_SESSION['id_mercado']);
      $result = $stm->execute();
      
-//     $newdata = $data;
-//     $newdata->id_panfleto = $db->lastInsertId();
+     $newdata = $data;
+     $newdata->id_panfleto = $db->lastInsertId();
+     
      
      $msg = $result ? 'Registro inserido com sucesso' : 'Erro ao inserir registro';
       echo json_encode(array(
              "success" => $result,
              "msg" => $msg,
-             //"data" => $newdata
+             "data" => $newdata
          ));
    }
    

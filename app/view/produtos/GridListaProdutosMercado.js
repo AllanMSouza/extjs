@@ -24,7 +24,7 @@ Ext.define('AppName.view.produtos.GridListaProdutosMercado',{
             text: 'Editar Produto',
             action: 'edit',
             icon: 'extjs/examples/kitchensink/resources/images/icons/fam/page_white_edit.png',
-            disabled: true,
+//            disabled: true,
             itemId: 'edit'
             
            },        

@@ -81,17 +81,20 @@ save: function(button){
             if(record){
                 if(record.data['id_panfleto']){
                     record.set(values);
+                    win.close();
+                    Ext.getCmp('gridListaPanfletos').store.sync();
+                    //            Ext.getCmp('gridListaPanfletos').store.load();
                 }
             }
             else{
                 var record = Ext.create('AppName.model.panfletos.ModelCrudPanfletos');
                 record.set(values);
                 Ext.getCmp('gridListaPanfletos').store.getRootNode().appendChild(record);
-                    
+                win.close();
+                Ext.getCmp('gridListaPanfletos').store.sync();
+                Ext.getCmp('gridListaPanfletos').store.load();                   
             }
-            win.close();
-            Ext.getCmp('gridListaPanfletos').store.sync();
-            Ext.getCmp('gridListaPanfletos').store.load();
+
             
            }
            else{
@@ -115,7 +118,7 @@ savePagina:function(button){
                                     if(resp.result.success == true){
                                         Ext.example.msg('Server Response', resp.result.msg);
                                         win.close()
-                                        Ext.getCmp('gridListaPanfletos').store.reload()
+                                        Ext.getCmp('gridListaPanfletos').store.load()
                                     }
                             },
                             failure:function(form,resp){
@@ -142,7 +145,7 @@ savePagina:function(button){
                                     if(resp.result.success == true){
                                         Ext.example.msg('Server Response', resp.result.msg);
                                         win.close()
-                                        Ext.getCmp('gridListaPanfletos').store.load()
+                                         Ext.getCmp('gridListaPanfletos').store.load()
                                     }
                             },
                             failure:function(form,resp){
@@ -194,10 +197,13 @@ editarPanfleto: function(){
         }else{
             return;
         }
-},
+       
+},      
 
 addProdutos:function(){
-    Ext.widget('windowCadProdutosPanfleto')
+    var win = Ext.widget('windowCadProdutosPanfleto')
+    var win2 = win.createWindow()
+    Ext.getCmp('desktop').restoreWindow(win2);
     
     var records = Ext.getCmp('gridListaPanfletos').getSelectionModel().getSelection();
 //    console.log()
@@ -211,6 +217,7 @@ addProdutos:function(){
 
 selectionchange:function(){
     var records = Ext.getCmp('gridListaPanfletos').getSelectionModel().getSelection();
+//    console.log(records)
   if(records[0].data.descricao == 'Página'){
       Ext.getCmp('btEditarPagina').enable()
       Ext.getCmp('btAddProduto').enable()

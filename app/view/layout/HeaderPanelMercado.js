@@ -41,6 +41,14 @@ Ext.define('AppName.view.layout.HeaderPanelMercado',{
                     margins: '2 2 2 2',
                     action: 'showWindowGerenciarProdutosMercado'
                 },
+                {
+                    xtype: 'button', 
+                    region: 'east', 
+                    text: 'Montar Kits', 
+                    width: 130, 
+                    margins: '2 2 2 2',
+//                    action: 'showWindowGerenciarProdutosMercado'
+                },
                  {
                     xtype: 'button', 
                     region: 'east', 

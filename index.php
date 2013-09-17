@@ -15,6 +15,7 @@
           <!--<link rel="stylesheet" type="text/css" href="extjs/examples/layout-browser/layout-browser.css">-->
           <link rel="stylesheet" type="text/css" href="app/view/dataview/organizer.css">
           <link rel="stylesheet" type="text/css" href="extjs/examples/shared/example.css">
+          <link rel="stylesheet" type="text/css" href="extjs/examples/desktop/css/desktop.css">
           <!--<script type="text/javascript" src="app/view/utils/ViewRedir.js"></script>-->
          
             
@@ -45,8 +46,8 @@
         <?php
 		//echo $_SESSION['login'];
 		if(!isset($_SESSION['id_usuarios'])) { ?>
-                                                       
-			<script type="text/javascript" src="./app.js"></script>
+                                                  
+			<script type="text/javascript" src="app.js"></script>
     <?php }
 		else { 
                     include ("./app/data/php/utils/Layout.php");

@@ -1,6 +1,6 @@
-Ext.define('AppName.view.kits.GridListaKitsProdutos',{
+Ext.define('AppName.view.kits.GridListaKitsProdutosMercado',{
     extend: 'Ext.grid.Panel',
-    alias: 'widget.gridListaKitsProdutos',
+    alias: 'widget.gridListaKitsProdutosMercado',
     
     autoShow: true,
     region: 'east',
