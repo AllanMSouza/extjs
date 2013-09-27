@@ -47,9 +47,9 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
                 model: 'AppName.view.desktop.config.ShortcutModel',
                 data: [
                     { name: 'Gerenciar Panfletos', iconCls: 'grid-shortcut', module: 'windowGerenciarPanfletos' },
-                    { name: 'Accordion Window', iconCls: 'accordion-shortcut', module: 'acc-win' },
-                    { name: 'Notepad', iconCls: 'notepad-shortcut', module: 'notepad' },
-                    { name: 'System Status', iconCls: 'cpu-shortcut', module: 'systemstatus'}
+//                    { name: 'Accordion Window', iconCls: 'accordion-shortcut', module: 'acc-win' },
+//                    { name: 'Notepad', iconCls: 'notepad-shortcut', module: 'notepad' },
+//                    { name: 'System Status', iconCls: 'cpu-shortcut', module: 'systemstatus'}
                 ]
             }),
 
