@@ -1,5 +1,5 @@
 Ext.define('AppName.store.kits.StoreCrudKitsProdutosMercado',{
-    extend: 'Ext.data.TreeStore',
+    extend: 'Ext.data.Store',
     
     model: 'AppName.model.kits.ModelCrudKitsProdutosMercado',
     autoLoad: true,

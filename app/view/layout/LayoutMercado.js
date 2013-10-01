@@ -20,7 +20,8 @@ Ext.application({
         'panfletos.ControllerListaPanfletos',
         'panfletos.ControllerListaProdutosPanfletos',
         
-        'desktop.ControllerDesktop'
+        'desktop.ControllerDesktop',
+        'kits.ControllerCrudKitsMercado'
 
         
        ],
