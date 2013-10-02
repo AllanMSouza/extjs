@@ -1,6 +1,6 @@
 Ext.define('AppName.store.kits.StoreKitsHasProdutos',{
     extend: 'Ext.data.Store',
-//    model: 'AppName.model.panfletos.ModelListaProdutosPanfleto',
+    model: 'AppName.model.kits.ModelListaProdutosKits',
     
     autoLoad:true,
     remoteSort: true,
@@ -10,7 +10,7 @@ Ext.define('AppName.store.kits.StoreKitsHasProdutos',{
         type: 'ajax',
         
         api:{
-            read: '',
+            read: 'app/data/php/KitsHasProdutos.php?action=select',
             create: 'app/data/php/KitsHasProdutos.php?action=insert',
             update: 'app/data/php/KitsHasProdutos.php?action=update',
             destroy: 'app/data/php/KitsHasProdutos.php?action=destroy'

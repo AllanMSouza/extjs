@@ -2,10 +2,12 @@ Ext.define('AppName.controller.kits.ControllerCrudKitsMercado',{
     extend: 'Ext.app.Controller',
     
     stores: [
-      'kits.StoreCrudKitsProdutosMercado'        
+      'kits.StoreCrudKitsProdutosMercado'   ,
+      'kits.StoreKitsHasProdutos'
     ],
     models: [
-        'kits.ModelCrudKitsProdutosMercado'
+        'kits.ModelCrudKitsProdutosMercado',
+        'kits.ModelListaProdutosKits'
     ],
     views: [
         'kits.GridListaKitsMercado',
@@ -33,7 +35,15 @@ Ext.define('AppName.controller.kits.ControllerCrudKitsMercado',{
     },
     
     addProduto:function(){
+        var record = Ext.getCmp('gridListaKitsMercado').getSelectionModel().getSelection();
+//        console.log(record[0].data.id_kit)
         Ext.widget('windowCadProdutosKitsMercado')
+        Ext.getCmp('textfieldIdKit').setValue(record[0].data.id_kit)
+        var proxy = Ext.getCmp('gridListaKitsProdutosMercado').store.getProxy()
+        proxy.api.read = 'app/data/php/KitsHasProdutos.php?action=select&id_kit='+record[0].data.id_kit
+        Ext.getCmp('gridListaKitsProdutosMercado').store.setProxy(proxy)
+        Ext.getCmp('gridListaKitsProdutosMercado').store.load()
+        
     },
     
     save: function(button){

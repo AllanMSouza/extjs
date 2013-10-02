@@ -1,16 +1,19 @@
 Ext.define('AppName.view.kits.GridListaKitsProdutosMercado',{
     extend: 'Ext.grid.Panel',
     alias: 'widget.gridListaKitsProdutosMercado',
+    id: 'gridListaKitsProdutosMercado',
     
     autoShow: true,
-    region: 'east',
-    width: 300,
+    autoScroll: true,
+//    region: 'east',
+//    width: 300,
+//    height: 300,
     split: true,
     title: 'Produtos kit: ',
     columnLines: true,
     enableLocking: true,
-//    store: '',
-//    layout: 'fit',
+    store: 'kits.StoreKitsHasProdutos',
+    layout: 'fit',
     
     plugins: [             
 //                    cellEditing,
@@ -34,9 +37,9 @@ Ext.define('AppName.view.kits.GridListaKitsProdutosMercado',{
                 '<tr>'+
                     '<td><b style=" font-size:12"> Código:</b></td>' +  '<td style=" font-size:12"> {codigo_produto} </td>' + 
                 '</tr>'+
-                '<tr>'+
-                    '<td> <b style=" font-size:12"> Descrição:</b> </td>' +  '<td style=" font-size:12"> {descricao} </td>' + 
-                '</tr>'+
+//                '<tr>'+
+//                    '<td> <b style=" font-size:12"> Descrição:</b> </td>' +  '<td style=" font-size:12"> {descricao} </td>' + 
+//                '</tr>'+
             '</table>',
                 '</div>',
             "</div>",
@@ -45,12 +48,12 @@ Ext.define('AppName.view.kits.GridListaKitsProdutosMercado',{
             })
              }
          ],
-    
+            
     columns:[
         {
             header: 'Código',
-            dataIndex: 'codigo',
-            flex: 1
+            dataIndex: 'codigo_produto',
+            flex: 0.5
         },
         {
             header: 'Produto',
@@ -69,11 +72,11 @@ Ext.define('AppName.view.kits.GridListaKitsProdutosMercado',{
               listeners: {
             drop: function(node, data, dropRec, dropPosition) {
 //                console.log(data.records[0].data)
-////                console.log()
-//                var proxy = this.store.getProxy();
-////                proxy.api.create = 'app/data/php/ListaProdutosCliente.php?action=insert&nome_lista=' + Ext.getCmp('comboboxListaProdutosCliente').getValue()
-//                this.store.setProxy(proxy)
-//                this.store.sync()
+//                console.log()
+                var proxy = this.store.getProxy();
+                proxy.api.create = 'app/data/php/KitsHasProdutos.php?action=insert&id_kit=' + Ext.getCmp('textfieldIdKit').getValue()
+                this.store.setProxy(proxy)
+                this.store.sync()
 
                  }
             }
