@@ -11,14 +11,17 @@ Ext.define('AppName.controller.kits.ControllerCrudKitsMercado',{
         'kits.GridListaKitsMercado',
 //        'kits.GridListaProdutosMercado',
         'kits.WindowCadKit',
-        'kits.WindowCadKitsProdutosMercado',
+        'kits.WindowCadProdutosKitsMercado',
         'kits.WindowGerenciarListaKitsMercado',
+        'kits.GridListaKitsProdutosMercado',
         'kits.FormCadKit'
     ],
     
      init: function(){
         this.control({
             'gridListaKitsMercado button[action=add]' : {click: this.add},
+            'gridListaKitsMercado button[action=edit]' : {click: this.edit},
+            'gridListaKitsMercado button[action=addProdutos]' : {click: this.addProduto},
             'formCadKit button[action=save]' :  {click: this.save}
           
         })
@@ -27,6 +30,10 @@ Ext.define('AppName.controller.kits.ControllerCrudKitsMercado',{
     
     add: function(){
         Ext.widget('windowCadKit')
+    },
+    
+    addProduto:function(){
+        Ext.widget('windowCadProdutosKitsMercado')
     },
     
     save: function(button){
@@ -86,5 +93,23 @@ Ext.define('AppName.controller.kits.ControllerCrudKitsMercado',{
                 })
             }
         }            
-    }, 
+    },
+    
+    edit: function(a,b){
+        
+             var records = Ext.getCmp('gridListaKitsMercado').getSelectionModel().getSelection();
+                //console.log(records)
+        if(records.length === 1){
+             var editWindow = Ext.widget('windowCadKit');
+             var editForm = editWindow.down('form');
+             var record = records[0];
+            editForm.loadRecord(record);
+        }else{
+            return;
+        }
+//        Ext.getCmp('imgProdutos').setSrc('app/data/php/Produtos.php?action=getImagemProdutos&id_produtos='+ record.data.id_produtos)
+        //Ext.getCmp('fileuploadfieldImagemProdutos').setValue("uahuahuah")
+        //console.log(record.data.nome_imagem)
+                
+    },
 })

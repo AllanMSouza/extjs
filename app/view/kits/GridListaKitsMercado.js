@@ -15,10 +15,15 @@ Ext.define('AppName.view.kits.GridListaKitsMercado',{
             action: 'add'
         },
         {
-            text: 'Editar'
+            text: 'Editar',
+            action: 'edit'
         },
         {
             text: 'Excluir'
+        },
+        {
+            text: 'Adicionar Produtos ao Kit',
+            action: 'addProdutos'
         }
     ],
     

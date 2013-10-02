@@ -40,7 +40,7 @@ Ext.define('AppName.view.dataview.DataViewListaProdutosMercado', {
         console.log(this.mixins.draggable)
         this.mixins.draggable.init( this, {
             ddConfig: {
-                ddGroup: 'organizerDD'
+                ddGroup: 'kits'
             },
             ghostTpl: [
                 '<tpl for=".">',
