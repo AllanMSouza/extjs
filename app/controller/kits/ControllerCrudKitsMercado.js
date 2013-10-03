@@ -120,6 +120,8 @@ Ext.define('AppName.controller.kits.ControllerCrudKitsMercado',{
         }else{
             return;
         }
+//        console.log
+        Ext.getCmp('imgKit').setSrc('app/data/php/Kits.php?action=getImgKit&id_kit='+ record.data.id_kit)
 //        Ext.getCmp('imgProdutos').setSrc('app/data/php/Produtos.php?action=getImagemProdutos&id_produtos='+ record.data.id_produtos)
         //Ext.getCmp('fileuploadfieldImagemProdutos').setValue("uahuahuah")
         //console.log(record.data.nome_imagem)

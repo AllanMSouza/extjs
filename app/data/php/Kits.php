@@ -67,8 +67,103 @@ class Kits extends Base {
        }
        
        public function update(){
-           
+        $data = (object)$_POST;
+        $file = $_FILES['imagem'];
+        if($file['tmp_name']==""){
+            $db = $this->getDb();
+            $stm = $db->prepare('update kits set 
+              titulo = :titulo, 
+              descricao = :descricao, 
+              ativo = :ativo, 
+              validade = :validade, 
+              desconto = :desconto, 
+              permissao = :permissao, 
+              mercado_id_mercado = :mercado_id_mercado 
+              where id_kit = :id_kit');
+            $stm->bindValue(':titulo', $data->titulo);
+          $stm->bindValue(':descricao', $data->descricao);
+//          $stm->bindValue(':imagem_kit', $conteudo);
+          if($data->ativo == "on")
+            $stm->bindValue(':ativo', 1);
+          else
+            $stm->bindValue(':ativo', 0);
+          $stm->bindValue(':validade', $data->validade);
+          $stm->bindValue(':desconto', $data->desconto);
+          $stm->bindValue(':permissao', '');
+          $stm->bindValue(':mercado_id_mercado', $_SESSION['id_mercado']);
+          $stm->bindValue(':id_kit', $data->id_kit);
+          $result = $stm->execute();
+          
+          if($result == true)
+            $msg = "Kit alterado com Sucesso!";
+          else
+            $msg = "Erro ao editar Kit!";
+          echo json_encode(array(
+             "success" => $result,
+             "msg" => $msg
+         ));
+            
+        }
+        else {
+            $arquivo = $_FILES['imagem']['tmp_name']; 
+            $tamanho = $_FILES['imagem']['size'];
+            $tipo    = $_FILES['imagem']['type'];
+            $nome    = $_FILES['imagem']['name'];
+            
+            $fp = fopen($arquivo, "rb");
+            $conteudo = fread($fp, $tamanho);
+            fclose($fp);
+            $db = $this->getDb();
+            $stm = $db->prepare('update kits set 
+              titulo = :titulo, 
+              descricao = :descricao, 
+              imagem_kit = :imagem_kit, 
+              ativo = :ativo, 
+              validade = :validade, 
+              desconto = :desconto, 
+              permissao = :permissao, 
+              mercado_id_mercado = :mercado_id_mercado 
+              where id_kit = :id_kit');
+            $stm->bindValue(':titulo', $data->titulo);
+          $stm->bindValue(':descricao', $data->descricao);
+          $stm->bindValue(':imagem_kit', $conteudo);
+          if($data->ativo == "on")
+            $stm->bindValue(':ativo', 1);
+          else
+            $stm->bindValue(':ativo', 0);
+          $stm->bindValue(':validade', $data->validade);
+          $stm->bindValue(':desconto', $data->desconto);
+          $stm->bindValue(':permissao', '');
+          $stm->bindValue(':mercado_id_mercado', $_SESSION['id_mercado']);
+          $stm->bindValue(':id_kit', $data->id_kit);
+          $result = $stm->execute();
+          
+          if($result == true)
+            $msg = "Kit alterado com Sucesso!";
+          else
+            $msg = "Erro ao editar Kit!";
+          echo json_encode(array(
+             "success" => $result,
+             "msg" => $msg
+         ));
+        }
+        
        }
+       
+        public function getImgKit(){
+      $id = $_GET['id_kit'];
+      $db = $this->getDb();
+      $stm = $db->prepare('select * from kits where id_kit = :id');
+      $stm->bindValue(':id', $id);
+      $stm->execute();
+
+      $produto = $stm->fetchAll( PDO::FETCH_ASSOC);
+                  
+        header('Content-Type: image/png');
+        echo $produto[0]['imagem_kit'];
+        //echo "<a href='".$produto[0]['imagem_produto']."' data-lightbox='roadtrip'>";
+        //echo "<img src='".$produto[0]['imagem_produto']."' border='0' style='width: 100px; height: 90px; padding: 5px;'></a>";
+    }
    
 }
 

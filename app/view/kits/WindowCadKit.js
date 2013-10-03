@@ -6,7 +6,7 @@ Ext.define('AppName.view.kits.WindowCadKit',{
     autoShow: true,
     title: 'Cadastro de Kits',
     layout: 'border',
-    width: 400,
+    width: 500,
     height: 280,
     border: false,
     items:[
