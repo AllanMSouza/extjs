@@ -37,9 +37,9 @@ Ext.define('AppName.view.kits.GridListaKitsProdutosMercado',{
                 '<tr>'+
                     '<td><b style=" font-size:12"> Código:</b></td>' +  '<td style=" font-size:12"> {codigo_produto} </td>' + 
                 '</tr>'+
-//                '<tr>'+
-//                    '<td> <b style=" font-size:12"> Descrição:</b> </td>' +  '<td style=" font-size:12"> {descricao} </td>' + 
-//                '</tr>'+
+                '<tr>'+
+                    '<td> <b style=" font-size:12"> por:</b> </td>' +  '<td style=" font-size:30; color:#55F"><b> R$: {valor} </b></td>' + 
+                '</tr>'+
             '</table>',
                 '</div>',
             "</div>",
@@ -59,6 +59,138 @@ Ext.define('AppName.view.kits.GridListaKitsProdutosMercado',{
             header: 'Produto',
             dataIndex: 'nome_produto',
             flex: 1
+        },
+        {
+            header: 'Itens',
+            dataIndex: 'quantidade',
+            align: 'center',            
+            flex: 0.4
+        },
+        {
+            xtype: 'actioncolumn',
+            header: '+',
+            flex:0.2,
+            sortable: false,
+            align: 'center',
+            menuDisabled: true,
+            items:[
+                {
+                    icon: 'resources/icons/seta_up.png',
+                    //tooltip: 'Delete Plant',
+                    scope: this,
+                    handler: function(){
+                    var grid = Ext.getCmp('gridListaKitsProdutosMercado'),
+                    records = grid.getSelectionModel().getSelection();
+
+                    if(records.length === 0){
+                        Ext.Msg.alert('Atenção, nenhum registro selecionado');
+                        return false;
+                     }else{
+                         records[0].data.quantidade = records[0].data.quantidade + 1;
+//                        
+                            Ext.Ajax.request({
+                                url: 'app/data/php/KitsHasProdutos.php?action=up&id=' + records[0].data.id_kits_has_lista_produtos_mercado +
+                                    '&quantidade=' + records[0].data.quantidade,
+                                success: function(form, resp){
+//                               
+                                    Ext.getCmp('gridListaKitsProdutosMercado').store.load()
+//                                }
+                                },
+                                failure:function(form,resp){
+                                   
+                                    Ext.example.msg('Server Response', resp.result.msg);
+
+                                }
+                            });
+
+
+                     }
+                     }
+                }
+            ]
+        },
+        {
+            xtype: 'actioncolumn',
+            header: '-',
+            align: 'center',
+            flex:0.2,
+            sortable: false,
+            menuDisabled: true,
+            items:[
+                {
+                    icon: 'resources/icons/seta_down.png',
+                    //tooltip: 'Delete Plant',
+                    scope: this,
+                    handler: function(){
+                    var grid = Ext.getCmp('gridListaKitsProdutosMercado'),
+                    records = grid.getSelectionModel().getSelection();
+
+                    if(records.length === 0){
+                        Ext.Msg.alert('Atenção, nenhum registro selecionado');
+                        return false;
+                     }else{
+                         records[0].data.quantidade = records[0].data.quantidade - 1;
+//                        
+                            Ext.Ajax.request({
+                                url: 'app/data/php/KitsHasProdutos.php?action=down&id=' + records[0].data.id_kits_has_lista_produtos_mercado +
+                                    '&quantidade=' + records[0].data.quantidade,
+                                success: function(form, resp){
+//                               
+                                    Ext.getCmp('gridListaKitsProdutosMercado').store.load()
+//                                }
+                                },
+                                failure:function(form,resp){
+                                   
+                                    Ext.example.msg('Server Response', resp.result.msg);
+
+                                }
+                            });
+
+
+                     }
+                     }
+                }
+            ]
+        },
+        {
+            xtype: 'actioncolumn',
+            header: 'X',
+            align: 'center',
+            flex:0.2,
+            sortable: false,
+            menuDisabled: true,
+            items: [{
+                icon: 'extjs/examples/kitchensink/resources/images/icons/fam/cross.gif',
+                tooltip: 'Delete Plant',
+                scope: this,
+                handler: function(){
+                    var grid = Ext.getCmp('gridListaKitsProdutosMercado'),
+               records = grid.getSelectionModel().getSelection();
+               
+               if(records.length === 0){
+                   Ext.Msg.alert('Atenção, nenhum registro selecionado');
+                   return false;
+                }else{
+                    Ext.Msg.show({
+                        title: 'Confirmação',
+                        msg: 'Tem certeza que deseja deletar o (s) registro(s) selecionado(s)?',
+                        buttons: Ext.Msg.YESNO,
+                        icon: Ext.MessageBox.WARNING,
+                        escope: this,
+                        width: 450,
+                        fn : function(btn, ev){
+                            if(btn == 'yes'){
+                                var store = grid.store;
+                                        store.remove(records);
+                                    grid.store.sync();
+                            }
+                        }
+                        
+                    })
+                    
+                }
+                }
+         }]
         }
     ],
     

@@ -40,7 +40,7 @@ class KitsHasProdutos extends Base {
            
            $id_kit = $_GET['id_kit'];
            
-           $stm = $db->prepare('select LM.*, P.* 
+           $stm = $db->prepare('select LM.*, P.*, KHLPM.* 
                                 from lista_produtos_mercado LM inner join
                                 kits_has_lista_produtos_mercado KHLPM on 
                                 (LM.id_lista_produtos_mercado = KHLPM.lista_produtos_mercado_id_lista_produtos_mercado) 
@@ -50,6 +50,9 @@ class KitsHasProdutos extends Base {
            $stm->bindValue(':id_kit', $id_kit);
             $stm->execute();
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        
+        for($i =0; $i < count($result); $i++)
+            $result[$i]['valor'] = number_format ((double)$result[$i]['valor'],2,',','');
 
         
         echo json_encode(array(
@@ -59,12 +62,78 @@ class KitsHasProdutos extends Base {
        }
        
        public function destroy(){
+           $data = json_decode($_POST['data']);
            
+           $db = $this->getDb();
+           $stm = $db->prepare('delete from kits_has_lista_produtos_mercado 
+               where id_kits_has_lista_produtos_mercado = :id');
+           $stm->bindValue(':id', $data->id_kits_has_lista_produtos_mercado);
+           
+           $result = $stm->execute();
+          
+          if($result == true)
+            $msg = "Registro excluido com sucesso!";
+          else
+            $msg = "Erro ao Excluir registro!";
+          echo json_encode(array(
+             "success" => $result,
+             "msg" => $msg
+         ));
        }
        
        public function update(){
            
        }
+       
+       public function down(){
+           $idItemKit = $_GET['id'];
+           $qnt = $_GET['quantidade'];
+           
+           $db = $this->getDb();
+           $stm = $db->prepare('update kits_has_lista_produtos_mercado 
+               set quantidade = :quantidade 
+               where id_kits_has_lista_produtos_mercado = :id');
+           $stm->bindValue(':quantidade', $qnt);
+           $stm->bindValue(':id', $idItemKit);
+           
+           $result = $stm->execute();
+          
+          if($result == true)
+            $msg = "Quantidade alterada com sucesso!";
+          else
+            $msg = "Erro ao alterar quantidade!";
+          echo json_encode(array(
+             "success" => $result,
+             "msg" => $msg
+         ));
+           
+       }
+       
+        public function up(){
+           $idItemKit = $_GET['id'];
+           $qnt = $_GET['quantidade'];
+           
+           $db = $this->getDb();
+           $stm = $db->prepare('update kits_has_lista_produtos_mercado 
+               set quantidade = :quantidade 
+               where id_kits_has_lista_produtos_mercado = :id');
+           $stm->bindValue(':quantidade', $qnt);
+           $stm->bindValue(':id', $idItemKit);
+           
+           $result = $stm->execute();
+          
+          if($result == true)
+            $msg = "Quantidade alterada com sucesso!";
+          else
+            $msg = "Erro ao alterar quantidade!";
+          echo json_encode(array(
+             "success" => $result,
+             "msg" => $msg
+         ));
+           
+       }
+               
+       
    
 }
 
