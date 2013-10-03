@@ -72,11 +72,15 @@ Ext.define('AppName.view.kits.GridListaKitsProdutosMercado',{
               listeners: {
             drop: function(node, data, dropRec, dropPosition) {
 //                console.log(data.records[0].data)
-//                console.log()
-                var proxy = this.store.getProxy();
-                proxy.api.create = 'app/data/php/KitsHasProdutos.php?action=insert&id_kit=' + Ext.getCmp('textfieldIdKit').getValue()
-                this.store.setProxy(proxy)
+                
+                Ext.widget('windowQuantidadeItems')
+                Ext.getCmp('kits_id_kit').setValue(Ext.getCmp('textfieldIdKit').getValue())
+                Ext.getCmp('lista_produtos_mercado_id_lista_produtos_mercado').setValue(data.records[0].data.id_lista_produtos_mercado)
                 this.store.sync()
+//                var proxy = this.store.getProxy();
+//                proxy.api.create = 'app/data/php/KitsHasProdutos.php?action=insert&id_kit=' + Ext.getCmp('textfieldIdKit').getValue()
+//                this.store.setProxy(proxy)
+//                this.store.sync()
 
                  }
             }

@@ -16,7 +16,9 @@ Ext.define('AppName.controller.kits.ControllerCrudKitsMercado',{
         'kits.WindowCadProdutosKitsMercado',
         'kits.WindowGerenciarListaKitsMercado',
         'kits.GridListaKitsProdutosMercado',
-        'kits.FormCadKit'
+        'kits.FormCadKit',
+        'kits.WindowQuantidadeItems',
+        'kits.FormQuantidadeItems'
     ],
     
      init: function(){
@@ -24,7 +26,8 @@ Ext.define('AppName.controller.kits.ControllerCrudKitsMercado',{
             'gridListaKitsMercado button[action=add]' : {click: this.add},
             'gridListaKitsMercado button[action=edit]' : {click: this.edit},
             'gridListaKitsMercado button[action=addProdutos]' : {click: this.addProduto},
-            'formCadKit button[action=save]' :  {click: this.save}
+            'formCadKit button[action=save]' :  {click: this.save},
+            'formQuantidadeItems button[action=saveItem]' :  {click: this.saveItem}
           
         })
     },
@@ -122,4 +125,38 @@ Ext.define('AppName.controller.kits.ControllerCrudKitsMercado',{
         //console.log(record.data.nome_imagem)
                 
     },
+    
+    saveItem: function(button){
+        var win = button.up('window'),
+               form = win.down('form').getForm();
+               
+        if(form.isValid()){
+            var record = form.getRecord(),
+            values = form.getValues();
+            if(record){
+                if(record.data['id_kits_has_lista_produtos_mercado']){
+                    record.set(values);
+                    win.close();
+                    Ext.getCmp('gridListaKitsProdutosMercado').store.sync();
+                    //            Ext.getCmp('gridListaPanfletos').store.load();
+                }
+            }
+            else{
+                var record = Ext.create('AppName.model.kits.ModelListaProdutosKits');
+                record.set(values);
+                Ext.getCmp('gridListaKitsProdutosMercado').store.add(record);
+                win.close();
+                Ext.getCmp('gridListaKitsProdutosMercado').store.sync();
+                Ext.getCmp('gridListaKitsProdutosMercado').store.load();                   
+            }
+
+            
+           }
+           else{
+               Ext.ux.Msg.flash({
+                   msg: 'Ha campos preenchidos incorretamente',
+                   type: 'error'
+               });
+           }
+    }
 })

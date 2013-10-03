@@ -7,14 +7,21 @@ class KitsHasProdutos extends Base {
     
        public function insert(){
           $data = json_decode($_POST['data']);
-          $idKit = $_GET['id_kit'];
+          
+          if($data->id_produtos != NULL){
+             return;
+          }
+          else{
+//            var_dump($data);
+//          $idKit = $_GET['id_kit'];
           
           $db = $this->getDb();
           $stm = $db->prepare('insert into kits_has_lista_produtos_mercado 
-              (kits_id_kit, lista_produtos_mercado_id_lista_produtos_mercado) 
-              values (:idKit, :idLista)');
-          $stm->bindValue(':idKit', $idKit);
-          $stm->bindValue(':idLista', $data->id_lista_produtos_mercado);
+              (kits_id_kit, lista_produtos_mercado_id_lista_produtos_mercado, quantidade) 
+              values (:idKit, :idLista, :quantidade)');
+          $stm->bindValue(':idKit', $data->kits_id_kit);
+          $stm->bindValue(':idLista', $data->lista_produtos_mercado_id_lista_produtos_mercado);
+          $stm->bindValue(':quantidade', $data->quantidade);
           $result = $stm->execute();
           
           if($result == true)
@@ -25,7 +32,7 @@ class KitsHasProdutos extends Base {
              "success" => $result,
              "msg" => $msg
          ));
-          
+          }
        }
        
        public function select(){
