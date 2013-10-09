@@ -4,8 +4,8 @@ Ext.define('AppName.view.relatorios.graficos.WindowGraficoBarrasProdutosMercado'
     
     autoShow: true,
     layout: 'border',
-    width: 850,
-    height: 400,
+    width: 880,
+    height: 550,
     modal: true,
     title: 'Grafico de Barras Produtos Mercado',
     items: [
