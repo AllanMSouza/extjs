@@ -85,26 +85,9 @@ class Categorias extends Base {
         
         $result = $stm->fetchAll( PDO::FETCH_ASSOC);
         
-        for($i=0; $i<count($result); $i++){
-           
-            
-             $stm =$db->prepare('select sum(quantidade) as quantidade 
-                            from produtos P inner join 
-                                (select C2.id_categorias, C2.nome_categoria from 
-                                    (select C.id_categorias 
-                                        from categorias C where C.id_categorias = :id_categorias or C.categorias_id_categorias = :categorias_id_categorias) sub
-                                    left join categorias C2 on (C2.categorias_id_categorias = sub.id_categorias)
-                                 group by C2.id_categorias) temp
-                            on (P.categorias_id_categorias = temp.id_categorias) 
-                            inner join lista_produtos_mercado on (P.id_produtos = lista_produtos_mercado.produtos_id_produtos)
-                            where lista_produtos_mercado.mercado_id_mercado = :idMercado');
-            $stm->bindValue(':id_categorias',  $result[$i]['id_categorias']);
-            $stm->bindValue(':categorias_id_categorias', $result[$i]['id_categorias']);
-            $stm->bindValue(':idMercado', $_SESSION['id_mercado']);
-            $stm->execute();
-        
-            $quantidade = $stm->fetch( PDO::FETCH_ASSOC);
-            $result[$i]['quantidade'] = (int)$quantidade['quantidade'];
+        for($i=0; $i<count($result); $i++){            
+             
+            $result[$i]['quantidade'] = (int)  $this->getQuantidade($result[$i]['id_categorias']);
             
             
         }
@@ -115,6 +98,27 @@ class Categorias extends Base {
              "success" => true,
              "data" => $result
          ));
+    }
+    
+    public function getQuantidade($idCategoria){
+        $db = $this->getDb();
+        $stm = $db->prepare('select sum(quantidade) as quantidade 
+                            from produtos P inner join 
+                                (select C2.id_categorias, C2.nome_categoria from 
+                                    (select C.id_categorias 
+                                        from categorias C where C.id_categorias = :id_categorias or C.categorias_id_categorias = :categorias_id_categorias) sub
+                                    left join categorias C2 on (C2.categorias_id_categorias = sub.id_categorias)
+                                 group by C2.id_categorias) temp
+                            on (P.categorias_id_categorias = temp.id_categorias) 
+                            inner join lista_produtos_mercado on (P.id_produtos = lista_produtos_mercado.produtos_id_produtos)
+                            where lista_produtos_mercado.mercado_id_mercado = :idMercado');
+            $stm->bindValue(':id_categorias',  $idCategoria);
+            $stm->bindValue(':categorias_id_categorias', $idCategoria);
+            $stm->bindValue(':idMercado', $_SESSION['id_mercado']);
+            $stm->execute();
+        
+            $quantidade = $stm->fetch( PDO::FETCH_ASSOC);
+            return $quantidade['quantidade'];
     }
 
 }

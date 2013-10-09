@@ -13,23 +13,26 @@ Ext.define('AppName.view.relatorios.graficos.GraficoBarrasProdutosMercado',{
             shadow: true,
 //            store: 'relatorios.graficos.StoreGraficoBarrasProdutosMercado',
             store: Ext.create('Ext.data.JsonStore',{
-    autoLoad: true,
-    autoSync: true,
-    proxy:{
-         type: 'ajax',
-         url: 'app/data/php/Categorias.php?action=getNumeroProdutosCategoria',
-         
-         reader:{            
-             type: 'json',
-             root: 'data'
-         }
-     },
+            autoLoad: true,
+            autoSync: true,
+            proxy:{
+                 type: 'ajax',
+                 api:{
+                     read:'app/data/php/Categorias.php?action=getNumeroProdutosCategoria'
+                 },
 
-     fields:[
-         'nome_categoria',
-         'quantidade',
-         'total'
-     ]
+
+                 reader:{            
+                     type: 'json',
+                     root: 'data'
+                 }
+             },
+
+             fields:[
+                 'nome_categoria',
+                 'quantidade',
+                 'total'
+             ]
      
             }),
 //            legend: {
