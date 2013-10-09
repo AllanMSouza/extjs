@@ -8,6 +8,7 @@ Ext.define('AppName.view.kits.GridListaKitsProdutosMercado',{
 //    region: 'east',
 //    width: 300,
 //    height: 300,
+    ui: 'light',
     split: true,
     title: 'Produtos kit: ',
     columnLines: true,

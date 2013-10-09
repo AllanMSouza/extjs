@@ -241,7 +241,7 @@ class Produtos extends Base {
            //"msg" =>$msg,
            //"data" => $data
       )); 
-    }   
+    }     
    
 }
 

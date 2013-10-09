@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once 'DB/Base.php';
 
 class Categorias extends Base {
@@ -68,7 +68,7 @@ class Categorias extends Base {
     
     public function select(){
         $db = $this->getDb();
-        $stm =$db->prepare('select * from categorias');
+        $stm =$db->prepare('select * from categorias where categorias_id_categorias = 0;');
         $stm->execute();
         
         $result = $stm->fetchAll( PDO::FETCH_ASSOC);
@@ -78,6 +78,42 @@ class Categorias extends Base {
          ));
     }
    
+     public function getNumeroProdutosCategoria(){
+        $db = $this->getDb();
+        $stm =$db->prepare('select * from categorias where categorias_id_categorias = 0;');
+        $stm->execute();
+        
+        $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+        
+        for($i=0; $i<count($result); $i++){
+           
+            
+             $stm =$db->prepare('select sum(quantidade) as quantidade 
+                            from produtos P inner join 
+                                (select C2.id_categorias, C2.nome_categoria from 
+                                    (select C.id_categorias 
+                                        from categorias C where C.id_categorias = :id_categorias or C.categorias_id_categorias = :categorias_id_categorias) sub
+                                    left join categorias C2 on (C2.categorias_id_categorias = sub.id_categorias)
+                                 group by C2.id_categorias) temp
+                            on (P.categorias_id_categorias = temp.id_categorias) 
+                            inner join lista_produtos_mercado on (P.id_produtos = lista_produtos_mercado.produtos_id_produtos)
+                            where lista_produtos_mercado.mercado_id_mercado = :idMercado');
+            $stm->bindValue(':id_categorias',  $result[$i]['id_categorias']);
+            $stm->bindValue(':categorias_id_categorias', $result[$i]['id_categorias']);
+            $stm->bindValue(':idMercado', $_SESSION['id_mercado']);
+            $stm->execute();
+        
+            $quantidade = $stm->fetch( PDO::FETCH_ASSOC);
+            $result[$i]['quantidade'] = (int)$quantidade['quantidade'];
+            
+            
+        }
+//        var_dump($result);
+        echo json_encode(array(
+             "success" => true,
+             "data" => $result
+         ));
+    }
 
 }
 

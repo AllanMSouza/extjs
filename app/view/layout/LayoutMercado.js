@@ -21,7 +21,9 @@ Ext.application({
         'panfletos.ControllerListaProdutosPanfletos',
         
         'desktop.ControllerDesktop',
-        'kits.ControllerCrudKitsMercado'
+        'kits.ControllerCrudKitsMercado',
+        'relatorios.ControllerRelatorioProdutosMercado',
+        'relatorios.graficos.ControllerGraficos'
 
         
        ],

@@ -3,21 +3,25 @@ Ext.define('AppName.view.kits.WindowCadProdutosKitsMercado',{
     alias: 'widget.windowCadProdutosKitsMercado',
     
     autoShow: true,
-    width: 1200,
+    width: 1350,
     height: 500,
     closable: true,
     maximizable: true,
+    title: 'Adicionar Produtos aos Kits',
     layout: 'border',
     items:[
         {
             
             xtype: 'treeCategoriasGeral',
             margins: '0 0 0 0',
+            ui: 'light',
             width: 250
         },
         {
             xtype: 'panel',
             title: 'Lista Produtos Mercado',
+            ui: 'light',
+            split: true,
             autoScroll: true,
             layout: 'fit',
             region: 'center',
