@@ -109,6 +109,8 @@ class Categorias extends Base {
             
         }
 //        var_dump($result);
+        
+        
         echo json_encode(array(
              "success" => true,
              "data" => $result
