@@ -62,6 +62,7 @@ Ext.define('AppName.view.kits.WindowCadProdutosKitsMercado',{
                         {
                             xtype: 'panel',
                             region: 'west',
+                            id: 'htmlPanelKit',
                             border: false,
                             bodyStyle: 'background: -webkit-gradient(linear, left top, left bottom, from(#C0C0C0), to(#F0F0F0)) repeat-X;',
                             html: '<div style="padding-top:10px;"><label style=" font-size:20; padding-top:15px; color:#55F"><b> Total: 0,00  Des: 0% Economia: 0,00</b></label></div>'

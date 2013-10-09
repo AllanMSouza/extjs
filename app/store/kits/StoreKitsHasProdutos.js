@@ -64,6 +64,22 @@ Ext.define('AppName.store.kits.StoreKitsHasProdutos',{
                     Ext.example.msg('Server Response', obj.msg);
         
                  }
+             },
+             
+             read: function(proxy, operation){
+//                 var obj = Ext.decode(operation);
+//                 console.log(operation, operation.length)
+                   var de =0.0, por = 0.0;
+                   
+                   for(var i=0; i < operation.length; i++){
+                       de += operation[i].data.total_itens;
+//                         console.log(operation[i].data.total_itens)
+                   }
+                   por = de * (100 - operation[0].data.desconto)/100
+//                   console.log(de)
+//                   console.log(por.toFixed(2))
+                   Ext.getCmp('htmlPanelKit').
+                       update('<div style="padding-top:10px;"><label style=" font-size:20; padding-top:15px; color:#55F"><b> Total: R$ ' + de.toFixed(2)+' - '+ operation[0].data.desconto+'% por: R$ '+por.toFixed(2)+'</b></label></div>')
              }
          }
 });

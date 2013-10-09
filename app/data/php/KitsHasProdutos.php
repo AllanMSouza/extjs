@@ -40,7 +40,7 @@ class KitsHasProdutos extends Base {
            
            $id_kit = $_GET['id_kit'];
            
-           $stm = $db->prepare('select LM.*, P.*, KHLPM.* 
+           $stm = $db->prepare('select LM.*, P.*, KHLPM.*, (select K.desconto from kits K where K.id_kit = :id_kit) as desconto
                                 from lista_produtos_mercado LM inner join
                                 kits_has_lista_produtos_mercado KHLPM on 
                                 (LM.id_lista_produtos_mercado = KHLPM.lista_produtos_mercado_id_lista_produtos_mercado) 
@@ -51,13 +51,20 @@ class KitsHasProdutos extends Base {
             $stm->execute();
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
         
-        for($i =0; $i < count($result); $i++)
+        for($i =0; $i < count($result); $i++){
+            $result[$i]['total_itens'] = $result[$i]['valor'] * $result[$i]['quantidade'];
+//            $result[$i]['por'] += $result[$i]['total'] * (int) (100 - $result[$i]['desconto'])/100;
             $result[$i]['valor'] = number_format ((double)$result[$i]['valor'],2,',','');
-
-        
+//            $total += $result[$i]['total_itens'];
+//            $result[$i]['total'] = number_format ((double)$result[$i]['total'],2,',','');
+            
+        }
+//        $por = $total * (int) (100 - $result[0]['desconto'])/100;
         echo json_encode(array(
  
-              "data" => $result
+              "data" => $result,
+//                "por" => $por,
+//                "total" => $total
           ));
        }
        
