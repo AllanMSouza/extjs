@@ -13,7 +13,8 @@ Ext.define('AppName.controller.relatorios.graficos.ControllerGraficos',{
      'relatorios.graficos.WindowSelectGrafico',
      'relatorios.graficos.PanelSelectGrafico',
      'relatorios.graficos.DataViewGraficosProdutos',
-     'relatorios.graficos.GraficoPizzaProdutosMercado'
+     'relatorios.graficos.GraficoPizzaProdutosMercado',
+     'relatorios.graficos.WindowGraficoPizzaProdutosMercado'
      
     ],
     

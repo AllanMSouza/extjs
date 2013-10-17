@@ -1,6 +1,6 @@
-Ext.define('AppName.view.relatorios.graficos.WindowGraficoBarrasProdutosMercado',{
+Ext.define('AppName.view.relatorios.graficos.WindowGraficoPizzaProdutosMercado',{
     extend: 'Ext.window.Window',
-    alias: 'widget.windowGraficoBarrasProdutosMercado',
+    alias: 'widget.windowGraficoPizzaProdutosMercado',
     
     autoShow: true,
     layout: 'border',
@@ -10,8 +10,8 @@ Ext.define('AppName.view.relatorios.graficos.WindowGraficoBarrasProdutosMercado'
     title: 'Grafico de Barras Produtos Mercado',
     items: [
         {
-            xtype: 'graficoBarrasProdutosMercado',
-//            xtype: 'graficoPizzaProdutosMercado',
+//            xtype: 'graficoBarrasProdutosMercado',
+            xtype: 'graficoPizzaProdutosMercado',
             region: 'center'
         }
     ]

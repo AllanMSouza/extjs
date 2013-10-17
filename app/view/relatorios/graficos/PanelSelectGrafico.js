@@ -13,7 +13,7 @@ Ext.define('AppName.view.relatorios.graficos.PanelSelectGrafico',{
     items:[
         {
             xtype: 'panel',
-            title: 'Selecionar grafico de venda',
+            title: 'Selecionar grafico de produtos',
 //            height: 350,
             items:[
                 {
@@ -24,7 +24,7 @@ Ext.define('AppName.view.relatorios.graficos.PanelSelectGrafico',{
         },
         {
             xtype: 'panel',
-            title: 'Selecionar grafico de produtos',
+            title: 'Selecionar grafico de vendas',
             items:[
                 {
                     xtype: 'dataviewGraficosProdutos'

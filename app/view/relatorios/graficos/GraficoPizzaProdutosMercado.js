@@ -87,7 +87,7 @@ Ext.define('AppName.view.relatorios.graficos.GraficoPizzaProdutosMercado',{
                         width: 190,
                         height: 48,
                         renderer: function(storeItem, item) {
-                            console.log(storeItem.get('nome_categoria'), storeItem.get('quantidade'), storeItem.get('total'))
+//                            console.log(storeItem.get('nome_categoria'), storeItem.get('quantidade'), storeItem.get('total'))
                             this.setTitle(storeItem.get('nome_categoria') + ': ' + Math.round(storeItem.get('quantidade') / storeItem.get('total')  * 100) + '%');
                         }
                   }

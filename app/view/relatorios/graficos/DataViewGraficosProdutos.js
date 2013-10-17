@@ -58,6 +58,9 @@ selectionchange: function(model, records) {
            if(records[0].data.nome == 'Grafico de barras'){
                Ext.widget('windowGraficoBarrasProdutosMercado')
            }
+           if(records[0].data.nome == 'Grafico de pizza'){
+               Ext.widget('windowGraficoPizzaProdutosMercado')
+           }
                        
         }
     }
