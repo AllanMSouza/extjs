@@ -91,6 +91,16 @@ class Categorias extends Base {
             
             
         }
+        for($i=0; $i<count($result); $i++){                         
+            $total += (int)$result[$i]['quantidade'];          
+            
+        }
+        for($i=0; $i<count($result); $i++){                         
+            $result[$i]['total'] = $total;
+            
+        }
+        
+        
 //        var_dump($result);
         
         
@@ -102,7 +112,7 @@ class Categorias extends Base {
     
     public function getQuantidade($idCategoria){
         $db = $this->getDb();
-        $stm = $db->prepare('select sum(quantidade) as quantidade 
+        $stm = $db->prepare('select count(P.id_produtos) as quantidade 
                             from produtos P inner join 
                                 (select C2.id_categorias, C2.nome_categoria from 
                                     (select C.id_categorias 

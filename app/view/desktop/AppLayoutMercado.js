@@ -77,7 +77,13 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
                         handler: me.onSettings,
                         scope: me
                     },
-                    '-',
+                    {
+                        text: 'Relatórios',
+                        handler: function(){
+                            Ext.widget('windowSelectGrafico')
+                        }
+                    },
+                    '->',
                     {
                         text:'Logout',
                         iconCls:'logout',
@@ -106,7 +112,7 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
     onLogout: function () {
          Ext.Msg.show({
                         title: 'Confirmação',
-                        msg: 'Tem certeza que deseja sair desta aplicação ?',
+                        msg: 'Tem certeza que deseja sair desta aplicação?',
                         buttons: Ext.Msg.YESNO,
                         icon: Ext.MessageBox.WARNING,
                         escope: this,

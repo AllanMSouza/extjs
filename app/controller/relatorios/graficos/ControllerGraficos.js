@@ -10,6 +10,10 @@ Ext.define('AppName.controller.relatorios.graficos.ControllerGraficos',{
     views: [
      'relatorios.graficos.GraficoBarrasProdutosMercado',
      'relatorios.graficos.WindowGraficoBarrasProdutosMercado',
+     'relatorios.graficos.WindowSelectGrafico',
+     'relatorios.graficos.PanelSelectGrafico',
+     'relatorios.graficos.DataViewGraficosProdutos',
+     'relatorios.graficos.GraficoPizzaProdutosMercado'
      
     ],
     

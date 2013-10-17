@@ -1,0 +1,15 @@
+[
+    {
+        nome: 'Grafico de barras',
+        grafico: 'barras.png'
+    },
+    {
+        nome: 'Grafico de pizza',
+        grafico: 'pizza.png'
+    },
+    {
+        nome: 'Grafico de linha',
+        grafico: 'linha.png'
+    },
+    
+]

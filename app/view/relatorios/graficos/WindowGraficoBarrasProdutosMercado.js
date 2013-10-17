@@ -10,7 +10,8 @@ Ext.define('AppName.view.relatorios.graficos.WindowGraficoBarrasProdutosMercado'
     title: 'Grafico de Barras Produtos Mercado',
     items: [
         {
-            xtype: 'graficoBarrasProdutosMercado',
+//            xtype: 'graficoBarrasProdutosMercado',
+            xtype: 'graficoPizzaProdutosMercado',
             region: 'center'
         }
     ]
