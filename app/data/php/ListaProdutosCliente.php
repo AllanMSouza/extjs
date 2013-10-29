@@ -10,9 +10,11 @@ class ListaProdutosCliente extends Base {
         
         $db = $this->getDb();
         $stm = $db->prepare('select * from 
-            lista_cliente_has_produtos inner join produtos 
-            on (lista_cliente_has_produtos.produtos_id_produtos = produtos.id_produtos) 
-            where lista_cliente_has_produtos.lista_cliente_id_lista_cliente = :id_lista_cliente');
+            lista_cliente_has_lista_produtos_mercado  LCPM inner join lista_produtos_mercado LPM
+            on (LCPM.lista_produtos_mercado_id_lista_produtos_mercado = LPM.id_lista_produtos_mercado)
+            inner join produtos P
+            on (LPM.produtos_id_produtos = P.id_produtos) 
+            where LCPM.lista_cliente_id_lista_cliente = :id_lista_cliente');
         $stm->bindValue(':id_lista_cliente', $idLista);
         $stm->execute();
         
@@ -44,13 +46,13 @@ class ListaProdutosCliente extends Base {
         $nomeLista = $_GET['nome_lista'];
         
             $idListaCliente = $this->getIdListaProdutos($nomeLista);
-
+//            var_dump($idListaCliente);
             $db = $this->getDb();
-            $stm = $db->prepare('insert into lista_cliente_has_produtos 
-                (lista_cliente_id_lista_cliente, produtos_id_produtos, quantidade) 
-                values (:lista_cliente_id_lista_cliente, :produtos_id_produtos, :quantidade)');
+            $stm = $db->prepare('insert into lista_cliente_has_lista_produtos_mercado 
+                (lista_cliente_id_lista_cliente, lista_produtos_mercado_id_lista_produtos_mercado, quantidade) 
+                values (:lista_cliente_id_lista_cliente, :lista_produtos_mercado_id_lista_produtos_mercado, :quantidade)');
             $stm->bindValue(':lista_cliente_id_lista_cliente', $idListaCliente);
-            $stm->bindValue(':produtos_id_produtos', $data->id_produtos);
+            $stm->bindValue(':lista_produtos_mercado_id_lista_produtos_mercado', $data->id_lista_produtos_mercado);
             $stm->bindValue(':quantidade', 1);
             $result = $stm->execute();
 

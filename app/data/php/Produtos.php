@@ -197,7 +197,53 @@ class Produtos extends Base {
            //"msg" =>$msg,
            //"data" => $data
       )); 
-    }   
+    }
+    
+    public function getProdutosMercadoDefault(){
+       $idCategoria = $_GET['id_categorias'];
+        $leaf = $_GET['leaf'];
+        //echo $idCategoria;
+        //var_dump($leaf);
+        if($leaf ==  "false"){
+//            echo $_SESSION['id_mercado'];
+            $db = $this->getDb();
+            $stm = $db->prepare('select P.*, lista_produtos_mercado.*
+                from produtos P inner join 
+                    (select C2.id_categorias from 
+                        (select C.id_categorias 
+                            from categorias C where C.id_categorias = :id_categorias or C.categorias_id_categorias = :categorias_id_categorias) sub
+                        left join categorias C2 on (C2.categorias_id_categorias = sub.id_categorias)
+                     group by C2.id_categorias) temp
+                on (P.categorias_id_categorias = temp.id_categorias) 
+                inner join lista_produtos_mercado on (P.id_produtos = lista_produtos_mercado.produtos_id_produtos)
+                where lista_produtos_mercado.mercado_id_mercado = :idMercado');
+            $stm->bindValue(':id_categorias', $idCategoria);
+            $stm->bindValue(':categorias_id_categorias', $idCategoria);
+            $stm->bindValue(':idMercado', 1);
+            $stm->execute();
+            $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+        }
+        
+        else{
+            $db = $this->getDb();
+            $stm = $db->prepare('select P.*, lista_produtos_mercado.*
+                from produtos P inner join lista_produtos_mercado on (P.id_produtos = lista_produtos_mercado.produtos_id_produtos)
+                where P.categorias_id_categorias = :id_categorias and lista_produtos_mercado.mercado_id_mercado = :idMercado');
+            $stm->bindValue(':id_categorias', $idCategoria);
+            $stm->bindValue(':idMercado', 1);
+            $stm->execute();
+            $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+        }
+        
+        
+         echo json_encode(array(
+           "data" => $result
+           //"msg" =>$msg,
+           //"data" => $data
+      )); 
+     
+        
+    }
     
     public function getProdutosMercado(){
         $idCategoria = $_GET['id_categorias'];

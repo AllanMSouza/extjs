@@ -31,11 +31,11 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
             {
             ptype: 'rowexpander',
             rowBodyTpl : new Ext.XTemplate(
-            '<div>',
-            '<div class="imagem-grid" style = "width:100px; height:100px; float:left; position:relative;" >',
+             '<div>',
+            '<div class="imagem-grid" style = "width:116px; height:106px; float:left; position:relative;" >',
                 '<img align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}"/>',
                 '</div>',
-             '<div class="texto-grid" style= "width:250px; float:left; position:relative;">',
+             '<div class="texto-grid" style= "width:280px; float:left; position:relative;">',
                               
 //               '<span><label align=top><b>Descrição:</b></label> {descricao}</span><br>',
 //                '<span><label align=top><b>Código:</b></label> {codigo_produto}</span><br>',
@@ -44,11 +44,21 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
                 '<tr>'+
                     '<td><b style=" font-size:12"> Produto:</b></td>' +  '<td style=" font-size:12"> {nome_produto} </td>' + 
                 '</tr>'+
+               // '<tr>'+
+                //    '<td><b style=" font-size:12"> Código:</b></td>' +  '<td style=" font-size:12"> {codigo_produto} </td>' + 
+               // '</tr>'+
+//                '<tr>'+
+//                    '<td> <b style=" font-size:12"> Descrição:</b> </td>' +  '<td style=" font-size:12"> {descricao} </td>' + 
+//                '</tr>'+
                 '<tr>'+
-                    '<td><b style=" font-size:12"> Código:</b></td>' +  '<td style=" font-size:12"> {codigo_produto} </td>' + 
+                '<tr>'+
+                    '<td> <b style=" font-size:12"> Válidade:</b> ' +  '<td style=" font-size:12"> {fabricacao} <b style=" font-size:12"> -- </b>{validade}</td>' + 
                 '</tr>'+
+//                '<tr>'+
+//                    '<td> <b style=" font-size:12"> Validade:</b> ' +  '<td style=" font-size:12"> {validade} </td>' + 
+//                '</tr>'+
                 '<tr>'+
-                    '<td> <b style=" font-size:12"> Descrição:</b> </td>' +  '<td style=" font-size:12"> {descricao} </td>' + 
+                    '<td> <b style=" font-size:12"> por:</b> </td>' +  '<td style=" font-size:30; color:#55F"><b> R$: {valor} </b></td>' + 
                 '</tr>'+
             '</table>',
                 '</div>',
@@ -96,7 +106,7 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
           ],
           viewConfig: {
                  plugins: [{
-                    ddGroup: 'organizerDD',
+                    ddGroup: 'kits',
                     ptype  : 'gridviewdragdrop'
                    
                 }],

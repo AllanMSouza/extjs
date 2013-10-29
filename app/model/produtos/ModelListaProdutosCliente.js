@@ -16,7 +16,11 @@ Ext.define('AppName.model.produtos.ModelListaProdutosCliente',{
        {name: 'descricao', type: 'string'},
        {name: 'nome_produto', type: 'string'},
        {name: 'nome_categoria', type:'string'},
-       {name: 'nome_imagem', type: 'string'}
+       {name: 'nome_imagem', type: 'string'},
+       {name: 'valor', type: 'double'},
+       {name: 'fabricacao', type: 'string'},
+       {name: 'validade', type: 'string'}
+       
        
    ]
    

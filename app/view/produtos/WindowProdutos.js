@@ -14,11 +14,26 @@ Ext.define('AppName.view.produtos.WindowProdutos',{
     
     items:[
         {
-            xtype: 'orgPanel',
+            xtype: 'panel',
+            title: 'Lista Produtos Mercado',
+            ui: 'light',
+            split: true,
+            autoScroll: true,
+            layout: 'fit',
             region: 'center',
-            ui: 'light'
-            
-        }
+            items:[
+                {
+                    xtype: 'dataViewListaProdutosMercado',
+//                    region: 'center',
+                    
+        //            id: 'dataViewListaProdutosMercado',
+                    border: false,
+//                    region: 'center',
+        //            trackOver: true,
+
+                },
+            ]
+        },
     ]
     
 });

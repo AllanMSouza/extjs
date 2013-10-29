@@ -29,10 +29,10 @@ Ext.define('AppName.controller.layout.ControllerTreePanelCategorias',{
             if (model[0]) {
                 var win = Ext.widget('windowProdutos').setTitle('Produtos Categoria: ' + model[0].data.nome_categoria);
                     //win.setTile('Produtos Categoria: ' + model[0].data.nome_categoria)
-                var store = Ext.getCmp('idImageView').store.getProxy();
-                store.api.read = 'app/data/php/Produtos.php?action=getProdutos&id_categorias=' + model[0].data.id_categorias + '&leaf=' + model[0].data.leaf
-                Ext.getCmp('idImageView').store.setProxy(store)
-                Ext.getCmp('idImageView').store.load()
+                var store = Ext.getCmp('dataViewListaProdutosMercado').store.getProxy();
+                store.api.read = 'app/data/php/Produtos.php?action=getProdutosMercadoDefault&id_categorias=' + model[0].data.id_categorias + '&leaf=' + model[0].data.leaf
+                Ext.getCmp('dataViewListaProdutosMercado').store.setProxy(store)
+                Ext.getCmp('dataViewListaProdutosMercado').store.load()
             }
         },
         
