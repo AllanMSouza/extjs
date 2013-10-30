@@ -33,12 +33,19 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanelCliente',{
             Ext.getCmp('panel-categorias').expand()
             //console.log(Ext.getCmp('panel-categorias').store)
            
-        }       
+        }
         
         Ext.getCmp('panel-categorias').setTitle('Categoria - '+ nomeCategoria);
-        
         var store = Ext.getCmp('panel-categorias').store.getProxy()
-        store.url = 'app/data/php/Categorias.php?action=getCategorias&nomeCategoria=' + nomeCategoria;
+        
+        if(nomeCategoria == 'Kits'){
+            store.url = 'app/data/php/Kits.php?action=selectKitsCliente';
+        }
+        else{
+            store.url = 'app/data/php/Categorias.php?action=getCategorias&nomeCategoria=' + nomeCategoria;
+        }
+        
+        
         Ext.getCmp('panel-categorias').store.setProxy(store)
         Ext.getCmp('panel-categorias').store.load()
             

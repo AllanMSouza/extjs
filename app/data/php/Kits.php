@@ -59,7 +59,27 @@ class Kits extends Base {
         echo json_encode(array(
            "success" => true,
            "data" => $result
-      ));
+        ));
+       }
+       
+       public function selectKitsCliente(){
+           $db = $this->getDb();
+           $stm= $db->prepare('select * from kits where mercado_id_mercado = :id_mercado');
+           $stm->bindValue(':id_mercado', 1);
+           $stm->execute();
+           
+            $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+            
+            for($i = 0; $i < count($result); $i++){
+                $result[$i]['text'] = $result[$i]['titulo'];
+                $result[$i]['leaf'] = true;
+            }
+            
+            echo json_encode(array(
+           "success" => true,
+           "data" => $result
+        )); 
+           
        }
        
        public function destroy(){
