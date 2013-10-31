@@ -9,9 +9,13 @@ Ext.define('AppName.model.kits.ModelCrudKitsProdutosMercado',{
         {name: 'descricao', type: 'string'},
         {name: 'ativo', type: 'int'},
         {name: 'validade', type: 'string'},
+        {name: 'nome_produto', type: 'string'},
         {name: 'desconto', type: 'float'},
         {name: 'permissao', type: 'int'},
         {name: 'total', type: 'string'},
-        {name: 'desc_total', type: 'string'}
+        {name: 'desc_total', type: 'string'},
+        {name: 'id_produtos', type: 'int'},
+        {name: 'total_itens', type: 'double'},
+        
     ]
 });

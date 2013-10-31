@@ -3,7 +3,8 @@ Ext.define('AppName.controller.kits.ControllerCrudKitsMercado',{
     
     stores: [
       'kits.StoreCrudKitsProdutosMercado'   ,
-      'kits.StoreKitsHasProdutos'
+      'kits.StoreKitsHasProdutos',
+      'kits.StoreDataViewKits'
     ],
     models: [
         'kits.ModelCrudKitsProdutosMercado',
@@ -18,7 +19,11 @@ Ext.define('AppName.controller.kits.ControllerCrudKitsMercado',{
         'kits.GridListaKitsProdutosMercado',
         'kits.FormCadKit',
         'kits.WindowQuantidadeItems',
-        'kits.FormQuantidadeItems'
+        'kits.FormQuantidadeItems',
+        'kits.PanelDescKit',
+        'kits.DataViewProdutosKit',
+        'kits.WindowDataViewKitsProdutosKit',
+        
     ],
     
      init: function(){
@@ -26,6 +31,7 @@ Ext.define('AppName.controller.kits.ControllerCrudKitsMercado',{
             'gridListaKitsMercado button[action=add]' : {click: this.add},
             'gridListaKitsMercado button[action=edit]' : {click: this.edit},
             'gridListaKitsMercado button[action=addProdutos]' : {click: this.addProduto},
+            'gridListaKitsMercado button[action=viewProdutos]' : {click: this.viewProdutos},
             'formCadKit button[action=save]' :  {click: this.save},
             'formQuantidadeItems button[action=saveItem]' :  {click: this.saveItem}
           
@@ -160,5 +166,20 @@ Ext.define('AppName.controller.kits.ControllerCrudKitsMercado',{
                    type: 'error'
                });
            }
+    },
+    
+    viewProdutos: function(){
+        Ext.widget('windowDataViewKitsProdutosKit')
+//    console.log('hahaha')
+       
+        var records = Ext.getCmp('gridListaKitsMercado').getSelectionModel().getSelection();
+        
+        Ext.getCmp('imgDataViewKit').setSrc('app/data/php/Kits.php?action=getImgKit&id_kit='+records[0].data.id_kit)
+//console.log(Ext.getCmp('imgDataViewKit'))
+        var proxy = Ext.getCmp('dataViewProdutosKit').store.getProxy()
+        proxy.url = 'app/data/php/Kits.php?action=getTotalKit&id_kit=' + records[0].data.id_kit
+//
+        Ext.getCmp('dataViewProdutosKit').store.setProxy(proxy)
+        Ext.getCmp('dataViewProdutosKit').store.load()
     }
 })

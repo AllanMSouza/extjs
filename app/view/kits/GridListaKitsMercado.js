@@ -24,6 +24,10 @@ Ext.define('AppName.view.kits.GridListaKitsMercado',{
         {
             text: 'Adicionar Produtos ao Kit',
             action: 'addProdutos'
+        },
+        {
+            text: 'Visualizar Prodtuos',
+            action: 'viewProdutos'
         }
     ],
     columnLines: true,
@@ -56,7 +60,7 @@ Ext.define('AppName.view.kits.GridListaKitsMercado',{
                 '</table>'+
                 '<table border=0px>'+
                 '<tr>'+
-                    '<td> <b style=" font-size:14"> De:</td> <td style= "width: 170px"></b>  <label style=" font-size:30; color:#55F"><b> R$: {total} </b></label> </td> <td> <b style=" font-size:14"> Por:</b></td> <td style= "width: 170px"><label style=" font-size:30; color:#55F"><b> R$: {desc_total} </b></label></td> <td> <b style=" font-size:14"> Desconto: </b></td> <td style= "width: 80px"> <label style=" font-size:30; color:#F00"><b> {desconto}% </b></label> </td>' +
+                    '<td> <b style=" font-size:14"> De:</td> <td style= "width: 170px"></b>  <label style=" font-size:30; color:#55F"><b> R$ {total} </b></label> </td> <td> <b style=" font-size:14"> Por:</b></td> <td style= "width: 170px"><label style=" font-size:30; color:#55F"><b> R$ {desc_total} </b></label></td> <td> <b style=" font-size:14"> Desconto: </b></td> <td style= "width: 80px"> <label style=" font-size:30; color:#F00"><b> {desconto}% </b></label> </td>' +
                 '</tr>'+
 //                '<tr>'+
 //                    '<td> <b style=" font-size:14"> De:</b>  <label style=" font-size:30; color:#55F"><b> R$: {total} </b></label> </td> ' +

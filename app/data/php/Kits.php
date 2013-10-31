@@ -70,6 +70,9 @@ class Kits extends Base {
        }
        
        public function getTotalKit($id_kit){
+           if(isset($_GET['id_kit']))
+               $id_kit = $_GET['id_kit'];
+           
            $db = $this->getDb();
            $stm = $db->prepare('SELECT *, KLPM.quantidade as qtd from kits K inner join kits_has_lista_produtos_mercado KLPM 
                         on (K.id_kit = KLPM.kits_id_kit) inner join lista_produtos_mercado LPM
@@ -88,8 +91,14 @@ class Kits extends Base {
                $result[$i]['total_itens'] = $result[$i]['valor'] * $result[$i]['qtd'];
                $total += $result[$i]['total_itens'];
            }
-           
-           return $total;
+           if(isset($_GET['id_kit'])){
+                 echo json_encode(array(
+                "success" => true,
+                "data" => $result
+                ));
+           }
+           else  
+            return $total;
        }
        
        public function selectKitsCliente(){
