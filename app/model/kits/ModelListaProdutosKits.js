@@ -13,7 +13,8 @@ Ext.define('AppName.model.kits.ModelListaProdutosKits',{
         {name: 'id_kits_has_lista_produtos_mercado', type: 'int'},
         {name: 'quantidade', type: 'int'},
         {name: 'desconto', type: 'int'},
-        {name: 'total_itens', type: 'double'}
+        {name: 'total_itens', type: 'double'},
+        
     ]
     
 });

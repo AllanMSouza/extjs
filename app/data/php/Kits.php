@@ -52,14 +52,44 @@ class Kits extends Base {
        
        public function select(){
            $db = $this->getDb();
-           $stm= $db->prepare('select * from kits');
+           $stm= $db->prepare('select * from kits K where K.mercado_id_mercado = :id_mercado');
+           $stm->bindValue(':id_mercado', $_SESSION['id_mercado']);
            $stm->execute();
            
             $result = $stm->fetchAll( PDO::FETCH_ASSOC);
-        echo json_encode(array(
-           "success" => true,
-           "data" => $result
-        ));
+            
+            for($i = 0; $i < count($result); $i++){
+                $result[$i]['total'] = number_format ((double)$this->getTotalKit($result[$i]['id_kit']),2,',',''); 
+                $result[$i]['desc_total'] = number_format((double) $result[$i]['total'] * (100 - $result[$i]['desconto'])/100,2,',','');
+            }
+            
+            echo json_encode(array(
+               "success" => true,
+               "data" => $result
+            ));
+       }
+       
+       public function getTotalKit($id_kit){
+           $db = $this->getDb();
+           $stm = $db->prepare('SELECT *, KLPM.quantidade as qtd from kits K inner join kits_has_lista_produtos_mercado KLPM 
+                        on (K.id_kit = KLPM.kits_id_kit) inner join lista_produtos_mercado LPM
+                        on (KLPM.lista_produtos_mercado_id_lista_produtos_mercado = LPM.id_lista_produtos_mercado)
+                        inner join produtos P on (LPM.produtos_id_produtos = P.id_produtos)
+
+                        where K.mercado_id_mercado = :id_mercado and K.id_kit = :id_kit');
+           $stm->bindValue(':id_mercado', $_SESSION['id_mercado']);
+           $stm->bindValue(':id_kit', $id_kit);
+           $stm->execute();
+           $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+           
+           $total = 0.0;
+           
+           for($i = 0; $i<count($result); $i++){
+               $result[$i]['total_itens'] = $result[$i]['valor'] * $result[$i]['qtd'];
+               $total += $result[$i]['total_itens'];
+           }
+           
+           return $total;
        }
        
        public function selectKitsCliente(){
