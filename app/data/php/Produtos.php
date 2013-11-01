@@ -61,16 +61,33 @@ class Produtos extends Base {
     }
     
     public function getImagemProdutos(){
-      $id = $_GET['id_produtos'];
-      $db = $this->getDb();
-      $stm = $db->prepare('select * from produtos where id_produtos = :id_produtos');
-      $stm->bindValue(':id_produtos', $id);
-      $stm->execute();
+      if($_GET['id_kit'] > 0){
+           $id = $_GET['id_kit'];
+            $db = $this->getDb();
+            $stm = $db->prepare('select * from kits where id_kit = :id');
+            $stm->bindValue(':id', $id);
+            $stm->execute();
 
-      $produto = $stm->fetchAll( PDO::FETCH_ASSOC);
-                  
-        header('Content-Type: image/png');
-        echo $produto[0]['imagem_produto'];
+            $produto = $stm->fetchAll( PDO::FETCH_ASSOC);
+
+              header('Content-Type: image/png');
+              echo $produto[0]['imagem_kit'];
+      }
+      else {
+           $id = $_GET['id_produtos'];
+      
+            $db = $this->getDb();
+            $stm = $db->prepare('select * from produtos where id_produtos = :id_produtos');
+            $stm->bindValue(':id_produtos', $id);
+            $stm->execute();
+
+            $produto = $stm->fetchAll( PDO::FETCH_ASSOC);
+
+              header('Content-Type: image/png');
+              echo $produto[0]['imagem_produto'];
+      }
+        
+       
         //echo "<a href='".$produto[0]['imagem_produto']."' data-lightbox='roadtrip'>";
         //echo "<img src='".$produto[0]['imagem_produto']."' border='0' style='width: 100px; height: 90px; padding: 5px;'></a>";
     }

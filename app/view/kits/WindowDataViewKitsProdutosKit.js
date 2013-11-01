@@ -53,9 +53,15 @@ Ext.define('AppName.view.kits.WindowDataViewKitsProdutosKit',{
                                             text: 'Adicionar a Lista',
                                             width: 200,
                                             height: 50,
-                                            action: 'teste',
+                                            action: 'addKit',
 //                                            hidden:true,
                                             id: 'btAddKit'
+                                        },
+                                        {
+                                            xtype: 'textfield',
+                                            hidden: true, 
+                                            name: 'id_kit',
+                                            id: 'id_kit'
                                         }
                                     ]
                                     

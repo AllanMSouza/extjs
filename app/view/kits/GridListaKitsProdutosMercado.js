@@ -84,7 +84,7 @@ Ext.define('AppName.view.kits.GridListaKitsProdutosMercado',{
                     records = grid.getSelectionModel().getSelection();
 
                     if(records.length === 0){
-                        Ext.Msg.alert('Atenção, nenhum registro selecionado');
+                        Ext.Msg.alert('ERRO','Atenção, nenhum registro selecionado');
                         return false;
                      }else{
                          records[0].data.quantidade = records[0].data.quantidade + 1;

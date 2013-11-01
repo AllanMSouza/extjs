@@ -30,7 +30,7 @@ Ext.define('AppName.controller.layout.ControllerTreePanelCategorias',{
 //                console.log(model[0])
                 if(model[0].data.kit){
                      Ext.widget('windowDataViewKitsProdutosKit').setTitle('Kit: ' + model[0].data.titulo)
-                     
+                     Ext.getCmp('id_kit').setValue(model[0].data.id_kit)
                     
                     Ext.getCmp('imgDataViewKit').setSrc('app/data/php/Kits.php?action=getImgKit&id_kit='+model[0].data.id_kit)
 

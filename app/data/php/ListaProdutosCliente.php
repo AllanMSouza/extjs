@@ -17,13 +17,37 @@ class ListaProdutosCliente extends Base {
             where LCPM.lista_cliente_id_lista_cliente = :id_lista_cliente');
         $stm->bindValue(':id_lista_cliente', $idLista);
         $stm->execute();
+                        
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+//        echo json_encode(array(
+//                    "data" => $result,
+//                   // "message" => $msg
+//         ));
+        $k = count($result);
+        $kits = $this->getIdKit($idLista);
+        for($i =0; $i< count($kits); $i++, $k++){
+             $kits[$i]['valor'] = $this->getTotalKit($kits[$i]['id_kit']);
+             $kits[$i]['kit'] = true;
+             $result[$k] = $kits[$i];
+        }
+        
+        echo json_encode(array(
+          "data" => $result           
+         ));
+    }
+    
+    public function getIdKit($id_lista_cliente){
+        $db = $this->getDb();
+        $stm = $db->prepare('select *, K.id_kit as codigo_produto, K.titulo as nome_produto from lista_cliente_has_kits LCK inner join kits K 
+            on (K.id_kit = LCK.kits_id_kit)
+            where lista_cliente_id_lista_cliente = :id_lista');
+        $stm->bindValue(':id_lista', $id_lista_cliente);
+        $stm->execute();
         
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode(array(
-                    "data" => $result,
-                   // "message" => $msg
-                ));
+        return $result;
     }
+    
    
     public function selectListas(){
 //        var_dump($_SESSION);
@@ -62,6 +86,34 @@ class ListaProdutosCliente extends Base {
                     "data" => $result,
                     "message" => $msg
                 ));
+        
+    }
+    
+    public function insertKit(){
+        if(isset($_GET['nome_lista']))
+            $nome_lista = $_GET['nome_lista'];
+        
+        if(isset($_GET['id_kit']))
+            $id_kit = $_GET['id_kit'];
+        
+        $id_lista = $this->getIdListaProdutos($nome_lista);
+        var_dump($id_lista, $id_kit);
+        $db = $this->getDb();
+        $stm = $db->prepare('insert into lista_cliente_has_kits 
+            (lista_cliente_id_lista_cliente, kits_id_kit, quantidade) 
+            values (:id_lista, :id_kit, :quantidade)');
+        $stm->bindValue(':id_lista', $id_lista);
+        $stm->bindValue(':id_kit', $id_kit);
+        $stm->bindValue(':quantidade', 1);
+        $result = $stm->execute();
+
+        $msg = $result ? 'Registro Inserido com Sucesso' : 'Erro ao inserir Registro.' ;
+        
+        echo json_encode(array(
+                "success" => $result,
+                   "message" => $msg
+                ));
+        
         
     }
     
@@ -112,6 +164,42 @@ class ListaProdutosCliente extends Base {
         
         return $result;
     }
+    
+    ##GAMBIARRA !!!!
+     public function getTotalKit($id_kit){
+           if(isset($_GET['id_kit']))
+               $id_kit = $_GET['id_kit'];
+           
+           $db = $this->getDb();
+           $stm = $db->prepare('SELECT *, K.descricao as desc_kit, KLPM.quantidade as qtd from kits K inner join kits_has_lista_produtos_mercado KLPM 
+                        on (K.id_kit = KLPM.kits_id_kit) inner join lista_produtos_mercado LPM
+                        on (KLPM.lista_produtos_mercado_id_lista_produtos_mercado = LPM.id_lista_produtos_mercado)
+                        inner join produtos P on (LPM.produtos_id_produtos = P.id_produtos)
+
+                        where K.mercado_id_mercado = :id_mercado and K.id_kit = :id_kit');
+           if(isset($_SESSION['id_mercado']))
+            $stm->bindValue(':id_mercado', $_SESSION['id_mercado']);
+           else
+               $stm->bindValue(':id_mercado', 1);
+           $stm->bindValue(':id_kit', $id_kit);
+           $stm->execute();
+           $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+           
+           $total = 0.0;
+           
+           for($i = 0; $i<count($result); $i++){
+               $result[$i]['total_itens'] = $result[$i]['valor'] * $result[$i]['qtd'];
+               $total += $result[$i]['total_itens'];
+           }
+           if(isset($_GET['id_kit'])){
+                 echo json_encode(array(
+                "success" => true,
+                "data" => $result
+                ));
+           }
+           else  
+            return $total;
+       }
 }
 
 new ListaProdutosCliente();

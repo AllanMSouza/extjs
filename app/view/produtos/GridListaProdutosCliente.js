@@ -33,7 +33,7 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
             rowBodyTpl : new Ext.XTemplate(
              '<div>',
             '<div class="imagem-grid" style = "width:116px; height:106px; float:left; position:relative;" >',
-                '<img align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}"/>',
+                '<img style= "width: 100px; height: 100px; padding: 5px" align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}&id_kit={id_kit}"/>',
                 '</div>',
              '<div class="texto-grid" style= "width:280px; float:left; position:relative;">',
                               
