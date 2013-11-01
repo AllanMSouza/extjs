@@ -52,7 +52,7 @@ class Kits extends Base {
        
        public function select(){
            $db = $this->getDb();
-           $stm= $db->prepare('select * from kits K where K.mercado_id_mercado = :id_mercado');
+           $stm= $db->prepare('select *, K.descricao as desc_kit from kits K where K.mercado_id_mercado = :id_mercado');
            $stm->bindValue(':id_mercado', $_SESSION['id_mercado']);
            $stm->execute();
            
@@ -74,13 +74,16 @@ class Kits extends Base {
                $id_kit = $_GET['id_kit'];
            
            $db = $this->getDb();
-           $stm = $db->prepare('SELECT *, KLPM.quantidade as qtd from kits K inner join kits_has_lista_produtos_mercado KLPM 
+           $stm = $db->prepare('SELECT *, K.descricao as desc_kit, KLPM.quantidade as qtd from kits K inner join kits_has_lista_produtos_mercado KLPM 
                         on (K.id_kit = KLPM.kits_id_kit) inner join lista_produtos_mercado LPM
                         on (KLPM.lista_produtos_mercado_id_lista_produtos_mercado = LPM.id_lista_produtos_mercado)
                         inner join produtos P on (LPM.produtos_id_produtos = P.id_produtos)
 
                         where K.mercado_id_mercado = :id_mercado and K.id_kit = :id_kit');
-           $stm->bindValue(':id_mercado', $_SESSION['id_mercado']);
+           if(isset($_SESSION['id_mercado']))
+            $stm->bindValue(':id_mercado', $_SESSION['id_mercado']);
+           else
+               $stm->bindValue(':id_mercado', 1);
            $stm->bindValue(':id_kit', $id_kit);
            $stm->execute();
            $result = $stm->fetchAll( PDO::FETCH_ASSOC);
@@ -112,6 +115,7 @@ class Kits extends Base {
             for($i = 0; $i < count($result); $i++){
                 $result[$i]['text'] = $result[$i]['titulo'];
                 $result[$i]['leaf'] = true;
+                $result[$i]['kit'] = true;
             }
             
             echo json_encode(array(

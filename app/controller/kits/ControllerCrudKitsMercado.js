@@ -170,15 +170,14 @@ Ext.define('AppName.controller.kits.ControllerCrudKitsMercado',{
     
     viewProdutos: function(){
         Ext.widget('windowDataViewKitsProdutosKit')
-//    console.log('hahaha')
-       
+        Ext.getCmp('btAddKit').hide()
         var records = Ext.getCmp('gridListaKitsMercado').getSelectionModel().getSelection();
         
         Ext.getCmp('imgDataViewKit').setSrc('app/data/php/Kits.php?action=getImgKit&id_kit='+records[0].data.id_kit)
-//console.log(Ext.getCmp('imgDataViewKit'))
+
         var proxy = Ext.getCmp('dataViewProdutosKit').store.getProxy()
         proxy.url = 'app/data/php/Kits.php?action=getTotalKit&id_kit=' + records[0].data.id_kit
-//
+
         Ext.getCmp('dataViewProdutosKit').store.setProxy(proxy)
         Ext.getCmp('dataViewProdutosKit').store.load()
     }

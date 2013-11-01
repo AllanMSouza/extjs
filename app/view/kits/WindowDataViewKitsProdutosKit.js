@@ -8,6 +8,7 @@ Ext.define('AppName.view.kits.WindowDataViewKitsProdutosKit',{
     width: 800,
     height: 500,
     layout: 'border',
+    //title: 'Kit :',
     items:[
         {
             xtype: 'panel',
@@ -42,13 +43,27 @@ Ext.define('AppName.view.kits.WindowDataViewKitsProdutosKit',{
                                     xtype: 'panel',
                                     region: 'center',
                                     id: 'valorKitDataView',
+                                    
                                     html:'haha',
                                     border: false,
-                                }
+                                    bbar:[
+                                        '->',
+                                        {
+                                            xtype:'button',
+                                            text: 'Adicionar a Lista',
+                                            width: 200,
+                                            height: 50,
+                                            action: 'teste',
+//                                            hidden:true,
+                                            id: 'btAddKit'
+                                        }
+                                    ]
+                                    
+                                },
+                                                              
                             ]
                             
-                        },
-                        
+                        },                      
                         {
                             xtype: 'panel',
                             region: 'center',
@@ -59,7 +74,7 @@ Ext.define('AppName.view.kits.WindowDataViewKitsProdutosKit',{
                             items: [
                                 {
                                     xtype: 'dataViewProdutosKit',
-                                    border: false,
+                                    border: false
                                     
                                 }
                             ]

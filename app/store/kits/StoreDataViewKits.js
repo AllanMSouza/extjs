@@ -53,7 +53,7 @@ Ext.define('AppName.store.kits.StoreDataViewKits',{
                                         '<td><b style=" font-size:14"> Kit:</b></td>' +  '<td style=" font-size:14"> ' + operation[0].data.titulo +'</td>' + 
                                     '</tr>'+
                                     '<tr>'+
-                                        '<td><b style=" font-size:14"> Descrição:</b></td>' +  '<td style=" font-size:14"> ' + operation[0].data.descricao +'</td>' + 
+                                        '<td><b style=" font-size:14"> Descrição:</b></td>' +  '<td style=" font-size:14"> ' + operation[0].data.desc_kit +'</td>' + 
                                     '</tr>'+
                                     '</table>'+
                                     '<table border=0px>'+

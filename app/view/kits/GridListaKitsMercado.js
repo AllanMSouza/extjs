@@ -55,7 +55,7 @@ Ext.define('AppName.view.kits.GridListaKitsMercado',{
                     '<td><b style=" font-size:14"> Kit:</b></td>' +  '<td style=" font-size:14"> {titulo} </td>' + 
                 '</tr>'+
                 '<tr>'+
-                    '<td><b style=" font-size:14"> Descrição:</b></td>' +  '<td style=" font-size:14"> {descricao} </td>' + 
+                    '<td><b style=" font-size:14"> Descrição:</b></td>' +  '<td style=" font-size:14"> {desc_kit} </td>' + 
                 '</tr>'+
                 '</table>'+
                 '<table border=0px>'+
@@ -82,7 +82,7 @@ Ext.define('AppName.view.kits.GridListaKitsMercado',{
     
     columns:[
         {header: 'Titulo', dataIndex: 'titulo', flex: 1},
-        {header: 'Descrição', dataIndex: 'descricao', flex: 1},
+        {header: 'Descrição', dataIndex: 'desc_kit', flex: 1},
         {header: 'Desconto', dataIndex: 'desconto', flex: 0.5},
         {header: 'Validade', dataIndex: 'validade', flex: 1}
     ],

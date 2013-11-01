@@ -18,6 +18,7 @@ Ext.application({
         'produtos.ControllerListaCliente',
         
         'usuarios.ControllerCrudClientes',
+        'kits.ControllerCadKitListaCliente'
 //        'usuarios.ControllerCrudMercado',
 //        'usuarios.ControllerLogin'
        ],

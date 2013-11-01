@@ -54,9 +54,11 @@ class Categorias extends Base {
             
             if($this->getListaCategorias($listaCategorias[$i]['id_categorias']) == false){
                 $listaCategorias[$i]['leaf'] = true;
+                $listaCategorias[$i]['kit'] = false;
             }
             else{
                 $listaCategorias[$i]['leaf'] = false;
+                $listaCategorias[$i]['kit'] = false;
             }
         }
         //var_dump($listaCategorias);
