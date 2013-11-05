@@ -18,6 +18,7 @@ Ext.define('AppName.model.produtos.ModelListaProdutosCliente',{
        {name: 'nome_categoria', type:'string'},
        {name: 'nome_imagem', type: 'string'},
        {name: 'valor', type: 'double'},
+       {name: 'valor1', type: 'double'},
        {name: 'fabricacao', type: 'string'},
        {name: 'validade', type: 'string'},
        {name: 'id_kit', type: 'int'}

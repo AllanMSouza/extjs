@@ -58,7 +58,7 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
 //                    '<td> <b style=" font-size:12"> Validade:</b> ' +  '<td style=" font-size:12"> {validade} </td>' + 
 //                '</tr>'+
                 '<tr>'+
-                    '<td> <b style=" font-size:12"> por:</b> </td>' +  '<td style=" font-size:30; color:#55F"><b> R$: {valor} </b></td>' + 
+                    '<td> <b style=" font-size:12"> por:</b> </td>' +  '<td style=" font-size:30; color:#F50"><b> R$: {valor1} </b></td>' + 
                 '</tr>'+
             '</table>',
                 '</div>',
@@ -113,7 +113,7 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
             
               listeners: {
             drop: function(node, data, dropRec, dropPosition) {
-                console.log(data.records[0].data)
+//                console.log(data.records[0].data)
 //                console.log()
                 var proxy = this.store.getProxy();
                 proxy.api.create = 'app/data/php/ListaProdutosCliente.php?action=insert&nome_lista=' + Ext.getCmp('comboboxListaProdutosCliente').getValue()

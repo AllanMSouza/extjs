@@ -19,15 +19,17 @@ class ListaProdutosCliente extends Base {
         $stm->execute();
                         
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
-//        echo json_encode(array(
-//                    "data" => $result,
-//                   // "message" => $msg
-//         ));
+
+        for($x=0; $x < count($result); $x++){
+            $result[$x]['valor'] = (double) $result[$x]['valor'];
+            $result[$x]['valor1'] = number_format ((double)$result[$x]['valor'],2,',','');
+        }
         $k = count($result);
         $kits = $this->getIdKit($idLista);
         for($i =0; $i< count($kits); $i++, $k++){
              $kits[$i]['valor'] = $this->getTotalKit($kits[$i]['id_kit']);
              $kits[$i]['kit'] = true;
+             $kits[$i]['valor1'] = number_format ((double)$kits[$i]['valor'],2,',','');
              $result[$k] = $kits[$i];
         }
         
@@ -197,8 +199,11 @@ class ListaProdutosCliente extends Base {
                 "data" => $result
                 ));
            }
-           else  
-            return $total;
+           else  {
+            $total = $total * (double)(100 - $result[0]['desconto'])/100;
+//            return floatval(number_format ((double)$total,2,',',''));
+              return $total;
+           }
        }
 }
 
