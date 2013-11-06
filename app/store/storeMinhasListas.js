@@ -78,8 +78,11 @@ Ext.define('AppName.store.storeMinhasListas',{
             read: function(proxy, operation){
                 var total = 0.0;
                 for(var i=0; i < operation.length; i++){
-                    if(operation[i].data.kit)
+//                    console.log(operation[i].data)
+                    if(operation[i].data.id_kit > 0){
+//                        console.log(operation[i].data.valor)
                         total += operation[i].data.valor; //0* operation[i].data.qtd;
+                    }
                     else
                        total += operation[i].data.valor * operation[i].data.qtd;
                    }
