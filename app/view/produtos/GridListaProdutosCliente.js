@@ -69,40 +69,144 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
              }
          ],
             columns: [                     
-                     { 
-                         header: 'Código',  
-                         dataIndex: 'codigo_produto',
-                         flex: 0.5
-                     },
+                   
                      { 
                          header: 'Produto', 
                          dataIndex: 'nome_produto',
                          flex: 1 
                      },
-//                     {
-//                                                
-//                         header: 'Quantidade', 
-//                         editor: {
-//                                xtype: 'numberfield',
-//                                allowBlank: false,
-//                                minValue: 0,
-//                                maxValue: 100000
-//                            },
-//                         dataIndex: 'quantidade',
-//                         value: 1,
-//                         flex: 0.5, 
-////                           summaryType: 'sum',
-////                            renderer: function(value, metaData, record, rowIdx, colIdx, store, view){
-//////                                value = 1;
-////                                return value;
-////                            },
-////                            summaryRenderer: function(value, summaryData, dataIndex) {
-//////                                value = 1;
-////                                return value;
-////                            }
-//                             
-//                     },
-                     
+                     { 
+                         header: 'Quantidade', 
+                         dataIndex: 'qtd',
+                         flex: 0.5 
+                     },
+                     {
+            xtype: 'actioncolumn',
+            header: '+',
+            flex:0.2,
+            sortable: false,
+            align: 'center',
+            menuDisabled: true,
+            items:[
+                {
+                    icon: 'resources/icons/seta_up.png',
+                    //tooltip: 'Delete Plant',
+                    scope: this,
+                    handler: function(){
+                    var grid = Ext.getCmp('gridListaProdutosCliente'),
+                    records = grid.getSelectionModel().getSelection();
+
+                    if(records.length === 0){
+                        Ext.Msg.alert('ERRO','Atenção, nenhum registro selecionado');
+                        return false;
+                     }else{
+                         records[0].data.qtd = records[0].data.qtd + 1;
+//                        
+                            Ext.Ajax.request({
+                                url: 'app/data/php/ListaProdutosCliente.php?action=up&id=' + records[0].data.id_lista_cliente_has_lista_produtos_mercado +
+                                    '&quantidade=' + records[0].data.qtd,
+                                success: function(form, resp){
+//                               
+                                    Ext.getCmp('gridListaProdutosCliente').store.load()
+//                                }
+                                },
+                                failure:function(form,resp){
+                                   
+                                    Ext.example.msg('Server Response', resp.result.msg);
+
+                                }
+                            });
+
+
+                     }
+                     }
+                }
+            ]
+        },
+        {
+            xtype: 'actioncolumn',
+            header: '-',
+            align: 'center',
+            flex:0.2,
+            sortable: false,
+            menuDisabled: true,
+            items:[
+                {
+                    icon: 'resources/icons/seta_down.png',
+                    //tooltip: 'Delete Plant',
+                    scope: this,
+                    handler: function(){
+                    var grid = Ext.getCmp('gridListaProdutosCliente'),
+                    records = grid.getSelectionModel().getSelection();
+
+                    if(records.length === 0){
+                        Ext.Msg.alert('Atenção, nenhum registro selecionado');
+                        return false;
+                     }else{
+                         records[0].data.qtd = records[0].data.qtd - 1;
+//                        
+                            Ext.Ajax.request({
+                                url: 'app/data/php/ListaProdutosCliente.php?action=down&id=' + records[0].data.id_lista_cliente_has_lista_produtos_mercado +
+                                    '&quantidade=' + records[0].data.qtd,
+                                success: function(form, resp){
+//                               
+                                    Ext.getCmp('gridListaProdutosCliente').store.load()
+//                                }
+                                },
+                                failure:function(form,resp){
+                                   
+                                    Ext.example.msg('Server Response', resp.result.msg);
+
+                                }
+                            });
+
+
+                     }
+                     }
+                }
+            ]
+        },
+        {
+            xtype: 'actioncolumn',
+            header: 'X',
+            align: 'center',
+            flex:0.2,
+            sortable: false,
+            menuDisabled: true,
+            items: [{
+                icon: 'extjs/examples/kitchensink/resources/images/icons/fam/cross.gif',
+                tooltip: 'Delete Plant',
+                scope: this,
+                handler: function(){
+                    var grid = Ext.getCmp('gridListaProdutosCliente'),
+               records = grid.getSelectionModel().getSelection();
+               
+               if(records.length === 0){
+                   Ext.Msg.alert('Atenção, nenhum registro selecionado');
+                   return false;
+                }else{
+                    Ext.Msg.show({
+                        title: 'Confirmação',
+                        msg: 'Tem certeza que deseja deletar o (s) registro(s) selecionado(s)?',
+                        buttons: Ext.Msg.YESNO,
+                        icon: Ext.MessageBox.WARNING,
+                        escope: this,
+                        width: 450,
+                        fn : function(btn, ev){
+                            if(btn == 'yes'){
+                                var store = grid.store;
+                                    store.remove(records);
+                                    grid.store.sync();
+                            }
+                        }
+                        
+                    })
+                    
+                }
+                }
+         }]
+        }
+
           ],
           viewConfig: {
                  plugins: [{

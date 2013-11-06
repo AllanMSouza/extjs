@@ -9,7 +9,7 @@ class ListaProdutosCliente extends Base {
         $idLista = $this->getIdListaProdutos($nomeLista);
         
         $db = $this->getDb();
-        $stm = $db->prepare('select * from 
+        $stm = $db->prepare('select * , LCPM.quantidade as qtd from 
             lista_cliente_has_lista_produtos_mercado  LCPM inner join lista_produtos_mercado LPM
             on (LCPM.lista_produtos_mercado_id_lista_produtos_mercado = LPM.id_lista_produtos_mercado)
             inner join produtos P
@@ -205,6 +205,70 @@ class ListaProdutosCliente extends Base {
               return $total;
            }
        }
+       
+        public function down(){
+           $idItemKit = $_GET['id'];
+           $qnt = $_GET['quantidade'];
+           
+           $db = $this->getDb();
+            $stm = $db->prepare('update lista_cliente_has_lista_produtos_mercado
+               set quantidade = :quantidade 
+               where id_lista_cliente_has_lista_produtos_mercado = :id');
+           $stm->bindValue(':quantidade', $qnt);
+           $stm->bindValue(':id', $idItemKit);
+           
+           $result = $stm->execute();
+          
+          if($result == true)
+            $msg = "Quantidade alterada com sucesso!";
+          else
+            $msg = "Erro ao alterar quantidade!";
+          echo json_encode(array(
+             "success" => $result,
+             "msg" => $msg
+         ));
+           
+       }
+       
+        public function up(){
+           $idItemKit = $_GET['id'];
+           $qnt = $_GET['quantidade'];
+           
+           $db = $this->getDb();
+           $stm = $db->prepare('update lista_cliente_has_lista_produtos_mercado
+               set quantidade = :quantidade 
+               where id_lista_cliente_has_lista_produtos_mercado = :id');
+           $stm->bindValue(':quantidade', $qnt);
+           $stm->bindValue(':id', $idItemKit);
+           
+           $result = $stm->execute();
+          
+          if($result == true)
+            $msg = "Quantidade alterada com sucesso!";
+          else
+            $msg = "Erro ao alterar quantidade!";
+          echo json_encode(array(
+             "success" => $result,
+             "msg" => $msg
+         ));
+          
+         }
+         
+         public function destroy(){
+             $data = json_decode($_POST['data']);
+        //var_dump($data);
+        $db = $this->getDb();
+        $stm = $db->prepare('delete from lista_cliente_has_lista_produtos_mercado
+            where id_lista_cliente_has_lista_produtos_mercado = :id');
+        $stm->bindValue(':id', $data->id_lista_cliente_has_lista_produtos_mercado);
+        $result = $stm->execute();
+        $msg = $result ? 'Registro(s) destruido(s) com Sucesso' : 'Erro ao destruir Registro(s).' ;
+        echo json_encode(array(
+           "success" => $result,
+           "msg" =>$msg,
+           //"data" => $data
+      )); 
+         }
 }
 
 new ListaProdutosCliente();

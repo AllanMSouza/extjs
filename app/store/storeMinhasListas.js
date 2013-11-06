@@ -12,9 +12,9 @@ Ext.define('AppName.store.storeMinhasListas',{
         
         api:{
             read: 'app/data/php/ListaProdutosCliente.php?action=select',
-            create: 'app/data/php/ListaProdutosCliente.php?action=insert'
+            create: 'app/data/php/ListaProdutosCliente.php?action=insert',
 //            update: 'app/data/php/Campanhas.php?action=update',
-//            destroy: 'app/data/php/Campanhas.php?action=destroy'
+            destroy: 'app/data/php/ListaProdutosCliente.php?action=destroy'
          
         },
         
@@ -78,8 +78,12 @@ Ext.define('AppName.store.storeMinhasListas',{
             read: function(proxy, operation){
                 var total = 0.0;
                 for(var i=0; i < operation.length; i++){
-                    total += operation[i].data.valor;
+                    if(operation[i].data.kit)
+                        total += operation[i].data.valor; //0* operation[i].data.qtd;
+                    else
+                       total += operation[i].data.valor * operation[i].data.qtd;
                    }
+                   
 //                   console.log(operation)
                    var formatter = new Intl.NumberFormat('pt-BR', {
                     style: 'currency',
@@ -91,8 +95,4 @@ Ext.define('AppName.store.storeMinhasListas',{
                   Ext.getCmp('panelpedido').update('<div style="padding-top:8px;"><b><label style=" font-size:20;color:#333"></b></label><label style=" font-size:32;color:#333"><b>' + formatter.format(total)+ ' </b></label></div>')
             }
         }
-        
-   
-        
-    
 })

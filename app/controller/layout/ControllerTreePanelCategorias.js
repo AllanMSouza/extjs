@@ -26,6 +26,10 @@ Ext.define('AppName.controller.layout.ControllerTreePanelCategorias',{
   
 
     showWindowProdutos: function(records, model) {
+        
+                        Ext.getCmp('panel-descricao').expand()
+//                        console.log(records[0].data.name)
+//             }
             if (model[0]) {
 //                console.log(model[0])
                 if(model[0].data.kit){
@@ -53,6 +57,9 @@ Ext.define('AppName.controller.layout.ControllerTreePanelCategorias',{
         },
         
         getProdutos: function(record, model){
+            
+             
+             
              var store = Ext.getCmp('idImageView').store.getProxy()
             store.api.read = 'app/data/php/Produtos.php?action=getProdutos&id_categorias=' + model[0].data.id_categorias + '&leaf=' + model[0].data.leaf
             Ext.getCmp('idImageView').store.setProxy(store)
@@ -63,4 +70,19 @@ Ext.define('AppName.controller.layout.ControllerTreePanelCategorias',{
             Ext.getCmp('gridListaProdutosMercado').store.setProxy(store)
             Ext.getCmp('gridListaProdutosMercado').store.load();
         }
+        
+        //selectionchange: function(model, records) {
+//                //console.log(Ext.getCmp('panel-descricao'))
+//                    //console.log(model, records[0].data)
+//                    if(Ext.getCmp('panel-descricao').collapsed == 'right'){
+//                        Ext.getCmp('panel-descricao').expand()
+//                        console.log(records[0].data.name)
+//                        Ext.getCmp('panel-descricao').update('Descrição icone: ' + records[0].data.name)
+//                     }
+//                     
+//                     else{
+//                         console.log(records[0].data.name)
+//                         Ext.getCmp('panel-descricao').update('Descrição icone: ' + records[0].data.name)
+//                     }
+//    }
 })
