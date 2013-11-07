@@ -68,11 +68,13 @@ Ext.define('AppName.store.storeMinhasListas',{
                if(obj.success){
                                
                 Ext.example.msg('Server Response', obj.message);
+                
                                        
                 }else{
                    Ext.example.msg('Server Response', obj.message);
          
                 }
+                Ext.getCmp('gridListaProdutosCliente').store.load()
             },
             
             read: function(proxy, operation){
