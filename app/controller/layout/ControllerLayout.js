@@ -25,6 +25,7 @@ Ext.define('AppName.controller.layout.ControllerLayout',{
          'headerPanelMercado button[action=showWindowCadastrarProdutos]': {click: this.showWindowCadastrarProdutos},
          'headerPanelMercado button[action=showWindowGerenciarCadastro]': {click: this.showWindowGerenciarCadastro},
          'headerPanelMercado button[action=showWindowGerenciarProdutosMercado]': {click: this.showWindowGerenciarProdutosMercado},
+         'descriptionPanel button[action=showPanelFinalizarPedido]' : {click: this.showPanelFinalizarPedido}
                
         // 'treePanelCategorias': {beforeitemexpand: this.teste}
           
@@ -80,5 +81,16 @@ Ext.define('AppName.controller.layout.ControllerLayout',{
     
     showWindowGerenciarProdutosMercado: function(){
         Ext.widget('windowGerenciarProdutosMercado')
+    },
+            
+    showPanelFinalizarPedido: function(){
+//        console.log('hahahaha')
+        Ext.widget('panelFinalizarPedidoCliente')
+        
+        var proxy = Ext.getCmp('treeListaClienteFinalizarPedido').store.getProxy()
+
+        proxy.api.read = 'app/data/php/ListaProdutosCliente.php?action=select&nome_lista=' + Ext.getCmp('comboboxListaProdutosCliente').getValue()
+        Ext.getCmp('treeListaClienteFinalizarPedido').store.setProxy(proxy)
+        Ext.getCmp('treeListaClienteFinalizarPedido').store.load()
     }
 })

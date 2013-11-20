@@ -18,7 +18,9 @@ Ext.application({
         'produtos.ControllerListaCliente',
         
         'usuarios.ControllerCrudClientes',
-        'kits.ControllerCadKitListaCliente'
+        'kits.ControllerCadKitListaCliente',
+        
+        'pedido.ControllerFinalizarPedido'
 //        'usuarios.ControllerCrudMercado',
 //        'usuarios.ControllerLogin'
        ],

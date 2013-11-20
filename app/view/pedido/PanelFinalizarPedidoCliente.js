@@ -1,8 +1,17 @@
 Ext.define('AppName.view.pedido.PanelFinalizarPedidoCliente',{
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.window.Window',
     alias: 'widget.panelFinalizarPedidoCliente',
     id: 'panelFinalizarPedidoCliente',
     
-    autShow: true,
-    layout: 'border'
+    autoShow: true,
+    layout: 'border',
+    width: 900,
+    height: 500,
+    
+    items:[
+        {
+            xtype: 'treeListaClienteFinalizarPedido',
+            region: 'center'
+        }
+    ]
 });

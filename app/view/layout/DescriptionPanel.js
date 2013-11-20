@@ -54,6 +54,7 @@ Ext.define('AppName.view.layout.DescriptionPanel',{
                          {
                              xtype: 'button',
                              text: 'Finalizar Pedido',
+                             action: 'showPanelFinalizarPedido',
                              height: 35,
                              x:50,
                              y:7,

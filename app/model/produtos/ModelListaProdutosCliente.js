@@ -22,7 +22,9 @@ Ext.define('AppName.model.produtos.ModelListaProdutosCliente',{
        {name: 'valor1', type: 'double'},
        {name: 'fabricacao', type: 'string'},
        {name: 'validade', type: 'string'},
-       {name: 'id_kit', type: 'int'}
+       {name: 'id_kit', type: 'int'},
+       {name: 'tipo', type: 'string'},
+       {name: 'leaf', type: 'bool'},
        
        
    ]

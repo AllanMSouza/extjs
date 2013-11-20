@@ -21,6 +21,8 @@ class ListaProdutosCliente extends Base {
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 
         for($x=0; $x < count($result); $x++){
+            $result[$x]['tipo'] = 'Produto';
+            $result[$x]['leaf'] = true;
             $result[$x]['valor'] = (double) $result[$x]['valor'];
             $result[$x]['valor1'] = number_format ((double)$result[$x]['valor'],2,',','');
         }
@@ -29,6 +31,8 @@ class ListaProdutosCliente extends Base {
         for($i =0; $i< count($kits); $i++, $k++){
              $kits[$i]['valor'] = $this->getTotalKit($kits[$i]['id_kit']);
              $kits[$i]['kit'] = true;
+             $kits[$i]['leaf'] = false;
+             $kits[$i]['tipo'] = 'Kit';
              $kits[$i]['valor1'] = number_format ((double)$kits[$i]['valor'],2,',','');
              $result[$k] = $kits[$i];
         }
