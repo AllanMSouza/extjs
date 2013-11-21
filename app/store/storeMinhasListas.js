@@ -93,11 +93,13 @@ Ext.define('AppName.store.storeMinhasListas',{
                    var formatter = new Intl.NumberFormat('pt-BR', {
                     style: 'currency',
                     currency: 'BRL',
-                    minimumFractionDigits: 2
+                    minimumFractionDigits: 1
                   });
                   
-                  Ext.getCmp('valorListaCliente').setValue(total)
-                  Ext.getCmp('panelpedido').update('<div style="padding-top:8px;"><b><label style=" font-size:20;color:#333"></b></label><label style=" font-size:32;color:#333"><b>' + formatter.format(total)+ ' </b></label></div>')
+                  Ext.getCmp('valorListaCliente').setValue(total.toFixed(2))
+                  var a = total.toFixed(2)
+                  console.log(a)
+                  Ext.getCmp('panelpedido').update('<div style="padding-top:8px;"><b><label style=" font-size:20;color:#333"></b></label><label style=" font-size:32;color:#333"><b>' + formatter.format(a) + ' </b></label></div>')
             }
         }
 })

@@ -92,5 +92,10 @@ Ext.define('AppName.controller.layout.ControllerLayout',{
         proxy.api.read = 'app/data/php/ListaProdutosCliente.php?action=select&nome_lista=' + Ext.getCmp('comboboxListaProdutosCliente').getValue()
         Ext.getCmp('treeListaClienteFinalizarPedido').store.setProxy(proxy)
         Ext.getCmp('treeListaClienteFinalizarPedido').store.load()
+        
+        Ext.getCmp('valorPanelFinalizarPedido').update(
+                '<div style="padding-top:8px;padding-left:8px;"><b><label style=" font-size:20;color:#333"> TOTAL R$: </b></label><label style=" font-size:32;color:#55F"><b>'+ Ext.getCmp('valorListaCliente').getValue()+' </b></label></div>'
+                )
+//        console.log(Ext.getCmp('valorListaCliente').getValue())
     }
 })

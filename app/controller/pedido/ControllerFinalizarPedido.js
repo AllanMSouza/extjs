@@ -9,7 +9,8 @@ Ext.define('AppName.controller.pedido.ControllerFinalizarPedido',{
     ],
     views: [
         'pedido.TreeListaClienteFinalizarPedido',
-        'pedido.PanelFinalizarPedidoCliente'
+        'pedido.PanelFinalizarPedidoCliente',
+        'pedido.FormFinalizarPedido'
         
     ],
     

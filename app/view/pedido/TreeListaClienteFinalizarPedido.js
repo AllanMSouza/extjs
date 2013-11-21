@@ -4,17 +4,18 @@ Ext.define('AppName.view.pedido.TreeListaClienteFinalizarPedido',{
     id: 'treeListaClienteFinalizarPedido',
     
     autoShow: true,
-    width: 500,
-    height: 400,
+    width: 700,
+    height: 300,
     store: 'pedido.StoreTreeListaClienteFinalizarPedido',
     rootVisible: false,
     useArrows: true,
+    autoScroll: true,
     
     columns:[
         {
             xtype: 'treecolumn',
             text: 'Produto',
-            flex: 2,
+            flex: 3,
             sortable: true,
             dataIndex: 'nome_produto',
             
@@ -27,6 +28,11 @@ Ext.define('AppName.view.pedido.TreeListaClienteFinalizarPedido',{
         { 
             header: 'Tipo', 
             dataIndex: 'tipo',
+            flex: 1 
+        },
+        { 
+            header: 'Valor', 
+            dataIndex: 'valor1',
             flex: 1 
         },
         {
