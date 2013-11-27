@@ -11,12 +11,6 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/var/www/extjs/app/view/pedido/TreeListaClienteFinalizarPedido.js</file>
-            <file>file:/var/www/extjs/app/view/pedido/FormFinalizarPedido.js</file>
-            <file>file:/var/www/extjs/app/view/pedido/PanelFinalizarPedidoCliente.js</file>
-            <file>file:/var/www/extjs/app/view/usuarios/FormCliente.js</file>
-            <file>file:/var/www/extjs/app/controller/pedido/ControllerFinalizarPedido.js</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

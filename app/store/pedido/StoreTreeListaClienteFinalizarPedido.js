@@ -10,8 +10,9 @@ Ext.define('AppName.store.pedido.StoreTreeListaClienteFinalizarPedido',{
         simpleSortMode: true,
         type: 'ajax',
         
+       
         url: 'app/data/php/ListaProdutosCliente.php?action=select',
-        
+       
         reader: {
             
             type: 'json',

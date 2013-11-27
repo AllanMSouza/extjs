@@ -14,6 +14,18 @@ Ext.define('AppName.view.pedido.FormFinalizarPedido',{
             margins: '0 0 0 5',
             items:[
                 {
+                    xtype: 'textfield',
+                    name: 'total',
+                    id: 'fieldtotal',
+                    hidden: true
+                },
+                {
+                    xtype: 'textfield',
+                    name: 'nome_lista',
+                    id: 'fieldNomeLista',
+                    hidden: true
+                },
+                {
                     xtype: 'radiogroup',
                     margins: '0 0 0 5',
                     fieldLabel: 'Retirar ou Entregar?',
@@ -22,34 +34,46 @@ Ext.define('AppName.view.pedido.FormFinalizarPedido',{
                     vertical: true,
                     width: 350,
                     items:[
-                         { boxLabel: 'Retirar', width: 70, name: 'retirarEntregar', inputValue: '1' },
-                         { boxLabel: 'Entregar',width: 70,  name: 'retirarEntregar', inputValue: '2', checked: true},
-                    ]
-                },
-                {
-                    xtype: 'radiogroup',
-                    margins: '0 0 0 5',
-                    fieldLabel: 'Endereço de entrega',
-                    labelWidth: 150,
-                    width: 400,
-                    columns: 2,
-                    vertical: true,
-                    items:[
-                         { boxLabel: 'Cadastrado', width: 100, name: 'localOutro', inputValue: '1', checked: true},
-                         { boxLabel: 'Outro',width: 100,  name: 'localOutro', inputValue: '2'},
+                         { boxLabel: 'Retirar', width: 70, name: 'retirarEntregar', inputValue: '1', checked: true},
+                         { boxLabel: 'Entregar',width: 70,  name: 'retirarEntregar', inputValue: '2' },
+                         
                     ],
-                    listeners:{
-                        change:function(a,b,c){
-                            if(b.localOutro == 2){
-                                Ext.getCmp('fieldsetLogradouro').enable()
+                    
+                     listeners:{
+                                change:function(a,b,c){
+                                    if(b.retirarEntregar == 2){
+                                        Ext.getCmp('fieldsetLogradouro').enable()
+                                    }
+                                    else {
+                                        Ext.getCmp('fieldsetLogradouro').disable()
+                                    }
+                                }
                             }
-                            else {
-                                Ext.getCmp('fieldsetLogradouro').disable()
-                            }
-                        }
-                    }
-
                 },
+//                {
+//                    xtype: 'radiogroup',
+//                    margins: '0 0 0 5',
+//                    fieldLabel: 'Endereço de entrega',
+//                    labelWidth: 150,
+//                    width: 400,
+//                    columns: 2,
+//                    vertical: true,
+//                    items:[
+//                         { boxLabel: 'Cadastrado', width: 100, name: 'localOutro', inputValue: '1', checked: true},
+//                         { boxLabel: 'Outro',width: 100,  name: 'localOutro', inputValue: '2'},
+//                    ],
+//                    listeners:{
+//                        change:function(a,b,c){
+//                            if(b.localOutro == 2){
+//                                Ext.getCmp('fieldsetLogradouro').enable()
+//                            }
+//                            else {
+//                                Ext.getCmp('fieldsetLogradouro').disable()
+//                            }
+//                        }
+//                    }
+//
+//                },
                 
             ]
         },

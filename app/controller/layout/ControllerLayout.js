@@ -93,9 +93,23 @@ Ext.define('AppName.controller.layout.ControllerLayout',{
         Ext.getCmp('treeListaClienteFinalizarPedido').store.setProxy(proxy)
         Ext.getCmp('treeListaClienteFinalizarPedido').store.load()
         
+        Ext.getCmp('fieldtotal').setValue(Ext.getCmp('valorListaCliente').getValue())
+        
         Ext.getCmp('valorPanelFinalizarPedido').update(
                 '<div style="padding-top:8px;padding-left:8px;"><b><label style=" font-size:20;color:#333"> TOTAL R$: </b></label><label style=" font-size:32;color:#55F"><b>'+ Ext.getCmp('valorListaCliente').getValue()+' </b></label></div>'
                 )
 //        console.log(Ext.getCmp('valorListaCliente').getValue())
+        Ext.getCmp('fieldNomeLista').setValue(Ext.getCmp('comboboxListaProdutosCliente').getValue())
+
+        Ext.widget('windowGerenciarClientes').hide()
+//        Ext.getCmp('windowGerenciarClientes').hide()
+
+        var records = Ext.getCmp('gridListaClientes').store.data.items[0];
+   
+             var editForm = Ext.getCmp('formFinalizarPedido')
+             var record = records;
+            editForm.loadRecord(record);
+            Ext.getCmp('windowGerenciarClientes').show()
+            Ext.getCmp('windowGerenciarClientes').close()
     }
 })
