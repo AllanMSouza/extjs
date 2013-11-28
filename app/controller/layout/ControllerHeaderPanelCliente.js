@@ -19,6 +19,7 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanelCliente',{
     init: function(){
         this.control({
             'headerPanelCliente button[action=getCategorias]': {click: this.getCategorias},
+            'headerPanelCliente button[action=showWindowMeusPedidos]' : {click: this.showWindowMeusPedidos},
             'headerPanelCliente button[action=showWindowGerenciarClientes]': {click: this.showWindowGerenciarClientes},
             'headerPanelCliente button[action=logout]' : {click: this.logout}
                
@@ -72,4 +73,8 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanelCliente',{
     showWindowGerenciarClientes: function(){
       Ext.widget('windowGerenciarClientes')  
     },
+    
+    showWindowMeusPedidos: function(){
+        Ext.widget('windowAcompanharPedidos')
+    }
 })

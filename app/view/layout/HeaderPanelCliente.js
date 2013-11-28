@@ -191,10 +191,19 @@ Ext.define('AppName.view.layout.HeaderPanelCliente',{
                 {
                     xtype: 'button', 
                     region: 'east', 
+                    text: 'Meus Peidos', 
+                    width: 120, 
+                    margins: '2 2 2 2',
+                    action : 'showWindowMeusPedidos'
+               },
+                {
+                    xtype: 'button', 
+                    region: 'east', 
                     text: 'Editar Cadastro', 
                     width: 120, 
                     margins: '2 2 2 2',
                     action : 'showWindowGerenciarClientes'
+                    
                },
 //                 {
 //                    xtype: 'button', 

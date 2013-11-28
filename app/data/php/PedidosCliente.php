@@ -79,6 +79,24 @@ class PedidosCliente extends Base {
         
         return;
     }
+    
+    public function select(){
+//        echo $_SESSION['id_cliente'];
+        $db = $this->getDb();
+        $stm = $db->prepare('select * from lista_cliente LC inner join pedido P
+                on (LC.id_lista_cliente = P.lista_cliente_id_lista_cliente) 
+                where LC.cliente_id_cliente = :id_cliente');
+        $stm->bindValue(':id_cliente', $_SESSION['id_cliente']);
+        $result = $stm->execute();
+        
+        $data = $stm->fetchAll(PDO::FETCH_ASSOC);
+        
+          echo json_encode(array(
+             "success" => $result,
+             "data" => $data
+         ));
+        
+    }
 
 }
 

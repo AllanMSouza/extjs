@@ -2,15 +2,19 @@ Ext.define('AppName.controller.pedido.ControllerFinalizarPedido',{
     extend: 'Ext.app.Controller',
     
     stores: [
-        'pedido.StoreTreeListaClienteFinalizarPedido'
+        'pedido.StoreTreeListaClienteFinalizarPedido',
+        'pedido.StoreListaPedidosCliente'
     ],
     models: [
-       'produtos.ModelListaProdutosCliente'
+       'produtos.ModelListaProdutosCliente',
+       'pedido.ModelMeusPedidosCliente'
     ],
     views: [
         'pedido.TreeListaClienteFinalizarPedido',
         'pedido.PanelFinalizarPedidoCliente',
-        'pedido.FormFinalizarPedido'
+        'pedido.FormFinalizarPedido',
+        'pedido.GridListaPedidosCliente',
+        'pedido.WindowAcompanharPedidos'
         
     ],
     
