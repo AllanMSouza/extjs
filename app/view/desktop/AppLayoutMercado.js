@@ -31,7 +31,8 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
               new AppName.view.produtos.WindowGerenciarProdutos(),
               new AppName.view.usuarios.WindowGerenciarMercado(),
               new AppName.view.kits.WindowGerenciarListaKitsMercado(),
-              new AppName.view.relatorios.WindowRelatorioProdutosMercado()
+              new AppName.view.relatorios.WindowRelatorioProdutosMercado(),
+              new AppName.view.estoque.WindowMonitorPedidos()
         ];
     },
 

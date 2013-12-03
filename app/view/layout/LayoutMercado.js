@@ -17,13 +17,19 @@ Ext.application({
         'produtos.ControllerCadProdutoMercado',       
 
         'usuarios.ControllerCrudMercado',
+        
         'panfletos.ControllerListaPanfletos',
         'panfletos.ControllerListaProdutosPanfletos',
         
         'desktop.ControllerDesktop',
+        
         'kits.ControllerCrudKitsMercado',
+        
         'relatorios.ControllerRelatorioProdutosMercado',
-        'relatorios.graficos.ControllerGraficos'
+        'relatorios.graficos.ControllerGraficos',
+        
+        'estoque.ControllerMonitorPedidos'
+        
 
         
        ],
