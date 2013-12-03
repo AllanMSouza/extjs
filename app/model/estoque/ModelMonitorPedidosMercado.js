@@ -9,5 +9,12 @@ Ext.define('AppName.model.estoque.ModelMonitorPedidosMercado',{
         {name: 'nome', type: 'string'},
         {name: 'status', type: 'string'},
         {name: 'data', type: 'string'},
+        {name: 'endereco', type: 'string'},
+        {name: 'numero', type: 'string'},
+        {name: 'bairro', type: 'string'},
+        {name: 'cidade', type: 'string'},
+        {name: 'complemento', type: 'string'},
+        {name: 'cep', type: 'string'},
+        {name: 'estado', type: 'string'},
     ]
 });

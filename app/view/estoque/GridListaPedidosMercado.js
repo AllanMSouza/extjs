@@ -9,7 +9,8 @@ Ext.define('AppName.view.estoque.GridListaPedidosMercado',{
     
     tbar:[
         {
-            text: 'Dados do Pedido'
+            text: 'Dados do Pedido',
+            action: 'dadosPedido'
         },  
         {
             text: 'Dados do Cliente'

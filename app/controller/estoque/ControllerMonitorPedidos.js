@@ -11,43 +11,23 @@ Ext.define('AppName.controller.estoque.ControllerMonitorPedidos',{
     views: [
      'estoque.GridListaPedidosMercado',
      'estoque.WindowMonitorPedidos',
-     'estoque.PanelChangeStatus'
+     'estoque.PanelChangeStatus',
+     
+     'pedido.WindowDadosEntregaPedido',
+     'pedido.FormDadosEntregaPedido'
         
     ],
     
      init: function(){
         this.control({
           'windowDataViewKitsProdutosKit button[action=addKit]' : {click: this.addKit},
-          'panelChangeStatus button[action=changeStatus]' : {click: this.changeStatus}
+          'panelChangeStatus button[action=changeStatus]' : {click: this.changeStatus},
+          'gridListaPedidosMercado button[action=dadosPedido]' : {click: this.dadosPedido}
           
         })
     },
     
-    addKit: function(){
-//       console.log(Ext.getCmp('comboboxListaProdutosCliente').getValue())
-       if(Ext.getCmp('comboboxListaProdutosCliente').getValue() != null){
-           Ext.Ajax.request({
-                url: 'app/data/php/ListaProdutosCliente.php?action=insertKit&id_kit=' + Ext.getCmp('id_kit').getValue() +
-                    '&nome_lista='+Ext.getCmp('comboboxListaProdutosCliente').getValue(),
-                 success: function(form, resp){
-                     
-                      Ext.example.msg('Server Response', 'Registro inserido com sucesso!');
-                      Ext.getCmp('gridListaProdutosCliente').store.load()
-                 },
-                 failure:function(form,resp){
-                      Ext.example.msg('Server Response', 'Erro ao inserir registro');
-                 }
-            });
-           
-       }
-       else {
-           Ext.Msg.alert('ERRO', 'Atenção, nenhuma lista selecionada');
-           return false;
-       }
-       
-    },
-    
-    changeStatus: function(button){
+      changeStatus: function(button){
 //        console.log(button.id)
         var status = button.id,
             record = Ext.getCmp('gridListaPedidosMercado').getSelectionModel().getSelection();
@@ -67,6 +47,34 @@ Ext.define('AppName.controller.estoque.ControllerMonitorPedidos',{
 
             }
         });
+        
+    },
+    
+    dadosPedido: function(){
+        
+           var records = Ext.getCmp('gridListaPedidosMercado').getSelectionModel().getSelection();
+             
+             if(records == ''){
+                  Ext.Msg.show({
+                        title: 'Atenção!',
+                        msg: 'Nenhum registro selecionado!',
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.MessageBox.ERROR,
+                        escope: this,
+                        width: 300,
+                        
+                    })
+                 
+             }
+                 
+            if(records.length === 1){
+                 var editWindow = Ext.widget('windowDadosEntregaPedido')
+                 var editForm = editWindow.down('form');
+                 var record = records[0];
+                editForm.loadRecord(record);
+            }else{
+                return;
+            }
         
     }
     
