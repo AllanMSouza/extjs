@@ -12,9 +12,9 @@ Ext.define('AppName.view.estoque.GridListaPedidosMercado',{
             text: 'Dados do Pedido',
             action: 'dadosPedido'
         },  
-        {
-            text: 'Dados do Cliente'
-        },  
+//        {
+//            text: 'Dados do Cliente'
+//        },  
         {
             text: 'Lista de Produtos',
             action: 'getListaProdutos'
