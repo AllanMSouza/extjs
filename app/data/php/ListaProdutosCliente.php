@@ -6,7 +6,8 @@ class ListaProdutosCliente extends Base {
     
     public function select(){
         $nomeLista = $_GET['nome_lista'];
-        $idLista = $this->getIdListaProdutos($nomeLista);
+        $id_cliente = $_GET['id_cliente'];
+        $idLista = $this->getIdListaProdutos($nomeLista, $id_cliente);
         
         $db = $this->getDb();
         $stm = $db->prepare('select * , LCPM.quantidade as qtd from 
@@ -123,12 +124,15 @@ class ListaProdutosCliente extends Base {
         
     }
     
-    private function getIdListaProdutos($nome_lista){
+    private function getIdListaProdutos($nome_lista, $id_cliente){
         $db = $this->getDb();
         $stm = $db->prepare('select id_lista_cliente from lista_cliente 
             where nome_lista = :nome_lista and cliente_id_cliente = :id_cliente');
         $stm->bindValue(':nome_lista', $nome_lista);
-        $stm->bindValue(':id_cliente', $_SESSION['id_cliente']);
+        if($id_cliente != null || $id_cliente > 0)
+            $stm->bindValue(':id_cliente', $id_cliente);
+        else
+            $stm->bindValue(':id_cliente', $_SESSION['id_cliente']);
         $stm->execute();
         $result = $stm->fetch(PDO::FETCH_ASSOC);
         

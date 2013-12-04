@@ -4,6 +4,7 @@ Ext.define('AppName.view.pedido.FormDadosEntregaPedido',{
     id: 'formDadosEntregaPedido',
     
     autoShow: true,
+    border: false,
     bodyPadding: 10,
     layout: 'fit',
     items:[

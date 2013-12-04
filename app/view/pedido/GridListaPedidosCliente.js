@@ -1,6 +1,7 @@
 Ext.define('AppName.view.pedido.GridListaPedidosCliente',{
     extend: 'Ext.grid.Panel',
     alias: 'widget.gridListaPedidosCliente',
+    id: 'gridListaPedidosCliente',
     
     autoShow: true,
     store: 'pedido.StoreListaPedidosCliente',
@@ -37,7 +38,23 @@ Ext.define('AppName.view.pedido.GridListaPedidosCliente',{
     
     tbar: [
         {
-            text: 'Cancelar Pedido'
+            text: 'Cancelar Pedido',
+            action: 'changeStatus',
+            id: 'Cancelado'
+        },
+        {
+            text: 'Atualizar Pedidos',
+            handler: function(){
+                Ext.getCmp('gridListaPedidosCliente').store.load();
+            }
+        },
+        
+        {
+            xtype: 'textfield',
+            width: 350
+        },
+        {
+            text: 'Pesquisar'
         }
     ]
 });

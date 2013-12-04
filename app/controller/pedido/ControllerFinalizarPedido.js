@@ -20,7 +20,8 @@ Ext.define('AppName.controller.pedido.ControllerFinalizarPedido',{
     
      init: function(){
         this.control({
-          'panelFinalizarPedidoCliente button[action=confirmar]' : {click: this.confirmar}
+          'panelFinalizarPedidoCliente button[action=confirmar]' : {click: this.confirmar},
+          'gridListaPedidosCliente button[action=changeStatus]' : {click: this.changeStatus}
           
         })
     },
@@ -61,6 +62,29 @@ Ext.define('AppName.controller.pedido.ControllerFinalizarPedido',{
         }
             
         
-    }
+    },
+    
+     changeStatus: function(button){
+//        console.log(button.id)
+        var status = button.id,
+            record = Ext.getCmp('gridListaPedidosCliente').getSelectionModel().getSelection();
+    
+        console.log(record)
+         Ext.Ajax.request({
+            url: 'app/data/php/MonitorPedidosMercado.php?action=changeStatus&id_pedido=' + record[0].data.id_pedido + 
+                '&status=' + status,
+            success: function(form, resp){
+//                               
+                Ext.getCmp('gridListaPedidosCliente').store.load()
+//                                }
+            },
+            failure:function(form,resp){
+
+                Ext.example.msg('Server Response', resp.result.msg);
+
+            }
+        });
+        
+    },
    
 })

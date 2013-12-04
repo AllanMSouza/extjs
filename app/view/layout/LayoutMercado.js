@@ -28,7 +28,8 @@ Ext.application({
         'relatorios.ControllerRelatorioProdutosMercado',
         'relatorios.graficos.ControllerGraficos',
         
-        'estoque.ControllerMonitorPedidos'
+        'estoque.ControllerMonitorPedidos',
+        'pedido.ControllerFinalizarPedido'
         
 
         

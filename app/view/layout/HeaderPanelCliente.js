@@ -191,7 +191,7 @@ Ext.define('AppName.view.layout.HeaderPanelCliente',{
                 {
                     xtype: 'button', 
                     region: 'east', 
-                    text: 'Meus Peidos', 
+                    text: 'Meus Pedidos', 
                     width: 120, 
                     margins: '2 2 2 2',
                     action : 'showWindowMeusPedidos'

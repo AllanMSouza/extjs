@@ -4,14 +4,25 @@ Ext.define('AppName.view.pedido.WindowDadosEntregaPedido',{
     id: 'windowDadosEntregaPedido',
     
     autoShow: true,
+    title: 'Dados para entrega do pedido',
     width: 740,
-    height: 200,
+    height: 250,
+    border: false,
     layout: 'border',
     modal: true,
     items:[
         {
             xtype: 'formDadosEntregaPedido',
             region: 'center'
+        }
+    ],
+    
+    buttons:[
+        {
+            text: 'Fechar',
+            handler: function(){
+                Ext.getCmp('windowDadosEntregaPedido').close()
+            }
         }
     ]
 });

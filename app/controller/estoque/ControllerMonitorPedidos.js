@@ -14,7 +14,8 @@ Ext.define('AppName.controller.estoque.ControllerMonitorPedidos',{
      'estoque.PanelChangeStatus',
      
      'pedido.WindowDadosEntregaPedido',
-     'pedido.FormDadosEntregaPedido'
+     'pedido.FormDadosEntregaPedido',
+     'pedido.WindowListaProdutosPedido'
         
     ],
     
@@ -22,7 +23,8 @@ Ext.define('AppName.controller.estoque.ControllerMonitorPedidos',{
         this.control({
           'windowDataViewKitsProdutosKit button[action=addKit]' : {click: this.addKit},
           'panelChangeStatus button[action=changeStatus]' : {click: this.changeStatus},
-          'gridListaPedidosMercado button[action=dadosPedido]' : {click: this.dadosPedido}
+          'gridListaPedidosMercado button[action=dadosPedido]' : {click: this.dadosPedido},
+          'gridListaPedidosMercado button[action=getListaProdutos]' : {click: this.getListaProdutos}
           
         })
     },
@@ -76,6 +78,18 @@ Ext.define('AppName.controller.estoque.ControllerMonitorPedidos',{
                 return;
             }
         
+    },
+    
+    getListaProdutos: function(){
+        Ext.widget('windowListaProdutosPedido')
+        
+        var records = Ext.getCmp('gridListaPedidosMercado').getSelectionModel().getSelection();
+        
+        var proxy = Ext.getCmp('treeListaClienteFinalizarPedido').store.getProxy()
+
+        proxy.api.read = 'app/data/php/ListaProdutosCliente.php?action=select&nome_lista=' + records[0].data.nome_lista + '&id_cliente=' + records[0].data.id_cliente
+        Ext.getCmp('treeListaClienteFinalizarPedido').store.setProxy(proxy)
+        Ext.getCmp('treeListaClienteFinalizarPedido').store.load()
     }
     
     
