@@ -29,6 +29,8 @@ Ext.application({
         'relatorios.graficos.ControllerGraficos',
         
         'estoque.ControllerMonitorPedidos',
+        'estoque.ControllerMonitorEstoque',
+        
         'pedido.ControllerFinalizarPedido'
         
 
