@@ -7,6 +7,7 @@ Ext.define('AppName.model.pedido.ModelMeusPedidosCliente',{
         {name: 'data', type: 'string'},
         {name: 'valor_pedido', type: 'double'},
         {name: 'status', type: 'string'},
-        {name: 'nome_lista', type: 'string'}
+        {name: 'nome_lista', type: 'string'},
+        {name: 'cliente_id_cliente', type: 'int'},
     ]
 });

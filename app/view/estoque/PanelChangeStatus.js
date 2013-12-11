@@ -9,7 +9,7 @@ Ext.define('AppName.view.estoque.PanelChangeStatus',{
     split: true,
     defaults:{
         width: 185,
-        height: 50,
+        height: 60,
         margins: '5 5 5 5'
     },
     items:[
@@ -21,6 +21,9 @@ Ext.define('AppName.view.estoque.PanelChangeStatus',{
         },
         {
             xtype: 'button',
+//            scale:'large', 
+//            icon: 'resources/imagens/estoque.png',
+//            iconAlign: 'top',
             text: 'Separando em estoque',
             id: 'Separando em estoque',
             action: 'changeStatus'
@@ -45,15 +48,15 @@ Ext.define('AppName.view.estoque.PanelChangeStatus',{
         },
         {
             xtype: 'button',
-            text: '. . .',
-            id: '. . .',
+            text: 'Cancelado',
+            id: 'Cancelado',
             action: 'changeStatus'
         },
-        {
-            xtype: 'button',
-            text: '. . . . .',
-            id: '. . . . .',
-            action: 'changeStatus'
-        },
+//        {
+//            xtype: 'button',
+//            text: '. . . . .',
+//            id: '. . . . .',
+//            action: 'changeStatus'
+//        },
     ]
 });

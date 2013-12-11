@@ -14,14 +14,15 @@ Ext.define('AppName.controller.pedido.ControllerFinalizarPedido',{
         'pedido.PanelFinalizarPedidoCliente',
         'pedido.FormFinalizarPedido',
         'pedido.GridListaPedidosCliente',
-        'pedido.WindowAcompanharPedidos'
-        
+        'pedido.WindowAcompanharPedidos',
+        'pedido.WindowListaProdutosPedido'
     ],
     
      init: function(){
         this.control({
           'panelFinalizarPedidoCliente button[action=confirmar]' : {click: this.confirmar},
-          'gridListaPedidosCliente button[action=changeStatus]' : {click: this.changeStatus}
+          'gridListaPedidosCliente button[action=changeStatus]' : {click: this.changeStatus},
+          'gridListaPedidosCliente button[action=listaProdutos]' : {click: this.listaProdutos}
           
         })
     },
@@ -86,5 +87,17 @@ Ext.define('AppName.controller.pedido.ControllerFinalizarPedido',{
         });
         
     },
+    
+    listaProdutos: function(){
+         Ext.widget('windowListaProdutosPedido')
+        
+        var records = Ext.getCmp('gridListaPedidosCliente').getSelectionModel().getSelection();
+        
+        var proxy = Ext.getCmp('treeListaClienteFinalizarPedido').store.getProxy()
+
+        proxy.api.read = 'app/data/php/ListaProdutosCliente.php?action=select&nome_lista=' + records[0].data.nome_lista + '&id_cliente=' + records[0].data.cliente_id_cliente
+        Ext.getCmp('treeListaClienteFinalizarPedido').store.setProxy(proxy)
+        Ext.getCmp('treeListaClienteFinalizarPedido').store.load()
+    }
    
 })

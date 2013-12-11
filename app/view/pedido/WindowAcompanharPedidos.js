@@ -5,7 +5,7 @@ Ext.define('AppName.view.pedido.WindowAcompanharPedidos',{
     autoShow: true,
     title: 'Meus Pedidos',
     layout: 'border',
-    width: 800,
+    width: 830,
     height: 400,
     items:[
         {

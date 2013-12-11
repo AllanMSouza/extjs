@@ -38,6 +38,10 @@ Ext.define('AppName.view.pedido.GridListaPedidosCliente',{
     
     tbar: [
         {
+            text: 'Listar Produtos',
+            action: 'listaProdutos'
+        },
+        {
             text: 'Cancelar Pedido',
             action: 'changeStatus',
             id: 'Cancelado'
