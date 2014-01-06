@@ -85,15 +85,15 @@ Ext.define('AppName.view.panfletos.GridListaPanfletos',{
         },
         {
             header: 'Inicio', 
-            xtype: 'datecolumn', 
-            format: 'd/m/Y', 
+//            xtype: 'datecolumn', 
+//            format: 'd/m/Y', 
             dataIndex: 'data_inicio', 
             flex: 1
         },
         {
             header: 'Fim', 
-            xtype: 'datecolumn', 
-            format: 'd/m/Y', 
+//            xtype: 'datecolumn', 
+//            format: 'd/m/Y', 
             dataIndex: 'data_fim', 
             flex: 1
         }

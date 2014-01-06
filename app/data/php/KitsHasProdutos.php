@@ -36,12 +36,12 @@ class KitsHasProdutos extends Base {
        }
        
        public function select(){
-           $db= $this->getDb();
-           
            $id_kit = $_GET['id_kit'];
            
+           $db= $this->getDb();
+                    
            $stm = $db->prepare('select LM.*, P.*, KHLPM.*, (select K.desconto from kits K where K.id_kit = :id_kit) as desconto
-                                from lista_produtos_mercado LM inner join
+                                from lista_produtos_mercado LM inner join 
                                 kits_has_lista_produtos_mercado KHLPM on 
                                 (LM.id_lista_produtos_mercado = KHLPM.lista_produtos_mercado_id_lista_produtos_mercado) 
                                 inner join produtos P on (LM.produtos_id_produtos = P.id_produtos)
