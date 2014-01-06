@@ -1,6 +1,7 @@
 Ext.define('AppName.view.kits.WindowQuantidadeItems',{
     extend: 'Ext.window.Window',
     alias: 'widget.windowQuantidadeItems',
+    id: 'windowQuantidadeItems',
     
     autoShow: true,
     height: 120,

@@ -1,6 +1,7 @@
 Ext.define('AppName.view.kits.FormCadKit',{
     extend: 'Ext.form.Panel',
     alias: 'widget.formCadKit',
+    id: 'formCadKit',
     
     autoShow: true,
 //    title: 'Novo kit',
@@ -117,7 +118,10 @@ Ext.define('AppName.view.kits.FormCadKit',{
         },
         {
             text: 'Cancelar',
-            action: 'cancel'
+            action: 'cancel',
+            handler:function(){
+                Ext.getCmp('windowCadKit').close()
+            }
         }
     ]
     

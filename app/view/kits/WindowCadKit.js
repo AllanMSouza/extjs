@@ -1,6 +1,7 @@
 Ext.define('AppName.view.kits.WindowCadKit',{
     extend: 'Ext.window.Window',
     alias: 'widget.windowCadKit',
+    id: 'windowCadKit',
     
     modal: true,
     autoShow: true,

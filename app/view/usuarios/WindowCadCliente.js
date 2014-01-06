@@ -1,6 +1,7 @@
 Ext.define('AppName.view.usuarios.WindowCadCliente',{
     extend: 'Ext.window.Window',
     alias: 'widget.windowCadCliente',
+    id: 'windowCadCliente',
     
     autoShow: true,
     height: 230,

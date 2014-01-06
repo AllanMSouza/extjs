@@ -1,6 +1,7 @@
 Ext.define('AppName.view.panfletos.WindowValorProdutoPanfleto',{
     extend: 'Ext.window.Window',
     alias: 'widget.windowValorProdutoPanfleto',
+    id: 'windowValorProdutoPanfleto',
     
     autoShow: true,
     modal: true,
@@ -23,7 +24,10 @@ Ext.define('AppName.view.panfletos.WindowValorProdutoPanfleto',{
             action: 'save'
         },
         {
-            text: 'Cancelar'
+            text: 'Cancelar',
+            handler: function(){
+                Ext.getCmp('windowValorProdutoPanfleto').close()
+            }
         }
     ]
 });

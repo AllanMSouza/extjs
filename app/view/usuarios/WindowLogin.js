@@ -18,7 +18,7 @@ Ext.define('AppName.view.usuarios.WindowLogin',{
     
     buttons: [
         {
-            text: 'Login',
+            text: 'Entrar',
             action: 'save'
         }
     ]

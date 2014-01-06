@@ -364,12 +364,15 @@ Ext.define('AppName.view.usuarios.FormMercado',{
     ],
     buttons:[
         {
-            text: 'Save',
+            text: 'Salvar',
             action: 'save'
         },
         {
-            text: 'Cancel',
-            action: 'cancel'
+            text: 'Cancelar',
+            action: 'cancel',
+            handler: function(){
+                Ext.getCmp('windowCadMercado').close()
+            }
         }
     ]
 });

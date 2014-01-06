@@ -1,6 +1,7 @@
 Ext.define('AppName.view.usuarios.WindowCadMercado',{
     extend: 'Ext.window.Window',
     alias: 'widget.windowCadMercado',
+    id: 'windowCadMercado',
     
     title: 'Cadastro Supermercado',
     autoShow: true,

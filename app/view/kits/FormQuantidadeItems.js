@@ -35,7 +35,10 @@ Ext.define('AppName.view.kits.FormQuantidadeItems',{
             action: 'saveItem'
         },
         {
-            text: 'Cancelar'
+            text: 'Cancelar',
+            handler:function(){
+                Ext.getcmp('windowQuantidadeItems').close()
+            }
         }
     ]
 });

@@ -27,7 +27,10 @@ Ext.define('AppName.view.produtos.WindowCadProduto',{
         },
         {
             text: 'Cancel',
-            action: 'cancel'
+            action: 'cancel',
+            handler: function(){
+                Ext.getCmp('windowCadProduto').close()
+            }
         }
     ]
     

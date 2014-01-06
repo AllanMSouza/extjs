@@ -1,6 +1,7 @@
 Ext.define('AppName.view.produtos.WindowNovaListaCliente',{
     extend: 'Ext.window.Window',
     alias: 'widget.windowNovaListaCliente',
+    id: 'windowNovaListaCliente',
     
     title: 'Nova Lista',
     autoShow: true,
@@ -21,7 +22,10 @@ Ext.define('AppName.view.produtos.WindowNovaListaCliente',{
         
         {
             text: 'Cancelar',
-            action: 'cancel'
+            action: 'cancel',
+            handler: function(){
+                Ext.getCmp('windowNovaListaCliente').close()
+            }
         }
     ]
 })

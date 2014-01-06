@@ -1,6 +1,7 @@
 Ext.define('AppName.view.produtos.WindowCadProdutosMercado',{
     extend: 'Ext.window.Window',
     alias: 'widget.windowCadProdutosMercado',
+    id: 'windowCadProdutosMercado',
     
     autoShow: true,
     width: 400,
@@ -23,7 +24,10 @@ Ext.define('AppName.view.produtos.WindowCadProdutosMercado',{
         },
         {
             text: 'Cancelar',
-            action: 'cancel'
+            action: 'cancel',
+            handler: function(){
+                Ext.getCmp('windowCadProdutosMercado').close()
+            }
         }
     ]
 });

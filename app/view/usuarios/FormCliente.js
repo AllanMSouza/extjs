@@ -384,12 +384,15 @@ Ext.define('AppName.view.usuarios.FormCliente',{
     ],
     buttons:[
         {
-            text: 'Save',
+            text: 'Salvar',
             action: 'saveCliente'
         },
         {
-            text: 'Cancel',
-            action: 'cancel'
+            text: 'Cancelar',
+            action: 'cancel',
+            handler: function(){
+                Exr.getCmp('windowCadCliente').close()
+            }
         }
     ]
     

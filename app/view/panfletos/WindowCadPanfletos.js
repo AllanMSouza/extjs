@@ -1,6 +1,7 @@
 Ext.define('AppName.view.panfletos.WindowCadPanfletos',{
     extend: 'Ext.window.Window',
     alias: 'widget.windowCadPanfletos',
+    id: 'windowCadPanfletos',
     
     autoShow: true,
     title: 'Cadastro de Panfletos',
@@ -23,7 +24,10 @@ Ext.define('AppName.view.panfletos.WindowCadPanfletos',{
             action: 'save'
         },
         {
-            text: 'Cancelar'
+            text: 'Cancelar',
+            handler: function(){
+                Ext.getCmp('windowCadPanfletos').close()
+            }
         }
     ]
 });
