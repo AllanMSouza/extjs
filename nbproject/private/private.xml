@@ -12,8 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/extjs/app/view/layout/HeaderPanelCliente.js</file>
-            <file>file:/var/www/extjs/app/view/estoque/PanelChangeStatus.js</file>
+            <file>file:/var/www/extjs/app/controller/estoque/ControllerMonitorEstoque.js</file>
+            <file>file:/var/www/extjs/app/data/php/MonitorEstoque.php</file>
+            <file>file:/var/www/extjs/app/view/estoque/GridListaMonitorEstoque.js</file>
+            <file>file:/var/www/extjs/app/view/estoque/WindowMonitorEstoque.js</file>
         </group>
     </open-files>
 </project-private>
