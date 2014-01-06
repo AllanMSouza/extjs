@@ -40,25 +40,26 @@ class KitsHasProdutos extends Base {
            
            $db= $this->getDb();
                     
-           $stm = $db->prepare('select LM.*, P.*, KHLPM.*, (select K.desconto from kits K where K.id_kit = :id_kit) as desconto
+           $stm = $db->prepare('select LM.*, P.*, KHLPM.*, (select K.desconto from kits K where K.id_kit = :id_kit1) as desconto 
                                 from lista_produtos_mercado LM inner join 
                                 kits_has_lista_produtos_mercado KHLPM on 
                                 (LM.id_lista_produtos_mercado = KHLPM.lista_produtos_mercado_id_lista_produtos_mercado) 
-                                inner join produtos P on (LM.produtos_id_produtos = P.id_produtos)
-                                where LM.mercado_id_mercado = :id_mercado and KHLPM.kits_id_kit = :id_kit');
+                                inner join produtos P on (LM.produtos_id_produtos = P.id_produtos) 
+                                where LM.mercado_id_mercado = :id_mercado and KHLPM.kits_id_kit = :id_kit2');
            $stm->bindValue(':id_mercado', $_SESSION['id_mercado']);
-           $stm->bindValue(':id_kit', $id_kit);
+           $stm->bindValue(':id_kit1', $id_kit);
+           $stm->bindValue(':id_kit2', $id_kit);
             $stm->execute();
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
         
-//        for($i =0; $i < count($result); $i++){
-//            $result[$i]['total_itens'] = $result[$i]['valor'] * $result[$i]['quantidade'];
-////            $result[$i]['por'] += $result[$i]['total'] * (int) (100 - $result[$i]['desconto'])/100;
-//            $result[$i]['valor'] = number_format ((double)$result[$i]['valor'],2,',','');
-////            $total += $result[$i]['total_itens'];
-////            $result[$i]['total'] = number_format ((double)$result[$i]['total'],2,',','');
-//            
-//        }
+        for($i =0; $i < count($result); $i++){
+            $result[$i]['total_itens'] = $result[$i]['valor'] * $result[$i]['quantidade'];
+//            $result[$i]['por'] += $result[$i]['total'] * (int) (100 - $result[$i]['desconto'])/100;
+            $result[$i]['valor'] = number_format ((double)$result[$i]['valor'],2,',','');
+//            $total += $result[$i]['total_itens'];
+//            $result[$i]['total'] = number_format ((double)$result[$i]['total'],2,',','');
+            
+        }
 //        $por = $total * (int) (100 - $result[0]['desconto'])/100;
         echo json_encode(array(
  
