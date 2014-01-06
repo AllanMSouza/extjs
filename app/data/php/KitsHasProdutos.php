@@ -51,14 +51,14 @@ class KitsHasProdutos extends Base {
             $stm->execute();
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
         
-        for($i =0; $i < count($result); $i++){
-            $result[$i]['total_itens'] = $result[$i]['valor'] * $result[$i]['quantidade'];
-//            $result[$i]['por'] += $result[$i]['total'] * (int) (100 - $result[$i]['desconto'])/100;
-            $result[$i]['valor'] = number_format ((double)$result[$i]['valor'],2,',','');
-//            $total += $result[$i]['total_itens'];
-//            $result[$i]['total'] = number_format ((double)$result[$i]['total'],2,',','');
-            
-        }
+//        for($i =0; $i < count($result); $i++){
+//            $result[$i]['total_itens'] = $result[$i]['valor'] * $result[$i]['quantidade'];
+////            $result[$i]['por'] += $result[$i]['total'] * (int) (100 - $result[$i]['desconto'])/100;
+//            $result[$i]['valor'] = number_format ((double)$result[$i]['valor'],2,',','');
+////            $total += $result[$i]['total_itens'];
+////            $result[$i]['total'] = number_format ((double)$result[$i]['total'],2,',','');
+//            
+//        }
 //        $por = $total * (int) (100 - $result[0]['desconto'])/100;
         echo json_encode(array(
  
