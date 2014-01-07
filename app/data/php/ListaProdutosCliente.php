@@ -45,7 +45,7 @@ class ListaProdutosCliente extends Base {
     
     public function getIdKit($id_lista_cliente){
         $db = $this->getDb();
-        $stm = $db->prepare('select *, K.id_kit as codigo_produto, K.titulo as nome_produto from lista_cliente_has_kits LCK inner join kits K 
+        $stm = $db->prepare('select K.*, LCK.*, K.id_kit as codigo_produto, LCK.quantidade as qtd, K.titulo as nome_produto from lista_cliente_has_kits LCK inner join kits K 
             on (K.id_kit = LCK.kits_id_kit)
             where lista_cliente_id_lista_cliente = :id_lista');
         $stm->bindValue(':id_lista', $id_lista_cliente);
@@ -275,7 +275,30 @@ class ListaProdutosCliente extends Base {
            "success" => $result,
            "msg" =>$msg,
            //"data" => $data
-      )); 
+        )); 
+         }
+         
+         public function deleteKit(){
+             $id_lista_cliente_has_kits = $_GET['id_lista_cliente_has_kits'];
+             
+             $db = $this->getDb();
+             $stm = $db->prepare('delete from lista_cliente_has_kits where 
+                 id_lista_cliente_has_kits = :id_lista_cliente_has_kits');
+             $stm->bindValue(':id_lista_cliente_has_kits', $id_lista_cliente_has_kits);
+             $result = $stm->execute();
+             
+             if($result)
+                 $msg = 'Kit excluído com sucesso!';
+             else
+                 $msg = 'Erro ao excluir Kit';
+             
+             echo json_encode(array(
+                    "success" => $result,
+                    "msg" =>$msg,
+                    //"data" => $data
+                 )); 
+             
+             
          }
 }
 

@@ -25,6 +25,7 @@ Ext.define('AppName.model.produtos.ModelListaProdutosCliente',{
        {name: 'id_kit', type: 'int'},
        {name: 'tipo', type: 'string'},
        {name: 'leaf', type: 'bool'},
+       {name: 'id_lista_cliente_has_kits', type: 'int'}
        
        
    ]

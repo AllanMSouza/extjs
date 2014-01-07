@@ -184,7 +184,9 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
                if(records.length === 0){
                    Ext.Msg.alert('Atenção, nenhum registro selecionado');
                    return false;
-                }else{
+                }
+                else {
+                    
                     Ext.Msg.show({
                         title: 'Confirmação',
                         msg: 'Tem certeza que deseja deletar o (s) registro(s) selecionado(s)?',
@@ -194,9 +196,29 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
                         width: 450,
                         fn : function(btn, ev){
                             if(btn == 'yes'){
-                                var store = grid.store;
+                                console.log(records[0].data)
+                                if(records[0].data.id_kit != 0){
+                                     Ext.Ajax.request({
+                                        url: 'app/data/php/ListaProdutosCliente.php?action=deleteKit&id_lista_cliente_has_kits=' + records[0].data.id_lista_cliente_has_kits,
+                                        success: function(form, resp){
+        //                               
+                                            Ext.getCmp('gridListaProdutosCliente').store.load()
+                                            Ext.example.msg('Server Response', resp.result.msg);
+        //                                }
+                                        },
+                                        failure:function(form,resp){
+
+                                            Ext.example.msg('Server Response', resp.result.msg);
+
+                                        }
+                                    });
+                                }
+                                else {
+                                    var store = grid.store;
                                     store.remove(records);
                                     grid.store.sync();
+                                }
+                                
                             }
                         }
                         
