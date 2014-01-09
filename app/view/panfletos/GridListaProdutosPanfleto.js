@@ -127,14 +127,42 @@ Ext.define('AppName.view.panfletos.GridListaProdutosPanfleto',{
 
          listeners: {
        drop: function(node, data, dropRec, dropPosition) {
-           Ext.widget('windowValorProdutoPanfleto')
-           var records = Ext.getCmp('gridListaPanfletos').getSelectionModel().getSelection()
-//           console.log(records[0].data.id_pagina_panfleto)
-           Ext.getCmp('fieldPaginaPanfletoIdPaginaPanfleto').setValue(records[0].data.id_pagina_panfleto)
-//           console.log(data.records[0].data.id_produtos)
-           Ext.getCmp('fieldProdutosIdProdutos').setValue(data.records[0].data.id_produtos)
-           this.store.sync()
-           this.store.load()
+           var isNoPanfleto = false;
+            this.store.remove(data)
+            
+           for(var i = 0; i < Ext.getCmp('gridListaProdutosPanfleto').store.data.items.length - 1; i++){
+                
+                if(Ext.getCmp('gridListaProdutosPanfleto').store.data.items[i].data.id_produtos > 0){
+                    
+                    if(Ext.getCmp('gridListaProdutosPanfleto').store.data.items[i].data.id_produtos == data.records[0].data.id_produtos){
+//                        Ext.Msg.alert('ERRO', 'Atenção, Kit já adicionado a lista');
+                        isNoPanfleto =  true;
+                        break;
+                                            }
+                    else
+                        isNoPanfleto =  false;
+                }
+                console.log(isNoPanfleto)
+        }
+           
+           
+           if(!isNoPanfleto){
+               Ext.widget('windowValorProdutoPanfleto')
+                var records = Ext.getCmp('gridListaPanfletos').getSelectionModel().getSelection()
+     //           console.log(records[0].data.id_pagina_panfleto)
+                Ext.getCmp('fieldPaginaPanfletoIdPaginaPanfleto').setValue(records[0].data.id_pagina_panfleto)
+     //           console.log(data.records[0].data.id_produtos)
+                Ext.getCmp('fieldProdutosIdProdutos').setValue(data.records[0].data.id_produtos)
+                this.store.sync()
+                this.store.load()
+               
+           }
+           else {
+               this.store.load()
+               Ext.Msg.alert('ERRO', 'Atenção, Produto já adicionado a lista');
+               
+           }
+           
 ////                console.log()
 //           var proxy = this.store.getProxy();
 //           proxy.api.create = 'app/data/php/ListaProdutosCliente.php?action=insert&nome_lista=' + Ext.getCmp('comboboxListaProdutosCliente').getValue()
@@ -143,7 +171,10 @@ Ext.define('AppName.view.panfletos.GridListaProdutosPanfleto',{
 
             }
        }
-     } 
+     },
+        
+       
+        
     
     
 });

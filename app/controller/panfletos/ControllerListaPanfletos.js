@@ -118,7 +118,7 @@ savePagina:function(button){
                                     if(resp.result.success == true){
                                         Ext.example.msg('Server Response', resp.result.msg);
                                         win.close()
-                                        Ext.getCmp('gridListaPanfletos').store.load()
+                                        Ext.getCmp('gridListaPanfletos').store.reload()
                                     }
                             },
                             failure:function(form,resp){
