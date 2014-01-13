@@ -26,7 +26,38 @@ Ext.define('AppName.view.estoque.GridListaPedidosMercado',{
         {
             xtype: 'button',
             text: 'Pesquisar'
-        }
+        },
+         {
+            xtype: 'combobox',
+            fieldLabel: 'Filtar por:',
+            id: 'comboboxFiltrosPedido',
+            store:  Ext.create('Ext.data.Store', {
+            fields: ['abbr', 'name'],
+            data : [
+                {"abbr":"Recebido", "name":"Recebido"},
+                {"abbr":"Aguardando retirada", "name":"Aguardando retirada"},
+                {"abbr":"Em transição", "name":"Em transição"},
+                {"abbr":"Finalizado", "name":"Finalizado"},
+                {"abbr":"Cancelado", "name":"Cancelado"},
+
+            ]
+            }),
+            labelWidth: 60,
+            width: 200,
+            queryMode: 'local',
+            displayField: 'name',
+            valueField: 'abbr',
+            margins: '0 5 0 0',
+            listeners:{
+                select:function(){
+                    var proxy = Ext.getCmp('gridListaPedidosMercado').store.getProxy()
+//                    console.log(store);
+                    proxy.api.read = 'app/data/php/MonitorPedidosMercado.php?action=filtrarPor&status=' + Ext.getCmp('comboboxFiltrosPedido').getValue()
+                    Ext.getCmp('gridListaPedidosMercado').store.setProxy(proxy)
+                    Ext.getCmp('gridListaPedidosMercado').store.load()
+                }
+            }
+        },
     ],
     
     columns:[
