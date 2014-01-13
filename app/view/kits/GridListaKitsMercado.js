@@ -19,7 +19,32 @@ Ext.define('AppName.view.kits.GridListaKitsMercado',{
             action: 'edit'
         },
         {
-            text: 'Excluir'
+            text: 'Ativar/Inativar',
+            handler: function(){
+                var records = Ext.getCmp('gridListaKitsMercado').getSelectionModel().getSelection()
+                var record = records[0];
+//                console.log(record.data.ativo)
+                var ativo = 0;
+                if(record.data.ativo == 0)
+                    ativo = 1;
+                else
+                    ativo = 0;
+                Ext.Ajax.request({
+                    url: 'app/data/php/Kits.php?action=ativoInativo&ativo='+ativo+'&id_kit='+record.data.id_kit,
+                    success: function(form, resp){
+//                        console.log(form, resp)        
+//                        Ext.example.msg('Server Response', resp.result.msg);
+                    Ext.getCmp('gridListaKitsMercado').store.load()
+//                                
+                     },
+                    failure:function(form,resp){
+
+                        Ext.example.msg('Server Response', resp.result.msg);
+
+                    }
+                });
+                
+            }
         },
         {
             text: 'Adicionar Produtos ao Kit',
@@ -84,7 +109,8 @@ Ext.define('AppName.view.kits.GridListaKitsMercado',{
         {header: 'Titulo', dataIndex: 'titulo', flex: 1},
         {header: 'Descrição', dataIndex: 'descricao', flex: 1},
         {header: 'Desconto', dataIndex: 'desconto', flex: 0.5},
-        {header: 'Validade', dataIndex: 'validade', flex: 1}
+        {header: 'Validade', dataIndex: 'validade', flex: 1},
+        {header: 'Ativo/Inativo', dataIndex: 'ativo_string', flex: 1}
     ],
     
 });

@@ -28,10 +28,10 @@ class Kits extends Base {
           $stm->bindValue(':titulo', $data->titulo);
           $stm->bindValue(':descricao', $data->descricao);
           $stm->bindValue(':imagem_kit', $conteudo);
-          if($data->ativo == "on")
+//          if($data->ativo == "on")
             $stm->bindValue(':ativo', 1);
-          else
-            $stm->bindValue(':ativo', 0);
+//          else
+//            $stm->bindValue(':ativo', 0);
           $stm->bindValue(':validade', $data->validade);
           $stm->bindValue(':desconto', $data->desconto);
           $stm->bindValue(':permissao', '');
@@ -61,6 +61,10 @@ class Kits extends Base {
             for($i = 0; $i < count($result); $i++){
                 $result[$i]['total'] = number_format ((double)$this->getTotalKit($result[$i]['id_kit']),2,',',''); 
                 $result[$i]['desc_total'] = number_format((double) $result[$i]['total'] * (100 - $result[$i]['desconto'])/100,2,',','');
+                if($result[$i]['ativo'] == 0)
+                    $result[$i]['ativo_string'] = 'inativo';
+                else
+                    $result[$i]['ativo_string'] = 'ativo';
             }
             
             echo json_encode(array(
@@ -226,6 +230,27 @@ class Kits extends Base {
         echo $produto[0]['imagem_kit'];
         //echo "<a href='".$produto[0]['imagem_produto']."' data-lightbox='roadtrip'>";
         //echo "<img src='".$produto[0]['imagem_produto']."' border='0' style='width: 100px; height: 90px; padding: 5px;'></a>";
+    }
+    
+    public function ativoInativo(){
+        $ativo = $_GET['ativo'];
+        $id_kit = $_GET['id_kit'];
+        
+        $db = $this->getDb();
+        $stm = $db->prepare('update kits set ativo = :ativo where id_kit = :id_kit');
+        $stm->bindValue(':ativo', $ativo);
+        $stm->bindValue(':id_kit', $id_kit);
+        $result = $stm->execute();
+        
+        if($result == true)
+            $msg = "Kit ativado/inativado com Sucesso!";
+          else
+            $msg = "Erro ao ativar/inativar Kit!";
+          echo json_encode(array(
+             "success" => $result,
+             "msg" => $msg
+         ));
+        
     }
    
 }

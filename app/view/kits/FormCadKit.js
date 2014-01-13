@@ -70,14 +70,14 @@ Ext.define('AppName.view.kits.FormCadKit',{
                                     labelWidth: 60,
                                      margins: '0 5 0 0'
                                 },
-                                {
-                                    xtype: 'checkbox',
-                                    fieldLabel: 'Ativo',
-                                    name: 'ativo',
-                                    flex: 0.1,
-                                    labelWidth: 30,
-                                     margins: '0 5 0 0'
-                                },
+//                                {
+//                                    xtype: 'checkbox',
+//                                    fieldLabel: 'Ativo',
+//                                    name: 'ativo',
+//                                    flex: 0.1,
+//                                    labelWidth: 30,
+//                                     margins: '0 5 0 0'
+//                                },
                                 {
                                     xtype: 'textfield',
                                     name: 'id_kit',
