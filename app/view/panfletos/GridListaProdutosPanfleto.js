@@ -142,7 +142,7 @@ Ext.define('AppName.view.panfletos.GridListaProdutosPanfleto',{
                     else
                         isNoPanfleto =  false;
                 }
-                console.log(isNoPanfleto)
+//                console.log(isNoPanfleto)
         }
            
            

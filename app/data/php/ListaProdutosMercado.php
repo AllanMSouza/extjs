@@ -19,14 +19,17 @@ class ListaProdutosMercado extends Base {
 //         var_dump($fabricacao, $validade);
          $db = $this->getDb();
          $stm = $db->prepare('insert into lista_produtos_mercado 
-             (produtos_id_produtos, mercado_id_mercado, valor, quantidade, validade, fabricacao)
-             values (:produtos_id_produtos, :mercado_id_mercado, :valor, :quantidade, :validade, :fabricacao)');
+             (produtos_id_produtos, mercado_id_mercado, valor, quantidade, validade, fabricacao, vermelho, verde, laranja)
+             values (:produtos_id_produtos, :mercado_id_mercado, :valor, :quantidade, :validade, :fabricacao, :vermelho, :verde, :laranja)');
          $stm->bindValue(':produtos_id_produtos', $data->id_produtos);
          $stm->bindValue(':mercado_id_mercado', $_SESSION['id_mercado']);
          $stm->bindValue(':valor', $data->valor);
          $stm->bindValue(':quantidade', $data->quantidade);
          $stm->bindValue(':validade', $validade);
          $stm->bindValue(':fabricacao', $fabricacao);
+         $stm->bindValue(':vermelho', $data->vermelho);
+         $stm->bindValue(':verde', $data->verde);
+         $stm->bindValue(':laranja', $data->laranja);
          $success = $stm->execute();
          
          $msg = $success ? 'Produto inserido com Sucesso' : 'Erro ao inserir Produto.' ;

@@ -2,6 +2,10 @@
     background-image: url('../imagens/bebidas.png') !important;
     
 }
+.padaria2{
+    background-image: url('../resources/icons/Novos/Selecionados/padaria_.png') !important;
+    
+}
 
 .bazar {
     background-image: url('../imagens/bazar-limpeza.png') !important;

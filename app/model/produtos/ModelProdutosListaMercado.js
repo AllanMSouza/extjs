@@ -14,7 +14,11 @@ Ext.define('AppName.model.produtos.ModelProdutosListaMercado',{
        {name: 'valor', type: 'float'},
        {name: 'quantidade', type: 'int'},
        {name: 'fabricacao', type: 'string'},
-       {name: 'validade', type: 'string'}
+       {name: 'validade', type: 'string'},
+       
+       {name: 'vermelho', type: 'int'},
+       {name: 'verde', type: 'int'},
+       {name: 'laranja', type: 'int'},
        
    ]
    

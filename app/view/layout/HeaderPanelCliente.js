@@ -22,6 +22,7 @@ Ext.define('AppName.view.layout.HeaderPanelCliente',{
             action: 'getCategorias',
             id: 'Padaria e Sobremesas',
             iconCls: 'padaria', 
+//            icon: 'resources/icons/Novos/Selecionados/padaria_.png',
             shadow: true, 
             region:'west', 
             width: 50, 
@@ -32,6 +33,8 @@ Ext.define('AppName.view.layout.HeaderPanelCliente',{
             text:' ', 
             tooltip: 'Favoritos',
             tooltipType: 'title',
+            
+//            cls: 'x-btn x-unselectable x-box-item x-toolbar-item x-btn-default-toolbar-large x-icon x-btn-icon-text-left x-btn-default-toolbar-large-icon-text-top'
 //            handler:function(){
 //                     
 //                 }
@@ -40,6 +43,7 @@ Ext.define('AppName.view.layout.HeaderPanelCliente',{
              xtype: 'button', 
              id:'Mercearia',
              iconCls: 'mercearia',
+//            icon: 'resources/icons/Novos/Selecionados/mercearia_.png',
             action: 'getCategorias',
              region: 'west', 
              width: 50, 
@@ -53,6 +57,7 @@ Ext.define('AppName.view.layout.HeaderPanelCliente',{
 //              }
             tooltip: 'Mercearia',
             tooltipType: 'title',
+//                        cls: 'x-btn x-unselectable x-box-item x-toolbar-item x-btn-default-toolbar-large x-icon x-btn-icon-text-left x-btn-default-toolbar-large-icon-text-top'
 
         },
                 {
@@ -60,6 +65,7 @@ Ext.define('AppName.view.layout.HeaderPanelCliente',{
                     id: 'Carnes',
                     action: 'getCategorias',
                     iconCls: 'carnes', 
+//                    icon: 'resources/icons/Novos/Selecionados/carnes_.png',
                     region: 'west', 
                     width: 50, 
                     height: 40, 
@@ -69,6 +75,7 @@ Ext.define('AppName.view.layout.HeaderPanelCliente',{
                     text: ' ',
                     tooltip: 'Carnes',
                     tooltipType: 'title',
+//                    cls: 'x-btn x-unselectable x-box-item x-toolbar-item x-btn-default-toolbar-large x-icon x-btn-icon-text-left x-btn-default-toolbar-large-icon-text-top'
                 },
                 {
                     xtype: 'button', 

@@ -76,6 +76,29 @@ Ext.define('AppName.view.produtos.FormCadProdutosMercado',{
                 
           ]
         },
+        {
+            xtype: 'fieldset',
+            title: 'Faixas de Estoque',
+            layout: 'anchor',
+            defaults: {
+                anchor: '100%',
+                xtype: 'textfield'
+            },
+            items:[
+                {
+                    fieldLabel: 'Vermelho',
+                    name: 'vermelho'
+                },
+                {
+                    fieldLabel: 'Laranja',
+                    name: 'laranja'
+                },
+                {
+                    fieldLabel: 'Verde',
+                    name: 'verde'
+                },
+            ]
+        }
         
         
     ]

@@ -133,12 +133,41 @@ Ext.define('AppName.view.produtos.GridListaProdutosMercado',{
         },                                  
         listeners: {
             drop: function(node, data, dropRec, dropPosition) {
-                Ext.widget('windowCadProdutosMercado')
+                 
+                var isNaLista = false;
+                this.store.remove(data)
+                this.store.load()
+                
+                for(var i = 0; i < Ext.getCmp('gridListaProdutosMercado').store.data.items.length - 1; i++){
+                
+                        if(Ext.getCmp('gridListaProdutosMercado').store.data.items[i].data.id_produtos > 0){
+
+                            if(Ext.getCmp('gridListaProdutosMercado').store.data.items[i].data.id_produtos == data.records[0].data.id_produtos){
+        //                        Ext.Msg.alert('ERRO', 'Atenção, Kit já adicionado a lista');
+                                isNaLista =  true;
+                                break;
+                                                    }
+                            else
+                                isNaLista =  false;
+                        }
+        //                console.log(isNoPanfleto)
+                }
+                
+                if(!isNaLista){
+                    Ext.widget('windowCadProdutosMercado')
 //                                               console.log(data.records[0].data.categorias_id_categorias, data.records[0].data.codigo_produto )
-                Ext.getCmp('fieldIdProdutosCadProdutosMercado').setValue(data.records[0].data.id_produtos);
-//                                               Ext.getCmp('fieldIdCategoriasIdCategoriasWindowCadProdutoMercado').setValue(data.records[0].data.categorias_id_categorias)
-//                                               Ext.getCmp('fieldCodigoProdutoWindowCadProdutoMercado').setValue(data.records[0].data.codigo_produto)
-                this.store.sync()
+                    Ext.getCmp('fieldIdProdutosCadProdutosMercado').setValue(data.records[0].data.id_produtos);
+    //                                               Ext.getCmp('fieldIdCategoriasIdCategoriasWindowCadProdutoMercado').setValue(data.records[0].data.categorias_id_categorias)
+    //                                               Ext.getCmp('fieldCodigoProdutoWindowCadProdutoMercado').setValue(data.records[0].data.codigo_produto)
+                    this.store.sync()
+                }
+                
+                else {
+                    this.store.load()
+                    Ext.Msg.alert('ERRO', 'Atenção, Produto já adicionado a lista');
+                }
+                
+                
             }
        }    
    },
