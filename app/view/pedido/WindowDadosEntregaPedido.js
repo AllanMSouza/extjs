@@ -6,7 +6,7 @@ Ext.define('AppName.view.pedido.WindowDadosEntregaPedido',{
     autoShow: true,
     title: 'Dados para entrega do pedido',
     width: 740,
-    height: 250,
+    height: 300,
     border: false,
     layout: 'border',
     modal: true,

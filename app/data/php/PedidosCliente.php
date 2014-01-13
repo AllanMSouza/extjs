@@ -13,7 +13,7 @@ class PedidosCliente extends Base {
            $db = $this->getDb();
            $stm = $db->prepare('insert into pedido '
                    . '(data, status, valor_pedido, entregar_retirar, lista_cliente_id_lista_cliente) '
-                   . ' values(curdate(), "Aberto", :valor_pedido, :entregar_retirar, :lista_cliente_id_lista_cliente)');
+                   . ' values(now(), "Aberto", :valor_pedido, :entregar_retirar, :lista_cliente_id_lista_cliente)');
            $stm->bindValue(':entregar_retirar', $data->retirarEntregar);
            $stm->bindValue(':valor_pedido', $data->total);
            $stm->bindValue(':lista_cliente_id_lista_cliente', $id_lista);

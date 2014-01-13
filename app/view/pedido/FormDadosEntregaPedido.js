@@ -6,7 +6,7 @@ Ext.define('AppName.view.pedido.FormDadosEntregaPedido',{
     autoShow: true,
     border: false,
     bodyPadding: 10,
-    layout: 'fit',
+//    layout: 'fit',
     items:[
         {
             xtype: 'fieldset',
@@ -123,6 +123,43 @@ Ext.define('AppName.view.pedido.FormDadosEntregaPedido',{
                      ]
                  }
             
+            ]
+        },
+        {
+            xtype: 'fieldset',
+            title: 'Dados do Pedido',
+            layout: 'hbox',
+            width: 700,
+            defaults: {
+//                flex: 1,
+                labelWidth: 40,
+                margins: '0 0 5 5'
+            },
+            items:[
+                {
+                    xtype: 'textfield',
+                    name: 'nome',
+                    fieldLabel: 'Cliente',
+                    flex: 1
+                },
+                {
+                    xtype: 'textfield',
+                    name: 'id_pedido',
+                    fieldLabel: 'Pedido',
+                    flex: 0.5
+                },
+                {
+                    xtype: 'textfield',
+                    name: 'data',
+                    fieldLabel: 'Data',
+                    flex: 0.8
+                },
+                {
+                    xtype: 'textfield',
+                    name: 'valor_pedido',
+                    fieldLabel: 'Valor',
+                    flex: 0.5
+                }
             ]
         }
     ]
