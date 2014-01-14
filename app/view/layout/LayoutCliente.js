@@ -13,6 +13,7 @@ Ext.application({
         'layout.ControllerHeaderPanelCliente',
         'layout.ControllerTreePanelCategorias',
         
+        
         'produtos.ControllerCadProduto',
         'produtos.ControllerCadProdutoMercado',
         'produtos.ControllerListaCliente',
@@ -32,7 +33,8 @@ Ext.application({
            items:[
                {xtype: 'contentPanel'},
                {xtype: 'treePanelCategorias'},
-               {xtype: 'headerPanelCliente'},
+//               {xtype: 'headerPanelCliente'},                
+               {xtype: 'newHeaderPanelCliente'},
                {xtype: 'descriptionPanel'},
                
 //               {xtype: 'windowLogin',

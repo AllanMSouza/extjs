@@ -1,0 +1,69 @@
+[
+    {
+        "name": "Padaria e Sobremesas",
+        "id": "Padaria e Sobremesas",
+        "icon": "padaria01_64x64.png"
+         
+    },
+    {
+        "name": "Mercearia",
+        "id": "Mercearia",
+        "icon": "mercearia01_64x64.png"
+         
+    },
+    {
+        "name": "Carnes",
+        "id": "Carnes",
+        "icon": "carnes01_64x64.png"
+         
+    },
+    {
+        "name": "Frios Leites e Derivados",
+        "id": "Frios Leites e Derivados",
+        "icon": "frios01_64x64.png"
+         
+    },
+    {
+        "name": "Frutas Ovos e Verduras",
+        "id": "Frutas Ovos e Verduras",
+        "icon": "frutas01_64x64.png"
+         
+    },
+    {
+        "name": "Comidas Prontas e Congeladas",
+        "id": "Comidas Prontas e Congeladas",
+        "icon": "congelados01_64x64.png"
+         
+    },
+    {
+        "name": "Bebidas",
+        "id": "Bebidas",
+        "icon": "bebida01_64x64.png"
+         
+    },
+    {
+        "name": "Higiene Pessoal",
+        "id": "Higiene Pessoal",
+        "icon": "higiene01_64x64.png"
+         
+    },
+    {
+        "name": "Saude e Beleza",
+        "id": "Saude e Beleza",
+        "icon": "beleza01_64x64.png"
+         
+    },
+    {
+        "name": "Bazar e Limpeza",
+        "id": "Bazar e Limpeza",
+        "icon": "limpeza01_64x64.png"
+         
+    },
+    {
+        "name": "Kits",
+        "id": "Kits",
+        "icon": "kit01_64x64.png"
+         
+    },
+    
+]

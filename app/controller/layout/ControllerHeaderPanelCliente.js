@@ -11,7 +11,10 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanelCliente',{
        
 //       'layout.HeaderPanel',
        'layout.SearchPanel',
-       'layout.HeaderPanelCliente'
+       'layout.HeaderPanelCliente',
+       
+        'layout.NewHeaderPanelCliente',
+        'layout.DataViewNewHeaderPanelCliente',
        
        
     ],
