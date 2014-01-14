@@ -30,7 +30,7 @@ class MonitorPedidosEstoque extends Base {
        $stm = $db->prepare('select * from produtos P inner join lista_produtos_mercado LPM '
                . ' on (P.id_produtos = LPM.produtos_id_produtos) inner join categorias C '
                . ' on (C.id_categorias = P.categorias_id_categorias) '
-               . 'where LPM.mercado_id_mercado = :id_mercado and LPM.quantidade < 50 and LPM.quantidade >= 0');
+               . 'where LPM.mercado_id_mercado = :id_mercado and LPM.quantidade < LPM.laranja and LPM.quantidade >= 0 or LPM.quantidade <= LPM.vermelho');
        $stm->bindValue(':id_mercado',$_SESSION['id_mercado']);
        $stm->execute();
        
@@ -47,7 +47,7 @@ class MonitorPedidosEstoque extends Base {
        $stm = $db->prepare('select * from produtos P inner join lista_produtos_mercado LPM '
                . ' on (P.id_produtos = LPM.produtos_id_produtos) inner join categorias C '
                . ' on (C.id_categorias = P.categorias_id_categorias) '
-               . 'where LPM.mercado_id_mercado = :id_mercado and LPM.quantidade >= 100');
+               . 'where LPM.mercado_id_mercado = :id_mercado and LPM.quantidade >= LPM.verde');
        $stm->bindValue(':id_mercado',$_SESSION['id_mercado']);
        $stm->execute();
        
@@ -64,7 +64,7 @@ class MonitorPedidosEstoque extends Base {
        $stm = $db->prepare('select * from produtos P inner join lista_produtos_mercado LPM '
                . ' on (P.id_produtos = LPM.produtos_id_produtos) inner join categorias C '
                . ' on (C.id_categorias = P.categorias_id_categorias) '
-               . 'where LPM.mercado_id_mercado = :id_mercado and LPM.quantidade >= 50 and LPM.quantidade < 100');
+               . 'where LPM.mercado_id_mercado = :id_mercado and LPM.quantidade >= LPM.laranja and LPM.quantidade < LPM.verde');
        $stm->bindValue(':id_mercado',$_SESSION['id_mercado']);
        $stm->execute();
        

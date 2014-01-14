@@ -39,13 +39,14 @@ Ext.define('AppName.view.estoque.GridListaMonitorEstoque',{
             flex: 1,
             align: 'center',
             
-            renderer: function(val){
-                 if (val >= 100) {
+            renderer: function(val,record,data,c,d){
+//                console.log(data.data)
+                 if (val >= data.data.verde) {
                     return '<span style="color:green;">' + val + '</span>';
-                } else if(val >= 50 && val < 100) {
+                } else if(val >= data.data.laranja && val < data.data.verde) {
                     return '<span style="color:orange;">' + val + '</span>';
                 }
-                else if(val >= 0 && val < 50) {
+                else if(val >= 0 && val <= data.data.vermelho) {
                     return '<span style="color:red;">' + val + '</span>';
                 }
                 return val;

@@ -8,7 +8,10 @@ Ext.define('AppName.model.estoque.ModelMonitorEstoque',{
         {name: 'codigo_produto', type: 'int'},
         {name: 'nome_produto', type: 'string'},
         {name: 'nome_categoria', type: 'string'},
-        {name: 'quantidade', type: 'int'}
+        {name: 'quantidade', type: 'int'},
+        {name: 'vermelho', type: 'int'},
+        {name: 'verde', type: 'int'},
+        {name: 'laranja', type: 'int'},
        
     ]
 });

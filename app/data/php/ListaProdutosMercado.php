@@ -50,13 +50,20 @@ class ListaProdutosMercado extends Base {
            valor = :valor,
            quantidade = :quantidade,
            validade = :validade,
-           fabricacao = :fabricacao
+           fabricacao = :fabricacao,
+           verde = :verde,
+           vermelho = :vermelho,
+           laranja = :laranja
            where id_lista_produtos_mercado = :id_lista_produtos_mercado');
        $stm->bindValue(':valor', $data->valor);
        $stm->bindValue(':quantidade', $data->quantidade);
        $stm->bindValue(':validade', $data->validade);
        $stm->bindValue(':fabricacao', $data->fabricacao);
+       $stm->bindValue(':verde', $data->verde);
+       $stm->bindValue(':vermelho', $data->vermelho);
+       $stm->bindValue(':laranja', $data->laranja);
        $stm->bindValue(':id_lista_produtos_mercado', $data->id_lista_produtos_mercado);
+       
        $success = $stm->execute();
          
          $msg = $success ? 'Produto atualizado com Sucesso' : 'Erro ao atualizar Produto.' ;
