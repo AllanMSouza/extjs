@@ -12,7 +12,7 @@ Ext.define('AppName.controller.layout.ControllerLayout',{
        'layout.ContentPanel',
        'layout.DescriptionPanel',
        'layout.HeaderPanelMercado'
-//       'layout.LayoutAdministrador'
+//       'layout.LayoutAdministrador',
        
     ],
     

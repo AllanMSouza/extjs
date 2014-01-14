@@ -1,6 +1,6 @@
-Ext.define('AppName.view.layout.DataViewNewHeaderPanelCliente',{
+Ext.define('AppName.view.layout.DataViewControlPanel',{
      extend: 'Ext.view.View',
-    alias : 'widget.dataViewNewHeaderPanelCliente',
+    alias : 'widget.dataViewControlPanel',
 
     mixins: {
         dragSelector: 'Ext.ux.DataView.DragSelector',
@@ -34,7 +34,7 @@ Ext.define('AppName.view.layout.DataViewNewHeaderPanelCliente',{
                 fields: ['name', 'id', 'icon'],
                 proxy: {
                     type: 'ajax',
-                    url : 'resources/imagens/iconsHeaderPanelCliente/iconsHeaderPanelCliente.json',
+                    url : 'resources/imagens/iconsHeaderPanelCliente/controlPanel.json',
 //                    url : 'resources/imagens/iconsHeaderPanelCliente/iconsHeaderPanelCliente_Legenda.json',
                     reader: {
                         type: 'json',
@@ -49,33 +49,12 @@ Ext.define('AppName.view.layout.DataViewNewHeaderPanelCliente',{
         this.callParent();
     },
     
-    listeners: {
-
-selectionchange: function(model, records) {
-           
-//           console.log(model,records)
-           
-           var nomeCategoria = records[0].data.id;
-        if(Ext.getCmp('panel-categorias').collapsed == 'left'){
-            Ext.getCmp('panel-categorias').expand()
-            //console.log(Ext.getCmp('panel-categorias').store)
-           
-        }
-        
-        Ext.getCmp('panel-categorias').setTitle('Categoria - '+ nomeCategoria);
-        var store = Ext.getCmp('panel-categorias').store.getProxy()
-        
-        if(nomeCategoria == 'Kits'){
-            store.url = 'app/data/php/Kits.php?action=selectKitsCliente';
-        }
-        else{
-            store.url = 'app/data/php/Categorias.php?action=getCategorias&nomeCategoria=' + nomeCategoria;
-        }
-        
-        
-        Ext.getCmp('panel-categorias').store.setProxy(store)
-        Ext.getCmp('panel-categorias').store.load()
-                       
-        }
-    }
+//    listeners: {
+//
+//selectionchange: function(model, records) {
+//           
+////      
+//                       
+//        }
+//    }
 });

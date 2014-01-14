@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Meus Pedidos",
+        "id" : "Meus Pedidos",
+        "icon" : "pedidos_64x64.png"
+    },
+    {
+        "name": "Meu Cadastro",
+        "id" : "Meu Cadastro",
+        "icon" : "cadastro_64x64.png"
+    },
+    {
+        "name": "Sair",
+        "id" : "Sair",
+        "icon" : "sair_64x64.png"
+    }
+]

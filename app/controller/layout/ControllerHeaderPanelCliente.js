@@ -15,6 +15,9 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanelCliente',{
        
         'layout.NewHeaderPanelCliente',
         'layout.DataViewNewHeaderPanelCliente',
+        
+        'layout.WindowControlPanel',
+        'layout.DataViewControlPanel'
        
        
     ],
@@ -24,7 +27,8 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanelCliente',{
             'headerPanelCliente button[action=getCategorias]': {click: this.getCategorias},
             'headerPanelCliente button[action=showWindowMeusPedidos]' : {click: this.showWindowMeusPedidos},
             'headerPanelCliente button[action=showWindowGerenciarClientes]': {click: this.showWindowGerenciarClientes},
-            'headerPanelCliente button[action=logout]' : {click: this.logout}
+            'headerPanelCliente button[action=logout]' : {click: this.logout},
+            'dataViewControlPanel ' : {selectionchange: this.getActionControlPanel}
                
         // 'treePanelCategorias': {beforeitemexpand: this.teste}
           
@@ -79,5 +83,19 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanelCliente',{
     
     showWindowMeusPedidos: function(){
         Ext.widget('windowAcompanharPedidos')
+    },
+            
+    getActionControlPanel: function(model, records){
+            
+            if(records[0].data.id == "Meus Pedidos"){
+                Ext.widget('windowAcompanharPedidos')
+            }
+            else {
+                if(records[0].data.id == "Meu Cadastro"){
+                    Ext.widget('windowGerenciarClientes')
+                }
+                if(records[0].data.id == "Sair")
+                    this.logout()
+            }
     }
 })
