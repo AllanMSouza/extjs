@@ -4,6 +4,7 @@ Ext.define('AppName.view.usuarios.WindowCadCliente',{
     id: 'windowCadCliente',
     
     autoShow: true,
+    modal: true,
     height: 230,
     width: 480,
     layout: 'border',

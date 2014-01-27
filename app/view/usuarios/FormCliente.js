@@ -391,7 +391,7 @@ Ext.define('AppName.view.usuarios.FormCliente',{
             text: 'Cancelar',
             action: 'cancel',
             handler: function(){
-                Exr.getCmp('windowCadCliente').close()
+                Ext.getCmp('windowCadCliente').close()
             }
         }
     ]

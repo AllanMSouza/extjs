@@ -92,7 +92,15 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanelCliente',{
             }
             else {
                 if(records[0].data.id == "Meu Cadastro"){
-                    Ext.widget('windowGerenciarClientes')
+                    
+                    var grid = Ext.widget('gridListaClientes')
+                    grid.hide();
+                    var record = Ext.getCmp('gridListaClientes').store.data.items[0]
+        //            console.log(record)
+                    var editWindow = Ext.widget('windowCadCliente')
+                    var editForm = editWindow.down('form');
+                    editForm.loadRecord(record);
+                    
                 }
                 if(records[0].data.id == "Sair")
                     this.logout()
