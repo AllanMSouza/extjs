@@ -85,8 +85,8 @@ Ext.define('AppName.controller.layout.ControllerLayout',{
             
     showPanelFinalizarPedido: function(){
 
-//        console.log(Ext.getCmp('comboboxListaProdutosCliente').getValue())
-        if(Ext.getCmp('comboboxListaProdutosCliente').getValue() == null ||Ext.getCmp('comboboxListaProdutosCliente').getValue() == null == ' '){
+        console.log(Ext.getCmp('comboboxListaProdutosCliente').getValue())
+        if(Ext.getCmp('comboboxListaProdutosCliente').getValue() == null ||Ext.getCmp('comboboxListaProdutosCliente').getValue() == ' '){
               Ext.Msg.show({
                         title: 'ERRO',
                         msg: 'Nenhuma lista selecionada',
