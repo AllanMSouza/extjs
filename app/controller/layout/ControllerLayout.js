@@ -84,7 +84,19 @@ Ext.define('AppName.controller.layout.ControllerLayout',{
     },
             
     showPanelFinalizarPedido: function(){
-//        console.log('hahahaha')
+
+//        console.log(Ext.getCmp('comboboxListaProdutosCliente').getValue())
+        if(Ext.getCmp('comboboxListaProdutosCliente').getValue() == null ||Ext.getCmp('comboboxListaProdutosCliente').getValue() == null == ' '){
+              Ext.Msg.show({
+                        title: 'ERRO',
+                        msg: 'Nenhuma lista selecionada',
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.MessageBox.WARNING,
+                        escope: this,
+                    })
+        }
+        else {
+
         Ext.widget('panelFinalizarPedidoCliente')
         
         var proxy = Ext.getCmp('treeListaClienteFinalizarPedido').store.getProxy()
@@ -111,5 +123,6 @@ Ext.define('AppName.controller.layout.ControllerLayout',{
             editForm.loadRecord(record);
             Ext.getCmp('windowGerenciarClientes').show()
             Ext.getCmp('windowGerenciarClientes').close()
+        }
     }
 })
