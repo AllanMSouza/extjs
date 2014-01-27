@@ -70,7 +70,7 @@ Ext.define('AppName.controller.produtos.ControllerListaCliente',{
             win.close();
             Ext.getCmp('gridListaProdutosCliente').store.sync();
             Ext.getCmp('gridListaProdutosCliente').store.load()
-            Ext.getCmp('comboboxListaProdutosCliente').store.reload()
+            Ext.getCmp('comboboxListaProdutosCliente').store.load()
             Ext.getCmp('comboboxListaProdutosCliente').setValue(' ')
            }
            else{

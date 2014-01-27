@@ -24,6 +24,7 @@
             <!--<script type="text/javascript" src="extjs/examples/shared/options-toolbar.js"></script>-->
              <script type="text/javascript" src="app/view/utils/ViewRedir.js"></script>
              <script type="text/javascript" src="extjs/examples/shared/examples.js"></script>
+             <script type="text/javascript" src="resources/ext-lang-pt_BR.js"></script>
               <!--<script type="text/javascript" src="extjs/examples/example-data.js"></script>-->
 
              
