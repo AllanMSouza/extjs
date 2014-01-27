@@ -16,14 +16,41 @@ class MonitorPedidosMercado extends Base {
                             cliente C on (C.id_cliente = LC.cliente_id_cliente) inner join usuarios U
                             on (U.id_usuarios = C.usuarios_id_usuarios)');
         $stm->execute();
-         
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        
+        for($i = 0; $i < count($result); $i++){
+            
+            if($result[$i]['entregar_retirar'] == '2'){
+                $entrega = $this->getEntrega($result[$i]['id_pedido']);
+//                var_dump($entrega);
+                $result[$i]['endereco'] = $entrega[0]['endereco'];
+                $result[$i]['complemento'] = $entrega[0]['complemento'];
+                $result[$i]['bairro'] = $entrega[0]['bairro'];
+                $result[$i]['numero'] = $entrega[0]['numero'];
+                $result[$i]['cep'] = $entrega[0]['cep'];
+                $result[$i]['estado'] = $entrega[0]['uf'];
+                $result[$i]['cidade'] = $entrega[0]['cidade'];
+            }
+        }
+        
         echo json_encode(array(
            "success" => true,
            "data" => $result
       ));
         
         
+    }
+    
+    public function getEntrega($id_pedido){
+        $db = $this->getDb();
+        $stm = $db->prepare('select * from entrega where pedido_id_pedido = :id_pedido');
+        $stm->bindValue(':id_pedido', $id_pedido);
+        $stm->execute();
+        
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $result;
+                
     }
     
     public function filtrarPor(){

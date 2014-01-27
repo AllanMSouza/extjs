@@ -31,15 +31,21 @@ class PedidosCliente extends Base {
            $db = $this->getDb();
            $stm = $db->prepare('insert into pedido '
                    . '(data, status, valor_pedido, entregar_retirar, lista_cliente_id_lista_cliente) '
-                   . ' values(curdate(), aberto, :entregar_retirar, :lista_cliente_id_lista_cliente)');
+                   . ' values(now(), "Aberto", :valor_pedido, :entregar_retirar, :lista_cliente_id_lista_cliente)');
            $stm->bindValue(':entregar_retirar', $data->retirarEntregar);
            $stm->bindValue(':lista_cliente_id_lista_cliente', $id_lista);
-           $stm->execute();
-           $result = $stm->fetch(PDO::FETCH_ASSOC);
+           $stm->bindValue(':valor_pedido', $data->total);
+           $result = $stm->execute();
+           $stm->fetch(PDO::FETCH_ASSOC);
            
            $id_pedido = $db->lastInsertId();
            
-           $this->insertEntrega($data, $id_pedido);
+           if($result){
+                $result = $this->insertEntrega($data, $id_pedido);
+                
+           }
+           else
+               return;
            
            echo json_encode(array(
              "success" => $result,
@@ -63,21 +69,23 @@ class PedidosCliente extends Base {
     }
     
     public function insertEntrega($data, $id_pedido){
+//        var_dump($data);
         $db = $this->getDb();
         $stm = $db->prepare('insert into entrega '
-                . '(endereco, numero, bairro, complemento, cep, uf, pedido_id_pedido) '
-                . 'values (:endereco, :numero, :bairro, :complemento, :cep, :uf, :pedido_id_pedido)');
+                . '(endereco, numero, bairro, complemento, cep, uf, pedido_id_pedido, cidade) '
+                . 'values (:endereco, :numero, :bairro, :complemento, :cep, :uf, :pedido_id_pedido, :cidade)');
         $stm->bindValue(':endereco', $data->endereco);
         $stm->bindValue(':numero', $data->numero);
         $stm->bindValue(':bairro', $data->bairro);
         $stm->bindValue(':complemento', $data->complemento);
         $stm->bindValue(':cep', $data->cep);
-        $stm->bindValue(':uf', $data->uf);
+        $stm->bindValue(':uf', $data->estado);
+        $stm->bindValue(':cidade', $data->cidade);
         $stm->bindValue(':pedido_id_pedido', $id_pedido);
-        $stm->execute();
-        $result = $stm->fetch(PDO::FETCH_ASSOC);
+        $result = $stm->execute();
+        $stm->fetch(PDO::FETCH_ASSOC);
         
-        return;
+        return $result;
     }
     
     public function select(){
