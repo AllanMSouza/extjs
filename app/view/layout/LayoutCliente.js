@@ -36,7 +36,7 @@ Ext.application({
 //               {xtype: 'headerPanelCliente'},                
                {xtype: 'newHeaderPanelCliente'},
                {xtype: 'descriptionPanel'},
-               {xtype: 'windowControlPanel'},
+//               {xtype: 'windowControlPanel'},
                
                
                

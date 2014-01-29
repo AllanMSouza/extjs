@@ -11,7 +11,13 @@ Ext.define('AppName.view.layout.NewHeaderPanelCliente',{
     items:[
         {
             xtype:'dataViewNewHeaderPanelCliente',
-            region: 'center'
+            region: 'west'
+        },
+        {
+            xtype: 'dataViewControlPanel',
+            region: 'east',
+            width: 300
+                
         }
     ]
 });
