@@ -10,12 +10,12 @@ Ext.define('AppName.view.layout.ContentPanel',{
         {
             xtype:'panel',
             id:'panelLogo',
-            height: 320,
-            bodyPadding: '20',
+            height: 220,
+            bodyPadding: '10',
             border:false,
             split: true,
             layout: 'column',
-            y: 400,
+            y: 300,
 //            icon: 'resources/icons/logomercado.png',
 //            bodyStyle: '<img align=top src="resources/icons/logomercado.png" style="width: 64px; height: 64px;"/>'
             items:[
@@ -31,8 +31,8 @@ Ext.define('AppName.view.layout.ContentPanel',{
                     id: 'logoAquiMercado',
                     autoShow: true,
                     split: true,
-                    width: 350,
-                    height: 280,
+                    width: 250,
+                    height: 200,
                     src: 'resources/icons/logomercado.png',
                     listeners:{
                         render:function(val){

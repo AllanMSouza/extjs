@@ -16,7 +16,7 @@ Ext.define('AppName.view.layout.NewHeaderPanelCliente',{
         {
             xtype: 'dataViewControlPanel',
             region: 'east',
-            width: 300
+            width: 280
                 
         }
     ]
