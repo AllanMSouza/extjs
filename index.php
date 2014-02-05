@@ -7,11 +7,12 @@
         
          <link rel="stylesheet" type="text/css" href="extjs/examples/build/KitchenSink/ext-theme-neptune/lib/prettify/prettify.css"/>
           <link rel="stylesheet" href="extjs/examples/build/KitchenSink/ext-theme-neptune/resources/KitchenSink-all.css">
-          <!--<link rel="stylesheet" href="extjs/examples/build/KitchenSink/ext-theme-neptune/resources/KitchenSink-example.css">-->
+          <link rel="stylesheet" href="extjs/examples/build/KitchenSink/ext-theme-neptune/resources/KitchenSink-example.css">
           <!--<link rel="stylesheet" href="extjs/resources/css/clifton.css">-->
           <!--<link rel="stylesheet" href="extjs/resources/css/ext-all-gray.css">-->
           <!--<link rel="stylesheet" href="resources/themes/css/ext-all.css">-->
           <link rel="stylesheet" type="text/css" href="resources/css/imagens.css">
+          <link rel="stylesheet" type="text/css" href="resources/css/tooltip.css">
           <!--<link rel="stylesheet" type="text/css" href="extjs/examples/layout-browser/layout-browser.css">-->
           <link rel="stylesheet" type="text/css" href="app/view/dataview/organizer.css">
           <link rel="stylesheet" type="text/css" href="extjs/examples/shared/example.css">
