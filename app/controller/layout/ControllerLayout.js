@@ -85,7 +85,7 @@ Ext.define('AppName.controller.layout.ControllerLayout',{
             
     showPanelFinalizarPedido: function(){
 
-        console.log(Ext.getCmp('comboboxListaProdutosCliente').getValue())
+//        console.log(Ext.getCmp('comboboxListaProdutosCliente').getValue())
         if(Ext.getCmp('comboboxListaProdutosCliente').getValue() == null ||Ext.getCmp('comboboxListaProdutosCliente').getValue() == ' '){
               Ext.Msg.show({
                         title: 'ERRO',
@@ -96,33 +96,47 @@ Ext.define('AppName.controller.layout.ControllerLayout',{
                     })
         }
         else {
-
-        Ext.widget('panelFinalizarPedidoCliente')
+//            console.log(Ext.getCmp('gridListaProdutosCliente').store.data.items[0])
+        if(!Ext.getCmp('gridListaProdutosCliente').store.data.items[0]){
+             Ext.Msg.show({
+                        title: 'ERRO',
+                        msg: 'A Lista selecionada não possui produtos!',
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.MessageBox.WARNING,
+                        escope: this,
+                    })
+        }
         
-        var proxy = Ext.getCmp('treeListaClienteFinalizarPedido').store.getProxy()
-
-        proxy.api.read = 'app/data/php/ListaProdutosCliente.php?action=select&nome_lista=' + Ext.getCmp('comboboxListaProdutosCliente').getValue()
-        Ext.getCmp('treeListaClienteFinalizarPedido').store.setProxy(proxy)
-        Ext.getCmp('treeListaClienteFinalizarPedido').store.load()
+        else {
+            Ext.widget('panelFinalizarPedidoCliente')
         
-        Ext.getCmp('fieldtotal').setValue(Ext.getCmp('valorListaCliente').getValue())
+            var proxy = Ext.getCmp('treeListaClienteFinalizarPedido').store.getProxy()
+
+            proxy.api.read = 'app/data/php/ListaProdutosCliente.php?action=select&nome_lista=' + Ext.getCmp('comboboxListaProdutosCliente').getValue()
+            Ext.getCmp('treeListaClienteFinalizarPedido').store.setProxy(proxy)
+            Ext.getCmp('treeListaClienteFinalizarPedido').store.load()
+
+            Ext.getCmp('fieldtotal').setValue(Ext.getCmp('valorListaCliente').getValue())
+
+            Ext.getCmp('valorPanelFinalizarPedido').update(
+                    '<div style="padding-top:8px;padding-left:8px;"><b><label style=" font-size:20;color:#333"> TOTAL R$: </b></label><label style=" font-size:32;color:#55F"><b>'+ Ext.getCmp('valorListaCliente').getValue()+' </b></label></div>'
+                    )
+    //        console.log(Ext.getCmp('valorListaCliente').getValue())
+            Ext.getCmp('fieldNomeLista').setValue(Ext.getCmp('comboboxListaProdutosCliente').getValue())
+
+            Ext.widget('windowGerenciarClientes').hide()
+    //        Ext.getCmp('windowGerenciarClientes').hide()
+
+            var records = Ext.getCmp('gridListaClientes').store.data.items[0];
+
+                 var editForm = Ext.getCmp('formFinalizarPedido')
+                 var record = records;
+                editForm.loadRecord(record);
+                Ext.getCmp('windowGerenciarClientes').show()
+                Ext.getCmp('windowGerenciarClientes').close()
+            
+        }
         
-        Ext.getCmp('valorPanelFinalizarPedido').update(
-                '<div style="padding-top:8px;padding-left:8px;"><b><label style=" font-size:20;color:#333"> TOTAL R$: </b></label><label style=" font-size:32;color:#55F"><b>'+ Ext.getCmp('valorListaCliente').getValue()+' </b></label></div>'
-                )
-//        console.log(Ext.getCmp('valorListaCliente').getValue())
-        Ext.getCmp('fieldNomeLista').setValue(Ext.getCmp('comboboxListaProdutosCliente').getValue())
-
-        Ext.widget('windowGerenciarClientes').hide()
-//        Ext.getCmp('windowGerenciarClientes').hide()
-
-        var records = Ext.getCmp('gridListaClientes').store.data.items[0];
-   
-             var editForm = Ext.getCmp('formFinalizarPedido')
-             var record = records;
-            editForm.loadRecord(record);
-            Ext.getCmp('windowGerenciarClientes').show()
-            Ext.getCmp('windowGerenciarClientes').close()
         }
     }
 })
