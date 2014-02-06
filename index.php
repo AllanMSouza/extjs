@@ -5,22 +5,28 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
-         <link rel="stylesheet" type="text/css" href="extjs/examples/build/KitchenSink/ext-theme-neptune/lib/prettify/prettify.css"/>
+         <!--<link rel="stylesheet" type="text/css" href="extjs/examples/build/KitchenSink/ext-theme-neptune/lib/prettify/prettify.css"/>-->
           <link rel="stylesheet" href="extjs/examples/build/KitchenSink/ext-theme-neptune/resources/KitchenSink-all.css">
+          <link rel="stylesheet" href="extjs/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all.css">
+          
+          
           <link rel="stylesheet" href="extjs/examples/build/KitchenSink/ext-theme-neptune/resources/KitchenSink-example.css">
+          <link rel="stylesheet" href="extjs/examples/view/data-view.css">
           <!--<link rel="stylesheet" href="extjs/resources/css/clifton.css">-->
           <!--<link rel="stylesheet" href="extjs/resources/css/ext-all-gray.css">-->
           <!--<link rel="stylesheet" href="resources/themes/css/ext-all.css">-->
           <link rel="stylesheet" type="text/css" href="resources/css/imagens.css">
-          <link rel="stylesheet" type="text/css" href="resources/css/tooltip.css">
+          <!--<link rel="stylesheet" type="text/css" href="resources/css/tooltip.css">-->
           <!--<link rel="stylesheet" type="text/css" href="extjs/examples/layout-browser/layout-browser.css">-->
           <link rel="stylesheet" type="text/css" href="app/view/dataview/organizer.css">
           <link rel="stylesheet" type="text/css" href="extjs/examples/shared/example.css">
           <link rel="stylesheet" type="text/css" href="extjs/examples/desktop/css/desktop.css">
           <!--<script type="text/javascript" src="app/view/utils/ViewRedir.js"></script>-->
+       
          
             
             <script type="text/javascript" src="extjs/ext-all-debug.js"></script>
+            <link rel="stylesheet" href="extjs/packages/ext-theme-neptune/build/resources/ext-theme-neptune-all-debug.css">
             <!--<script type="text/javascript" src="extjs/examples/shared/include-ext.js"></script>-->
             <!--<script type="text/javascript" src="extjs/examples/shared/options-toolbar.js"></script>-->
              <script type="text/javascript" src="app/view/utils/ViewRedir.js"></script>

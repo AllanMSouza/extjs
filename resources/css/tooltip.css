@@ -1,52 +1,27 @@
-ul#menutt {
-width: 64px; 
-list-style:none;
-font: bold 16px Arial, Verdana, Serif;
-}
-ul#menutt li{
-position:relative;
-}
-ul#menutt a {
-width: 64px;
-display: block;
-text-align:bottom;
-padding: 0px 0px;
-margin-bottom:1px;
-text-decoration: none;
-/*color: #000;*/
-background: #fff;
-width:70px;
+.tooltip {
+      position: absolute;
+      width: 100px;
+      height: 20px;
+      line-height: 20px;
+      padding: 10px;
+      font-size: 14px;
+      text-align: center;
+      color: rgb(113, 157, 171);
+      background: rgb(255, 255, 255);
+      border: 4px solid rgb(255, 255, 255);
+      border-radius: 5px;
+      text-shadow: rgba(0, 0, 0, 0.1) 1px 1px 1px;
+      box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 2px 0px;
 }
 
-#pagebody>ul#menutt a {
-width: 64px;
-}
-/* Fix IE. Hide from IE Mac \*/
-* html ul#menutt li { float: bottom; height: 1%; }
-* html ul#menutt li a { height: 1%; }
-/* End */
-ul#menutt a:hover {
-/*color: #000;*/
-/*background: #c0c0c0;*/
-/*border-right: 1px solid #000;*/
-/*border-left: 1px solid #000;*/
-/*border-bottom: 1px solid #000;*/
-/*border-top: 1px solid #000;*/
-}
-ul#menutt a span {
-display: none;
-}
-ul#menutt a:hover span {
-display: block;
-position: inherit;
-top:0;
-left: 10px;
-width: 100px;
-padding: 0px;
-margin-left:0px;
-color: #000;
-background:#fff;
-font-size: 10px;
-text-align:center;
-border:1px solid #000;
+.tooltip:after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-width: 10px;
+      border-style: solid;
+      border-color: #FFFFFF transparent transparent transparent;
+      top: 44px;
+      left: 50px;
 }

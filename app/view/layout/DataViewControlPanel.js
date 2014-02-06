@@ -8,17 +8,25 @@ Ext.define('AppName.view.layout.DataViewControlPanel',{
     },
     
     tpl: [
-        '<tpl for=".">',
-            '<div class="thumb-wrap" >',
-                '<div class="thumb" style= "">',
-                    (!Ext.isIE6? '<img align=top src="resources/imagens/iconsHeaderPanelCliente/{icon}" style="width: 64px; height: 64px;"/>':               
-                    //'<div style="width:76px;height:76px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos} style="width: 100px; height: 90px; padding: 5px;"\')"></div>
-                ''),
-                
-                '</div>',
-//                '<span><label style =" font-size:10;color:#333; width: 64px;">{name}</label></span>',
-            '</div>',
-        '</tpl>'
+        
+         '<tpl for=".">',
+                    '<div class="thumb-wrap" id="{name:stripTags}">',
+                        '<div class="thumb"><img src="resources/imagens/iconsHeaderPanelCliente/{icon}" title="{name:htmlEncode}"></div>',
+//                        '<span class="x-editable">{name:htmlEncode}</span>',
+                    '</div>',
+                '</tpl>',
+                '<div class="x-clear"></div>'
+//        '<tpl for=".">',
+//            '<div class="thumb-wrap" >',
+//                '<div class="thumb" style= "">',
+//                    (!Ext.isIE6? '<img align=top src="resources/imagens/iconsHeaderPanelCliente/{icon}" style="width: 64px; height: 64px;"/>':               
+//                    //'<div style="width:76px;height:76px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos} style="width: 100px; height: 90px; padding: 5px;"\')"></div>
+//                ''),
+//                
+//                '</div>',
+////                '<span><label style =" font-size:10;color:#333; width: 64px;">{name}</label></span>',
+//            '</div>',
+//        '</tpl>'
     ],
     
     itemSelector: 'div.thumb-wrap',
