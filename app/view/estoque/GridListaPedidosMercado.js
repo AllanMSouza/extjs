@@ -34,11 +34,14 @@ Ext.define('AppName.view.estoque.GridListaPedidosMercado',{
             store:  Ext.create('Ext.data.Store', {
             fields: ['abbr', 'name'],
             data : [
+                {"abbr":"Aberto", "name":"Aberto"},
                 {"abbr":"Recebido", "name":"Recebido"},
+                {"abbr":"Separando em estoque", "name":"Separando em estoque"},
                 {"abbr":"Aguardando retirada", "name":"Aguardando retirada"},
                 {"abbr":"Em transição", "name":"Em transição"},
                 {"abbr":"Finalizado", "name":"Finalizado"},
                 {"abbr":"Cancelado", "name":"Cancelado"},
+                {"abbr":"Todos", "name":"Todos"},
 
             ]
             }),

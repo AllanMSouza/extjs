@@ -57,9 +57,39 @@ Ext.define('AppName.view.dataview.DataViewListaProdutosMercado', {
     },
     
     listeners: {
-        beforerender: function(){
-            
-        }
+      itemdblclick:function(record, item, index, e, eOpts){
+//          console.log(record,item)
+//      var isNaLista = false;
+////                this.store.remove(data)
+//                this.store.load()
+//                
+//                for(var i = 0; i < Ext.getCmp('gridListaProdutosCliente').store.data.items.length ; i++){
+//                
+//                        if(Ext.getCmp('gridListaProdutosCliente').store.data.items[i].data.id_produtos > 0){
+//
+//                            if(Ext.getCmp('gridListaProdutosCliente').store.data.items[i].data.id_produtos == item.data.id_produtos){
+//        //                        Ext.Msg.alert('ERRO', 'Atenção, Kit já adicionado a lista');
+//                                isNaLista =  true;
+//                                break;
+//                                                    }
+//                            else
+//                                isNaLista =  false;
+//                        }
+//        //                console.log(isNoPanfleto)
+//                }
+//                 if(!isNaLista){
+//                     var proxy = this.store.getProxy();
+//                    proxy.api.create = 'app/data/php/ListaProdutosCliente.php?action=insert&nome_lista=' + Ext.getCmp('comboboxListaProdutosCliente').getValue()
+//                    this.store.setProxy(proxy)
+//                    this.store.add(item)
+//                    this.store.sync()
+//                 }
+//                else {
+//                    this.store.load()
+//                    Ext.Msg.alert('ERRO', 'Atenção, Produto já adicionado a lista');
+//                }
+
+      }
 //        click: {
 //            element: 'el', //bind to the underlying el property on the panel
 //            fn: function(){ console.log('click el'); }

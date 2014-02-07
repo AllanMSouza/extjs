@@ -55,19 +55,38 @@ class MonitorPedidosMercado extends Base {
     
     public function filtrarPor(){
         $status = $_GET['status'];
-        $db = $this->getDb();
-        $stm = $db->prepare('select * from pedido P inner join lista_cliente LC 
-                            on (P.lista_cliente_id_lista_cliente = LC.id_lista_cliente) inner join
-                            cliente C on (C.id_cliente = LC.cliente_id_cliente) inner join usuarios U
-                            on (U.id_usuarios = C.usuarios_id_usuarios) where P.status = :status');
-        $stm->bindValue('status', $status);
-        $stm->execute();
-         
-        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode(array(
-           "success" => true,
-           "data" => $result
-      ));
+        
+        if($status == 'Todos'){
+            $db = $this->getDb();
+            $stm = $db->prepare('select * from pedido P inner join lista_cliente LC 
+                                on (P.lista_cliente_id_lista_cliente = LC.id_lista_cliente) inner join
+                                cliente C on (C.id_cliente = LC.cliente_id_cliente) inner join usuarios U
+                                on (U.id_usuarios = C.usuarios_id_usuarios)');
+            $stm->execute();
+
+            $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+            echo json_encode(array(
+               "success" => true,
+               "data" => $result
+                    ));
+        }
+        else { 
+            $db = $this->getDb();
+            $stm = $db->prepare('select * from pedido P inner join lista_cliente LC 
+                                on (P.lista_cliente_id_lista_cliente = LC.id_lista_cliente) inner join
+                                cliente C on (C.id_cliente = LC.cliente_id_cliente) inner join usuarios U
+                                on (U.id_usuarios = C.usuarios_id_usuarios) where P.status = :status');
+            $stm->bindValue('status', $status);
+            $stm->execute();
+
+            $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+            echo json_encode(array(
+               "success" => true,
+               "data" => $result
+                    ));
+        }
+        
+      
         
         
     }
