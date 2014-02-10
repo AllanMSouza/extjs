@@ -18,7 +18,9 @@ class PedidosCliente extends Base {
            $stm->bindValue(':valor_pedido', $data->total);
            $stm->bindValue(':lista_cliente_id_lista_cliente', $id_lista);
            $result = $stm->execute();
-//           $stm->fetch(PDO::FETCH_ASSOC);
+           $id_pedido = $db->lastInsertId();
+           
+           $this->copiarProdutosPedido($id_pedido);
            
             echo json_encode(array(
              "success" => $result,
@@ -40,10 +42,12 @@ class PedidosCliente extends Base {
            
            $id_pedido = $db->lastInsertId();
            
+           
            if($result){
                 $result = $this->insertEntrega($data, $id_pedido);
-                
+                $this->copiarProdutosPedido($id_pedido);                
            }
+           
            else
                return;
            
@@ -53,6 +57,9 @@ class PedidosCliente extends Base {
          ));
            
        }
+       
+       
+       
     }
     
     public function getIdListaCliente($nome_lista){
@@ -104,6 +111,69 @@ class PedidosCliente extends Base {
              "data" => $data
          ));
         
+    }
+    
+    public function copiarProdutosPedido($id_pedido){
+        $db = $this->getDb();
+        
+        $stm = $db->prepare('
+                                select PELC.id_pedido, LCHLPM.quantidade, LCHLPM.lista_produtos_mercado_id_lista_produtos_mercado from 
+                                (
+                                    select * from pedido PE inner join lista_cliente LC on (PE.lista_cliente_id_lista_cliente = LC.id_lista_cliente)
+                                ) as PELC inner join lista_cliente_has_lista_produtos_mercado LCHLPM on (PELC.id_lista_cliente = LCHLPM.lista_cliente_id_lista_cliente)
+
+                            where PELC.id_pedido = :id_pedido
+                            
+                            ');
+        $stm->bindValue(':id_pedido',$id_pedido);
+        $stm->execute();
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        
+        for($i = 0; $i < count($result); $i++){
+            $this->insertProdutoPedidoHasListaProdutosMercado($result[$i]['id_pedido'], 
+                    $result[$i]['lista_produtos_mercado_id_lista_produtos_mercado'], 
+                    $result[$i]['quantidade']);
+        }
+        
+        
+    }
+    
+    public function insertProdutoPedidoHasListaProdutosMercado($id_pedido, $id_lista_produtos_mercado, $quantidade){
+        
+        $db = $this->getDb();
+        
+        $stm = $db->prepare('insert into pedido_has_lista_produtos_mercado 
+            (pedido_id_pedido, lista_produtos_mercado_id_lista_produtos_mercado, quantidade) 
+            values (:pedido_id_pedido, :lista_produtos_mercado_id_lista_produtos_mercado, :quantidade)');
+        $stm->bindValue(':pedido_id_pedido', $id_pedido);
+        $stm->bindValue(':lista_produtos_mercado_id_lista_produtos_mercado', $id_lista_produtos_mercado);
+        $stm->bindValue(':quantidade', $quantidade);
+        $stm->execute();
+        
+        $this->baixaProdutosEstoque($id_lista_produtos_mercado, (int) $quantidade);
+    }
+    
+    public function baixaProdutosEstoque($id_lista_produtos_mercado, $quantidade){
+        $quantidadeAtual = (int) $this->selectQuantidade($id_lista_produtos_mercado);
+                
+        $db = $this->getDb();
+        $stm = $db->prepare('update lista_produtos_mercado set quantidade = :quantidade 
+            where id_lista_produtos_mercado = :id_lista_produtos_mercado');
+        $stm->bindValue(':quantidade', $quantidadeAtual - $quantidade);
+        $stm->bindValue(':id_lista_produtos_mercado', $id_lista_produtos_mercado);
+        $stm->execute();
+    }
+    
+    public function selectQuantidade($id_lista_produtos_mercado){
+        $db = $this->getDb();
+        
+        $stm = $db->prepare('select quantidade from lista_produtos_mercado where id_lista_produtos_mercado = :id_lista_produtos_mercado');
+        $stm->bindValue(':id_lista_produtos_mercado', $id_lista_produtos_mercado);
+        $stm->execute();
+        
+        $result = $stm->fetch(PDO::FETCH_ASSOC);
+        
+        return $result['quantidade'];
     }
 
 }
