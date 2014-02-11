@@ -107,6 +107,11 @@ class MonitorPedidosMercado extends Base {
         $stm->bindValue(':id_pedido', $id_pedido);
         $result = $stm->execute();
         
+        if($status == 'Cancelado'){
+            $this->getProdutosPedido($id_pedido);
+            $this->getKitsPedido($id_pedido);
+        }
+        
          echo json_encode(array(
            "success" => $result,
 //           "data" => $result
@@ -115,6 +120,88 @@ class MonitorPedidosMercado extends Base {
         
     }
 
+      public function getProdutosPedido($id_pedido){
+        $db = $this->getDb();
+        
+        $stm = $db->prepare('select PELC.id_pedido, LCHLPM.quantidade, LCHLPM.lista_produtos_mercado_id_lista_produtos_mercado from 
+                                (
+                                    select * from pedido PE inner join lista_cliente LC on (PE.lista_cliente_id_lista_cliente = LC.id_lista_cliente)
+                                ) as PELC inner join lista_cliente_has_lista_produtos_mercado LCHLPM on (PELC.id_lista_cliente = LCHLPM.lista_cliente_id_lista_cliente)
+
+                            where PELC.id_pedido = :id_pedido
+                            
+                            ');
+        $stm->bindValue(':id_pedido',$id_pedido);
+        $stm->execute();
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);  
+        
+         for($i = 0; $i < count($result); $i++){
+            $this->estornoPedidosCancelados($result[$i]['lista_produtos_mercado_id_lista_produtos_mercado'], $result[$i]['quantidade']);
+        }
+        
+    }
+    
+    public function getKitsPedido($id_pedido){
+        $db = $this->getDb();
+        
+        $stm = $db->prepare('
+            select PELC.id_pedido, LCHK.kits_id_kit, LCHK.quantidade from 
+            (
+                select * from pedido PE inner join lista_cliente LC on (PE.lista_cliente_id_lista_cliente = LC.id_lista_cliente)
+            ) as PELC inner join lista_cliente_has_kits LCHK on (LCHK.lista_cliente_id_lista_cliente = PELC.id_lista_cliente)
+
+            where PELC.id_pedido = :id_pedido');
+        
+        $stm->bindValue(':id_pedido',$id_pedido);
+        $stm->execute();
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        
+        for($i = 0; $i < count($result); $i++){
+                    
+            $this->getProdutosKit($result[$i]['kits_id_kit'], (int) $result[$i]['quantidade']);
+        }
+             
+    }
+    
+     public function getProdutosKit($id_kit, $quantidade_kit){
+        $db = $this->getDb();
+        
+        $stm = $db->prepare('select KHLPM.kits_id_kit, KHLPM.quantidade, LPM.id_lista_produtos_mercado 
+            from kits_has_lista_produtos_mercado KHLPM inner join lista_produtos_mercado LPM 
+            on (KHLPM.lista_produtos_mercado_id_lista_produtos_mercado = LPM.id_lista_produtos_mercado)
+
+            where KHLPM.kits_id_kit = :id_kit');
+        $stm->bindValue(':id_kit', $id_kit);
+        $stm->execute();
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        
+        for($i = 0; $i < count($result); $i++){
+            $this->estornoPedidosCancelados($result[$i]['id_lista_produtos_mercado'], $result[$i]['quantidade'] * (int) $quantidade_kit);
+        }
+    }
+    
+     public function estornoPedidosCancelados($id_lista_produtos_mercado, $quantidade){
+        $quantidadeAtual = (int) $this->selectQuantidade($id_lista_produtos_mercado);
+                
+        $db = $this->getDb();
+        $stm = $db->prepare('update lista_produtos_mercado set quantidade = :quantidade 
+            where id_lista_produtos_mercado = :id_lista_produtos_mercado');
+        $stm->bindValue(':quantidade', $quantidadeAtual + $quantidade);
+        $stm->bindValue(':id_lista_produtos_mercado', $id_lista_produtos_mercado);
+        $stm->execute();
+    }
+    
+    public function selectQuantidade($id_lista_produtos_mercado){
+        $db = $this->getDb();
+        
+        $stm = $db->prepare('select quantidade from lista_produtos_mercado where id_lista_produtos_mercado = :id_lista_produtos_mercado');
+        $stm->bindValue(':id_lista_produtos_mercado', $id_lista_produtos_mercado);
+        $stm->execute();
+        
+        $result = $stm->fetch(PDO::FETCH_ASSOC);
+        
+        return $result['quantidade'];
+    }
 }
 
 new MonitorPedidosMercado();
