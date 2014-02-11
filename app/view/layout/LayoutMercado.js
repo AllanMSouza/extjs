@@ -31,7 +31,9 @@ Ext.application({
         'estoque.ControllerMonitorPedidos',
         'estoque.ControllerMonitorEstoque',
         
-        'pedido.ControllerFinalizarPedido'
+        'pedido.ControllerFinalizarPedido',
+        
+        'controlpanel.ControllerControlPanelMercado'
         
 
         

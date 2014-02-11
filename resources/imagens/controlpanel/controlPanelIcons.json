@@ -1,0 +1,19 @@
+[
+    {
+        "name": "Alerta de Estoque",
+        "id": "Alerta de Estoque",
+        "icon": "alerta2.jpg"
+    },
+    {
+        "name": "Relatórios",
+        "id": "Relatórios",
+        "icon": "relatorio.jpg"
+    },
+    {
+        "name": "Vendas",
+        "id": "Vendas",
+        "icon": "line_chart_icon.jpg"
+    },
+    
+]
+
