@@ -4,6 +4,7 @@ Ext.define('AppName.view.layout.ContentPanel',{
     
     id: 'content-panel',
     region: 'center', 
+//    title: 'AQUI MERCADO',
     split:true,
     border: false,
     items:[

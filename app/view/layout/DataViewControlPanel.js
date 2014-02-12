@@ -11,7 +11,16 @@ Ext.define('AppName.view.layout.DataViewControlPanel',{
         
          '<tpl for=".">',
                     '<div class="thumb-wrap" id="{name:stripTags}">',
-                        '<div class="thumb"><img src="resources/imagens/iconsHeaderPanelCliente/{icon}" title="{name:htmlEncode}"></div>',
+                        '<div class="thumb"><img src="resources/imagens/iconsHeaderPanelCliente/{icon}" title="{name:htmlEncode}" \n\
+                            style="width: 72px; height: 72px; \n\
+                            background-image: -webkit-linear-gradient(top,#fff,#f0f0f0); \n\
+                            padding: 5px 5px 5px 5px;\n\
+                            border-bottom: 1px solid #4e691f; \n\
+                            border-top: 1px solid #4e691f; \n\
+                            border-left: 1px solid #4e691f;\n\
+                             border-right: 1px solid #4e691f;\n\
+                            border-radius:8px;\n\
+                            box-shadow: 3px 3px 2px #666;" ></div>',
 //                        '<span class="x-editable">{name:htmlEncode}</span>',
                     '</div>',
                 '</tpl>',
