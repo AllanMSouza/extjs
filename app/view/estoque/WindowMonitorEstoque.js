@@ -17,19 +17,16 @@ Ext.define('AppName.view.estoque.WindowMonitorEstoque',{
             win = desktop.createWindow({
                 id: 'windowMonitorEstoque',
                 title:'Monitor de Estoque',
-                autoShow: true,
-//                title: 'Monitor de Estoque',
-                layout: 'border',
-                width: 800,
-                height: 500,
                 iconCls: 'icon-grid',
                 animCollapse:false,
                 constrainHeader:true,
-//                layout: 'border',
+                layout: 'fit',
+                width: 800,
+                height: 500,
                 items:[
                     {
                         xtype: 'gridListaMonitorEstoque',
-                        region: 'center'
+//                        region: 'center'
                     }
                 ]
             });

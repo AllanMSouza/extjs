@@ -47,5 +47,31 @@ Ext.define('AppName.view.paineldecontrole.DataViewControlPanelMercado',{
         
         this.callParent();
     },
+            
+    listeners: {
+        itemclick: function(record, item, index) {
+//            console.log(item)
+                var num =0;
+              if(item.data.id == 'Alerta de Estoque'){
+                 Ext.widget('windowAlertaEstoque')
+                   Ext.Ajax.request({
+                      url: 'app/data/php/MonitorEstoque.php?action=countRed',
+                      
+                     success: function(form,resp){
+//                          console.log(form,resp)
+                        var data = Ext.decode(form.responseText)
+                           num = data.data
+                           Ext.getCmp('windowAlertaEstoque').update('<div style="width:400px; margin-left:120px; margin-top: 35px;"> \n\
+                                <b><label style="color:#FFF; font-size:16px;"> Você possui ' + num +' produto(s) em estoque minimo!</b></label>\n\
+                               </div>')
+                     },
+                    failure:function(form,resp){
+                  
+                    }
+                  });
+                  
+              }
+        }
+    }
 
 });

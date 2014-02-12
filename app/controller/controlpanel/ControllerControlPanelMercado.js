@@ -9,7 +9,8 @@ Ext.define('AppName.controller.controlpanel.ControllerControlPanelMercado',{
     ],
     views: [
         'paineldecontrole.WindowControlPanelMercado',
-        'paineldecontrole.DataViewControlPanelMercado'
+        'paineldecontrole.DataViewControlPanelMercado',
+        'paineldecontrole.WindowAlertaEstoque'
     ],
     
     init: function(){

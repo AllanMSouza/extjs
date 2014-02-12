@@ -17,15 +17,15 @@ Ext.define('AppName.view.produtos.WindowGerenciarProdutosMercado',{
         var win = desktop.getWindow('windowGerenciarProdutosMercado');
         if(!win){
             win = desktop.createWindow({
-//                id: 'windowGerenciarProdutosMercado',
+                id: 'windowGerenciarProdutosMercado',
                 title:'Gerenciar Meus Produtos',
                 layout: 'border',
                 width: 1350,
                 height: 500,
-//                iconCls: 'icon-grid',
+                iconCls: 'icon-grid',
                 animCollapse:false,
                 constrainHeader:true,
-//                layout: 'border',
+                
                items:[
                     {
                          xtype: 'treeCategoriasGeral',
@@ -55,8 +55,5 @@ Ext.define('AppName.view.produtos.WindowGerenciarProdutosMercado',{
         return win;
     }
      }
-//    autoShow: true,
-//    closable: true,
-    
     
 });

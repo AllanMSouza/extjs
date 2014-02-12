@@ -7,7 +7,7 @@ Ext.define('AppName.view.paineldecontrole.WindowControlPanelMercado',{
      init : function(){
         this.launcher = {
             text: 'Painel de Controle',
-            iconCls:'icon-grid'
+//            iconCls:'icon-grid'
         };
     },
     createWindow : function(){
@@ -15,8 +15,9 @@ Ext.define('AppName.view.paineldecontrole.WindowControlPanelMercado',{
         var win = desktop.getWindow('windowControlPanelMercado');
         if(!win){
             win = desktop.createWindow({
-                closable: false,
-                autoShow: true,
+//                closable: true,
+//                resizable:false,
+//                autoShow: true,
                 title: 'Painel de Controle',
                 width: 500,
                 height: 230,
@@ -32,10 +33,7 @@ Ext.define('AppName.view.paineldecontrole.WindowControlPanelMercado',{
                             }
                         ]
                     }
-                ],
-                dockedItems:[
-                    
-                ]
+                ],               
             });
         return win;
         }
