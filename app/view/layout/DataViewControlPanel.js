@@ -12,7 +12,7 @@ Ext.define('AppName.view.layout.DataViewControlPanel',{
          '<tpl for=".">',
                     '<div class="thumb-wrap" id="{name:stripTags}">',
                         '<div class="thumb"><img src="resources/imagens/iconsHeaderPanelCliente/{icon}" title="{name:htmlEncode}" \n\
-                            style="width: 72px; height: 72px; \n\
+                            style="width: 64px; height: 64px; \n\
                             background-image: -webkit-linear-gradient(top,#fff,#f0f0f0); \n\
                             padding: 5px 5px 5px 5px;\n\
                             border-bottom: 1px solid #4e691f; \n\

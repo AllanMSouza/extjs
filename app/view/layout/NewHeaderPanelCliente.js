@@ -3,7 +3,7 @@ Ext.define('AppName.view.layout.NewHeaderPanelCliente',{
     alias: 'widget.newHeaderPanelCliente',
     
     region: 'north', 
-    height:100, 
+    height:90, 
     frameHeader:false, 
 //    bodyPadding:'4 4', 
     layout:'border', 
