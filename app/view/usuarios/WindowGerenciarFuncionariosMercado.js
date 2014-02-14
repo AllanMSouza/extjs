@@ -7,7 +7,7 @@ Ext.define('AppName.view.usuarios.WindowGerenciarFuncionariosMercado',{
      init : function(){
         this.launcher = {
             text: 'Gerenciar Funcionários',
-            iconCls:'icon-grid'
+            iconCls: 'icon-grid'
         };
     },
     createWindow : function(){

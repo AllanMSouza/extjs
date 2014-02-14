@@ -7,7 +7,7 @@ Ext.define('AppName.view.paineldecontrole.WindowControlPanelMercado',{
      init : function(){
         this.launcher = {
             text: 'Painel de Controle',
-//            iconCls:'icon-grid'
+            iconCls:'icon-grid'
         };
     },
     createWindow : function(){

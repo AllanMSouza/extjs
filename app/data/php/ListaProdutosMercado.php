@@ -83,7 +83,7 @@ class ListaProdutosMercado extends Base {
           inner join produtos P on(P.id_produtos = LM.produtos_id_produtos)
           where LM.mercado_id_mercado = :id_mercado');
       
-      $stm->bindValue(':id_mercado', $id_mercado);
+      $stm->bindValue(':id_mercado', $_SESSION['id_mercado']);
       $success = $stm->execute();
       
       $result = $stm->fetchAll(PDO::FETCH_ASSOC);

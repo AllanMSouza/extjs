@@ -5,7 +5,7 @@
  * http://www.sencha.com/license
  */
 
-Ext.define('AppName.view.desktop.AppLayoutMercado', {
+Ext.define('AppName.view.desktop.AppLayoutMercadoAdministrador', {
     extend: 'AppName.view.desktop.App',
 
     requires: [
@@ -35,7 +35,7 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
               new AppName.view.estoque.WindowMonitorPedidos(),
               new AppName.view.estoque.WindowMonitorEstoque(),
               new AppName.view.paineldecontrole.WindowControlPanelMercado(),
-              new AppName.view.usuarios.WindowGerenciarFuncionariosMercado()
+//              new AppName.view.usuarios.WindowGerenciarFuncionariosMercado()
         ];
     },
 
@@ -53,7 +53,7 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
                 model: 'AppName.view.desktop.config.ShortcutModel',
                 data: [
                     { name: 'Gerenciar Panfletos', iconCls: 'notepad-shortcut', module: 'windowGerenciarPanfletos' },
-                    { name: 'Gerenciar Funcionarios', iconCls: 'accordion-shortcut', module: 'windowGerenciarFuncionariosMercado' },
+//                    { name: 'Gerenciar Funcionarios', iconCls: 'accordion-shortcut', module: 'windowGerenciarFuncionariosMercado' },
 //                    { name: 'Notepad', iconCls: 'notepad-shortcut', module: 'notepad' },
 //                    { name: 'System Status', iconCls: 'cpu-shortcut', module: 'systemstatus'}
                 ]

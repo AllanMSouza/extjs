@@ -19,6 +19,10 @@ class Login extends Base {
             elseif((int)$result['acesso'] == 1) {
                 $_SESSION['id_cliente'] = $this->selectIdCliente($result['id_usuarios']);                
             }
+            elseif((int)$result['acesso'] > 2){
+//                $_SESSION['usuarios_id_usuarios'] = $this->selectIdCliente($result['id_usuarios']);                
+                $_SESSION['id_mercado'] = $this->selectIdMercado($result['usuarios_id_usuarios']);
+            }
             $msg = 'Login efetuado com sucesso';
             
             echo json_encode(array(
