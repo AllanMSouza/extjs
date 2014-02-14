@@ -373,6 +373,13 @@ Ext.define('AppName.view.usuarios.FormCliente',{
                                     inputType: 'password',
                                     labelWidth: 40  ,
                                     margins: '0 5 0 0'
+                                },
+                                {
+                                    xtype: 'textfield',
+//                                    fieldLabel: 'Senha',
+                                    hidden:true,
+                                    name: 'tipoFunc',
+                                    id:'tipoFunc'
                                 }
                             ]
                         }
@@ -384,6 +391,35 @@ Ext.define('AppName.view.usuarios.FormCliente',{
     ],
     buttons:[
         {
+             xtype:'combobox',
+             fieldLabel: 'Funcionario',
+             hidden: true,
+//             name: 'tipoFunc',
+             id:'tipoFuncionario',
+             store:  Ext.create('Ext.data.Store', {
+            fields: ['abbr', 'name'],
+            data : [
+                {"abbr":"Administrador", "name":"3"},
+                {"abbr":"Estoque/Pedidos", "name":"4"},
+                {"abbr":"Painel de Controle", "name":"5"},
+                {"abbr":"Suporte", "name":"6"},
+//                                                        {"abbr":"AZ", "name":"Arizona"}
+                //...
+            ]
+            }),
+//            labelWidth: 40,
+//            width: 100,
+            queryMode: 'local',
+            displayField: 'abbr',
+            valueField: 'name',
+            listeners:{
+                select:function(){
+//                    console.log(Ext.getCmp('tipoFuncionario').getValue())
+                    Ext.getCmp('tipoFunc').setValue(Ext.getCmp('tipoFuncionario').getValue())
+                }
+            }
+        },
+        {
             text: 'Salvar',
             action: 'saveCliente'
         },
@@ -393,7 +429,8 @@ Ext.define('AppName.view.usuarios.FormCliente',{
             handler: function(){
                 Ext.getCmp('windowCadCliente').close()
             }
-        }
+        },
+        
     ]
     
 });

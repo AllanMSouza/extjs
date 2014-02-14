@@ -28,6 +28,7 @@ Ext.define('AppName.model.usuarios.ModelCadCliente',{
         {name: 'celular_pt1', type: 'int'},
         {name: 'celular_pt2', type: 'int'},
         {name: 'celular', type:'string'},
+        {name: 'tipoFunc', type:'int'},
 
         // tabela Cliente
 

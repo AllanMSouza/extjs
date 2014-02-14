@@ -8,53 +8,103 @@ class Clientes extends Base {
     public function insert(){
       $data = json_decode($_POST['data']);
       
-      //var_dump($data);
+            
+      if($_SESSION['id_mercado'] >= 1){
+          $db = $this->getDb();
+        $stm = $db->prepare('insert into usuarios (login, senha, nome, endereco, email, numero, cidade, estado, bairro, cep, complemento, telefone, celular, sexo, usuarios_id_usuarios, acesso)
+            values (:login, md5(:senha), :nome, :endereco, :email, :numero, :cidade, :estado, :bairro, :cep, :complemento, :telefone, :celular, :sexo, :usuarios_id_usuarios, :acesso)');
+        $stm->bindValue(':login', $data->login);
+        $stm->bindValue(':senha', $data->senha);
+        $stm->bindValue(':nome', $data->nome);
+        $stm->bindValue(':endereco', $data->endereco);
+        $stm->bindValue(':email', $data->email);
+        $stm->bindValue(':numero', $data->numero);
+        $stm->bindValue(':cidade', $data->cidade);
+        $stm->bindValue(':estado', $data->estado);
+        $stm->bindValue(':bairro', $data->bairro);
+        $stm->bindValue(':cep', $data->cep);
+        $stm->bindValue(':complemento', $data->complemento);
+        $stm->bindValue(':telefone', $data->telefone);
+        $stm->bindValue(':celular', $data->celular);
+        $stm->bindValue(':sexo', $data->sexo);
+        $stm->bindValue(':usuarios_id_usuarios', $_SESSION['id_usuarios']);
+        $stm->bindValue(':acesso', $data->tipoFunc);
+        $stm->execute();
+        $result = $stm->fetch( PDO::FETCH_ASSOC);
+
+        $insert = $db->lastInsertId();
+        $msg = $insert ? 'Registro(s) inserido(s) com Sucesso' : 'Erro ao inserir Registro(s).' ;
+        $newdata = $data;
+        $newdata->id_usuarios = $insert;
+
+        $stm = $db->prepare('insert into cliente (cpf, rg, data_nascimento, usuarios_id_usuarios)
+            values (:cpf, :rg, :data_nascimento, :usuarios_id_usuarios)');
+        $stm->bindValue(':cpf', $data->cpf);
+        $stm->bindValue(':rg', $data->rg);
+        $stm->bindValue(':data_nascimento', implode(preg_match("~\/~", $data->data_nascimento) == 0 ? "/" : "-", 
+                                         array_reverse(explode(preg_match("~\/~", $data->data_nascimento) == 0 ? "-" : "/", 
+                                         $data->data_nascimento))));
+        $stm->bindValue(':usuarios_id_usuarios',$newdata->id_usuarios);
+        $success = $stm->execute();
+
+//         $stm = $db->prepare('update usuarios set acesso = 1 where id_usuarios = :id_usuarios');
+//         $stm->bindValue(':id_usuarios', $newdata->id_usuarios);
+//         $stm->execute();
+
+         echo json_encode(array(
+               "success" => $success,
+               "msg" => $msg,
+               "data" => $newdata
+           ));
+      }
       
-      $db = $this->getDb();
-      $stm = $db->prepare('insert into usuarios (login, senha, nome, endereco, email, numero, cidade, estado, bairro, cep, complemento, telefone, celular, sexo)
-          values (:login, md5(:senha), :nome, :endereco, :email, :numero, :cidade, :estado, :bairro, :cep, :complemento, :telefone, :celular, :sexo)');
-      $stm->bindValue(':login', $data->login);
-      $stm->bindValue(':senha', $data->senha);
-      $stm->bindValue(':nome', $data->nome);
-      $stm->bindValue(':endereco', $data->endereco);
-      $stm->bindValue(':email', $data->email);
-      $stm->bindValue(':numero', $data->numero);
-      $stm->bindValue(':cidade', $data->cidade);
-      $stm->bindValue(':estado', $data->estado);
-      $stm->bindValue(':bairro', $data->bairro);
-      $stm->bindValue(':cep', $data->cep);
-      $stm->bindValue(':complemento', $data->complemento);
-      $stm->bindValue(':telefone', $data->telefone);
-      $stm->bindValue(':celular', $data->celular);
-      $stm->bindValue(':sexo', $data->sexo);
-      $stm->execute();
-      $result = $stm->fetch( PDO::FETCH_ASSOC);
-       
-      $insert = $db->lastInsertId();
-      $msg = $insert ? 'Registro(s) inserido(s) com Sucesso' : 'Erro ao inserir Registro(s).' ;
-      $newdata = $data;
-      $newdata->id_usuarios = $insert;
-      
-      $stm = $db->prepare('insert into cliente (cpf, rg, data_nascimento, usuarios_id_usuarios)
-          values (:cpf, :rg, :data_nascimento, :usuarios_id_usuarios)');
-      $stm->bindValue(':cpf', $data->cpf);
-      $stm->bindValue(':rg', $data->rg);
-      $stm->bindValue(':data_nascimento', implode(preg_match("~\/~", $data->data_nascimento) == 0 ? "/" : "-", 
-                                       array_reverse(explode(preg_match("~\/~", $data->data_nascimento) == 0 ? "-" : "/", 
-                                       $data->data_nascimento))));
-      $stm->bindValue(':usuarios_id_usuarios',$newdata->id_usuarios);
-      $success = $stm->execute();
-      
-       $stm = $db->prepare('update usuarios set acesso = 1 where id_usuarios = :id_usuarios');
-       $stm->bindValue(':id_usuarios', $newdata->id_usuarios);
-       $stm->execute();
-      
-       echo json_encode(array(
-             "success" => $success,
-             "msg" => $msg,
-             "data" => $newdata
-         ));
-      
+      else {
+        $db = $this->getDb();
+        $stm = $db->prepare('insert into usuarios (login, senha, nome, endereco, email, numero, cidade, estado, bairro, cep, complemento, telefone, celular, sexo, usuarios_id_usuarios)
+            values (:login, md5(:senha), :nome, :endereco, :email, :numero, :cidade, :estado, :bairro, :cep, :complemento, :telefone, :celular, :sexo, :usuarios_id_usuarios)');
+        $stm->bindValue(':login', $data->login);
+        $stm->bindValue(':senha', $data->senha);
+        $stm->bindValue(':nome', $data->nome);
+        $stm->bindValue(':endereco', $data->endereco);
+        $stm->bindValue(':email', $data->email);
+        $stm->bindValue(':numero', $data->numero);
+        $stm->bindValue(':cidade', $data->cidade);
+        $stm->bindValue(':estado', $data->estado);
+        $stm->bindValue(':bairro', $data->bairro);
+        $stm->bindValue(':cep', $data->cep);
+        $stm->bindValue(':complemento', $data->complemento);
+        $stm->bindValue(':telefone', $data->telefone);
+        $stm->bindValue(':celular', $data->celular);
+        $stm->bindValue(':sexo', $data->sexo);
+        $stm->bindValue(':usuarios_id_usuarios', 1);
+        $stm->execute();
+        $result = $stm->fetch( PDO::FETCH_ASSOC);
+
+        $insert = $db->lastInsertId();
+        $msg = $insert ? 'Registro(s) inserido(s) com Sucesso' : 'Erro ao inserir Registro(s).' ;
+        $newdata = $data;
+        $newdata->id_usuarios = $insert;
+
+        $stm = $db->prepare('insert into cliente (cpf, rg, data_nascimento, usuarios_id_usuarios)
+            values (:cpf, :rg, :data_nascimento, :usuarios_id_usuarios)');
+        $stm->bindValue(':cpf', $data->cpf);
+        $stm->bindValue(':rg', $data->rg);
+        $stm->bindValue(':data_nascimento', implode(preg_match("~\/~", $data->data_nascimento) == 0 ? "/" : "-", 
+                                         array_reverse(explode(preg_match("~\/~", $data->data_nascimento) == 0 ? "-" : "/", 
+                                         $data->data_nascimento))));
+        $stm->bindValue(':usuarios_id_usuarios',$newdata->id_usuarios);
+        $success = $stm->execute();
+
+         $stm = $db->prepare('update usuarios set acesso = 1 where id_usuarios = :id_usuarios');
+         $stm->bindValue(':id_usuarios', $newdata->id_usuarios);
+         $stm->execute();
+
+         echo json_encode(array(
+               "success" => $success,
+               "msg" => $msg,
+               "data" => $newdata
+           ));
+      }
     }
     
     public function select(){
@@ -71,17 +121,33 @@ class Clientes extends Base {
             )); 
         }
         else{
-            $db = $this->getDb();
-            $stm = $db->prepare('select * from usuarios inner join cliente on
-                (usuarios.id_usuarios = cliente.usuarios_id_usuarios) where usuarios.id_usuarios = :id');
-            $stm->bindValue(':id', $_SESSION['id_usuarios']);
-            $stm->execute();
+            if($_SESSION['id_mercado'] >= 1){
+                $db = $this->getDb();
+                $stm = $db->prepare('select *, usuarios.acesso as tipoFunc from usuarios inner join cliente on
+                    (usuarios.id_usuarios = cliente.usuarios_id_usuarios) where usuarios.usuarios_id_usuarios = :id');
+                $stm->bindValue(':id', $_SESSION['id_usuarios']);
+                $stm->execute();
 
-            $result = $stm->fetchAll( PDO::FETCH_ASSOC);
-            echo json_encode(array(
-                 "success" => true,
-                 "data" => $result
-            ));
+                $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+                echo json_encode(array(
+                     "success" => true,
+                     "data" => $result
+                ));
+            }
+            else {
+                $db = $this->getDb();
+                $stm = $db->prepare('select * from usuarios inner join cliente on
+                    (usuarios.id_usuarios = cliente.usuarios_id_usuarios) where usuarios.id_usuarios = :id');
+                $stm->bindValue(':id', $_SESSION['id_usuarios']);
+                $stm->execute();
+
+                $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+                echo json_encode(array(
+                     "success" => true,
+                     "data" => $result
+                ));
+            }
+            
         }
     }
     
