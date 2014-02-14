@@ -26,6 +26,12 @@ Ext.define('AppName.view.usuarios.WindowGerenciarFuncionariosMercado',{
                 items:[
                     {
                         xtype: 'gridListaClientes',
+                        columns:[
+                            {header: 'CPF', dataIndex: 'cpf',flex:1},
+                            {header: 'Nome', dataIndex: 'nome', flex: 2},
+                            {header: 'E-mail', dataIndex: 'email', flex: 1.5},
+                            {header: 'Funcionario', dataIndex: 'func', flex:1}
+                        ],
                         tbar: [{
                             text: 'Cadastrar Funcionario',
                             action: 'insertFuncionario',

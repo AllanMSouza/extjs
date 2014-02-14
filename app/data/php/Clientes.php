@@ -46,7 +46,7 @@ class Clientes extends Base {
                                          $data->data_nascimento))));
         $stm->bindValue(':usuarios_id_usuarios',$newdata->id_usuarios);
         $success = $stm->execute();
-
+        $newdata->func = $this->acesso2Func($data->tipoFunc);
 //         $stm = $db->prepare('update usuarios set acesso = 1 where id_usuarios = :id_usuarios');
 //         $stm->bindValue(':id_usuarios', $newdata->id_usuarios);
 //         $stm->execute();
@@ -129,6 +129,11 @@ class Clientes extends Base {
                 $stm->execute();
 
                 $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+                
+                for($i = 0; $i < count($result); $i++){
+                    $result[$i]['func'] = $this->acesso2Func($result[$i]['acesso']);
+                }
+                
                 echo json_encode(array(
                      "success" => true,
                      "data" => $result
@@ -175,65 +180,147 @@ class Clientes extends Base {
     public function update(){
         $data = json_decode($_POST['data']);
         
-        $db = $this->getDb();
-        #update Tabela usuarios
-        $stm = $db->prepare('update usuarios set
-            login = :login, 
-            senha = md5(:senha), 
-            nome = :nome, 
-            endereco = :endereco, 
-            email = :email, 
-            numero = :numero, 
-            cidade = :cidade, 
-            estado = :estado, 
-            bairro = :bairro, 
-            cep = :cep, 
-            complemento = :complemento, 
-            telefone = :telefone, 
-            celular = :celular,
-            sexo = :sexo
-            where id_usuarios = :id_usuarios');
-        $stm->bindValue(':login', $data->login);
-      $stm->bindValue(':senha', $data->senha);
-      $stm->bindValue(':nome', $data->nome);
-      $stm->bindValue(':endereco', $data->endereco);
-      $stm->bindValue(':email', $data->email);
-      $stm->bindValue(':numero', $data->numero);
-      $stm->bindValue(':cidade', $data->cidade);
-      $stm->bindValue(':estado', $data->estado);
-      $stm->bindValue(':bairro', $data->bairro);
-      $stm->bindValue(':cep', $data->cep);
-      $stm->bindValue(':complemento', $data->complemento);
-      $stm->bindValue(':telefone', $data->telefone);
-      $stm->bindValue(':celular', $data->celular);
-      $stm->bindValue(':sexo', $data->sexo);
-      $stm->bindValue(':id_usuarios', $data->id_usuarios);
-      $result = $stm->execute();
-      
-      $msg = $result ? 'Registro(s) atualizado(s) com Sucesso' : 'Erro ao atualizar Registro(s).' ;
-      #update tabela cliente
-      $stm = $db->prepare('update cliente set
-          cpf = :cpf, 
-          rg = :rg, 
-          data_nascimento = :data_nascimento, 
-          usuarios_id_usuarios = :usuarios_id_usuarios
-          where id_cliente = :id_cliente');
-      $stm->bindValue(':cpf', $data->cpf);
-      $stm->bindValue(':rg', $data->rg);
-      $stm->bindValue(':data_nascimento', implode(preg_match("~\/~", $data->data_nascimento) == 0 ? "/" : "-", 
-                                       array_reverse(explode(preg_match("~\/~", $data->data_nascimento) == 0 ? "-" : "/", 
-                                       $data->data_nascimento))));
-      $stm->bindValue(':usuarios_id_usuarios',$data->usuarios_id_usuarios);
-      $stm->bindValue(':id_cliente', $data->id_cliente);
-      $result = $stm->execute();
-      
-      $msg = $result ? 'Registro(s) atualizado(s) com Sucesso' : 'Erro ao atualizar Registro(s).' ;
-      echo json_encode(array(
-           "success" => $result,
-           "msg" =>$msg,
-           "data" => $data
-      )); 
+        if($_SESSION['id_mercado'] >= 1){
+             $db = $this->getDb();
+            #update Tabela usuarios
+            $stm = $db->prepare('update usuarios set
+                login = :login, 
+                senha = md5(:senha), 
+                nome = :nome, 
+                endereco = :endereco, 
+                email = :email, 
+                numero = :numero, 
+                cidade = :cidade, 
+                estado = :estado, 
+                bairro = :bairro, 
+                cep = :cep, 
+                complemento = :complemento, 
+                telefone = :telefone, 
+                celular = :celular,
+                sexo = :sexo,
+                acesso = :acesso
+                where id_usuarios = :id_usuarios');
+            $stm->bindValue(':login', $data->login);
+          $stm->bindValue(':senha', $data->senha);
+          $stm->bindValue(':nome', $data->nome);
+          $stm->bindValue(':endereco', $data->endereco);
+          $stm->bindValue(':email', $data->email);
+          $stm->bindValue(':numero', $data->numero);
+          $stm->bindValue(':cidade', $data->cidade);
+          $stm->bindValue(':estado', $data->estado);
+          $stm->bindValue(':bairro', $data->bairro);
+          $stm->bindValue(':cep', $data->cep);
+          $stm->bindValue(':complemento', $data->complemento);
+          $stm->bindValue(':telefone', $data->telefone);
+          $stm->bindValue(':celular', $data->celular);
+          $stm->bindValue(':sexo', $data->sexo);
+          $stm->bindValue(':acesso', $data->tipoFunc);
+          $stm->bindValue(':id_usuarios', $data->id_usuarios);
+          $result = $stm->execute();
+
+          $msg = $result ? 'Registro(s) atualizado(s) com Sucesso' : 'Erro ao atualizar Registro(s).' ;
+          #update tabela cliente
+          $stm = $db->prepare('update cliente set
+              cpf = :cpf, 
+              rg = :rg, 
+              data_nascimento = :data_nascimento, 
+              usuarios_id_usuarios = :usuarios_id_usuarios
+              where id_cliente = :id_cliente');
+          $stm->bindValue(':cpf', $data->cpf);
+          $stm->bindValue(':rg', $data->rg);
+          $stm->bindValue(':data_nascimento', implode(preg_match("~\/~", $data->data_nascimento) == 0 ? "/" : "-", 
+                                           array_reverse(explode(preg_match("~\/~", $data->data_nascimento) == 0 ? "-" : "/", 
+                                           $data->data_nascimento))));
+          $stm->bindValue(':usuarios_id_usuarios',$data->usuarios_id_usuarios);
+          $stm->bindValue(':id_cliente', $data->id_cliente);
+          $result = $stm->execute();
+
+          $msg = $result ? 'Registro(s) atualizado(s) com Sucesso' : 'Erro ao atualizar Registro(s).' ;
+          echo json_encode(array(
+               "success" => $result,
+               "msg" =>$msg,
+               "data" => $data
+          )); 
+        }
+        else {
+             $db = $this->getDb();
+                #update Tabela usuarios
+                $stm = $db->prepare('update usuarios set
+                    login = :login, 
+                    senha = md5(:senha), 
+                    nome = :nome, 
+                    endereco = :endereco, 
+                    email = :email, 
+                    numero = :numero, 
+                    cidade = :cidade, 
+                    estado = :estado, 
+                    bairro = :bairro, 
+                    cep = :cep, 
+                    complemento = :complemento, 
+                    telefone = :telefone, 
+                    celular = :celular,
+                    sexo = :sexo
+                    where id_usuarios = :id_usuarios');
+                $stm->bindValue(':login', $data->login);
+              $stm->bindValue(':senha', $data->senha);
+              $stm->bindValue(':nome', $data->nome);
+              $stm->bindValue(':endereco', $data->endereco);
+              $stm->bindValue(':email', $data->email);
+              $stm->bindValue(':numero', $data->numero);
+              $stm->bindValue(':cidade', $data->cidade);
+              $stm->bindValue(':estado', $data->estado);
+              $stm->bindValue(':bairro', $data->bairro);
+              $stm->bindValue(':cep', $data->cep);
+              $stm->bindValue(':complemento', $data->complemento);
+              $stm->bindValue(':telefone', $data->telefone);
+              $stm->bindValue(':celular', $data->celular);
+              $stm->bindValue(':sexo', $data->sexo);
+              $stm->bindValue(':id_usuarios', $data->id_usuarios);
+              $result = $stm->execute();
+
+              $msg = $result ? 'Registro(s) atualizado(s) com Sucesso' : 'Erro ao atualizar Registro(s).' ;
+              #update tabela cliente
+              $stm = $db->prepare('update cliente set
+                  cpf = :cpf, 
+                  rg = :rg, 
+                  data_nascimento = :data_nascimento, 
+                  usuarios_id_usuarios = :usuarios_id_usuarios
+                  where id_cliente = :id_cliente');
+              $stm->bindValue(':cpf', $data->cpf);
+              $stm->bindValue(':rg', $data->rg);
+              $stm->bindValue(':data_nascimento', implode(preg_match("~\/~", $data->data_nascimento) == 0 ? "/" : "-", 
+                                               array_reverse(explode(preg_match("~\/~", $data->data_nascimento) == 0 ? "-" : "/", 
+                                               $data->data_nascimento))));
+              $stm->bindValue(':usuarios_id_usuarios',$data->usuarios_id_usuarios);
+              $stm->bindValue(':id_cliente', $data->id_cliente);
+              $result = $stm->execute();
+
+              $msg = $result ? 'Registro(s) atualizado(s) com Sucesso' : 'Erro ao atualizar Registro(s).' ;
+              echo json_encode(array(
+                   "success" => $result,
+                   "msg" =>$msg,
+                   "data" => $data
+              )); 
+        }
+       
         
+    }
+    
+    public function acesso2Func($num){
+        if($num == 3){
+            return "Administrador";
+        }
+        else {
+            if($num == 4){
+                return "Estoque/Pedidos";
+            }
+            if($num == 5){
+                return "Painel de Controle";
+            }
+            if($num == 6){
+                return "Suporte";
+            }
+        }
     }
 
 }
