@@ -35,7 +35,8 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
               new AppName.view.estoque.WindowMonitorPedidos(),
               new AppName.view.estoque.WindowMonitorEstoque(),
               new AppName.view.paineldecontrole.WindowControlPanelMercado(),
-              new AppName.view.usuarios.WindowGerenciarFuncionariosMercado()
+              new AppName.view.usuarios.WindowGerenciarFuncionariosMercado(),
+              new AppName.view.ofertas.WindowGerenciarOfertas()
         ];
     },
 
@@ -59,8 +60,8 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
                 ]
             }),
 
-            wallpaper: 'wallpapers/Blue-Sencha.jpg',
-            wallpaperStretch: false
+            wallpaper: 'wallpapers/green.jpg',
+            wallpaperStretch: true
         });
     },
 
@@ -71,7 +72,7 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
         return Ext.apply(ret, {
             title: 'Menu',
             iconCls: 'user',
-            height: 300,
+            height: 350,
             toolConfig: {
                 width: 100,
                 items: [
@@ -101,8 +102,8 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
 
     getTaskbarConfig: function () {
         var ret = this.callParent();
-
-        return Ext.apply(ret, {
+        
+        return Ext.apply(ret,{
             quickStart: [
 //                { name: 'Accordion Window', iconCls: 'accordion', module: 'acc-win' },
 //                { name: 'Grid Window', iconCls: 'icon-grid', module: 'grid-win' }

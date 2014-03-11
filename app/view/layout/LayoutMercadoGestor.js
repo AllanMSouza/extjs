@@ -33,7 +33,9 @@ Ext.application({
         
         'pedido.ControllerFinalizarPedido',
         
-        'controlpanel.ControllerControlPanelMercado'
+        'controlpanel.ControllerControlPanelMercado',
+        
+        'ofertas.ControllerOfertas'
         
 
         

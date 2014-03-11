@@ -65,5 +65,11 @@
         "icon": "kit_64x64.png"
          
     },
+    {
+        "name": "Ofertas",
+        "id": "Ofertas",
+        "icon": "oferta.png"
+         
+    },
     
 ]
