@@ -14,15 +14,31 @@ Ext.define('AppName.view.dataview.DataViewListaProdutosMercado', {
         '<tpl for=".">',
             '<div class="thumb-wrap" style="">',
                 '<div class="thumb" style= "">',
-                    (!Ext.isIE6? '<img align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}" style="width: 116px; height: 106px; padding: 5px;"/>':               
+                    (!Ext.isIE6 ? '<img align=top src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}" style="width: 116px; height: 106px; padding: 5px;"/>':               
                     '<div style="width:76px;height:76px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos} style="width: 100px; height: 90px; padding: 5px;"\')"></div>'
             ),
                 
-               '<span style=" font-size:30; color:#55F"><b> {valor} </b></span>',
+               '<span style=" font-size:30; color:#F50"><b> {valor1} </b></span>',               
+               
                 '</div>',
                   '<span><label style =" width:300px">{nome_produto}</label></span>',
             '</div>',
         '</tpl>'
+// '<tpl for=".">',
+//                    '<div class="thumb-wrap" id="{name:stripTags}">',
+//                        '<div class="thumb"><img src="app/data/php/Produtos.php?action=getImagemProdutos&id_produtos={id_produtos}" title="{name:htmlEncode}" \n\
+//                            style="width: 116x; height: 106px; \n\
+//                            background-image: -webkit-linear-gradient(top,#fff,#f0f0f0); \n\
+//                            padding: 5px 5px 5px 5px;\n\
+//                            border-bottom: 1px solid #4e691f; \n\
+//                            border-top: 1px solid #4e691f; \n\
+//                            border-left: 1px solid #4e691f;\n\
+//                             border-right: 1px solid #4e691f;\n\
+//                            border-radius:8px;"></div>',
+//                        
+//                    '</div>',
+//                '</tpl>',
+//                '<div class="x-clear"></div>'
     ],
     
     itemSelector: 'div.thumb-wrap',

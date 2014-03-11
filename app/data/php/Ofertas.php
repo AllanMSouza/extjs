@@ -19,6 +19,26 @@ class Ofertas extends Base {
          ));
     }
     
+    public function selectOfertaMercado(){
+        $db = $this->getDb();
+        $stm = $db->prepare('select * from lista_produtos_mercado inner join produtos 
+            on(produtos.id_produtos = lista_produtos_mercado.produtos_id_produtos)
+            where valor_oferta > 0');
+        $stm->execute();
+        
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        
+        for($i=0; $i < count($result); $i++){
+            $result[$i]['valor'] = $result[$i]['valor_oferta'];
+            $result[$i]['valor1'] = number_format((double)$result[$i]['valor'],2,',','');
+        }
+        
+         echo json_encode(array(
+             "success" => true,
+             "data" => $result
+         ));
+    }
+    
     public function insert(){
         $data = (object)$_POST;
 //        var_dump($data);

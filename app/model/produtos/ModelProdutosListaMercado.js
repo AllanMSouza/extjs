@@ -12,6 +12,7 @@ Ext.define('AppName.model.produtos.ModelProdutosListaMercado',{
        {name: 'nome_imagem', type: 'string'},
        
        {name: 'valor', type: 'float'},
+       {name: 'valor1', type: 'string'},
        {name: 'status_oferta', type: 'int'},
        {name: 'quantidade', type: 'int'},
        {name: 'fabricacao', type: 'string'},
