@@ -88,6 +88,7 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
                          flex: 0.4,
                          align: 'center',
                          renderer: function(val){
+//                             console.log(val)
                              if(val == 1)
                                  return 'Sim'
                              else

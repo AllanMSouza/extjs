@@ -10,6 +10,7 @@ Ext.define('AppName.model.produtos.ModelListaProdutosCliente',{
        {name: 'produtos_id_produtos', type: 'int'},
        {name: 'isNoBanco', type: 'int'},
        {name: 'qtd', type: 'int'},
+       {name: 'status_oferta', type: 'int'},
        {name: 'id_produtos', type:'int'},
        {name: 'id_categoria', type:'int'},
        {name: 'codigo_produto', type:'int'},
