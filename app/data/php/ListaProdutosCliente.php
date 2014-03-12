@@ -24,6 +24,8 @@ class ListaProdutosCliente extends Base {
         for($x=0; $x < count($result); $x++){
             $result[$x]['tipo'] = 'Produto';
             $result[$x]['leaf'] = true;
+             if($result[$x]['valor_oferta'] > 0)
+                $result[$x]['valor'] = $result[$x]['valor_oferta'];
             $result[$x]['valor'] = (double) $result[$x]['valor'];
             $result[$x]['valor1'] = number_format ((double)$result[$x]['valor'],2,',','');
         }

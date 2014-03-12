@@ -252,8 +252,11 @@ class Produtos extends Base {
             $result = $stm->fetchAll( PDO::FETCH_ASSOC);
         }
         
-        for($i=0; $i<count($result); $i++)
+        for($i=0; $i<count($result); $i++){
+            if($result[$i]['valor_oferta'] > 0)
+                $result[$i]['valor'] = $result[$i]['valor_oferta'];
             $result[$i]['valor1'] = number_format((double)$result[$i]['valor'],2,',','');
+        }
         
          echo json_encode(array(
            "data" => $result

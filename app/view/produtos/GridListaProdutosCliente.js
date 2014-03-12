@@ -73,17 +73,31 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
                      { 
                          header: 'Produto', 
                          dataIndex: 'nome_produto',
-                         flex: 1 
+                         flex: 1,
+                         align: 'center',
                      },
                      { 
                          header: 'Quantidade', 
                          dataIndex: 'qtd',
-                         flex: 0.5 
+                         flex: 0.6,
+                         align: 'center',
+                     },
+                     { 
+                         header: 'Oferta', 
+                         dataIndex: 'status_oferta',
+                         flex: 0.4,
+                         align: 'center',
+                         renderer: function(val){
+                             if(val == 1)
+                                 return 'Sim'
+                             else
+                                 return 'Não'
+                         }
                      },
                      {
             xtype: 'actioncolumn',
             header: '+',
-            flex:0.2,
+            flex:0.1,
             sortable: false,
             align: 'center',
             menuDisabled: true,
@@ -127,7 +141,7 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
             xtype: 'actioncolumn',
             header: '-',
             align: 'center',
-            flex:0.2,
+            flex:0.1,
             sortable: false,
             menuDisabled: true,
             items:[
@@ -170,7 +184,7 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
             xtype: 'actioncolumn',
             header: 'X',
             align: 'center',
-            flex:0.2,
+            flex:0.1,
             sortable: false,
             menuDisabled: true,
             items: [{
