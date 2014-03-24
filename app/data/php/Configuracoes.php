@@ -46,6 +46,19 @@ class Configuracoes extends Base {
         
         return $result;
     }
+    
+    public function selectStatus(){
+        $db = $this->getDb();
+        $stm = $db->prepare('select cancelamento from configuracoes where mercado_id_mercado = :id_mercado');
+        $stm->bindValue(':id_mercado', $_SESSION['id_mercado']);
+        $result = $stm->execute();
+        $cancelamento = $stm->fetch(PDO::FETCH_ASSOC);
+                
+        echo json_encode(array(
+             "success" => $result,
+             "cancelamento" => $cancelamento['cancelamento']
+        ));  
+    }
    
 }
 

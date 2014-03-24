@@ -107,6 +107,22 @@ Ext.define('AppName.view.desktop.App', {
 
     createWindow: function(module) {
 //        console.log(module.launcher.text)
+        if(module.launcher.text == 'Configurações'){
+            Ext.Ajax.request({
+                url: 'app/data/php/Configuracoes.php?action=selectStatus',
+                
+                success:function(form, resp){
+                    data = Ext.decode(form.responseText)
+//                    console.log(data.cancelamento)
+                    Ext.getCmp('confCancelamento').setValue(data.cancelamento)
+                },
+                
+                failure: function(){
+            
+                }
+            })
+        }
+
         if(module.launcher.text == 'Cadastrar Produtos' ){
             var window = Ext.widget('gridListaProdutos')
             window.hide();

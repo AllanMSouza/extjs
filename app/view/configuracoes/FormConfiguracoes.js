@@ -61,7 +61,10 @@ Ext.define('AppName.view.configuracoes.FormConfiguracoes',{
             action: 'save'
         },
         {
-            text: 'Cancelar'
+            text: 'Cancelar',
+            handler: function(){
+                Ext.getCmp('windowconfiguracoes').close()
+            }
         }
     ]
 });
