@@ -35,7 +35,9 @@ Ext.application({
         
         'controlpanel.ControllerControlPanelMercado',
         
-        'ofertas.ControllerOfertas'
+        'ofertas.ControllerOfertas',
+        
+        'configuracoes.ControllerConfiguracoes'
         
 
         
