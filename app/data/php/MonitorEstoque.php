@@ -163,6 +163,19 @@ class MonitorPedidosEstoque extends Base {
       ));
         
     }
+    
+    public function getPedidos(){
+        $db = $this->getDb();
+        $stm = $db->prepare('select id_pedido, status, count(id_pedido) as qnt from pedido group by status');
+        $success = $stm->execute();
+        
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        
+        echo json_encode(array(
+           "success" => $success,
+           "data" => $result
+      ));
+    }
 
 }
 

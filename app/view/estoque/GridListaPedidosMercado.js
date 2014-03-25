@@ -38,7 +38,7 @@ Ext.define('AppName.view.estoque.GridListaPedidosMercado',{
                 {"abbr":"Recebido", "name":"Recebido"},
                 {"abbr":"Separando em estoque", "name":"Separando em estoque"},
                 {"abbr":"Aguardando retirada", "name":"Aguardando retirada"},
-                {"abbr":"Em transição", "name":"Em transição"},
+                {"abbr":"Em transporte", "name":"Em transporte"},
                 {"abbr":"Finalizado", "name":"Finalizado"},
                 {"abbr":"Cancelado", "name":"Cancelado"},
                 {"abbr":"Todos", "name":"Todos"},

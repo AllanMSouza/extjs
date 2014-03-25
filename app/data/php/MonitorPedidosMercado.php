@@ -202,6 +202,28 @@ class MonitorPedidosMercado extends Base {
         
         return $result['quantidade'];
     }
+    
+    public function getRecebidoReceber(){
+        $db = $this->getDb();
+        $stm = $db->prepare('select "Recebido" , sum(valor_pedido) as valor from pedido where status = "Finalizado" union 
+                            select "A Receber", sum(valor_pedido) as valor from pedido where status = "Separando em estoque" 
+                            or status = "Aberto" or status = "Aguardando retirada" or status = "Em transporte"');
+        
+//                    var_dump($stm);
+        $stm->execute();
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        
+        for($i=0; $i < count($result); $i++){
+            $result[$i]['valor'] = number_format((double)$result[$i]['valor'],2,',','');
+        }
+        
+        echo json_encode(array(
+//           "success" => $result,
+           "data" => $result
+      ));
+        
+        
+    }
 }
 
 new MonitorPedidosMercado();

@@ -2,10 +2,14 @@ Ext.define('AppName.controller.controlpanel.ControllerControlPanelMercado',{
     extend: 'Ext.app.Controller',
     
     stores: [
-        'paineldecontrole.StoreGridControleEstoque'
+        'paineldecontrole.StoreGridControleEstoque',
+        'paineldecontrole.StoreGridControlePedidos',
+        'paineldecontrole.StoreGridControleFinanceiro'
     ],
     models: [
-        
+        'paineldecontrole.ModelGridControlePedidos',
+        'paineldecontrole.ModelGridControleEstoque',
+        'paineldecontrole.ModelGridControleFinanceiro'
     ],
     views: [
         'paineldecontrole.WindowControlPanelMercado',
@@ -15,7 +19,9 @@ Ext.define('AppName.controller.controlpanel.ControllerControlPanelMercado',{
         'paineldecontrole.PanelHeaderEstoque',
         'paineldecontrole.PanelHeaderPedidos',
         'paineldecontrole.PanelHeaderFinanceiro',
-        'paineldecontrole.GridControleEstoque'
+        'paineldecontrole.GridControleEstoque',
+        'paineldecontrole.GridControlePedidos',
+        'paineldecontrole.GridControleFinanceiro'
     ],
     
     init: function(){

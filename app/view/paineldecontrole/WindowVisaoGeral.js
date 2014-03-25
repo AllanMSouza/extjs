@@ -47,7 +47,7 @@ Ext.define('AppName.view.paineldecontrole.WindowVisaoGeral',{
                                 xtype: 'panelHeaderPedidos'
                             },
                             {
-                                xtype: 'panel',
+                                xtype: 'gridControlePedidos',
                                 region: 'center'
                             }
                         ]
@@ -64,7 +64,7 @@ Ext.define('AppName.view.paineldecontrole.WindowVisaoGeral',{
                                 xtype: 'panelHeaderFinanceiro'
                             },
                             {
-                                xtype: 'panel',
+                                xtype: 'gridControleFinanceiro',
                                 region: 'center'
                             }
                         ]

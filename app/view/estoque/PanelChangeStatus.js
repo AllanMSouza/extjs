@@ -36,8 +36,8 @@ Ext.define('AppName.view.estoque.PanelChangeStatus',{
         },
         {
             xtype: 'button',
-            text: 'Em transição',
-            id: 'Em transição',
+            text: 'Em transporte',
+            id: 'Em transporte',
             action: 'changeStatus'
         },
         {
