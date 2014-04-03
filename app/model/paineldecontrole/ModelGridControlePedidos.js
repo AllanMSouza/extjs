@@ -4,7 +4,7 @@ Ext.define('AppName.model.paineldecontrole.ModelGridControlePedidos',{
     fields:[
         {name: 'id_pedido', type: 'int'},
         {name: 'status', type: 'string'},
-//        {name: 'img', type: 'string'},
+        {name: 'img', type: 'string'},
         {name: 'qnt', type: 'int'}
     ]
 });

@@ -4,7 +4,7 @@ Ext.define('AppName.model.paineldecontrole.ModelGridControleFinanceiro',{
     fields:[
 //        {name: 'id', type: 'int'},
         {name: 'Recebido', type: 'string'},
-//        {name: 'img', type: 'string'},
+        {name: 'img', type: 'string'},
         {name: 'valor', type: 'string'}
     ]
 });

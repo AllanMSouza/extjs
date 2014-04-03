@@ -6,14 +6,14 @@ Ext.define('AppName.view.paineldecontrole.GridControlePedidos',{
     autoShow: true,
     store: 'paineldecontrole.StoreGridControlePedidos',
     columns:[
-//        {
-//            dataIndex: 'img',
-//            flex: 1,
-//            renderer:function(val){
-//                return'<img src="resources/imagens/controlpanel/'+val+'" style="width: 72px; height: 72px">'
-//            }
-//            
-//        },
+        {
+            dataIndex: 'img',
+            flex: 1,
+            renderer:function(val){
+                return'<img src="resources/imagens/controlpanel/'+val+'" style="width: 72px; height: 72px">'
+            }
+            
+        },
         
         {
             header:'Status Pedido',

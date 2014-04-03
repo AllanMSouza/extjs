@@ -217,6 +217,9 @@ class MonitorPedidosMercado extends Base {
             $result[$i]['valor'] = number_format((double)$result[$i]['valor'],2,',','');
         }
         
+        $result[0]['img'] = 'recebido.jpg';
+        $result[1]['img'] = 'areceber.png';
+        
         echo json_encode(array(
 //           "success" => $result,
            "data" => $result

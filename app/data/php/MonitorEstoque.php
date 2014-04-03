@@ -166,10 +166,36 @@ class MonitorPedidosEstoque extends Base {
     
     public function getPedidos(){
         $db = $this->getDb();
-        $stm = $db->prepare('select id_pedido, status, count(id_pedido) as qnt from pedido group by status');
+        $stm = $db->prepare('select id_pedido, status, count(id_pedido) as qnt from pedido group by status order by status');
         $success = $stm->execute();
         
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        $r0 = $result[0];
+        $r1 = $result[5];
+        $r2 = $result[1];
+        $r3 = $result[3];
+        $r4 = $result[2];
+        $r5 = $result[4];
+                
+        $result[0] = $r0;
+        $result[0]['img'] = 'pedido.png';
+        
+        $result[1] = $r1;
+        $result[1]['img'] = 'estoque.png';
+        
+        $result[2] = $r2;
+        $result[2]['img'] = 'retirada.png';
+        
+        $result[3] = $r3;
+        $result[3]['img'] = 'transporte.png';
+        
+        $result[4] = $r4;
+        $result[4]['img'] = 'cancelado.png';
+        
+        $result[5] = $r5;
+        $result[5]['img'] = 'finalizado.png';
+                
+//        var_dump($result);
         
         echo json_encode(array(
            "success" => $success,
