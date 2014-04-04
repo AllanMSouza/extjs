@@ -88,6 +88,15 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanelCliente',{
     getActionControlPanel: function(model, records){
             
             if(records[0].data.id == "Meus Pedidos"){
+                Ext.Ajax.request({
+                    url: 'app/data/php/Configuracoes.php?action=getCancelamento',
+                    
+                    success: function(resp,b){
+                        var data = Ext.decode(resp.responseText)
+//                        console.log(data.cancelamento)
+                        Ext.getCmp('podeCancelar').setValue(data.cancelamento)
+                    }
+                });
                 Ext.widget('windowAcompanharPedidos')
             }
             else {

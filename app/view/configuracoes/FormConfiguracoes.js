@@ -39,7 +39,7 @@ Ext.define('AppName.view.configuracoes.FormConfiguracoes',{
                                 {"abbr":"1", "name":"Recebido"},
                                 {"abbr":"2", "name":"Separando em estoque"},
                                 {"abbr":"3", "name":"Aguardando retirada"},
-                                {"abbr":"4", "name":"Em transição"},
+                                {"abbr":"4", "name":"Em transporte"},
                                 {"abbr":"5", "name":"Finalizado"},
                             ]
                             }),

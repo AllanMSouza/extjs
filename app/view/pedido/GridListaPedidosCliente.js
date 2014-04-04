@@ -59,6 +59,12 @@ Ext.define('AppName.view.pedido.GridListaPedidosCliente',{
         },
         {
             text: 'Pesquisar'
+        },
+        {
+            xtype: 'textfield',
+            id: 'podeCancelar',
+            hidden : true
+
         }
     ]
 });

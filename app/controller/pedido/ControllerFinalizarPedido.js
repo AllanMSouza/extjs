@@ -70,21 +70,34 @@ Ext.define('AppName.controller.pedido.ControllerFinalizarPedido',{
         var status = button.id,
             record = Ext.getCmp('gridListaPedidosCliente').getSelectionModel().getSelection();
     
-        console.log(record)
-         Ext.Ajax.request({
-            url: 'app/data/php/MonitorPedidosMercado.php?action=changeStatus&id_pedido=' + record[0].data.id_pedido + 
-                '&status=' + status,
-            success: function(form, resp){
-//                               
-                Ext.getCmp('gridListaPedidosCliente').store.load()
-//                                }
-            },
-            failure:function(form,resp){
+//        console.log(record[0].data.status)
+        var status = this.getStatus(record[0].data.status)
+//        console.log("status" + status)
+//        console.log("cancelamento" + Number(Ext.getCmp('podeCancelar').getValue()))
+        if(Number(status) <= Number(Ext.getCmp('podeCancelar').getValue())){
+            Ext.Ajax.request({
+                url: 'app/data/php/MonitorPedidosMercado.php?action=changeStatus&id_pedido=' + record[0].data.id_pedido + 
+                    '&status=' + "Cancelado",
+                success: function(form, resp){
+    //                               
+                    Ext.getCmp('gridListaPedidosCliente').store.load()
+    //                                }
+                },
+                failure:function(form,resp){
 
-                Ext.example.msg('Server Response', resp.result.msg);
+                    Ext.example.msg('Server Response', resp.result.msg);
 
-            }
-        });
+                }
+            });
+            
+        }
+            
+        else{
+            Ext.Msg.alert('ERRO', 'Atenção, O pedido não pode ser cancelado');
+        }
+            
+        
+
         
     },
     
@@ -98,6 +111,27 @@ Ext.define('AppName.controller.pedido.ControllerFinalizarPedido',{
         proxy.api.read = 'app/data/php/ListaProdutosCliente.php?action=select&nome_lista=' + records[0].data.nome_lista + '&id_cliente=' + records[0].data.cliente_id_cliente
         Ext.getCmp('treeListaClienteFinalizarPedido').store.setProxy(proxy)
         Ext.getCmp('treeListaClienteFinalizarPedido').store.load()
-    }
+    },
+            
+            getStatus: function(status){
+                console.log(status)
+                if(status == "Aberto")
+                    return 0
+                else
+                    if(status == "Recebido")
+                        return 1
+                    else
+                        if(status == "Separando em estoque")
+                            return 2
+                        else
+                            if(status == "Aguardando retirada")
+                                return 3
+                            else
+                                if(status == "Em transporte")
+                                    return 4
+                               else 
+                                   if(status == "Finalizado")
+                                       return 5
+            }
    
 })
