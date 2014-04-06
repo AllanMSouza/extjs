@@ -50,7 +50,7 @@ Ext.define('AppName.view.relatorios.PanelGridsProdutosPorCategoria',{
         },
        {
            xtype: 'label',
-            html: '<b style="font-size:20px;">Frios, Leites e Derivados</b>',
+            html: '<b style="font-size:20px;">Frutas, Ovos e Verduras</b>',
             margins: '0 0 0 15'
         },
         //grid
