@@ -20,6 +20,7 @@
           <link rel="stylesheet" type="text/css" href="app/view/dataview/organizer.css">
           <link rel="stylesheet" type="text/css" href="extjs/examples/shared/example.css">
           <link rel="stylesheet" type="text/css" href="extjs/examples/desktop/css/desktop.css">
+          <link rel="stylesheet" type="text/css" href="extjs/examples/ux/grid/gridPrinterCss/print.css">
           <!--<script type="text/javascript" src="app/view/utils/ViewRedir.js"></script>-->
        
          

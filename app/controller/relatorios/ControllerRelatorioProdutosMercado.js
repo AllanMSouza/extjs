@@ -2,7 +2,17 @@ Ext.define('AppName.controller.relatorios.ControllerRelatorioProdutosMercado',{
     extend: 'Ext.app.Controller',
     
     stores: [
-        'relatorios.StoreGridListaCategorias'        
+        'relatorios.StoreGridListaCategorias',
+        'relatorios.StoreGridPadariaeSobremesas',
+        'relatorios.StoreGridMercearia',
+        'relatorios.StoreGridCarnes',
+        'relatorios.StoreGridFriosLeitesDerivados',
+        'relatorios.StoreGridFrutasOvosVerduras',
+        'relatorios.StoreGridComidasProntaseCongeladas',
+        'relatorios.StoreGridBebidas',
+        'relatorios.StoreGridHigienePessoal',
+        'relatorios.StoreGridSaudeeBeleza',
+        'relatorios.StoreGridBazareLimpeza',
     ],
     models: [
         'produtos.ModelTreeCategoriasProdutos'
@@ -10,7 +20,18 @@ Ext.define('AppName.controller.relatorios.ControllerRelatorioProdutosMercado',{
     views: [
       'relatorios.GridListaCategorias',
       'relatorios.WindowRelatorioProdutosMercado',
-      'relatorios.GridListaRelatorioProdutosMercado'
+      'relatorios.GridListaRelatorioProdutosMercado',
+      'relatorios.PanelGridsProdutosPorCategoria',
+      'relatorios.GridPadariaeSobremesas',
+      'relatorios.GridMercearia',
+      'relatorios.GridCarnes',
+      'relatorios.GridFriosLeitesDerivados',
+      'relatorios.GridFrutasOvosVerduras',
+      'relatorios.GridComidasProntaseCongeladas',
+      'relatorios.GridBebidas',
+      'relatorios.GridHigienePessoal',
+      'relatorios.GridSaudeeBeleza',
+      'relatorios.GridBazareLimpeza',
     ],
     
      init: function(){

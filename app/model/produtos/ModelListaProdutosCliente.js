@@ -10,6 +10,7 @@ Ext.define('AppName.model.produtos.ModelListaProdutosCliente',{
        {name: 'produtos_id_produtos', type: 'int'},
        {name: 'isNoBanco', type: 'int'},
        {name: 'qtd', type: 'int'},
+       {name: 'quantidade', type: 'int'},
        {name: 'status_oferta', type: 'int'},
        {name: 'id_produtos', type:'int'},
        {name: 'id_categoria', type:'int'},
@@ -26,7 +27,10 @@ Ext.define('AppName.model.produtos.ModelListaProdutosCliente',{
        {name: 'id_kit', type: 'int'},
        {name: 'tipo', type: 'string'},
        {name: 'leaf', type: 'bool'},
-       {name: 'id_lista_cliente_has_kits', type: 'int'}
+       {name: 'id_lista_cliente_has_kits', type: 'int'},
+       {name: 'vermelho', type: 'int'},
+       {name: 'verde', type: 'int'},
+       {name: 'laranja', type: 'int'}
        
        
    ]
