@@ -75,8 +75,9 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
             title: 'Menu',
             iconCls: 'user',
             height: 350,
+            width: 400,
             toolConfig: {
-                width: 100,
+                width: 200,
                 items: [
                     {
                         text:'Settings',
@@ -85,7 +86,17 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
                         scope: me
                     },
                     {
-                        text: 'Relatórios',
+                        text: 'Relatório Pedidos Simples',
+                        scope: me,
+                        handler: function(){
+                            var window = Ext.widget('windowRelatorioPedidosSimples').createWindow()
+                            window.show()
+                            
+                              
+                        }
+                    },
+                    {
+                        text: 'Gráficos',
                         handler: function(){
                             Ext.widget('windowSelectGrafico')
                         }

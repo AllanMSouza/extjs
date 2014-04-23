@@ -37,7 +37,9 @@ Ext.application({
         
         'ofertas.ControllerOfertas',
         
-        'configuracoes.ControllerConfiguracoes'
+        'configuracoes.ControllerConfiguracoes',
+        
+        'relatorios.ControllerRelatorioPedidosMercado'
         
 
         
