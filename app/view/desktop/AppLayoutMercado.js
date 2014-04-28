@@ -38,7 +38,8 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
               new AppName.view.usuarios.WindowGerenciarFuncionariosMercado(),
               new AppName.view.ofertas.WindowGerenciarOfertas(),
               new AppName.view.configuracoes.WindowConfiguracoes(),
-              new AppName.view.paineldecontrole.WindowVisaoGeral()
+              new AppName.view.paineldecontrole.WindowVisaoGeral(),
+//              new AppName.view.relatorios.WindowRelatorioPedidos()
         ];
     },
 
@@ -90,6 +91,16 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
                         scope: me,
                         handler: function(){
                             var window = Ext.widget('windowRelatorioPedidosSimples').createWindow()
+                            window.show()
+                            
+                              
+                        }
+                    },
+                    {
+                        text: 'Relatório Produtos Pedidos',
+                        scope: me,
+                        handler: function(){
+                            var window = Ext.widget('windowRelatorioPedidos').createWindow()
                             window.show()
                             
                               
