@@ -107,6 +107,16 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
                         }
                     },
                     {
+                        text: 'Relatório Cliente',
+                        scope: me,
+                        handler: function(){
+                            var window = Ext.widget('windowRelatorioCliente').createWindow()
+                            window.show()
+                            
+                              
+                        }
+                    },
+                    {
                         text: 'Gráficos',
                         handler: function(){
                             Ext.widget('windowSelectGrafico')

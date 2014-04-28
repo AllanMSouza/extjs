@@ -55,6 +55,18 @@ class Relatorios extends Base {
         
     }
     
+    public function getRelatorioCliente(){
+        $db = $this->getDb();
+        $stm = $db->prepare('select * from usuarios where acesso = 1');
+        $stm->execute();
+        
+        echo json_encode(array(
+             "data" => $stm->fetchAll(PDO::FETCH_ASSOC),
+            "success" => $result
+         ));
+        
+    }
+    
 }
 
 new Relatorios();

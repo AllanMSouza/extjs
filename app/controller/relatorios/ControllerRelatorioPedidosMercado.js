@@ -3,17 +3,21 @@ Ext.define('AppName.controller.relatorios.ControllerRelatorioPedidosMercado',{
     
     stores: [
         'relatorios.StoreGridRelatorioPedidoSimples',
-        'relatorios.StoreGridRelatorioPedido'
+        'relatorios.StoreGridRelatorioPedido',
+        'relatorios.StoreRelatorioCliente'
     ],
     models: [
         'relatorios.ModelGridRelatorioPedidoSimples',
-        'relatorios.ModelGridRelatorioPedido'
+        'relatorios.ModelGridRelatorioPedido',
+        'relatorios.ModelGridRelatorioCliente',
     ],
     views: [
         'relatorios.WindowRelatorioPedidosSimples',
         'relatorios.GridRelatorioPedidosSimples',
         'relatorios.WindowRelatorioPedidos',
-        'relatorios.GridRelatorioPedidosProdutos'
+        'relatorios.GridRelatorioPedidosProdutos',
+        'relatorios.WindowRelatorioCliente',
+        'relatorios.GridRelatorioCliente'
     ],
     
 //     init: function(){
