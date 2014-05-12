@@ -28,12 +28,17 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanelCliente',{
             'headerPanelCliente button[action=showWindowMeusPedidos]' : {click: this.showWindowMeusPedidos},
             'headerPanelCliente button[action=showWindowGerenciarClientes]': {click: this.showWindowGerenciarClientes},
             'headerPanelCliente button[action=logout]' : {click: this.logout},
-            'dataViewControlPanel ' : {selectionchange: this.getActionControlPanel}
+            'dataViewControlPanel ' : {selectionchange: this.getActionControlPanel},
+//            'newHeaderPanelCliente idDomboboxOpcoes ': {select: this.select}
                
         // 'treePanelCategorias': {beforeitemexpand: this.teste}
           
         })
     },
+            
+//            select: function(){
+//                console.log('Select')
+//            },
     
     getCategorias: function(bt){
         var nomeCategoria = bt.id;

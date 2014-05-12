@@ -8,32 +8,39 @@ Ext.application({
     
     controllers: [
               
-//        'layout.ControllerProdutos',
-//        'layout.ControllerLayout',
-//        'layout.ControllerHeaderPanel',
-//        'layout.ControllerTreePanelCategorias',
+       'layout.ControllerProdutos',
+        'layout.ControllerLayout',
+        'layout.ControllerHeaderPanelCliente',
+        'layout.ControllerTreePanelCategorias',
         
-//        'produtos.ControllerCadProduto',
         
-//        'usuarios.ControllerCrudClientes',
-//        'usuarios.ControllerCrudMercado',
+        'produtos.ControllerCadProduto',
+        'produtos.ControllerCadProdutoMercado',
+        'produtos.ControllerListaCliente',
+        
+        'usuarios.ControllerCrudClientes',
+        'kits.ControllerCadKitListaCliente',
+        
+        'pedido.ControllerFinalizarPedido',
         'usuarios.ControllerLogin'
        ],
     
     launch: function(){
         Ext.create('Ext.container.Viewport',{
-           layout: 'fit',
+           layout: 'border',
            
            items:[
-//               {xtype: 'contentPanel'},
-//               {xtype: 'treePanelCategorias'},
-//               {xtype: 'headerPanel'},
-//               {xtype: 'descriptionPanel'},
+               {xtype: 'contentPanel'},
+               {xtype: 'treePanelCategorias'},
+//               {xtype: 'headerPanelCliente'},                
+               {xtype: 'newHeaderPanelCliente'},
+               {xtype: 'descriptionPanel'},
+//               {xtype: 'windowControlPanel'},
                
-               {
-                   xtype: 'windowLogin',
-                   region: 'center'
-               }
+               
+               
+//               {xtype: 'windowLogin',
+//               region: 'center'}
 
            
            ]
