@@ -19,6 +19,7 @@ Ext.define('AppName.controller.produtos.ControllerListaCliente',{
 //        'gridListaProdutosCliente' : {drop: this.drop},
         'gridListaProdutosCliente button[action=novaLista]' : {click: this.novaLista},
         'gridListaProdutosCliente button[action=editarLista]' : {click: this.editarLista},
+        'gridListaProdutosCliente button[action=excluirLista]' : {click: this.excluirLista},
         'windowNovaListaCliente button[action=save]': {click: this.save},
         'windowNovaListaCliente button[action=cancel]': {click: this.cancel}
         
@@ -32,6 +33,38 @@ Ext.define('AppName.controller.produtos.ControllerListaCliente',{
     
     novaLista: function(){
         Ext.widget('windowNovaListaCliente')
+        
+    },
+            
+    excluirLista: function(){
+        var nome_lista = Ext.getCmp('comboboxListaProdutosCliente').getValue()
+        
+         Ext.Msg.show({
+                        title: 'Confirmação',
+                        msg: 'Deseja realmente excluir esta lista?',
+                        buttons: Ext.Msg.YESNO,
+                        icon: Ext.MessageBox.WARNING,
+                        escope: this,
+                        width: 450,
+                        fn : function(btn, ev){
+                            if(btn == 'yes'){
+                                Ext.Ajax.request({
+                                    url: 'app/data/php/ListaProdutosCliente.php?action=excluirLista&nome_lista='+nome_lista,
+
+                                    success: function(resp,b){
+                                        
+                                        Ext.getCmp('gridListaProdutosCliente').store.load()
+                                        Ext.getCmp('comboboxListaProdutosCliente').store.load()
+                                        Ext.getCmp('comboboxListaProdutosCliente').setValue(' ')
+                                        
+              
+                                    }
+                                });
+                            }
+                        }
+                        
+                    })
+        
         
     },
     

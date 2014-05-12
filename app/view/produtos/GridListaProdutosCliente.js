@@ -293,7 +293,7 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
     ],
     tbar:[
         {
-            text:'Nova Lista',
+            text:'adicionar',
             icon: 'extjs/examples/kitchensink/resources/images/icons/fam/add.gif',
             action: 'novaLista'
         },
@@ -303,16 +303,21 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
 //            
 //        },
         {
-            text: 'Editar Lista',
+            text: 'Editar',
             icon: 'extjs/examples/kitchensink/resources/images/icons/fam/page_white_edit.png',
             action: 'editarLista'
+        },
+        {
+            text: 'Excluir',
+            icon: 'extjs/examples/kitchensink/resources/images/icons/fam/cross.gif',
+            action: 'excluirLista'
         },
         {
             xtype: 'combobox',
             fieldLabel: 'Listas',
             id: 'comboboxListaProdutosCliente',
             labelWidth: 40,
-            width: 200,
+            width: 180,
             store: 'produtos.StoreComboboxListaCliente',
             queryMode: 'local',
             displayField: 'nome_lista',

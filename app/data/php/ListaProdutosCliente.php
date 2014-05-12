@@ -57,13 +57,37 @@ class ListaProdutosCliente extends Base {
         return $result;
     }
     
+    
+    public function excluirLista(){
+        
+        $nome_lista = $_GET['nome_lista'];
+//        $idLista = $this->getIdListaProdutos($nomeLista, $_SESSION['id_cliente']);
+//        var_dump($_SESSION['id_cliente']);
+        $db = $this->getDb();
+        $stm = $db->prepare('update lista_cliente set ativo = 0 where nome_lista = :nome_lista and cliente_id_cliente = :id_cliente');
+        $stm->bindValue(':nome_lista', $nome_lista);
+        $stm->bindValue(':id_cliente', $_SESSION['id_cliente']);
+        $result = $stm->execute();
+        
+        if($result)
+            $msg = 'Lista excluida com sucesso!';
+        else
+           $msg = 'Erro ao excluir lista!';
+        
+        echo json_encode(array(
+                    "success" => $result,
+                    "message" => $msg
+                ));
+        
+                
+    }
    
     public function selectListas(){
 //        var_dump($_SESSION);
         
         $db = $this->getDb();
         $stm = $db->prepare('select * from lista_cliente 
-            where cliente_id_cliente = :id');
+            where cliente_id_cliente = :id and ativo = 1');
         $stm->bindValue(':id', $_SESSION['id_cliente']);
         $stm->execute();
         
