@@ -309,7 +309,32 @@ class Produtos extends Base {
            //"msg" =>$msg,
            //"data" => $data
       )); 
-    }     
+    }
+    
+    public function searchProduto(){
+        $nome_produto = $_GET['nome_produto'];
+        
+        $db = $this->getDb();
+        $stm = $db->prepare('select P.*, lista_produtos_mercado.*
+                from produtos P inner join lista_produtos_mercado on (P.id_produtos = lista_produtos_mercado.produtos_id_produtos)
+                where P.nome_produto = :nome_produto and lista_produtos_mercado.mercado_id_mercado = 1');
+        $stm->bindValue(':nome_produto', $nome_produto);
+        $stm->execute();
+        
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        
+          for($i=0; $i<count($result); $i++){
+            if($result[$i]['valor_oferta'] > 0)
+                $result[$i]['valor'] = $result[$i]['valor_oferta'];
+            $result[$i]['valor1'] = number_format((double)$result[$i]['valor'],2,',','');
+        }
+        
+        echo json_encode(array(
+           "data" => $result
+           //"msg" =>$msg,
+           //"data" => $data
+      )); 
+    }
    
 }
 

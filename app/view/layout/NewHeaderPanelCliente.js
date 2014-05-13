@@ -30,6 +30,58 @@ Ext.define('AppName.view.layout.NewHeaderPanelCliente',{
 //                
 //        }
         {
+            xtype: 'panel',
+            region: 'center',
+            layout: 'hbox',
+            bodyStyle: 'background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0%,#8fc33a),color-stop(100%,#739b2e));' +
+                'background-image: -webkit-linear-gradient(top,#8fc33a,#739b2e);' +
+//                'background-image: -moz-linear-gradient(top,#8fc33a,#739b2e);' +
+//                'background-image: -o-linear-gradient(top,#8fc33a,#739b2e);' +
+//                'background-image: linear-gradient(top,#8fc33a,#739b2e);' +
+                'border-bottom: 0px solid #567422;' +
+                'border-top: 0px solid #8fc33a;' +
+                'border-left: 0px solid #8fc33a;' +
+                'border-right: 0px solid #8fc33a;' ,
+            bodyPadding: '30 10',
+            items:[
+                {
+                    xtype: 'textfield',
+                    id:'textfieldSearchProdutosGeral',
+//                    flex: 3
+                    width: 300,
+                    emptyText: 'Informe aqui sua pesquisa'
+                },
+                {
+                    xtype: 'button',
+                    text: 'Pesquisar',
+                    width: 150,
+                    margins: '0 0 0 5',
+                    handler: function(){
+                        var pesquisa = Ext.getCmp('textfieldSearchProdutosGeral').getValue()
+                        if(pesquisa != ''){
+                          
+                                                    
+                              var win = Ext.widget('windowProdutos').setTitle('Resultado da Pesquisa');
+                                //win.setTile('Produtos Categoria: ' + model[0].data.nome_categoria)
+                            var store = Ext.getCmp('dataViewListaProdutosMercado').store.getProxy();
+                            store.api.read = 'app/data/php/Produtos.php?action=searchProduto&nome_produto=' + pesquisa
+                            Ext.getCmp('dataViewListaProdutosMercado').store.setProxy(store)
+                            Ext.getCmp('dataViewListaProdutosMercado').store.load()
+                        }
+                        else {
+                            
+                        }
+                    }
+                }
+            ]
+        },
+//        {
+//            xtype:'button',
+//            text:'Pesquisar',
+////            region: 'west'
+//            
+//        },
+        {
             xtype: 'combobox',
             id:'idDomboboxOpcoes',
 //            fieldLabel: 'Selecionar:',
