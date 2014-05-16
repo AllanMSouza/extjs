@@ -6,7 +6,7 @@ Ext.define('AppName.view.layout.ContentPanel',{
     region: 'center', 
 //    title: 'AQUI MERCADO',
     split:true,
-    border: false,
+    border: false,    
     items:[
         {
             xtype:'panel',

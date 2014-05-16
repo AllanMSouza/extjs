@@ -42,19 +42,23 @@ Ext.define('AppName.view.layout.NewHeaderPanelCliente',{
                 'border-top: 0px solid #8fc33a;' +
                 'border-left: 0px solid #8fc33a;' +
                 'border-right: 0px solid #8fc33a;' ,
-            bodyPadding: '30 10',
+            bodyPadding: '20 10',
             items:[
                 {
                     xtype: 'textfield',
                     id:'textfieldSearchProdutosGeral',
-//                    flex: 3
+                    style: 'font-size:20px;',
                     width: 300,
-                    emptyText: 'Informe aqui sua pesquisa'
+                    height: 40,
+                    emptyText: 'Informe aqui sua pesquisa',
+                    
                 },
                 {
                     xtype: 'button',
                     text: 'Pesquisar',
+                    icon: 'resources/icons/search-icon.png',
                     width: 150,
+                    scale:'large', 
                     margins: '0 0 0 5',
                     handler: function(){
                         var pesquisa = Ext.getCmp('textfieldSearchProdutosGeral').getValue()
@@ -75,88 +79,177 @@ Ext.define('AppName.view.layout.NewHeaderPanelCliente',{
                 }
             ]
         },
+        {
+            xtype: 'button',
+            region: 'east',
+            text: 'Ações',
+            width: 150,
+            icon: 'resources/icons/action.png',
+            scale: 'large',
+            height: 60,
+            iconAlign: 'top',
+            margins: '15 15 15 15',
+            menu: {
+                xtype: 'menu',
+                plain: true,
+                width: 150,
+             
+                    items: [
+                        {
+                            xtype: 'button',
+                            scale: 'large',
+                            text: 'Entrar',
+                            icon: 'resources/icons/log_in.png',
+                            handler:function(){
+                                     Ext.widget('windowLogin')
+                            }
+                            
+                        },
+                        {
+                            xtype: 'button',
+                            scale: 'large',
+                            text: 'Meus Pedidos',
+                            icon: 'resources/imagens/iconsHeaderPanelCliente/pedidos_.png',
+                            handler: function(){
+                                 Ext.Ajax.request({
+                                url: 'app/data/php/Configuracoes.php?action=getCancelamento',
+                                
+                                success: function(resp,b){
+                                    var data = Ext.decode(resp.responseText)
+            //                        console.log(data.cancelamento)
+                                    Ext.getCmp('podeCancelar').setValue(data.cancelamento)
+                                }
+                            });
+                            Ext.widget('windowAcompanharPedidos')
+                            }
+                            
+                        },
+                        {
+                            xtype: 'button',
+                            scale: 'large',
+                            text: 'Meu Perfil',
+                            icon: 'resources/imagens/iconsHeaderPanelCliente/cadastro.png',
+                            handler: function(){
+                                var grid = Ext.widget('gridListaClientes')
+                                grid.hide();
+                                var record = Ext.getCmp('gridListaClientes').store.data.items[0]
+                    //            console.log(record)
+                                var editWindow = Ext.widget('windowCadCliente')
+                                var editForm = editWindow.down('form');
+                                editForm.loadRecord(record);
+                            }
+                            
+                        },
+                        {
+                            xtype: 'button',
+                            scale: 'large',
+                            text: 'Sair',
+                            icon: 'resources/imagens/iconsHeaderPanelCliente/sair.png',
+                            handler: function(){
+                                    Ext.Msg.show({
+                                        title: 'Confirmação',
+                                        msg: 'Tem certeza que deseja sair desta aplicação ?',
+                                        buttons: Ext.Msg.YESNO,
+                                        icon: Ext.MessageBox.WARNING,
+                                        escope: this,
+                                        width: 450,
+                                        fn : function(btn, ev){
+                                            if(btn == 'yes'){
+                                                viewRedir('Logout','telaprincipal');   
+                                            }
+                                        }
+                                        
+                                    })
+                            }
+                            
+                        },
+                    ]
+                
+            }
+        }
 //        {
 //            xtype:'button',
 //            text:'Pesquisar',
 ////            region: 'west'
 //            
 //        },
-        {
-            xtype: 'combobox',
-            id:'idDomboboxOpcoes',
-//            fieldLabel: 'Selecionar:',
-//            id: 'comboboxFiltrosPedido',
-            store:  Ext.create('Ext.data.Store', {
-            fields: ['abbr', 'name'],
-            data : [
-                {"abbr":"Entrar", "name":"Entrar"},
-                {"abbr":"Meus Pedidos", "name":"Meus Pedidos"},
-                {"abbr":"Meu Cadastro", "name":"Meu Cadastro"},
-                {"abbr":"sair", "name":"Sair"},
-                
-            ]
-            }),
-            labelWidth: 60,
-            region: 'east',
-            width: 250,
-            queryMode: 'local',
-            displayField: 'name',
-            valueField: 'abbr',
-            margins: '0 5 0 0',
-            listeners:{
-                select:function(a,b,c){
-//                    console.log(b[0].data.name)
-                if(b[0].data.name == "Meus Pedidos"){
-                Ext.Ajax.request({
-                    url: 'app/data/php/Configuracoes.php?action=getCancelamento',
-                    
-                    success: function(resp,b){
-                        var data = Ext.decode(resp.responseText)
-//                        console.log(data.cancelamento)
-                        Ext.getCmp('podeCancelar').setValue(data.cancelamento)
-                    }
-                });
-                Ext.widget('windowAcompanharPedidos')
-            }
-            else {
-                if(b[0].data.name == "Meu Cadastro"){
-                    
-                    var grid = Ext.widget('gridListaClientes')
-                    grid.hide();
-                    var record = Ext.getCmp('gridListaClientes').store.data.items[0]
-        //            console.log(record)
-                    var editWindow = Ext.widget('windowCadCliente')
-                    var editForm = editWindow.down('form');
-                    editForm.loadRecord(record);
-                    
-                }
-                if(b[0].data.name == "Sair"){
-                    
-                    Ext.Msg.show({
-                        title: 'Confirmação',
-                        msg: 'Tem certeza que deseja sair desta aplicação ?',
-                        buttons: Ext.Msg.YESNO,
-                        icon: Ext.MessageBox.WARNING,
-                        escope: this,
-                        width: 450,
-                        fn : function(btn, ev){
-                            if(btn == 'yes'){
-                                viewRedir('Logout','telaprincipal');   
-                            }
-                        }
-                        
-                    })
-                    
-                }
-                
-                if(b[0].data.name == "Entrar"){
-                    Ext.widget('windowLogin')
-//                    console.log('Entrar')
-                }
-                    
-            }
-                }
-            }
-        },
+//        {
+//            xtype: 'combobox',
+//            id:'idDomboboxOpcoes',
+////            fieldLabel: 'Selecionar:',
+////            id: 'comboboxFiltrosPedido',
+//            store:  Ext.create('Ext.data.Store', {
+//            fields: ['abbr', 'name'],
+//            data : [
+//                {"abbr":"Entrar", "name":"Entrar"},
+//                {"abbr":"Meus Pedidos", "name":"Meus Pedidos"},
+//                {"abbr":"Meu Cadastro", "name":"Meu Cadastro"},
+//                {"abbr":"sair", "name":"Sair"},
+//                
+//            ]
+//            }),
+//            labelWidth: 60,
+//            region: 'east',
+//            width: 250,
+//            queryMode: 'local',
+//            displayField: 'name',
+//            valueField: 'abbr',
+//            margins: '0 5 0 0',
+//            listeners:{
+//                select:function(a,b,c){
+////                    console.log(b[0].data.name)
+//                if(b[0].data.name == "Meus Pedidos"){
+//                Ext.Ajax.request({
+//                    url: 'app/data/php/Configuracoes.php?action=getCancelamento',
+//                    
+//                    success: function(resp,b){
+//                        var data = Ext.decode(resp.responseText)
+////                        console.log(data.cancelamento)
+//                        Ext.getCmp('podeCancelar').setValue(data.cancelamento)
+//                    }
+//                });
+//                Ext.widget('windowAcompanharPedidos')
+//            }
+//            else {
+//                if(b[0].data.name == "Meu Cadastro"){
+//                    
+//                    var grid = Ext.widget('gridListaClientes')
+//                    grid.hide();
+//                    var record = Ext.getCmp('gridListaClientes').store.data.items[0]
+//        //            console.log(record)
+//                    var editWindow = Ext.widget('windowCadCliente')
+//                    var editForm = editWindow.down('form');
+//                    editForm.loadRecord(record);
+//                    
+//                }
+//                if(b[0].data.name == "Sair"){
+//                    
+//                    Ext.Msg.show({
+//                        title: 'Confirmação',
+//                        msg: 'Tem certeza que deseja sair desta aplicação ?',
+//                        buttons: Ext.Msg.YESNO,
+//                        icon: Ext.MessageBox.WARNING,
+//                        escope: this,
+//                        width: 450,
+//                        fn : function(btn, ev){
+//                            if(btn == 'yes'){
+//                                viewRedir('Logout','telaprincipal');   
+//                            }
+//                        }
+//                        
+//                    })
+//                    
+//                }
+//                
+//                if(b[0].data.name == "Entrar"){
+//                    Ext.widget('windowLogin')
+////                    console.log('Entrar')
+//                }
+//                    
+//            }
+//                }
+//            }
+//        },
+        
     ]
 });
