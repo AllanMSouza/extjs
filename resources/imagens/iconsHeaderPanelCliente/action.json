@@ -1,0 +1,15 @@
+[
+     {
+        "name": "Pesquisar",
+        "id" : "Pesquisar",
+        "icon" : "search-icon.png"
+    },    
+
+   {
+        "name": "Ações",
+        "id" : "Ações",
+        "icon" : "action.png"
+    },
+    
+    
+]

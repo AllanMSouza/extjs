@@ -2,10 +2,11 @@ Ext.define('AppName.view.layout.WindowControlPanel',{
     extend: 'Ext.window.Window',
     alias: 'widget.windowControlPanel',
     
-    closable: false,
+    closable: true,
     autoShow: true,
+
     title: 'Painel de Controle',
-    width: 300,
+    width: 350,
     height: 150,
     layout: 'border',
     items:[

@@ -13,10 +13,10 @@ abstract class Base {
             $this->setOptions($options);
             
             $this->config['adapter'] = "mysql";
-            $this->config['hostname'] = "localhost";
+            $this->config['hostname'] = "189.90.102.234";
             $this->config['dbname'] = "mydb";
-            $this->config['user'] = "root";
-            $this->config['password'] = "toor";
+            $this->config['user'] = "fabio";
+            $this->config['password'] = "entra2";
             
             $connection = new Connection();
             

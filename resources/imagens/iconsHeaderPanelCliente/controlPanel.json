@@ -1,4 +1,10 @@
 [
+     {
+        "name": "Login",
+        "id" : "Login",
+        "icon" : "login.png"
+    },    
+
     {
         "name": "Meus Pedidos",
         "id" : "Meus Pedidos",
@@ -13,5 +19,7 @@
         "name": "Sair",
         "id" : "Sair",
         "icon" : "sair_64x64.png"
-    }
+    },
+    
+    
 ]
