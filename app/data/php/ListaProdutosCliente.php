@@ -122,6 +122,31 @@ class ListaProdutosCliente extends Base {
         
     }
     
+     public function listaInsert(){
+        $id_lista_produtos_mercado = $_GET['id_lista_produtos_mercado'];
+        $nomeLista = $_GET['nome_lista'];
+        
+               
+            $idListaCliente = $this->getIdListaProdutos($nomeLista);
+//            var_dump($idListaCliente);
+            $db = $this->getDb();
+            $stm = $db->prepare('insert into lista_cliente_has_lista_produtos_mercado 
+                (lista_cliente_id_lista_cliente, lista_produtos_mercado_id_lista_produtos_mercado, quantidade) 
+                values (:lista_cliente_id_lista_cliente, :lista_produtos_mercado_id_lista_produtos_mercado, :quantidade)');
+            $stm->bindValue(':lista_cliente_id_lista_cliente', $idListaCliente);
+            $stm->bindValue(':lista_produtos_mercado_id_lista_produtos_mercado', $id_lista_produtos_mercado);
+            $stm->bindValue(':quantidade', 1);
+            $result = $stm->execute();
+
+            $msg = $result ? 'Registro Inserido com Sucesso' : 'Erro ao inserir Registro.' ;
+        
+        echo json_encode(array(
+                    "data" => $result,
+                    "message" => $msg
+                ));
+        
+    }
+    
     public function insertKit(){
         if(isset($_GET['nome_lista']))
             $nome_lista = $_GET['nome_lista'];

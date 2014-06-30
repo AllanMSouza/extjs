@@ -6,7 +6,7 @@ class Categorias extends Base {
     
     public function getIdCategoria($nomeCategoria){
         $db = $this->getDb();
-        $stm =$db->prepare('select id_categorias from categorias where nome_categoria = :nomeCategoria');
+        $stm =$db->prepare('select id_categorias from categorias where nome_categoria = :nomeCategoria order by nome_categoria desc');
         $stm->bindValue(':nomeCategoria', $nomeCategoria);
         $stm->execute();
         
@@ -16,7 +16,7 @@ class Categorias extends Base {
     
     public function getListaCategorias($idCategoria){
         $db = $this->getDb();
-        $stm =$db->prepare('select * from categorias where categorias_id_categorias = :idCategorias');
+        $stm =$db->prepare('select * from categorias where categorias_id_categorias = :idCategorias order by nome_categoria desc');
         $stm->bindValue(':idCategorias', $idCategoria);
         $stm->execute();
         
@@ -70,7 +70,7 @@ class Categorias extends Base {
     
     public function select(){
         $db = $this->getDb();
-        $stm =$db->prepare('select * from categorias where categorias_id_categorias = 0;');
+        $stm =$db->prepare('select * from categorias where categorias_id_categorias = 0 order by nome_categoria desc;');
         $stm->execute();
         
         $result = $stm->fetchAll( PDO::FETCH_ASSOC);
@@ -82,7 +82,7 @@ class Categorias extends Base {
    
      public function getNumeroProdutosCategoria(){
         $db = $this->getDb();
-        $stm =$db->prepare('select * from categorias where categorias_id_categorias = 0;');
+        $stm =$db->prepare('select * from categorias where categorias_id_categorias = 0 order by nome_categoria desc;');
         $stm->execute();
         
         $result = $stm->fetchAll( PDO::FETCH_ASSOC);
@@ -123,7 +123,7 @@ class Categorias extends Base {
                                  group by C2.id_categorias) temp
                             on (P.categorias_id_categorias = temp.id_categorias) 
                             inner join lista_produtos_mercado on (P.id_produtos = lista_produtos_mercado.produtos_id_produtos)
-                            where lista_produtos_mercado.mercado_id_mercado = :idMercado');
+                            where lista_produtos_mercado.mercado_id_mercado = :idMercado order by nome_categoria');
             $stm->bindValue(':id_categorias',  $idCategoria);
             $stm->bindValue(':categorias_id_categorias', $idCategoria);
             $stm->bindValue(':idMercado', $_SESSION['id_mercado']);

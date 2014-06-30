@@ -45,12 +45,38 @@ Ext.define('AppName.controller.layout.ControllerTreePanelCategorias',{
                     Ext.getCmp('dataViewProdutosKit').store.load()
                 }
                 else {
-                    var win = Ext.widget('windowProdutos').setTitle('Produtos Categoria: ' + model[0].data.nome_categoria);
-                        //win.setTile('Produtos Categoria: ' + model[0].data.nome_categoria)
-                    var store = Ext.getCmp('dataViewListaProdutosMercado').store.getProxy();
-                    store.api.read = 'app/data/php/Produtos.php?action=getProdutosMercadoDefault&id_categorias=' + model[0].data.id_categorias + '&leaf=' + model[0].data.leaf
-                    Ext.getCmp('dataViewListaProdutosMercado').store.setProxy(store)
-                    Ext.getCmp('dataViewListaProdutosMercado').store.load()
+                    if(Ext.getCmp('janelaAberta') == null){
+                        var win = Ext.widget('windowProdutos').setTitle('Produtos Categoria: ' + model[0].data.nome_categoria);
+                            //win.setTile('Produtos Categoria: ' + model[0].data.nome_categoria)
+                        var store = Ext.getCmp('dataViewListaProdutosMercado').store.getProxy();
+                        var store2 = Ext.getCmp('gridDataViewProdutos').store.getProxy();
+                        
+                        store.api.read = 'app/data/php/Produtos.php?action=getProdutosMercadoDefault&id_categorias=' + model[0].data.id_categorias + '&leaf=' + model[0].data.leaf
+                        store2.api.read = 'app/data/php/Produtos.php?action=getProdutosMercadoDefault&id_categorias=' + model[0].data.id_categorias + '&leaf=' + model[0].data.leaf
+                        
+                        Ext.getCmp('dataViewListaProdutosMercado').store.setProxy(store)
+                        Ext.getCmp('gridDataViewProdutos').store.setProxy(store2)
+                        
+                        Ext.getCmp('dataViewListaProdutosMercado').store.load()
+                        Ext.getCmp('gridDataViewProdutos').store.load()
+                    }
+                    else {
+//                        console.log(Ext.getCmp('windowProdutos'))
+                        Ext.getCmp('windowProdutos').setTitle('Produtos Categoria: ' + model[0].data.nome_categoria);
+//                        win.setTitle('Produtos Categoria: ' + model[0].data.nome_categoria);
+                            //win.setTile('Produtos Categoria: ' + model[0].data.nome_categoria)
+                        var store = Ext.getCmp('dataViewListaProdutosMercado').store.getProxy();
+                        var store2 = Ext.getCmp('gridDataViewProdutos').store.getProxy();
+                        
+                        store.api.read = 'app/data/php/Produtos.php?action=getProdutosMercadoDefault&id_categorias=' + model[0].data.id_categorias + '&leaf=' + model[0].data.leaf
+                        store2.api.read = 'app/data/php/Produtos.php?action=getProdutosMercadoDefault&id_categorias=' + model[0].data.id_categorias + '&leaf=' + model[0].data.leaf
+                        
+                        Ext.getCmp('dataViewListaProdutosMercado').store.setProxy(store)
+                        Ext.getCmp('gridDataViewProdutos').store.setProxy(store2)
+                        
+                        Ext.getCmp('dataViewListaProdutosMercado').store.load()
+                        Ext.getCmp('gridDataViewProdutos').store.load()
+                    }
                 }
                 
             }

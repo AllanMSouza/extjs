@@ -8,7 +8,7 @@ Ext.define('AppName.store.layout.StoreTreePanelCategorias',{
   //   pageSize: 5,
     
     proxy:{
-        simpleSortMode: true,
+//        simpleSortMode: true,
         type: 'ajax',
         
         url: 'app/data/php/Categorias.php?action=getCategorias',

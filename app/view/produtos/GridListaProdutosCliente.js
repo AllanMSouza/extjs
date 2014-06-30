@@ -254,13 +254,15 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
             
               listeners: {
             drop: function(node, data, dropRec, dropPosition) {
-//                console.log(data.records[0].data)
-//                console.log()
-
+//                console.log(Ext.getCmp('comboboxListaProdutosCliente').getValue())
+                 if(Ext.getCmp('comboboxListaProdutosCliente').getValue() == null){
+                     this.store.load()
+                    Ext.Msg.alert('ERRO', 'Nenhuma lista selecionada!');
+                     
+                 }
+                 else{
                 var isNaLista = false;
-                this.store.remove(data)
-                this.store.load()
-                
+//                this.store.load();
                 for(var i = 0; i < Ext.getCmp('gridListaProdutosCliente').store.data.items.length - 1; i++){
                 
                         if(Ext.getCmp('gridListaProdutosCliente').store.data.items[i].data.id_produtos > 0){
@@ -276,16 +278,38 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
         //                console.log(isNoPanfleto)
                 }
                  if(!isNaLista){
-                     var proxy = this.store.getProxy();
-                    proxy.api.create = 'app/data/php/ListaProdutosCliente.php?action=insert&nome_lista=' + Ext.getCmp('comboboxListaProdutosCliente').getValue()
-                    this.store.setProxy(proxy)
-                    this.store.sync()
+                     console.log(Ext.getCmp('listaOn').getValue())
+                     if(Ext.getCmp('listaOn').getValue() > 0){
+                         console.log('aqui')
+                         Ext.Ajax.request({
+                            url:'app/data/php/ListaProdutosCliente.php?action=listaInsert&nome_lista=' + 
+                                    Ext.getCmp('comboboxListaProdutosCliente').getValue()+
+                                    '&id_lista_produtos_mercado='+data.records[0].data.id_lista_produtos_mercado,
+                             success: function(form, resp){//                             
+                                 
+                                    Ext.getCmp('gridListaProdutosCliente').store.load()
+                                    Ext.example.msg('Server Response', 'Registro Inserido com Sucesso');
+
+                                },
+                                failure:function(form,resp){
+                                    Ext.example.msg('Server Response', 'Erro ao inserir Registro.');
+
+                                }
+                        });                   
+                     }
+                     else{
+                        var proxy = Ext.getCmp('gridListaProdutosCliente').store.getProxy();
+                        proxy.api.create = 'app/data/php/ListaProdutosCliente.php?action=insert&nome_lista=' + Ext.getCmp('comboboxListaProdutosCliente').getValue()
+                        Ext.getCmp('gridListaProdutosCliente').store.setProxy(proxy)
+                        this.store.sync()                   
+                        this.store.load()
+                     }
                  }
                 else {
                     this.store.load()
                     Ext.Msg.alert('ERRO', 'Atenção, Produto já adicionado a lista');
                 }
-
+                 }
                  }
             }
           } 
@@ -319,6 +343,7 @@ Ext.define('AppName.view.produtos.GridListaProdutosCliente',{
             labelWidth: 40,
             width: 180,
             store: 'produtos.StoreComboboxListaCliente',
+//            value: Ext.getCmp('comboboxListaProdutosCliente').store.data.items[0],
             queryMode: 'local',
             displayField: 'nome_lista',
             listeners:{
