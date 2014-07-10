@@ -39,7 +39,9 @@ Ext.application({
         
         'configuracoes.ControllerConfiguracoes',
         
-        'relatorios.ControllerRelatorioPedidosMercado'
+        'relatorios.ControllerRelatorioPedidosMercado',
+
+        'categorias.ControllerCategorias',
         
 
         

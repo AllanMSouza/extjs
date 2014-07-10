@@ -39,7 +39,8 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
               new AppName.view.ofertas.WindowGerenciarOfertas(),
               new AppName.view.configuracoes.WindowConfiguracoes(),
               new AppName.view.paineldecontrole.WindowVisaoGeral(),
-//              new AppName.view.relatorios.WindowRelatorioPedidos()
+              new AppName.view.categorias.WindowListaCategorias()
+              
         ];
     },
 

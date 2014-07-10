@@ -15,6 +15,7 @@ class Categorias extends Base {
     }
     
     public function getListaCategorias($idCategoria){
+
         $db = $this->getDb();
         $stm =$db->prepare('select * from categorias where categorias_id_categorias = :idCategorias order by nome_categoria desc');
         $stm->bindValue(':idCategorias', $idCategoria);
@@ -131,6 +132,34 @@ class Categorias extends Base {
         
             $quantidade = $stm->fetch( PDO::FETCH_ASSOC);
             return $quantidade['quantidade'];
+    }
+
+    public function listSubcategorias(){
+        $id_categorias = $_GET['id_categorias'];
+
+        $listaCategorias = $this->getListaCategorias($id_categorias);
+
+        for($i = 0; $i < count($listaCategorias); $i++){
+            $listaCategorias[$i]['text'] = $listaCategorias[$i]['nome_categoria'];
+            //$iconCls = explode(" ", $nomeCategoria);
+            //$listaCategorias[$i]['iconCls'] = $iconCls[0].'-small'; 
+            
+            if($this->getListaCategorias($listaCategorias[$i]['id_categorias']) == false){
+                $listaCategorias[$i]['leaf'] = true;
+                $listaCategorias[$i]['kit'] = false;
+            }
+            else{
+                $listaCategorias[$i]['leaf'] = false;
+                $listaCategorias[$i]['kit'] = false;
+            }
+        }
+
+        echo json_encode(array(
+             "success" => true,
+             "data" => $listaCategorias
+         ));
+
+
     }
 
 }
