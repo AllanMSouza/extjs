@@ -15,12 +15,15 @@ Ext.define('AppName.controller.categorias.ControllerCategorias',{
 		'categorias.WindowListaCategorias',
 		'categorias.GridListaSubcategorias',
 		'categorias.WindowCadCategorias',
-		'categorias.FormCadCategorias'
+		'categorias.FormCadCategorias',
+		'categorias.FormCadSubcategoriaNivel1',
+		'categorias.WindowCadSubcategoriaNivel1'
 	],
 
 	init: function(){
         this.control({
-            'gridListaCategorias button[action=add_categorias]': {click: this.add_categorias}
+            'gridListaCategorias button[action=add_categorias]': {click: this.add_categorias},
+
           
         })
     },

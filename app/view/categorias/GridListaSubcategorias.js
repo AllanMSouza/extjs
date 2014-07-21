@@ -9,11 +9,26 @@ Ext.define('AppName.view.categorias.GridListaSubcategorias',{
 	rootVisible: false, 
     // useArrows: true, 
     singleExpand: true,
-    margins: '0 0 0 5',
+    // margins: '0 0 0 5',
+    split: true,
 
 	tbar: [
 		{
-			text: 'Adicionar Subcategoria'
+			xtype: 'button',
+			text: 'Adicionar Subcategoria',
+			menu: [
+				{
+			        text: 'Subcategoria Nivel 1',
+			        handler: function(){
+			        	Ext.widget('windowCadSubcategoriaNivel1')
+			        }
+				},
+				{
+			        text: 'Subcategoria Nivel 2'
+				    
+				}
+			]
+
 		},
 		{
 			text: 'Editar Subcategoria'

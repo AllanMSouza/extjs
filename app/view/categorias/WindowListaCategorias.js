@@ -17,7 +17,7 @@ Ext.define('AppName.view.categorias.WindowListaCategorias',{
             win = desktop.createWindow({
                 // id: 'windowGerenciarOfertas',
                 title:'Gerenciar Categorias',
-                width:900,
+                width:950,
                 height:400,
                 iconCls: 'icon-grid',
                 animCollapse:false,
@@ -31,7 +31,7 @@ Ext.define('AppName.view.categorias.WindowListaCategorias',{
                     {
                         xtype: 'gridListaSubcategorias',
                         region: 'east',
-                        width: 450
+                        width: 475
                     }
                 ]
                 
