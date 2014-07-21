@@ -10,7 +10,8 @@ Ext.define('AppName.view.categorias.GridListaCategorias',{
 
 	tbar: [
 		{
-			text: 'Adicionar Categoria'
+			text: 'Adicionar Categoria',
+			action: 'add_categorias'
 		},
 		{
 			text: 'Editar Categoria'
@@ -40,7 +41,7 @@ Ext.define('AppName.view.categorias.GridListaCategorias',{
 			// console.log(record[0].data)
 			var proxy = Ext.getCmp('gridListaSubcategorias').store.getProxy()
 			console.log(proxy)
-			proxy.api.read = 'app/data/php/Categorias.php?action=listSubcategorias&id_categorias=' + record[0].data.id_categorias
+			proxy.api.read = 'app/data/php/Categorias.php?action=getCategorias&nomeCategoria=' + record[0].data.nome_categoria
 			Ext.getCmp('gridListaSubcategorias').store.setProxy(proxy)
 			Ext.getCmp('gridListaSubcategorias').store.load()
 		}

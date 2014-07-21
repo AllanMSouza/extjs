@@ -7,7 +7,7 @@ Ext.define('AppName.view.categorias.GridListaSubcategorias',{
 	store: 'categorias.StoreListaSubcategorias',
 
 	rootVisible: false, 
-    useArrows: true, 
+    // useArrows: true, 
     singleExpand: true,
     margins: '0 0 0 5',
 
@@ -31,6 +31,20 @@ Ext.define('AppName.view.categorias.GridListaSubcategorias',{
 			dataIndex: 'nome_categoria',
 			flex: 1
 		}
-	]
+	],
+
+	listeners: {
+		// beforeitemexpand: function(node){
+
+		// 	if(node.data.id_categorias){
+		// 		var nome_categoria = node.data.nome_categoria;
+				
+		// 		var proxy = Ext.getCmp('gridListaSubcategorias').store.getProxy()
+		// 		proxy.api.read = "app/data/php/Categorias.php?action=getCategorias&nomeCategoria="+nome_categoria
+		// 		Ext.getCmp('gridListaSubcategorias').store.setProxy(proxy);
+		// 		Ext.getCmp('gridListaSubcategorias').store.reload();
+		//    }
+		// }
+	}
 
 });
