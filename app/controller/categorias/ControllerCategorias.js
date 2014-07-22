@@ -17,7 +17,9 @@ Ext.define('AppName.controller.categorias.ControllerCategorias',{
 		'categorias.WindowCadCategorias',
 		'categorias.FormCadCategorias',
 		'categorias.FormCadSubcategoriaNivel1',
-		'categorias.WindowCadSubcategoriaNivel1'
+		'categorias.WindowCadSubcategoriaNivel1',
+		'categorias.WindowCadSubcategoriaNivel2',
+		'categorias.GridSubcategoriasNivel2'
 	],
 
 	init: function(){

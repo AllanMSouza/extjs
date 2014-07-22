@@ -24,7 +24,31 @@ Ext.define('AppName.view.categorias.GridListaSubcategorias',{
 			        }
 				},
 				{
-			        text: 'Subcategoria Nivel 2'
+			        text: 'Subcategoria Nivel 2',
+			        handler: function(){
+			        	var model = Ext.getCmp('gridListaSubcategorias').getSelectionModel().getSelection();
+			        	// console.log(model[0])
+			        	if(model[0] != null){
+			        		Ext.widget('windowCadSubcategoriaNivel2')
+				        	// console.log(model[0].data.id_categorias)
+				        	var proxy = Ext.getCmp('gridSubcategoriasNivel2').store.getProxy();
+				        	proxy.api.read = 'app/data/php/Categorias.php?action=listSubcategorias&id_categorias=' + model[0].data.id_categorias
+				        	Ext.getCmp('gridSubcategoriasNivel2').store.setProxy(proxy);
+				        	Ext.getCmp('gridSubcategoriasNivel2').store.load();
+			        	}
+			        	else {
+			        		
+			        		Ext.Msg.show({
+		                        title: 'Atenção!',
+		                        msg: 'Selecione uma Subcategoria!',
+		                        buttons: Ext.Msg.OK,
+		                        icon: Ext.MessageBox.ERROR,
+		                        escope: this,
+		                        width: 200,
+		                        
+		                    })
+			        	}		        	
+			        }
 				    
 				}
 			]
