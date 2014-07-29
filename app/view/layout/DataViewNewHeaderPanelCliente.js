@@ -9,8 +9,8 @@ Ext.define('AppName.view.layout.DataViewNewHeaderPanelCliente',{
     
     tpl: [
          '<tpl for=".">',
-                    '<div class="thumb-wrap" id="{name:stripTags}">',
-                        '<div class="thumb"><img src="resources/imagens/iconsHeaderPanelCliente/{icon}" title="{name:htmlEncode}" \n\
+                    '<div class="thumb-wrap" id="{nome_categoria:stripTags}">',
+                        '<div class="thumb"><img src="app/data/php/Categorias.php?action=getImagemCategorias&id_categorias={id_categorias}" title="{nome_categoria:htmlEncode}" \n\
                             style="width: 42px; height: 42px; \n\
                             background-image: -webkit-linear-gradient(top,#fff,#f0f0f0); \n\
                             padding: 2px 2px 2px 2px;\n\
@@ -50,20 +50,23 @@ Ext.define('AppName.view.layout.DataViewNewHeaderPanelCliente',{
 //    emptyText: 'No images to display',
     
     initComponent: function() {
-        this.store = Ext.create('Ext.data.Store', {
-                autoLoad: true,
-                sortOnLoad: true,
-                fields: ['name', 'id', 'icon'],
-                proxy: {
-                    type: 'ajax',
-                    url : 'resources/imagens/iconsHeaderPanelCliente/iconsHeaderPanelCliente.json',
-//                    url : 'resources/imagens/iconsHeaderPanelCliente/iconsHeaderPanelCliente_Legenda.json',
-                    reader: {
-                        type: 'json',
-                        root: ''
-                    }
-                }
-            })
+//         this.store = Ext.create('Ext.data.Store', {
+//                 autoLoad: true,
+//                 sortOnLoad: true,
+//                 fields: ['nome_categoria', 'id_categorias'],
+//                 proxy: {
+//                     type: 'ajax',
+//                     // url : 'resources/imagens/iconsHeaderPanelCliente/iconsHeaderPanelCliente.json',
+//                     url : 'app/data/php/Categorias.php?action=select', 
+// //                    url : 'resources/imagens/iconsHeaderPanelCliente/iconsHeaderPanelCliente_Legenda.json',
+//                     reader: {
+//                         type: 'json',
+//                         root: ''
+//                     }
+//                 }
+//             })
+
+        this.store = 'categorias.StoreListaCategorias'
         
         this.mixins.dragSelector.init(this);
 
@@ -75,7 +78,7 @@ Ext.define('AppName.view.layout.DataViewNewHeaderPanelCliente',{
 
 selectionchange: function(model, records) {
           
-          var nomeCategoria = records[0].data.id;
+          var nomeCategoria = records[0].data.nome_categoria;
           if(nomeCategoria == 'Ofertas'){
              var win = Ext.widget('windowProdutos').setTitle('Produtos em Oferta');
                 //win.setTile('Produtos Categoria: ' + model[0].data.nome_categoria)

@@ -43,7 +43,8 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanelCliente',{
 //            },
     
     getCategorias: function(bt){
-        var nomeCategoria = bt.id;
+        // console.log(bt)
+        var nomeCategoria = bt.nome_categoria;
         if(Ext.getCmp('panel-categorias').collapsed == 'left'){
             Ext.getCmp('panel-categorias').expand()
             //console.log(Ext.getCmp('panel-categorias').store)

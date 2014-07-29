@@ -21,9 +21,11 @@ Ext.application({
         'usuarios.ControllerCrudClientes',
         'kits.ControllerCadKitListaCliente',
         
-        'pedido.ControllerFinalizarPedido'
+        'pedido.ControllerFinalizarPedido',
+
+        'categorias.ControllerCategorias'
 //        'usuarios.ControllerCrudMercado',
-//        'usuarios.ControllerLogin'
+//        'usuarios.ControllerLogin',
        ],
     
     launch: function(){
