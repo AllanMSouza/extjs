@@ -19,7 +19,8 @@ Ext.define('AppName.view.categorias.WindowCadCategorias',{
 
 	buttons:[
 		{
-			text: 'Salvar'
+			text: 'Salvar',
+			action: 'save'
 
 		},
 		{

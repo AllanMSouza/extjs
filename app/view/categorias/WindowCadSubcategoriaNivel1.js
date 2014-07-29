@@ -20,7 +20,8 @@ Ext.define('AppName.view.categorias.WindowCadSubcategoriaNivel1',{
 
 	buttons: [
 		{
-			text: 'Salvar'
+			text: 'Salvar',
+			action: 'savesub'
 		},
 		{
 			text: 'Cancelar'

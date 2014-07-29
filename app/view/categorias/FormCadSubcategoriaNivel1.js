@@ -14,8 +14,16 @@ Ext.define('AppName.view.categorias.FormCadSubcategoriaNivel1',{
 		},
 		{
 			xtype: 'textfield',
+			id: 'fieldCategorias_id_categorias',
 			name: 'categorias_id_categoria',
 			hidden: true
+		},
+		{
+			xtype: 'textfield',
+			name: 'id_categorias',
+			hidden: true,
+			id: 'fieldid_categorias',
+			value: 0
 		}
 	],
 

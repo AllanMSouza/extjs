@@ -2,10 +2,10 @@ Ext.define('AppName.view.layout.NewHeaderPanelCliente',{
     extend: 'Ext.panel.Panel',
     alias: 'widget.newHeaderPanelCliente',
     
-    region: 'north', 
-    height:90, 
+    region: 'west', 
+    width: 55, 
     frameHeader:false, 
-//    bodyPadding:'4 4', 
+    bodyPadding:'4 4', 
     layout:'border', 
     bodyStyle: 'background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(0%,#8fc33a),color-stop(100%,#739b2e));' +
                 'background-image: -webkit-linear-gradient(top,#8fc33a,#739b2e);' +
@@ -21,11 +21,11 @@ Ext.define('AppName.view.layout.NewHeaderPanelCliente',{
     items:[
         {
             xtype:'dataViewNewHeaderPanelCliente',
-            region: 'west'
+            region: 'center'
         },
        {
            xtype: 'dataViewAction',
-           region: 'east',
+           region: 'south',
            width: 160
                
        },

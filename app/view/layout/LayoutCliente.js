@@ -32,9 +32,10 @@ Ext.application({
            
            items:[
                {xtype: 'contentPanel'},
+               {xtype: 'newHeaderPanelCliente'},
                {xtype: 'treePanelCategorias'},
 //               {xtype: 'headerPanelCliente'},                
-               {xtype: 'newHeaderPanelCliente'},
+               
                {xtype: 'descriptionPanel'},
 //               {xtype: 'windowControlPanel'},
                

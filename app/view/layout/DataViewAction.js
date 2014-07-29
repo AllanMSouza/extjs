@@ -11,9 +11,9 @@ Ext.define('AppName.view.layout.DataViewAction',{
          '<tpl for=".">',
                     '<div class="thumb-wrap" id="{name:stripTags}">',
                         '<div class="thumb"><img src="resources/imagens/iconsHeaderPanelCliente/{icon}" title="{name:htmlEncode}" \n\
-                            style="width: 58px; height: 58px; \n\
+                            style="width: 42px; height: 42px; \n\
                             background-image: -webkit-linear-gradient(top,#fff,#f0f0f0); \n\
-                            padding: 5px 5px 5px 5px;\n\
+                            padding: 2px 2px 2px 2px;\n\
                             border-bottom: 1px solid #4e691f; \n\
                             border-top: 1px solid #4e691f; \n\
                             border-left: 1px solid #4e691f;\n\
@@ -31,7 +31,7 @@ Ext.define('AppName.view.layout.DataViewAction',{
     overItemCls: 'x-item-over',
     multiSelect: false,
     singleSelect: true,
-    cls: 'x-image-view',
+    // cls: 'x-image-view',
     
     initComponent: function() {
         this.store = Ext.create('Ext.data.Store', {

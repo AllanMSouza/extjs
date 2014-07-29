@@ -20,7 +20,29 @@ Ext.define('AppName.view.categorias.GridListaSubcategorias',{
 				{
 			        text: 'Subcategoria Nivel 1',
 			        handler: function(){
-			        	Ext.widget('windowCadSubcategoriaNivel1')
+			        	var model = Ext.getCmp('gridListaCategorias').getSelectionModel().getSelection();
+			        	if(model[0] != null){
+
+			        		Ext.widget('windowCadSubcategoriaNivel1')
+			        		Ext.getCmp('fieldCategorias_id_categorias').setValue(model[0].data.id_categorias)
+			        		// console.log(model[0].data.id_categorias)
+			        		
+
+			        	}
+
+			        	else {
+			        		
+			        		Ext.Msg.show({
+		                        title: 'Atenção!',
+		                        msg: 'Selecione uma Categoria!',
+		                        buttons: Ext.Msg.OK,
+		                        icon: Ext.MessageBox.ERROR,
+		                        escope: this,
+		                        width: 200,
+		                        
+		                    })
+			        	}		        	
+			        	
 			        }
 				},
 				{
@@ -35,6 +57,10 @@ Ext.define('AppName.view.categorias.GridListaSubcategorias',{
 				        	proxy.api.read = 'app/data/php/Categorias.php?action=listSubcategorias&id_categorias=' + model[0].data.id_categorias
 				        	Ext.getCmp('gridSubcategoriasNivel2').store.setProxy(proxy);
 				        	Ext.getCmp('gridSubcategoriasNivel2').store.load();
+
+				        	Ext.getCmp('fieldCategorias_id_categorias').setValue(model[0].data.id_categorias)
+
+				        	console.log(model[0].data.id_categorias)
 			        	}
 			        	else {
 			        		
@@ -55,7 +81,8 @@ Ext.define('AppName.view.categorias.GridListaSubcategorias',{
 
 		},
 		{
-			text: 'Editar Subcategoria'
+			text: 'Editar Subcategoria',
+			action: 'editsub'
 		},
 		{
 			text: 'Excluir Subcategoria'

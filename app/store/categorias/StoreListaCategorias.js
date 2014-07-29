@@ -8,7 +8,7 @@ Ext.define('AppName.store.categorias.StoreListaCategorias',{
         type: 'ajax',
         api:{
             read: 'app/data/php/Categorias.php?action=select',
-            create: '',
+            create: 'app/data/php/Categorias.php?action=insert',
             destroy: ''
         },        
         

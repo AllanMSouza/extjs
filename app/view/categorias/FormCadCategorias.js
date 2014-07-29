@@ -29,8 +29,8 @@ Ext.define('AppName.view.categorias.FormCadCategorias',{
 			items:[
 				{
                    xtype: 'fileuploadfield',
-                   name: 'imagem',
-                   id: 'fileuploadfieldImagemCategorias',
+                   name: 'imgCategorias',
+                   // id: 'fileuploadfieldImagemCategorias',
                    fieldLabel: 'Imagem',
                    labelWidth: 60,
                    width: 280,
@@ -45,6 +45,13 @@ Ext.define('AppName.view.categorias.FormCadCategorias',{
                 	labelWidth: 60,
                 	width: 205,
                 	margins: '0 0 0 5'
+                },
+                {
+                	xtype: 'textfield',
+                	hidden: true,
+                	name: 'id_categorias',
+                	value: 0
+                	
                 }
 			]
 		}

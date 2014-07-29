@@ -1,7 +1,7 @@
 Ext.define('AppName.view.categorias.GridListaCategorias',{
 	extend: 'Ext.grid.Panel',
 	alias: 'widget.gridListaCategorias',
-	// id: 'gridListaCategorias',
+	id: 'gridListaCategorias',
 
 	autoShow: true,
 	store: 'categorias.StoreListaCategorias',
@@ -14,7 +14,8 @@ Ext.define('AppName.view.categorias.GridListaCategorias',{
 			action: 'add_categorias'
 		},
 		{
-			text: 'Editar Categoria'
+			text: 'Editar Categoria',
+			action: 'edit'
 		},
 		{
 			text: 'Excluir Categoria'
@@ -25,8 +26,13 @@ Ext.define('AppName.view.categorias.GridListaCategorias',{
 	columns:[
 		{
 			header: 'Imagem',
-			dataIndex: 'nome_imagem',
-			flex: 1
+			dataIndex: 'id_categorias',
+			flex: 1,
+			renderer: function(val){
+               // console.log(val)
+                return '<img style= "width: 70px; height: 60px; padding: 5px" align=top src="app/data/php/Categorias.php?action=getImagemCategorias&id_categorias='+ val +'"/>'
+            }
+
 		},
 		{
 			header: 'Categoria',

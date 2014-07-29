@@ -71,7 +71,7 @@ class Categorias extends Base {
     
     public function select(){
         $db = $this->getDb();
-        $stm =$db->prepare('select * from categorias where categorias_id_categorias = 0 order by nome_categoria desc;');
+        $stm =$db->prepare('select * from categorias where categorias_id_categorias = 0 or categorias_id_categorias = 642 order by nome_categoria desc;');
         $stm->execute();
         
         $result = $stm->fetchAll( PDO::FETCH_ASSOC);
@@ -160,6 +160,153 @@ class Categorias extends Base {
          ));
 
 
+    }
+
+    public function insert(){
+        $data = (object)$_POST;
+
+        $arquivo = $_FILES['imgCategorias']['tmp_name']; 
+        $tamanho = $_FILES['imgCategorias']['size'];
+        $tipo    = $_FILES['imgCategorias']['type'];
+        $nome    = $_FILES['imgCategorias']['name'];
+         
+        if ( $arquivo != "none" ){
+           $fp = fopen($arquivo, "rb");
+           $conteudo = fread($fp, $tamanho);
+           fclose($fp);                       
+        }
+
+        $db = $this->getDb();
+        $stm = $db->prepare('insert into categorias (nome_categoria, imagem_categoria, categorias_id_categorias) 
+            values (:nome_categoria, :imagem, :id)');
+        $stm->bindValue(':nome_categoria', $data->nome_categoria);
+        $stm->bindValue(':imagem', $conteudo);
+        $stm->bindValue(':id', 642);
+        
+        $result = $stm->execute();
+        if($result == true)
+            $msg = "Categoria Cadastrado com Sucesso!";
+        else
+            $msg = "Erro ao Cadastrar Categoria!";
+         echo json_encode(array(
+             "success" => $result,
+             "msg" => $msg
+         ));
+
+
+    }
+
+    public function getImagemCategorias(){
+        $id = $_GET['id_categorias'];
+            
+            $db = $this->getDb();
+            $stm = $db->prepare('select * from categorias where id_categorias = :id_categorias');
+            $stm->bindValue(':id_categorias', $id);
+            $stm->execute();
+
+            $produto = $stm->fetchAll( PDO::FETCH_ASSOC);
+
+              header('Content-Type: image/png');
+              echo $produto[0]['imagem_categoria'];
+    }
+
+    public function update(){
+        $data = (object)$_POST;
+        $file = $_FILES['imgCategorias'];
+        
+        //var_dump($file['tmp_name']);
+        if($file['tmp_name'] == ""){
+            //var_dump($data->id_categoria);
+            $db = $this->getDb();
+            $stm = $db->prepare('update categorias set
+                nome_categoria = :nome_categoria 
+                where id_categorias = :id_categorias');            
+            $stm->bindValue(':nome_categoria', $data->nome_categoria);
+            $stm->bindValue(':id_categorias', $data->id_categorias);
+            $result = $stm->execute();
+            if($result == true)
+                $msg = "Produto Cadastrado com Sucesso!";
+            else
+                $msg = "Erro ao Cadastrar Produto!";
+             echo json_encode(array(
+                 "success" => $result,
+                 "msg" => $msg
+             ));
+        }
+        
+        else{
+            $arquivo = $_FILES['imgCategorias']['tmp_name']; 
+            $tamanho = $_FILES['imgCategorias']['size'];
+            $tipo    = $_FILES['imgCategorias']['type'];
+            $nome    = $_FILES['imgCategorias']['name'];
+            
+            $fp = fopen($arquivo, "rb");
+            $conteudo = fread($fp, $tamanho);
+            fclose($fp);
+            $db = $this->getDb();
+            $stm = $db->prepare('update categorias set
+                nome_categoria = :nome_categoria,
+                imagem_categoria = :imagem_categoria 
+                where id_categorias = :id_categorias');
+
+            $stm->bindValue(':nome_categoria', $data->nome_categoria);
+            $stm->bindValue(':imagem_categoria', $conteudo);
+            $stm->bindValue(':id_categorias', $data->id_categorias);
+            $result = $stm->execute();
+            if($result == true)
+                $msg = "Produto Atualizado com Sucesso!";
+            else
+                $msg = "Erro ao Atualizar Produto!";
+             echo json_encode(array(
+                 "success" => $result,
+                 "msg" => $msg
+             ));   
+
+           }
+           
+    }
+
+    public function insertSub(){
+        $data = (object)$_POST;
+        // var_dump($data);
+
+        $db = $this->getDb();
+        $stm = $db->prepare('insert into categorias (nome_categoria, categorias_id_categorias) 
+            values (:nome_categoria, :categorias_id_categorias)');
+        $stm->bindValue(':nome_categoria', $data->nome_categoria);
+        $stm->bindValue(':categorias_id_categorias', $data->categorias_id_categoria);
+        $result = $stm->execute();
+
+        if($result == true)
+                $msg = "Categoria cadastrada com sucesso!";
+            else
+                $msg = "Erro ao Cadastrar categoria!";
+             echo json_encode(array(
+                 "success" => $result,
+                 "msg" => $msg
+             )); 
+
+    }
+
+    public function updateSub(){
+        $data = (object)$_POST;
+
+        $db = $this->getDb();
+        $stm = $db->prepare('update categorias set 
+            nome_categoria = :nome_categoria 
+            where id_categorias = :id');
+        $stm->bindValue(':nome_categoria', $data->nome_categoria);
+        $stm->bindValue(':id', $data->id_categorias);
+        $result = $stm->execute();
+
+        if($result == true)
+                $msg = "Categoria atualizada com sucesso!";
+            else
+                $msg = "Erro ao atualizar categoria!";
+             echo json_encode(array(
+                 "success" => $result,
+                 "msg" => $msg
+             )); 
     }
 
 }
