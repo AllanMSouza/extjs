@@ -4,8 +4,8 @@ Ext.define('AppName.view.produtos.WindowProdutos',{
     id: 'windowProdutos',
             
     title: 'Produtos',
-    width: 630,
-    height: 450,
+    width: 430,
+    height: 500,
     autoShow: true,
    // autoScroll: true,
     layout: 'border',
@@ -15,7 +15,7 @@ Ext.define('AppName.view.produtos.WindowProdutos',{
     
     tbar: [
         {
-            text: 'Lista',
+            text: 'Listagem',
             handler:function(){
                 Ext.getCmp('dataViewListaProdutosMercado').hide()
                 Ext.getCmp('gridDataViewProdutos').show()
@@ -23,7 +23,7 @@ Ext.define('AppName.view.produtos.WindowProdutos',{
             }
         },
         {
-            text: 'data view',
+            text: 'Ícones',
             handler:function(){
                 Ext.getCmp('dataViewListaProdutosMercado').show()
                 Ext.getCmp('gridDataViewProdutos').hide()
