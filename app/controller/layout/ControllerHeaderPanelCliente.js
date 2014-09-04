@@ -18,8 +18,8 @@ Ext.define('AppName.controller.layout.ControllerHeaderPanelCliente',{
         
         'layout.WindowControlPanel',
         'layout.DataViewControlPanel',
-        'layout.DataViewAction'
-       
+        'layout.DataViewAction',
+          
        
     ],
     

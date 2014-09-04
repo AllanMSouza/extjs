@@ -12,25 +12,16 @@ Ext.define('AppName.view.dataview.OrgPanel', {
     //autoShow:true,
     // height: 490,
     // width : 700,
-     tbar:[
-                {
-                    text: 'atualizar',
-                    icon: 'resources/icons/refresh.png',
-                    handler: function(){
-                        Ext.getCmp('idImageView').store.load()
-                    }
+     // tbar:[
+     //            {
+     //                text: 'atualizar',
+     //                icon: 'resources/icons/refresh.png',
+     //                handler: function(){
+     //                    Ext.getCmp('idImageView').store.load()
+     //                }
                     
-                },
-                {
-                    xtype: 'textfield',
-                    width: 410
-                },
-                {
-                    xtype: 'button',
-                    text: 'Pesquisar',
-                     icon: 'resources/icons/search-icon.png'
-                }
-            ],
+     //            }
+     //        ],
     autoScroll: true,
   
                 //title: 'My Images',

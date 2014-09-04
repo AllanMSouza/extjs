@@ -85,7 +85,8 @@ Ext.define('AppName.view.categorias.GridListaSubcategorias',{
 			action: 'editsub'
 		},
 		{
-			text: 'Excluir Subcategoria'
+			text: 'Excluir Subcategoria',
+			action: 'deletesub'
 		},
 		
 	],

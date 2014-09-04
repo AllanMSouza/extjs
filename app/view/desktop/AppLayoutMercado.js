@@ -76,7 +76,7 @@ Ext.define('AppName.view.desktop.AppLayoutMercado', {
         return Ext.apply(ret, {
             title: 'Menu',
             iconCls: 'user',
-            height: 350,
+            height: 400,
             width: 400,
             toolConfig: {
                 width: 200,

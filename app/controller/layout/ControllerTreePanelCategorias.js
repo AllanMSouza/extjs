@@ -19,7 +19,7 @@ Ext.define('AppName.controller.layout.ControllerTreePanelCategorias',{
         this.control({
             
         'treePanelCategorias': {selectionchange: this.showWindowProdutos},
-        'treeCategoriasGeral' : {selectionchange: this.getProdutos}
+        'treeCategoriasGeral' : {itemclick: this.getProdutos}
           
         })
     },
@@ -87,7 +87,7 @@ Ext.define('AppName.controller.layout.ControllerTreePanelCategorias',{
              if(!Ext.getCmp('idImageView')){
                              
                    var proxy = Ext.getCmp('dataViewListaProdutosMercado').store.getProxy()               
-                   proxy.api.read = 'app/data/php/Produtos.php?action=getProdutosMercado&id_categorias=' + model[0].data.id_categorias + '&leaf=' + model[0].data.leaf
+                   proxy.api.read = 'app/data/php/Produtos.php?action=getProdutosMercado&id_categorias=' + model.data.id_categorias + '&leaf=' + model.data.leaf
                    Ext.getCmp('dataViewListaProdutosMercado').store.setProxy(proxy)
                    Ext.getCmp('dataViewListaProdutosMercado').store.load()
              }
@@ -95,12 +95,12 @@ Ext.define('AppName.controller.layout.ControllerTreePanelCategorias',{
              else {
                  
                  var store = Ext.getCmp('idImageView').store.getProxy()
-                store.api.read = 'app/data/php/Produtos.php?action=getProdutos&id_categorias=' + model[0].data.id_categorias + '&leaf=' + model[0].data.leaf
+                store.api.read = 'app/data/php/Produtos.php?action=getProdutos&id_categorias=' + model.data.id_categorias + '&leaf=' + model.data.leaf
                 Ext.getCmp('idImageView').store.setProxy(store)
                 Ext.getCmp('idImageView').store.load()
 
                 store = Ext.getCmp('gridListaProdutosMercado').store.getProxy()
-                store.api.read = 'app/data/php/Produtos.php?action=getProdutosMercado&id_categorias=' + model[0].data.id_categorias + '&leaf=' + model[0].data.leaf
+                store.api.read = 'app/data/php/Produtos.php?action=getProdutosMercado&id_categorias=' + model.data.id_categorias + '&leaf=' + model.data.leaf
                 Ext.getCmp('gridListaProdutosMercado').store.setProxy(store)
                 Ext.getCmp('gridListaProdutosMercado').store.load();
              }

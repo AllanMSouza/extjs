@@ -26,20 +26,27 @@ class Produtos extends Base {
         //$categoria = new Categorias();
                
         $db = $this->getDb();
-        $stm = $db->prepare('insert into produtos (codigo_produto, descricao, nome_produto, categorias_id_categorias, imagem_produto, nome_imagem)
-            values (:cod_produto, :descricao, :nome_produto, :id_categoria, :imagem_produto, :nome_imagem)');
+        $stm = $db->prepare('insert into produtos (codigo_produto, descricao, nome_produto, categorias_id_categorias, imagem_produto, nome_imagem, novo_original)
+            values (:cod_produto, :descricao, :nome_produto, :id_categoria, :imagem_produto, :nome_imagem, :novo_original)');
         $stm->bindValue(':cod_produto', $data->codigo_produto);
         $stm->bindValue(':descricao', $data->descricao);
         $stm->bindValue(':nome_produto', $data->nome_produto);
         $stm->bindValue(':id_categoria', $data->categorias_id_categorias);
         $stm->bindValue(':imagem_produto', $conteudo);
         $stm->bindValue(':nome_imagem', $nome);
+        if($_SESSION['id_mercado'] > 0)
+          $stm->bindValue(':novo_original', 1);   
+        
+        else
+          $stm->bindValue(':novo_original', 0);
         
         $result = $stm->execute();
+
         if($result == true)
             $msg = "Produto Cadastrado com Sucesso!";
         else
             $msg = "Erro ao Cadastrar Produto!";
+
          echo json_encode(array(
              "success" => $result,
              "msg" => $msg
@@ -53,6 +60,14 @@ class Produtos extends Base {
         $stm->execute();
         
         $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+        for ($i=0; $i <count($result) ; $i++) { 
+          if($result[$i]['novo_original'] == 0){
+            $result[$i]['novo_original'] = 'Original';
+          }
+          else{
+            $result[$i]['novo_original'] = 'Novo';
+          }
+        }
         echo json_encode(array(
            "success" => true,
            "data" => $result
@@ -208,7 +223,12 @@ class Produtos extends Base {
             $result = $stm->fetchAll( PDO::FETCH_ASSOC);
         }
         
-        
+        for ($i=0; $i < count($result); $i++) { 
+          if($result[$i]['novo_original'] == 0 || $result[$i]['novo_original'] == NULL)
+            $result[$i]['novo_original'] = 'Original';
+          else
+            $result[$i]['novo_original'] ='Novo';
+        }
          echo json_encode(array(
            "data" => $result
            //"msg" =>$msg,
@@ -256,6 +276,10 @@ class Produtos extends Base {
             if($result[$i]['valor_oferta'] > 0)
                 $result[$i]['valor'] = $result[$i]['valor_oferta'];
             $result[$i]['valor1'] = number_format((double)$result[$i]['valor'],2,',','');
+            if($result[$i]['novo_original'] == 0 || $result[$i]['novo_original'] == NULL)
+            $result[$i]['novo_original'] = 'Original';
+          else
+            $result[$i]['novo_original'] ='Novo';
         }
         
          echo json_encode(array(
@@ -317,7 +341,7 @@ class Produtos extends Base {
         $db = $this->getDb();
         $stm = $db->prepare('select P.*, lista_produtos_mercado.*
                 from produtos P inner join lista_produtos_mercado on (P.id_produtos = lista_produtos_mercado.produtos_id_produtos)
-                where P.nome_produto = :nome_produto and lista_produtos_mercado.mercado_id_mercado = 1');
+                where P.nome_produto LIKE "%'.$nome_produto.'%" and lista_produtos_mercado.mercado_id_mercado = 1');
         $stm->bindValue(':nome_produto', $nome_produto);
         $stm->execute();
         

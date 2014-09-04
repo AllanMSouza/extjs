@@ -26,10 +26,12 @@ Ext.define('AppName.controller.categorias.ControllerCategorias',{
         this.control({
             'gridListaCategorias button[action=add_categorias]': {click: this.add_categorias},
             'gridListaCategorias button[action=edit]': {click: this.edit},
+            'gridListaCategorias button[action=delete]': {click: this.delete},
             'windowCadCategorias button[action=save]': {click: this.save},
             'windowCadSubcategoriaNivel1 button[action=savesub]' : {click: this.savesub},
             'windowCadSubcategoriaNivel2 button[action=savesub]' : {click: this.savesub},
-            'gridListaSubcategorias button[action=editsub]' : {click: this.editsub}
+            'gridListaSubcategorias button[action=editsub]' : {click: this.editsub},
+            'gridListaSubcategorias button[action=deletesub]' : {click: this.deletesub}
 
 
           
@@ -38,6 +40,54 @@ Ext.define('AppName.controller.categorias.ControllerCategorias',{
 
     add_categorias: function(){
     	Ext.widget('windowCadCategorias')
+    },
+
+    delete: function(){
+        var records = Ext.getCmp('gridListaCategorias').getSelectionModel().getSelection();
+
+        if(records.length == 1){
+            var id = records[0].data.id_categorias
+            // console.log()
+            Ext.Ajax.request({
+                url: 'app/data/php/Categorias.php?action=delete&id_categorias=' + id,
+                success: function(form, resp){
+                    // console.log(resp)
+                    Ext.example.msg('Server Response', 'Categoria excluida com sucesso!');                               
+                    Ext.getCmp('gridListaCategorias').store.load()
+//                                
+                },
+                failure:function(form,resp){
+                   
+                    Ext.example.msg('Server Response', 'Erro ao excluir categoria!');
+                    Ext.getCmp('gridListaCategorias').store.load()
+
+                }
+            });
+        }
+    },
+
+    deletesub: function(){
+        var records = Ext.getCmp('gridListaSubcategorias').getSelectionModel().getSelection();
+
+        if(records.length == 1){
+            var id = records[0].data.id_categorias
+            // console.log()
+            Ext.Ajax.request({
+                url: 'app/data/php/Categorias.php?action=delete&id_categorias=' + id,
+                success: function(form, resp){
+                    // console.log(resp)
+                    Ext.example.msg('Server Response', 'Categoria excluida com sucesso!');                               
+                    Ext.getCmp('gridListaSubcategorias').store.load()
+//                                
+                },
+                failure:function(form,resp){
+                   
+                    Ext.example.msg('Server Response', 'Erro ao excluir categoria!');
+                    Ext.getCmp('gridListaSubcategorias').store.load()
+
+                }
+            });
+        }
     },
 
     edit: function(a,b){

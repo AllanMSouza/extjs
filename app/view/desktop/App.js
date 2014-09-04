@@ -123,7 +123,7 @@ Ext.define('AppName.view.desktop.App', {
             })
         }
 
-        if(module.launcher.text == 'Cadastrar Produtos' ){
+        if(module.launcher.text == 'Cadastrar produto novo/original' ){
             var window = Ext.widget('gridListaProdutos')
             window.hide();
             Ext.widget('windowCadProduto')

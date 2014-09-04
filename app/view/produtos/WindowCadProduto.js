@@ -4,6 +4,7 @@ Ext.define('AppName.view.produtos.WindowCadProduto',{
     id: 'windowCadProduto',
     
     autoShow: true,
+    title: 'Cadastrar produto novo/original',
     width: 720,
     height: 480,
     closable: true,

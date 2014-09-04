@@ -12,5 +12,7 @@ Ext.define('AppName.view.produtos.TreeCategoriasProdutosListaProdutos',{
     collapsed: true,
     split:true, 
     width:300, 
-    store: 'produtos.StoreTreeCategoriasProdutosListaProdutos'
+    store: 'produtos.StoreTreeCategoriasProdutosListaProdutos',
+
+    
 });

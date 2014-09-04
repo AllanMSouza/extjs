@@ -18,7 +18,8 @@ Ext.define('AppName.view.categorias.GridListaCategorias',{
 			action: 'edit'
 		},
 		{
-			text: 'Excluir Categoria'
+			text: 'Excluir Categoria',
+			action: 'delete'
 		},
 		
 	],
@@ -46,7 +47,7 @@ Ext.define('AppName.view.categorias.GridListaCategorias',{
 		selectionchange:function(model, record){
 			// console.log(record[0].data)
 			var proxy = Ext.getCmp('gridListaSubcategorias').store.getProxy()
-			console.log(proxy)
+			// console.log(proxy)
 			proxy.api.read = 'app/data/php/Categorias.php?action=getCategorias&nomeCategoria=' + record[0].data.nome_categoria
 			Ext.getCmp('gridListaSubcategorias').store.setProxy(proxy)
 			Ext.getCmp('gridListaSubcategorias').store.load()

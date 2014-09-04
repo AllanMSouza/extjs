@@ -6,7 +6,7 @@ class Categorias extends Base {
     
     public function getIdCategoria($nomeCategoria){
         $db = $this->getDb();
-        $stm =$db->prepare('select id_categorias from categorias where nome_categoria = :nomeCategoria order by nome_categoria desc');
+        $stm =$db->prepare('select id_categorias from categorias where nome_categoria = :nomeCategoria and ativo = 1 order by nome_categoria desc');
         $stm->bindValue(':nomeCategoria', $nomeCategoria);
         $stm->execute();
         
@@ -17,7 +17,7 @@ class Categorias extends Base {
     public function getListaCategorias($idCategoria){
 
         $db = $this->getDb();
-        $stm =$db->prepare('select * from categorias where categorias_id_categorias = :idCategorias order by nome_categoria desc');
+        $stm =$db->prepare('select * from categorias where categorias_id_categorias = :idCategorias and ativo = 1 order by nome_categoria desc');
         $stm->bindValue(':idCategorias', $idCategoria);
         $stm->execute();
         
@@ -34,19 +34,33 @@ class Categorias extends Base {
                 
         if(isset($_GET['node']))
             $node = $_GET['node'];
-        
-        if($node != NaN)
+
+        if($node != NaN){
             $idCategoria = $node;
+            $listaCategorias = $this->getListaCategorias($idCategoria);
+        }
         
         else {
             if(isset($_GET['nomeCategoria'])) {
                 $nomeCategoria = $_GET['nomeCategoria'];
                 $idCategoria = $this->getIdCategoria($nomeCategoria);
+                $listaCategorias = $this->getListaCategorias($idCategoria);
             }
-            else
-                $idCategoria = 0;
+            else{
+                if(isset($_GET['default'])){
+                    $default = (int)$_GET['default'];
+                    if($default > 0)
+                        $listaCategorias = $this->selectCategoriasPadrao();
+                    else
+                        $listaCategorias = $this->selectCategoriasMercado();
+                }
+                else {
+                    $idCategoria = 0;
+                    $listaCategorias = $this->selectCategoriasPadrao();
+                }
+            }
         }
-        $listaCategorias = $this->getListaCategorias($idCategoria);
+        
                 
         for($i = 0; $i < count($listaCategorias); $i++){
             $listaCategorias[$i]['text'] = $listaCategorias[$i]['nome_categoria'];
@@ -71,15 +85,76 @@ class Categorias extends Base {
     
     public function select(){
         $db = $this->getDb();
-        $stm =$db->prepare('select * from categorias where categorias_id_categorias = 0 or categorias_id_categorias = 642 order by nome_categoria desc;');
+        $stm =$db->prepare('select * from categorias where categorias_id_categorias = 642 and mercado_id_mercado = :id_mercado and ativo = 1 order by nome_categoria desc');
+        $stm->bindValue(':id_mercado', 1);//$_SESSION['id_mercado']);
         $stm->execute();
         
         $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+
+        for ($i=0; $i <count($result); $i++) { 
+            $result[$i]['text'] = $result[$i]['nome_categoria'];
+        }
         echo json_encode(array(
              "success" => true,
              "data" => $result
          ));
     }
+
+    public function getCategoriasMercado(){
+        $db = $this->getDb();
+        $stm =$db->prepare('select * from categorias where categorias_id_categorias = 642 and mercado_id_mercado = :id_mercado and ativo = 1 order by nome_categoria desc');
+        $stm->bindValue(':id_mercado', 1);//$_SESSION['id_mercado']);
+        $stm->execute();
+        
+        $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+
+        for ($i=0; $i <count($result); $i++) { 
+            $result[$i]['text'] = $result[$i]['nome_categoria'];
+        }
+        echo json_encode(array(
+             "success" => true,
+             "data" => $result
+         ));
+    }
+
+    public function getCategoriasPadrao(){
+        $db = $this->getDb();
+        $stm =$db->prepare('select * from categorias where categorias_id_categorias = 0 order by nome_categoria desc');
+        //$stm->bindValue(':id_mercado', 1);//$_SESSION['id_mercado']);
+        $stm->execute();
+        
+        $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+
+        for ($i=0; $i <count($result); $i++) { 
+            $result[$i]['text'] = $result[$i]['nome_categoria'];
+        }
+        echo json_encode(array(
+             "success" => true,
+             "data" => $result
+         ));
+    }
+
+    public function selectCategoriasPadrao(){
+        $db = $this->getDb();
+        $stm =$db->prepare('select * from categorias where categorias_id_categorias = 0 order by nome_categoria desc;');
+        $stm->execute();
+        
+        $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+
+        return $result;
+
+        }
+
+        public function selectCategoriasMercado(){
+        $db = $this->getDb();
+        $stm =$db->prepare('select * from categorias where categorias_id_categorias = 642 and mercado_id_mercado = 1 order by nome_categoria desc;');
+        $stm->execute();
+        
+        $result = $stm->fetchAll( PDO::FETCH_ASSOC);
+
+        return $result;
+
+        }
    
      public function getNumeroProdutosCategoria(){
         $db = $this->getDb();
@@ -177,11 +252,12 @@ class Categorias extends Base {
         }
 
         $db = $this->getDb();
-        $stm = $db->prepare('insert into categorias (nome_categoria, imagem_categoria, categorias_id_categorias) 
-            values (:nome_categoria, :imagem, :id)');
+        $stm = $db->prepare('insert into categorias (nome_categoria, imagem_categoria, categorias_id_categorias, mercado_id_mercado) 
+            values (:nome_categoria, :imagem, :id, :mercado_id_mercado)');
         $stm->bindValue(':nome_categoria', $data->nome_categoria);
         $stm->bindValue(':imagem', $conteudo);
         $stm->bindValue(':id', 642);
+        $stm->bindValue(':mercado_id_mercado', $_SESSION['id_mercado']);
         
         $result = $stm->execute();
         if($result == true)
@@ -271,10 +347,11 @@ class Categorias extends Base {
         // var_dump($data);
 
         $db = $this->getDb();
-        $stm = $db->prepare('insert into categorias (nome_categoria, categorias_id_categorias) 
-            values (:nome_categoria, :categorias_id_categorias)');
+        $stm = $db->prepare('insert into categorias (nome_categoria, categorias_id_categorias, mercado_id_mercado) 
+            values (:nome_categoria, :categorias_id_categorias, :mercado_id_mercado)');
         $stm->bindValue(':nome_categoria', $data->nome_categoria);
         $stm->bindValue(':categorias_id_categorias', $data->categorias_id_categoria);
+        $stm->bindValue(':mercado_id_mercado', $_SESSION['id_mercado']);
         $result = $stm->execute();
 
         if($result == true)
@@ -307,6 +384,26 @@ class Categorias extends Base {
                  "success" => $result,
                  "msg" => $msg
              )); 
+    }
+
+    public function delete(){
+        $id = $_GET['id_categorias'];
+
+        $db = $this->getDb();
+        $stm = $db->prepare('update categorias set ativo = 0 where id_categorias = :id');
+        $stm->bindValue(':id', $id);
+        $result = $stm->execute();
+
+        if($result)
+            $msg = 'Categoria excluida com sucesso!';
+        else
+            $msg = 'Erro ao excluir categoria!';
+
+         echo json_encode(array(
+                 "success" => $result,
+                 "msg" => $msg
+             )); 
+
     }
 
 }

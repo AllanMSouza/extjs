@@ -6,7 +6,7 @@ Ext.define('AppName.view.produtos.WindowGerenciarProdutos',{
     
      init : function(){
         this.launcher = {
-            text: 'Cadastrar Produtos',
+            text: 'Cadastrar produto novo/original',
             iconCls:'icon-grid'
         };
     },

@@ -1,6 +1,7 @@
 Ext.define('AppName.view.layout.DataViewNewHeaderPanelCliente',{
      extend: 'Ext.view.View',
     alias : 'widget.dataViewNewHeaderPanelCliente',
+    id: 'dataViewNewHeaderPanelCliente',
 
     mixins: {
         dragSelector: 'Ext.ux.DataView.DragSelector',
@@ -76,9 +77,11 @@ Ext.define('AppName.view.layout.DataViewNewHeaderPanelCliente',{
     
     listeners: {
 
-selectionchange: function(model, records) {
+     
+
+itemclick: function(a, b) {
           
-          var nomeCategoria = records[0].data.nome_categoria;
+          var nomeCategoria = b.data.nome_categoria
           if(nomeCategoria == 'Ofertas'){
              var win = Ext.widget('windowProdutos').setTitle('Produtos em Oferta');
                 //win.setTile('Produtos Categoria: ' + model[0].data.nome_categoria)

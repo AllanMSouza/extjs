@@ -7,7 +7,7 @@ Ext.define('AppName.store.categorias.StoreListaCategorias',{
     proxy: {
         type: 'ajax',
         api:{
-            read: 'app/data/php/Categorias.php?action=select',
+            read: 'app/data/php/Categorias.php?action=getCategoriasMercado',
             create: 'app/data/php/Categorias.php?action=insert',
             destroy: ''
         },        

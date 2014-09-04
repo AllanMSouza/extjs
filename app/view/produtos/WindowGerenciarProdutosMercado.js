@@ -7,7 +7,7 @@ Ext.define('AppName.view.produtos.WindowGerenciarProdutosMercado',{
     
     init : function(){
         this.launcher = {
-            text: 'Meus Produtos',
+            text: 'Adicionar do repositório',
             iconCls:'icon-grid'
         };
     },
@@ -18,7 +18,7 @@ Ext.define('AppName.view.produtos.WindowGerenciarProdutosMercado',{
         if(!win){
             win = desktop.createWindow({
                 id: 'windowGerenciarProdutosMercado',
-                title:'Gerenciar Meus Produtos',
+                title:'Adicionar produto do repositório de produtos',
                 layout: 'border',
                 width: 1350,
                 height: 500,
@@ -30,7 +30,7 @@ Ext.define('AppName.view.produtos.WindowGerenciarProdutosMercado',{
                     {
                          xtype: 'treeCategoriasGeral',
                          margins: '0 0 0 0',
-                         width: 250,
+                         width: 300,
                          collapsible: true
                     },
                     {
