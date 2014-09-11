@@ -20,7 +20,7 @@ Ext.define('AppName.view.categorias.GridListaSubcategorias',{
 				{
 			        text: 'Subcategoria Nivel 1',
 			        handler: function(){
-			        	var model = Ext.getCmp('gridListaCategorias').getSelectionModel().getSelection();
+			        	var model = Ext.getCmp('gridListaCategoriasMercado').getSelectionModel().getSelection();
 			        	if(model[0] != null){
 
 			        		Ext.widget('windowCadSubcategoriaNivel1')

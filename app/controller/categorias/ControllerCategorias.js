@@ -11,7 +11,7 @@ Ext.define('AppName.controller.categorias.ControllerCategorias',{
 	],
 
 	views: [
-		'categorias.GridListaCategorias',
+		'categorias.GridListaCategoriasMercado',
 		'categorias.WindowListaCategorias',
 		'categorias.GridListaSubcategorias',
 		'categorias.WindowCadCategorias',
@@ -24,9 +24,9 @@ Ext.define('AppName.controller.categorias.ControllerCategorias',{
 
 	init: function(){
         this.control({
-            'gridListaCategorias button[action=add_categorias]': {click: this.add_categorias},
-            'gridListaCategorias button[action=edit]': {click: this.edit},
-            'gridListaCategorias button[action=delete]': {click: this.delete},
+            'gridListaCategoriasMercado button[action=add_categorias]': {click: this.add_categorias},
+            'gridListaCategoriasMercado button[action=edit]': {click: this.edit},
+            'gridListaCategoriasMercado button[action=delete]': {click: this.delete},
             'windowCadCategorias button[action=save]': {click: this.save},
             'windowCadSubcategoriaNivel1 button[action=savesub]' : {click: this.savesub},
             'windowCadSubcategoriaNivel2 button[action=savesub]' : {click: this.savesub},
@@ -43,7 +43,7 @@ Ext.define('AppName.controller.categorias.ControllerCategorias',{
     },
 
     delete: function(){
-        var records = Ext.getCmp('gridListaCategorias').getSelectionModel().getSelection();
+        var records = Ext.getCmp('gridListaCategoriasMercado').getSelectionModel().getSelection();
 
         if(records.length == 1){
             var id = records[0].data.id_categorias
@@ -53,13 +53,13 @@ Ext.define('AppName.controller.categorias.ControllerCategorias',{
                 success: function(form, resp){
                     // console.log(resp)
                     Ext.example.msg('Server Response', 'Categoria excluida com sucesso!');                               
-                    Ext.getCmp('gridListaCategorias').store.load()
+                    Ext.getCmp('gridListaCategoriasMercado').store.load()
 //                                
                 },
                 failure:function(form,resp){
                    
                     Ext.example.msg('Server Response', 'Erro ao excluir categoria!');
-                    Ext.getCmp('gridListaCategorias').store.load()
+                    Ext.getCmp('gridListaCategoriasMercado').store.load()
 
                 }
             });
@@ -92,7 +92,7 @@ Ext.define('AppName.controller.categorias.ControllerCategorias',{
 
     edit: function(a,b){
         
-             var records = Ext.getCmp('gridListaCategorias').getSelectionModel().getSelection();
+             var records = Ext.getCmp('gridListaCategoriasMercado').getSelectionModel().getSelection();
                 //console.log(records)
         if(records.length === 1){
              var editWindow = Ext.widget('windowCadCategorias');
@@ -141,7 +141,7 @@ Ext.define('AppName.controller.categorias.ControllerCategorias',{
                                 if(resp.result.success == true){
                                     Ext.example.msg('Server Response', resp.result.msg);
                                     win.close()
-                                    Ext.getCmp('gridListaCategorias').store.load()
+                                    Ext.getCmp('gridListaCategoriasMercado').store.load()
                                 }
                         },
                         failure:function(form,resp){
@@ -159,7 +159,7 @@ Ext.define('AppName.controller.categorias.ControllerCategorias',{
             else {
                 var record = Ext.create('AppName.model.categorias.ModelListaCategorias');
                 record.set(values);
-                Ext.getCmp('gridListaCategorias').store.add(record);
+                Ext.getCmp('gridListaCategoriasMercado').store.add(record);
                 form.submit({
                     url: 'app/data/php/Categorias.php?action=insert',
                     success: function(form, resp){
@@ -167,7 +167,7 @@ Ext.define('AppName.controller.categorias.ControllerCategorias',{
                             if(resp.result.success == true){
                                 Ext.example.msg('Server Response', resp.result.msg);
                                 win.close()
-                                Ext.getCmp('gridListaCategorias').store.load()
+                                Ext.getCmp('gridListaCategoriasMercado').store.load()
                             }
                     },
                     failure:function(form,resp){
@@ -186,7 +186,7 @@ Ext.define('AppName.controller.categorias.ControllerCategorias',{
     savesub: function(button){
         var win = button.up('window');
 
-        var model = Ext.getCmp('gridListaCategorias').getSelectionModel().getSelection();
+        var model = Ext.getCmp('gridListaCategoriasMercado').getSelectionModel().getSelection();
 
         var form = Ext.getCmp('formCadSubcategoriaNivel1').getForm(),
         values = form.getValues();
